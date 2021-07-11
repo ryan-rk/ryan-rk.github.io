@@ -25,51 +25,63 @@ main {
 
 .web-builder {
   position: relative;
-  width: 60vw;
-  height: calc(60vw * 1.13);
-  max-width: 30rem;
-  max-height: calc(30rem * 1.13);
+  width: 50vw;
+  height: calc(50vw * 1.13);
+  max-width: 25rem;
+  max-height: calc(25rem * 1.13);
 }
 
-.web-builder table {
-  margin-right: calc(min(20rem, 30vw));
-  border-spacing: 3vw;
+.web-builder #tags {
+  position: relative;
+  width: 30%;
+  height: 30%;
+  top: 0%;
+  border-spacing: 1vw;
   -webkit-transform-origin: bottom;
           transform-origin: bottom;
   -webkit-animation: disappearing 5s infinite ease-in-out;
           animation: disappearing 5s infinite ease-in-out;
 }
 
-.web-builder table #tag1 {
+.web-builder .tag {
+  position: absolute;
+  opacity: 1;
+  background-color: #d1d1d1;
+  color: #3E3E3E;
+  text-align: center;
+  width: auto;
+  height: auto;
+  font-size: calc(min(2vw, 1.0rem));
+  padding: 4%;
+  border-radius: 10%;
+}
+
+.web-builder #tag1 {
+  left: 0%;
+  top: 10%;
   -webkit-animation: tag1-appear 5s infinite ease-in-out;
           animation: tag1-appear 5s infinite ease-in-out;
 }
 
-.web-builder table #tag2 {
+.web-builder #tag2 {
+  left: 65%;
+  top: 20%;
   -webkit-animation: tag2-appear 5s infinite ease-in-out;
           animation: tag2-appear 5s infinite ease-in-out;
 }
 
-.web-builder table #tag3 {
+.web-builder #tag3 {
+  left: 0%;
+  top: 45%;
   -webkit-animation: tag3-appear 5s infinite ease-in-out;
           animation: tag3-appear 5s infinite ease-in-out;
 }
 
-.web-builder table #tag4 {
+.web-builder #tag4 {
+  left: 70%;
+  top: 50%;
   -webkit-animation: tag4-appear 5s infinite ease-in-out;
           animation: tag4-appear 5s infinite ease-in-out;
-}
-
-.web-builder .tag {
-  opacity: 0;
-  background-color: #d1d1d1;
-  color: #3E3E3E;
-  text-align: center;
-  width: calc(min(2vw, 2rem));
-  font-size: calc(min(2vw, 1.5rem));
-  font-weight: bold;
-  padding: 0.5vw;
-  border-radius: 1vw;
 }
 
 .web-builder #builder-bg {
@@ -116,50 +128,32 @@ main {
   width: 100%;
   color: #DCDCDC;
   text-align: center;
-  font-size: calc(min(3vw, 2rem));
+  font-size: calc(min(3vw, 1.5rem));
   top: 90%;
   z-index: 1;
 }
 
 .web-builder .onoff-toggler {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-line-pack: distribute;
-      align-content: space-around;
   position: absolute;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 15%;
+  width: 20%;
   z-index: 1;
-  top: 45%;
-  left: 80%;
+  top: 50%;
+  left: 75%;
   text-align: center;
 }
 
 .web-builder #on-toggler {
   color: white;
-  width: 8vw;
   background-color: #25C05D;
-  border-radius: 1vw 1vw 0 0;
-  font-size: calc(min(3vw, 2rem));
+  font-size: calc(min(3vw, 1.5rem));
   padding: 10%;
 }
 
 .web-builder #off-toggler {
   color: white;
-  width: 8vw;
   background-color: #EE6767;
   background-color: #555555;
-  border-radius: 0 0 1vw 1vw;
-  font-size: calc(min(3vw, 2rem));
+  font-size: calc(min(3vw, 1.5rem));
   padding: 10%;
 }
 
@@ -172,6 +166,60 @@ main {
   height: 75%;
   top: 40;
   z-index: 2;
+}
+
+.web-builder #spark1 {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 5;
+  width: 30%;
+  top: 35%;
+  left: 20%;
+  -webkit-animation: spark-expand 2s infinite ease-in;
+          animation: spark-expand 2s infinite ease-in;
+}
+
+.web-builder #spark2 {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 5;
+  width: 15%;
+  top: 60%;
+  left: 85%;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-animation: spark-expand 3s infinite ease-in;
+          animation: spark-expand 3s infinite ease-in;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+.web-builder #smoke1 {
+  position: absolute;
+  visibility: hidden;
+  z-index: 5;
+  width: 40%;
+  opacity: 0;
+  left: 0%;
+  top: 60%;
+  -webkit-animation: smoke-expand 2s infinite ease-in;
+          animation: smoke-expand 2s infinite ease-in;
+}
+
+.web-builder #smoke2 {
+  position: absolute;
+  visibility: hidden;
+  z-index: 5;
+  width: 20%;
+  opacity: 0;
+  left: 70%;
+  top: 40%;
+  -webkit-animation: smoke-expand 2s infinite ease-in;
+          animation: smoke-expand 2s infinite ease-in;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 
 .web-builder #speech-bubble {
@@ -213,6 +261,46 @@ main {
           animation: arm-normal-idle 1s ease-in-out;
 }
 
+#builder-exploded {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70vw;
+  z-index: 6;
+}
+
+#builder-exploded h1 {
+  font-size: calc(min(5vw, 2rem));
+  padding: 4%;
+  text-align: center;
+}
+
+#builder-exploded h2 {
+  opacity: 0.6;
+  font-size: calc(min(5vw, 1.5rem));
+  padding: 1%;
+  text-align: center;
+}
+
+#builder-exploded p {
+  opacity: 0.4;
+  text-align: center;
+}
+
+#builder-exploded img {
+  margin-top: 10%;
+  width: 100%;
+  max-width: 40rem;
+}
+
 .foreground-text {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -232,11 +320,11 @@ main {
   color: #3E3E3E;
 }
 
-h1 {
+.foreground-text h1 {
   font-size: calc(min(5vw, 2rem));
 }
 
-h2 {
+.foreground-text h2 {
   opacity: 0.6;
   font-size: calc(min(5vw, 1.5rem));
 }
@@ -697,6 +785,78 @@ h2 {
   100% {
     -webkit-transform: rotate(30deg);
             transform: rotate(30deg);
+  }
+}
+
+@-webkit-keyframes smoke-expand {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes smoke-expand {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes spark-expand {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spark-expand {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }
 /*# sourceMappingURL=maintenance.css.map */

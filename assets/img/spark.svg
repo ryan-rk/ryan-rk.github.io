@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="138px" height="105px" viewBox="0 0 138 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>spark</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile" transform="translate(-102.000000, -1432.000000)" fill="#FFFFFF">
+            <g id="spark" transform="translate(102.402041, 1432.235336)">
+                <polygon id="Path-7" points="0 62.3978511 18.9353968 87.1786086 37.8707936 103.793258 23.3876345 81.021518"></polygon>
+                <polygon id="Path-7-Copy" transform="translate(108.935397, 32.095555) rotate(45.000000) translate(-108.935397, -32.095555) " points="90 11.3978511 108.935397 36.1786086 127.870794 52.7932584 110.976924 34.1370817"></polygon>
+                <polygon id="Path-8" points="42.6403039 0 55.3071273 50.1200579 64.0979591 34.8960093 68.8246301 76.0502178 76.5979591 62.3978511 80.5979591 103.793258 80.5979591 51.8966292 70.395701 69.8789422 68.8246301 25.4088594 57.080933 42.1682336"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="101px" viewBox="0 0 102 101" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>smoke2</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile" transform="translate(-337.000000, -1021.000000)" fill="#534747">
+            <g id="smoke2" transform="translate(337.000000, 1021.000000)">
+                <ellipse id="Oval" stroke="#999999" cx="29" cy="58" rx="28.5" ry="30.5"></ellipse>
+                <ellipse id="Oval-Copy-11" stroke="#999999" cx="29.5" cy="27.5" rx="21" ry="15"></ellipse>
+                <ellipse id="Oval-Copy-14" stroke="#999999" cx="53" cy="73.5" rx="27.5" ry="27"></ellipse>
+                <ellipse id="Oval-Copy-12" stroke="#999999" cx="54" cy="27.5" rx="27.5" ry="27"></ellipse>
+                <ellipse id="Oval-Copy-13" stroke="#999999" cx="74" cy="49.5" rx="27.5" ry="27"></ellipse>
+                <ellipse id="Oval-Copy-15" cx="43" cy="49.5" rx="28" ry="27.5"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>

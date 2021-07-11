@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="136px" height="138px" viewBox="0 0 136 138" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>smoke1</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile" transform="translate(-111.000000, -1037.000000)" fill="#534747">
+            <g id="smoke1" transform="translate(111.000000, 1037.000000)">
+                <ellipse id="Oval" stroke="#BEBEBE" cx="27.5" cy="57.5" rx="27" ry="23"></ellipse>
+                <ellipse id="Oval-Copy-4" stroke="#BEBEBE" cx="66" cy="30.5" rx="34.5" ry="30"></ellipse>
+                <ellipse id="Oval-Copy-5" stroke="#BEBEBE" cx="96" cy="50.5" rx="34.5" ry="30"></ellipse>
+                <ellipse id="Oval-Copy-6" stroke="#BEBEBE" cx="112.5" cy="77" rx="23" ry="18.5"></ellipse>
+                <ellipse id="Oval-Copy-7" stroke="#BEBEBE" cx="89.5" cy="107.5" rx="34" ry="30"></ellipse>
+                <ellipse id="Oval-Copy-8" stroke="#BEBEBE" cx="40.5" cy="91.5" rx="34" ry="30"></ellipse>
+                <circle id="Oval-Copy-9" stroke="#BEBEBE" cx="55.5" cy="116.5" r="16"></circle>
+                <ellipse id="Oval-Copy-10" cx="65.5" cy="71" rx="41.5" ry="55"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>

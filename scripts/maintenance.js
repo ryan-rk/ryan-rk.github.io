@@ -1,4 +1,4 @@
-let angryValue = 6;
+let angryValue = 0;
 
 function builderOff() {
     angryValue += 1;
@@ -11,6 +11,9 @@ function builderOff() {
     builderOffTrigger.style.visibility = 'hidden';
     onOffToggle(false);
     setTimeout(() => { restartBuilder(robotMain, robotBody, robotArm, builderOffTrigger, speechBubble) }, 1500);
+    if (angryValue >= 8) {
+        showSmokeSparks();
+    }
 }
 
 function restartBuilder(robotMain, robotBody, robotArm, builderOffTrigger, speechBubble) {
@@ -49,6 +52,23 @@ function cycleSpeechBubble(speechBubble) {
     }
 }
 
+function showSmokeSparks() {
+    const smoke1 = document.getElementById('smoke1');
+    const smoke2 = document.getElementById('smoke2');
+    const spark1 = document.getElementById('spark1');
+    const spark2 = document.getElementById('spark2');
+    smoke1.style.visibility = 'visible';
+    smoke2.style.visibility = 'visible';
+    spark1.style.visibility = 'visible';
+    spark2.style.visibility = 'visible';
+}
+
+// function builderExploded() {
+//     const 
+
+//     transform: rotateZ(8deg);
+// }
+
 function onOffToggle(isOn) {
     let runningState = 'running';
     if (isOn) {
@@ -66,12 +86,12 @@ function onOffToggle(isOn) {
         onToggler.style.backgroundColor = '#555555';
     }
     const builderBg = document.getElementById('builder-bg');
-    const tags = document.getElementsByClassName('tag');
+    const tagElement = document.getElementsByClassName('tag');
     const cogs = document.getElementsByClassName('cog');
-    const table = document.querySelector('table');
+    const tags = document.getElementById('tags');
     builderBg.style.animationPlayState = runningState;
-    table.style.animationPlayState = runningState;
-    for (const tag of tags) {
+    tags.style.animationPlayState = runningState;
+    for (const tag of tagElement) {
         tag.style.animationPlayState = runningState;
     }
     for (const cog of cogs) {
