@@ -25,6 +25,12 @@
                     <td class="tag" id="tag4">&lt;scripts&gt;</td>
                 </tr>
             </table>
+            <img src="assets/img/speech-bubble-default.svg" alt="image speech bubble" id="speech-bubble">
+            <div class="robot-class" id="robot">
+                <img src="assets/img/robot.svg" alt="image of robot" id="robot-body">
+                <img src="assets/img/robot-arm.svg" alt="image of robot's arm" id="robot-arm">
+            </div>
+            <button id="off-builder" onclick="builderOff()"></button>
             <div class="cogs">
                 <img src="assets/img/cog.svg" alt="cog" class="web-builder-element cog" id="cog1">
                 <img src="assets/img/cog.svg" alt="cog" class="web-builder-element cog" id="cog2">
@@ -32,8 +38,8 @@
             </div>
             <p>webpage builder</p>
             <div class="onoff-toggler">
-                <button id="on-toggler" onclick="onOffToggle('running')">ON</button>
-                <button id="off-toggler" onclick="onOffToggle('paused')">OFF</button>
+                <div id="on-toggler">ON</div>
+                <div id="off-toggler">OFF</div>
             </div>
             <img src="assets/img/webbuilder-bg.svg" alt="builder background" class="web-builder-element" id="builder-bg">
         </div>

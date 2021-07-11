@@ -146,7 +146,7 @@ main {
 
 .web-builder #on-toggler {
   color: white;
-  width: 10vw;
+  width: 8vw;
   background-color: #25C05D;
   border-radius: 1vw 1vw 0 0;
   font-size: calc(min(3vw, 2rem));
@@ -155,12 +155,62 @@ main {
 
 .web-builder #off-toggler {
   color: white;
-  width: 10vw;
+  width: 8vw;
   background-color: #EE6767;
   background-color: #555555;
   border-radius: 0 0 1vw 1vw;
   font-size: calc(min(3vw, 2rem));
   padding: 10%;
+}
+
+.web-builder #off-builder {
+  position: absolute;
+  border-style: none;
+  opacity: 0;
+  background-color: gray;
+  width: 100%;
+  height: 75%;
+  top: 40;
+  z-index: 2;
+}
+
+.web-builder #speech-bubble {
+  position: absolute;
+  width: 20%;
+  right: 0%;
+  top: 0%;
+  visibility: hidden;
+}
+
+.web-builder .robot-class {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 45%;
+  top: 40%;
+  z-index: -1;
+  -webkit-animation: robot-body-idle 1s ease-in-out;
+          animation: robot-body-idle 1s ease-in-out;
+}
+
+.web-builder .robot-class #robot-body {
+  position: inherit;
+  z-index: 0;
+  width: 42%;
+}
+
+.web-builder .robot-class #robot-arm {
+  position: inherit;
+  z-index: 1;
+  width: 26%;
+  left: 36%;
+  top: 18%;
+  -webkit-transform-origin: 10% 10%;
+          transform-origin: 10% 10%;
+  -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+  -webkit-animation: arm-normal-idle 1s ease-in-out;
+          animation: arm-normal-idle 1s ease-in-out;
 }
 
 .foreground-text {
@@ -435,6 +485,218 @@ h2 {
     -webkit-transform: scale(0);
             transform: scale(0);
     opacity: 0;
+  }
+}
+
+@-webkit-keyframes robot-normal-move {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  20% {
+    -webkit-transform: translateY(-20%);
+            transform: translateY(-20%);
+  }
+  80% {
+    -webkit-transform: translateY(-20%);
+            transform: translateY(-20%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@keyframes robot-normal-move {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  20% {
+    -webkit-transform: translateY(-20%);
+            transform: translateY(-20%);
+  }
+  80% {
+    -webkit-transform: translateY(-20%);
+            transform: translateY(-20%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes robot-angry-move {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  20% {
+    -webkit-transform: translateY(-32%);
+            transform: translateY(-32%);
+  }
+  80% {
+    -webkit-transform: translateY(-32%);
+            transform: translateY(-32%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@keyframes robot-angry-move {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  20% {
+    -webkit-transform: translateY(-32%);
+            transform: translateY(-32%);
+  }
+  80% {
+    -webkit-transform: translateY(-32%);
+            transform: translateY(-32%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes arm-normal-move {
+  0% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+  20% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  40% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  60% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  80% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+}
+
+@keyframes arm-normal-move {
+  0% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+  20% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  40% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  60% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  80% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+}
+
+@-webkit-keyframes arm-angry-move {
+  0% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+  20% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+  40% {
+    -webkit-transform: rotate(8deg);
+            transform: rotate(8deg);
+  }
+  60% {
+    -webkit-transform: rotate(8deg);
+            transform: rotate(8deg);
+  }
+  80% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+}
+
+@keyframes arm-angry-move {
+  0% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+  20% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+  40% {
+    -webkit-transform: rotate(8deg);
+            transform: rotate(8deg);
+  }
+  60% {
+    -webkit-transform: rotate(8deg);
+            transform: rotate(8deg);
+  }
+  80% {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+}
+
+@-webkit-keyframes robot-body-idle {
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@keyframes robot-body-idle {
+  100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes robot-arm-idle {
+  100% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+}
+
+@keyframes robot-arm-idle {
+  100% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
   }
 }
 /*# sourceMappingURL=maintenance.css.map */
