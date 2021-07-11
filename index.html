@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan RK</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div id="nav-title">
+            <h1 id="home-title">ryan.<span>RK()</span></h1>
+            <img class="triangle" id="right-triangle" src="assets/img/menu-triangle.svg" alt="menu triangle"></img>
+        </div>
+        <button type="button" id="collapse-menu-button" onclick="expandMenu()">{...}</button>
+        <div id="expanded-menu">
+            <!-- <div id="expand-menu-opencurly">{</div> -->
+            <ul id="menu-list">
+                <li><a href="maintenance.html">home()</a></li>
+                <li><a href="maintenance.html">projects()</a></li>
+                <li><a href="maintenance.html">aboutMe()</a></li>
+                <div id="expand-menu-closecurly">}</div>
+            </ul>
+            <button type="button" class="triangle" id="menu-triangle" onclick="expandMenu()"><img src="assets/img/menu-triangle-close.svg" alt="menu triangle"></button>
+        </div>
+    </nav>
+    <header>
+        <img src="assets/img/logo.svg" alt="website logo" class="header-element" id="logo">
+        <!-- <img src="assets/img/line-logo.svg" alt="website logo line" class="header-element" id="logo-line"> -->
+        <span class="logo-line" id="line-left"></span>
+        <span class="logo-line" id="line-right"></span>
+        <span class="logo-dot" id="dot-left"></span>
+        <span class="logo-dot" id="dot-right"></span>
+        <h2 class="header-element">Hi, welcome to my personal site</h2>
+        <button style="display:none" onclick="testFunc()">click for func</button>
+        <img src="assets/img/vertical-dotline.svg" alt="line decoration" class="header-element header-vertical-dotline">
+        <h3 class="header-element">Enjoy a pure <span>simplistic</span> experience while navigating through the site and
+            <nobr>getting to know me</nobr>
+        </h3>
+    </header>
+    <section id="biodata">
+        <h1 class="biodata-element">BIODATA</h1>
+        <img src="assets/img/vertical-dotline.svg" alt="line decoration" class="biodata-element vertical-dotline">
+        <h2 class="biodata-element">An artistic soul with great passion for
+            <nobr>coding and programming</nobr>
+        </h2>
+        <img src="assets/img/mask.svg" alt="mask icon" class="biodata-element" id="mask">
+        <h3 class="biodata-element">Masked by a years of major in
+            <nobr>Mechanical Engineering</nobr>
+        </h3>
+        <img src="assets/img/vertical-dotline.svg" alt="line decoration" class="biodata-element vertical-dotline">
+        <h4 class="biodata-element">Currently a postgraduate student conducting researches related to
+            <nobr>deep learning and structure design</nobr>
+        </h4>
+    </section>
+    <section id="skills">
+        <h1 class="skills-element">SKILLS & PROFICIENCY</h1>
+        <img src="assets/img/vertical-dotline.svg" alt="line decoration" class="skills-element vertical-dotline">
+        <div id="skills-direc">
+            <div id="skills-direc-bar">
+                <button type="button"><img src="assets/img/close-button.svg" alt="close button" id="close-button"></button>
+                <h2>/ <a href="#">home</a> / <a href="#">ryanRK</a> / <a href="#">skillsDirectory</a></h2>
+            </div>
+            <div id="skills-direc-body">
+                <div class="skills-category" id="deep-learning">
+                    <img class="direc-icon" src="assets/img/direc-icon.svg" alt="directory icon">
+                    <p class="direc-text">Deep Learning</p>
+                </div>
+                <div class="skills-category" id="web-development">
+                    <img class="direc-icon" src="assets/img/direc-icon.svg" alt="directory icon">
+                    <p class="direc-text">Web Development</p>
+                </div>
+                <div class="skills-category" id="mobile-development">
+                    <img class="direc-icon" src="assets/img/direc-icon.svg" alt="directory icon">
+                    <p class="direc-text">Mobile Development</p>
+                </div>
+                <div class="skills-category" id="engineering-softwares">
+                    <img class="direc-icon" src="assets/img/direc-icon.svg" alt="directory icon">
+                    <p class="direc-text">Engineering Softwares</p>
+                </div>
+                <div class="skills-category" id="others-skills">
+                    <img class="direc-icon" src="assets/img/direc-icon.svg" alt="directory icon">
+                    <p class="direc-text">Others</p>
+                </div>
+                <div class="skills-category" id="terminal-skills">
+                    <img class="direc-icon" src="assets/img/terminal-icon.svg" alt="directory icon">
+                    <p class="direc-text">Terminal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="soft-skills">
+        <h1 class="soft-skills-element">SOFT SKILLS</h1>
+        <table id="dots-bg"></table>
+        <div class="scroll-wrapper">
+            <ul>
+                <li class="soft-skills-element">Positions/Departments joined in university societies</li>
+                <li class="soft-skills-element">Program and Events Planning</li>
+                <li class="soft-skills-element">Multimedia and Technicals</li>
+                <li class="soft-skills-element">Marketing</li>
+                <li class="soft-skills-element">Secretary</li>
+                <li class="soft-skills-element">Publicity</li>
+                <li class="soft-skills-element">President</li>
+            </ul>
+        </div>
+
+    </section>
+    <section id="projects">
+        <h1 class="projects-element">NOTABLE PROJECTS</h1>
+        <img src="assets/img/vertical-dotline.svg" alt="line decoration" class="projects-element vertical-dotline">
+        <h2 class="projects-element">Check out some of my <span>research</span> outputs and hands-on <span>projects</span> made out of passion</h2>
+        <button class="projects-element" type="button" id="projects-button"><a href="maintenance.html">GO TO PAGE</a></button>
+    </section>
+    <section id="contact">
+        <h1 class="contact-element">CONTACT</h1>
+        <img src="assets/img/vertical-dotline.svg" alt="line decoration" class="contact-element vertical-dotline">
+        <h2 class="contact-element">Feel free to contact me through the following email or visit the<br><a href="maintenance.html">ABOUT ME</a><br>page to connect with me through various social sites</h2>
+        <img src="assets/img/mail.svg" alt="mail icon" class="contact-element" id="mail">
+    </section>
+    <footer>
+        <img src="assets/img/horizontal-dotline.svg" alt="line decoration">
+        <a href="test.html">testing</a>
+        <h1>Site styled and scripted by RyanRK</h1>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+
+</body>
+
+</html>

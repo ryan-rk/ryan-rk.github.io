@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
+    <link rel="stylesheet" href="styles/maintenance.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div class="web-builder">
+            <table class="tags-table">
+                <tr class="tags">
+                    <td class="tag" id="tag1">&lt;html&gt;</td>
+                    <td class="tag" id="tag2">&lt;body&gt;</td>
+                </tr>
+                <tr class="tags">
+                    <td class="tag" id="tag3">&lt;styles&gt;</td>
+                    <td class="tag" id="tag4">&lt;scripts&gt;</td>
+                </tr>
+            </table>
+            <div class="cogs">
+                <img src="assets/img/cog.svg" alt="cog" class="web-builder-element cog" id="cog1">
+                <img src="assets/img/cog.svg" alt="cog" class="web-builder-element cog" id="cog2">
+                <img src="assets/img/cog.svg" alt="cog" class="web-builder-element cog" id="cog3">
+            </div>
+            <p>webpage builder</p>
+            <div class="onoff-toggler">
+                <button id="on-toggler" onclick="onOffToggle('running')">ON</button>
+                <button id="off-toggler" onclick="onOffToggle('paused')">OFF</button>
+            </div>
+            <img src="assets/img/webbuilder-bg.svg" alt="builder background" class="web-builder-element" id="builder-bg">
+        </div>
+        <div class="foreground-text">
+            <h1>The site is currently being built and will be ready soon</h1>
+            <h2>&gt; Thanks for your patience &lt;</h2>
+            <p>Meanwhile please DO NOT turn off the builder</p>
+        </div>
+    </main>
+    <script src="scripts/maintenance.js"></script>
+
+</body>
+
+</html>

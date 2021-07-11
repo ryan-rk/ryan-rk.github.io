@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="45px" viewBox="0 0 52 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Terminal Icon</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-White" transform="translate(-231.000000, -1321.000000)">
+            <g id="Skill-Directory" transform="translate(5.000000, 1164.000000)">
+                <g id="Terminal-Icon" transform="translate(226.000000, 157.000000)">
+                    <rect id="Rectangle" fill="#263B3F" x="0" y="0" width="52" height="45" rx="7"></rect>
+                    <polygon id="Rectangle" fill="#D8D8D8" points="9 10 12.4375 10 20 23 12.4375 36 9 36 16.4491583 23"></polygon>
+                    <circle id="Oval" fill="#D8D8D8" cx="29.5" cy="30.5" r="3.5"></circle>
+                    <circle id="Oval-Copy" fill="#D8D8D8" cx="40.5" cy="30.5" r="3.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

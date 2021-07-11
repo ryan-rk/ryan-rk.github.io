@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="204px" height="204px" viewBox="0 0 204 204" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Logo</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-White" transform="translate(-61.000000, -91.000000)">
+            <g id="Hero-Section" transform="translate(10.000000, 91.000000)">
+                <g id="Logo" transform="translate(45.888284, 0.176624)">
+                    <rect id="Rectangle" stroke="#979797" transform="translate(107.111716, 101.823376) rotate(45.000000) translate(-107.111716, -101.823376) " x="48.6117163" y="43.3233765" width="117" height="117"></rect>
+                    <rect id="Rectangle-Copy-2" stroke="#CDCDCD" transform="translate(107.111716, 101.823376) rotate(45.000000) translate(-107.111716, -101.823376) " x="35.6117163" y="30.3233765" width="143" height="143"></rect>
+                    <text id="T" transform="translate(72.588446, 85.919473) rotate(-32.000000) translate(-72.588446, -85.919473) " font-family="Zapfino" font-size="76" font-weight="normal" fill="#9C9C9C">
+                        <tspan x="34.7962236" y="152.419473">T</tspan>
+                    </text>
+                    <text id="R" font-family="SourceCodePro-Light, Source Code Pro" font-size="80" font-weight="300" fill="#A9A5BD">
+                        <tspan x="57.1117163" y="130.823376">R</tspan>
+                    </text>
+                    <text id="K" transform="translate(134.111716, 102.323376) scale(-1, 1) translate(-134.111716, -102.323376) " font-family="SourceCodePro-Light, Source Code Pro" font-size="80" font-weight="300" fill="#B8ABC8">
+                        <tspan x="111.111716" y="130.823376">K</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
