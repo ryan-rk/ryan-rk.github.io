@@ -13,15 +13,16 @@
 </head>
 
 <body>
+    <div id="explode-transition"></div>
     <main>
         <div id="builder-exploded">
             <p>*oh great what a mess*</p>
-            <h1>Congratulations on destroying the builder</h1>
+            <h1>Told you not to mess with the builder, look what you've done</h1>
             <h2>Now would you kindly leave the page, we have got a lot to clean up. Thanks</h2>
             <p>*sigh annoying human*</p>
             <img src="assets/img/exploded-builder.svg" alt="builder exploded" id="builder-exploded-bg">
         </div>
-        <div class="web-builder">
+        <div id="web-builder">
             <div id="tags">
                 <p class="tag" id="tag1">&lt;html&gt;</p>
                 <p class="tag" id="tag2">&lt;body&gt;</p>
@@ -49,6 +50,7 @@
                 <div id="off-toggler">OFF</div>
             </div>
             <img src="assets/img/webbuilder-bg.svg" alt="builder background" class="web-builder-element" id="builder-bg">
+            <img src="assets/img/webbuilder-bg-explode.svg" alt="builder background" class="web-builder-element" id="builder-bg-explode">
         </div>
         <div class="foreground-text">
             <h1>The site is currently being built and will be ready soon</h1>
@@ -56,6 +58,11 @@
             <p>Meanwhile please DO NOT turn off the builder</p>
         </div>
     </main>
+    <footer>
+        <img src="assets/img/horizontal-dotline.svg" alt="horizontal dotline" class="horizontal-line">
+        <div id="email">Owner of the page will not take any responsibilities for any action taken by the user, so in case of any accident please don't send feedback email to <a href="mailto:rktan@connect.ust.hk">rktan@connect.ust.hk</a></div>
+        <img src="assets/img/horizontal-dotline.svg" alt="horizontal dotline" class="horizontal-line">
+    </footer>
     <script src="scripts/maintenance.js"></script>
 
 </body>
