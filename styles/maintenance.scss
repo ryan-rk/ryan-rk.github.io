@@ -21,7 +21,7 @@ main {
     // align-content: center;
     align-items: center;
     padding: 1rem;
-    margin-top: 10%;
+    margin-top: 10vh;
     // box-sizing: border-box;
     // height: 100vh;
 }
@@ -352,24 +352,23 @@ main {
 
 footer {
     display: flex;
-    position: absolute;
+    // position: absolute;
     width: 100vw;
-    bottom: 0;
+    // height: 10vw;
+    // bottom: 0rem;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     .horizontal-line {
         margin: 1vw 2vw;
+        width: calc(min(15vw, 4rem));
     }
-    div {
-        font-size: xx-small;
+    a {
+        font-size: calc(min(1.5vw, 0.8rem));
         opacity: 0.6;
-        color: $main-text-color;
         text-align: center;
-        a {
-            text-decoration: none;
-            color: black;
-        }
+        text-decoration: none;
+        color: $main-text-color;
     }
 }
 

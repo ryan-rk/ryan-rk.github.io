@@ -114,7 +114,7 @@ function builderExploding() {
     const explodeTransition = document.getElementById('explode-transition');
     const builderExploded = document.getElementById('builder-exploded');
     const webBuilder = document.getElementById('web-builder');
-    const docBody = document.body;
+    const docMain = document.querySelector('main');
     const fgTextH1 = document.getElementsByClassName('foreground-text')[0].querySelector('h1');
     const fgTextP = document.getElementsByClassName('foreground-text')[0].querySelector('p');
     // builderBgExplode.style.visibility = 'visible';
@@ -124,8 +124,8 @@ function builderExploding() {
     explodeTransition.style.visibility = 'visible';
     explodeTransition.style.animation = 'explode-blink 4s ease-in-out';
     explodeTransition.style.animationDelay = '3s';
-    setTimeout(() => { docBody.style.animation = 'shake 1s cubic-bezier(.36, .07, .19, .97) both' }, 3000);
-    setTimeout(() => { fgTextH1.style.transform = 'rotateZ(8deg)', fgTextH1.style.position = 'absolute', fgTextP.style.transform = 'scaleY(0.5)', fgTextP.style.margin = 0, builderExploded.style.display = 'flex', webBuilder.style.display = 'none'; }, 4000);
+    setTimeout(() => { docMain.style.animation = 'shake 750ms cubic-bezier(.36, .07, .19, .97) both' }, 3300);
+    setTimeout(() => { fgTextH1.style.transform = 'rotateZ(8deg)', fgTextH1.style.position = 'absolute', fgTextP.style.transform = 'scaleY(0.5)', builderExploded.style.display = 'flex', webBuilder.style.display = 'none'; }, 4000);
     // transform-origin: left;
     // transform: rotateZ(8deg);
     // transform: rotateX(60deg);
