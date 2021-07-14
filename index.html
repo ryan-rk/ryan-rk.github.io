@@ -16,24 +16,30 @@
 <body>
     <nav>
         <div id="nav-title">
-            <h1 id="home-title">ryan.<span>RK()</span></h1>
-            <img class="triangle" id="right-triangle" src="assets/img/menu-triangle.svg" alt="menu triangle"></img>
+            <div class="nav-left">
+                <h1 id="home-title">ryan.<span>RK()</span></h1>
+                <div class="triangle-container">
+                    <img class="triangle" id="triangle-left" src="assets/img/menu-triangle.svg" alt="menu triangle"></img>
+                </div>
+            </div>
+            <div class="nav-right" id="collapse-menu-button" onclick="expandMenu()">{...}</div>
+            <!-- <img class="triangle" id="triangle-right" src="assets/img/menu-triangle.svg" alt="menu triangle"></img> -->
+
         </div>
-        <button type="button" id="collapse-menu-button" onclick="expandMenu()">{...}</button>
         <div id="expanded-menu">
             <!-- <div id="expand-menu-opencurly">{</div> -->
             <ul id="menu-list">
-                <li><a href="maintenance.html">home()</a></li>
-                <li><a href="maintenance.html">projects()</a></li>
-                <li><a href="maintenance.html">aboutMe()</a></li>
-                <div id="expand-menu-closecurly">}</div>
+                <li><a href="maintenance.html">Projects()</a></li>
+                <li><a href="maintenance.html">AboutMe()</a></li>
+                <li><a href="maintenance.html">Home()</a></li>
             </ul>
-            <button type="button" class="triangle" id="menu-triangle" onclick="expandMenu()"><img src="assets/img/menu-triangle-close.svg" alt="menu triangle"></button>
+            <div id="expand-menu-closecurly">}</div>
+            <!-- <button type="button" class="triangle" id="menu-triangle" onclick="expandMenu()"><img src="assets/img/menu-triangle-close.svg" alt="menu triangle"></button> -->
         </div>
     </nav>
-    <header>
+    <!-- <header>
         <img src="assets/img/logo.svg" alt="website logo" class="header-element" id="logo">
-        <!-- <img src="assets/img/line-logo.svg" alt="website logo line" class="header-element" id="logo-line"> -->
+        <img src="assets/img/line-logo.svg" alt="website logo line" class="header-element" id="logo-line">
         <span class="logo-line" id="line-left"></span>
         <span class="logo-line" id="line-right"></span>
         <span class="logo-dot" id="dot-left"></span>
@@ -128,7 +134,7 @@
         <img src="assets/img/horizontal-dotline.svg" alt="line decoration">
         <a href="test.html">testing</a>
         <h1>Site styled and scripted by RyanRK</h1>
-    </footer>
+    </footer> -->
 
     <script src="scripts/main.js"></script>
 

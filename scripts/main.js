@@ -1,22 +1,32 @@
 function expandMenu() {
-    var expandedMenu = document.getElementById("expanded-menu");
-    var rightTriangle = document.getElementById("right-triangle");
-    var menuTriangle = document.getElementById("menu-triangle");
-    var navBar = document.querySelector("nav");
-    var menuButton = document.getElementById("collapse-menu-button");
-    if (expandedMenu.style.display !== "block") {
-        // if (expandedMenu.style.opacity === "0") {
-        expandedMenu.style.display = "block";
-        menuTriangle.style.display = "block";
-        menuButton.innerHTML = "{"
-        navBar.style.width = "calc(100% - 1.6rem)";
-        navBar.style.height = "21rem";
-        rightTriangle.style.opacity = "0";
+    console.log('Menu expanded')
+    const expandedMenu = document.getElementById('expanded-menu');
+    const triangleLeft = document.getElementById('triangle-left');
+    // // var menuTriangle = document.getElementById("menu-triangle");
+    const navBar = document.querySelector('nav');
+    const menuButton = document.getElementById('collapse-menu-button');
+    if (expandedMenu.style.display !== 'flex') {
+        //     // if (expandedMenu.style.opacity === "0") {
+        //     // expandedMenu.style.display = "block";
+        //     // menuTriangle.style.display = "block";
+        menuButton.innerHTML = '&nbsp;&nbsp;&nbsp;{';
+        //         // navBar.style.width = "calc(100% - 1.6rem)";
+        navBar.style.height = '19rem';
+        expandedMenu.style.display = 'flex';
+        //         // triangleLeft.style.opacity = "0";
+        // navLeft.style.justifyContent = 'space-between';
+        triangleLeft.style.left = '100%';
+        triangleLeft.style.transform = 'rotate(180deg)';
         setTimeout(() => expandedMenu.style.opacity = "1", 200);
     } else {
-        menuTriangle.style.display = "none";
+        // navBar.style.height = '4.4rem';
+        // expandedMenu.style.display = 'none';
+        // navLeft.style.justifyContent = 'flex-start';
+        triangleLeft.style.left = '0%';
+        triangleLeft.style.transform = 'rotate(0deg)';
+        // menuTriangle.style.display = "none";
         expandedMenu.style.opacity = "0";
-        setTimeout(() => { navBar.style.height = "4.4rem", rightTriangle.style.opacity = "1", menuButton.innerHTML = "{...}", expandedMenu.style.display = "none"; }, 200);
+        setTimeout(() => { navBar.style.height = "4.4rem", expandedMenu.style.display = "none", menuButton.innerHTML = '{...}'; }, 200);
 
     }
 }
@@ -89,8 +99,8 @@ function testFunc() {
     console.log('resized');
 }
 
-createDots(0);
-window.addEventListener("scroll", lineDecorScroll, false);
-window.addEventListener('resize', createDots, false);
-const dotBG = document.querySelector(".scroll-wrapper");
-dotBG.addEventListener("scroll", dotScroll, false);
+// createDots(0);
+// window.addEventListener("scroll", lineDecorScroll, false);
+// window.addEventListener('resize', createDots, false);
+// const dotBG = document.querySelector(".scroll-wrapper");
+// dotBG.addEventListener("scroll", dotScroll, false);
