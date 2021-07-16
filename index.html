@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -37,19 +37,40 @@
             <!-- <button type="button" class="triangle" id="menu-triangle" onclick="expandMenu()"><img src="assets/img/menu-triangle-close.svg" alt="menu triangle"></button> -->
         </div>
     </nav>
+    <header>
+        <div id="header-transition"></div>
+        <div class="logo-animation">
+            <div class="logo-text-container">
+                <div class="logo-text" id="text-r">R</div>
+                <div class="logo-text" id="text-t">T</div>
+                <div class="logo-text" id="text-k">K</div>
+            </div>
+            <div class="logo-diamond-container">
+                <!-- <div class="logo-diamond"> -->
+                <div id="inner-diamond"></div>
+                <div id="outer-diamond"></div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </header>
     <!-- <header>
-        <img src="assets/img/logo.svg" alt="website logo" class="header-element" id="logo">
-        <img src="assets/img/line-logo.svg" alt="website logo line" class="header-element" id="logo-line">
-        <span class="logo-line" id="line-left"></span>
-        <span class="logo-line" id="line-right"></span>
-        <span class="logo-dot" id="dot-left"></span>
-        <span class="logo-dot" id="dot-right"></span>
+        <div class="header-logo">
+            <span class="logo-line" id="line-left"></span>
+            <div class="logo-with-dots">
+                <span class="logo-dot" id="dot-left"></span>
+                <img src="assets/img/logo.svg" alt="website logo" class="header-element" id="logo">
+                <span class="logo-dot" id="dot-right"></span>
+            </div>
+            <span class="logo-line" id="line-right"></span>
+        </div>
         <h2 class="header-element">Hi, welcome to my personal site</h2>
-        <button style="display:none" onclick="testFunc()">click for func</button>
-        <img src="assets/img/vertical-dotline.svg" alt="line decoration" class="header-element header-vertical-dotline">
-        <h3 class="header-element">Enjoy a pure <span>simplistic</span> experience while navigating through the site and
-            <nobr>getting to know me</nobr>
-        </h3>
+        <div class="vertical-dotline">
+            <div class="dot-decor"></div>
+            <div class="line-decor"></div>
+        </div>
+    <h2 class="header-element">Enjoy a pure <span>simplistic</span> experience while navigating through the site and
+        <nobr>getting to know me</nobr>
+    </h2>
     </header>
     <section id="biodata">
         <h1 class="biodata-element">BIODATA</h1>

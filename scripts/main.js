@@ -6,28 +6,17 @@ function expandMenu() {
     const navBar = document.querySelector('nav');
     const menuButton = document.getElementById('collapse-menu-button');
     if (expandedMenu.style.display !== 'flex') {
-        //     // if (expandedMenu.style.opacity === "0") {
-        //     // expandedMenu.style.display = "block";
-        //     // menuTriangle.style.display = "block";
         menuButton.innerHTML = '&nbsp;&nbsp;&nbsp;{';
-        //         // navBar.style.width = "calc(100% - 1.6rem)";
         navBar.style.height = '19rem';
         expandedMenu.style.display = 'flex';
-        //         // triangleLeft.style.opacity = "0";
-        // navLeft.style.justifyContent = 'space-between';
         triangleLeft.style.left = '100%';
         triangleLeft.style.transform = 'rotate(180deg)';
         setTimeout(() => expandedMenu.style.opacity = "1", 200);
     } else {
-        // navBar.style.height = '4.4rem';
-        // expandedMenu.style.display = 'none';
-        // navLeft.style.justifyContent = 'flex-start';
         triangleLeft.style.left = '0%';
         triangleLeft.style.transform = 'rotate(0deg)';
-        // menuTriangle.style.display = "none";
         expandedMenu.style.opacity = "0";
         setTimeout(() => { navBar.style.height = "4.4rem", expandedMenu.style.display = "none", menuButton.innerHTML = '{...}'; }, 200);
-
     }
 }
 
