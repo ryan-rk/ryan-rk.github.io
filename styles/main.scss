@@ -86,7 +86,7 @@ nav {
     z-index: 100;
     transition: height 0.3s ease-in-out;
     transform: scaleX(0);
-    animation: nav-transition-animation 500ms ease-in-out 4500ms forwards;
+    animation: nav-appear-animation 500ms ease-in-out 4500ms forwards;
     #nav-title {
         display: flex;
         flex-direction: row;
@@ -189,42 +189,6 @@ header {
             #logo {
                 height: 100%;
             }
-            .logo-dot {
-                position: absolute;
-                height: 5%; //clamp(0.8rem, 2vw, 1.2rem);
-                width: 5%; //clamp(0.8rem, 2vw, 1.2rem);
-                // height: 2vw;
-                // width: 2vw;
-                // height: 0.8rem;
-                // width: 0.8rem;
-                transform: translate(-50%, -50%);
-                background-color: #bbb;
-                border-radius: 50%;
-                opacity: 0.6;
-                top: 50%;
-            }
-            #dot-right {
-                left: 100%;
-                // top: calc(8rem + #{$logo-height/2});
-                // left: calc(50% + #{$logo-height/2});
-                animation: movedot-right 10s infinite ease-in-out;
-            }
-            #dot-left {
-                left: 0%;
-                // top: calc(8rem + #{$logo-height/2});
-                // left: calc(50% - #{$logo-height/2});
-                animation: movedot-left 10s infinite ease-in-out;
-            }
-        }
-        .logo-line {
-            // position: absolute;
-            // top: calc(8rem + #{$logo-height/2} - 0.05rem);
-            // width: calc(40% - #{$logo-height/2});
-            width: 20%;
-            height: 0.1rem;
-            color: $foreground-color;
-            background-color: $foreground-color;
-            opacity: 0.1;
         }
         // #line-left {
         //     left: 10%;
@@ -265,6 +229,7 @@ header {
         position: relative;
         width: 100vw;
         height: 100%;
+        z-index: 1;
         // height: clamp(18rem, 50vw, 30rem);
         .logo-text {
             text-align: center;
@@ -273,7 +238,7 @@ header {
         }
         #text-r {
             right: 50%;
-            padding-right: 1vw;
+            // padding-right: 1vw;
             font-family: 'Source Code Pro', monospace;
             // font-size: 80px;
             // font-size: 20vw;
@@ -285,16 +250,20 @@ header {
             color: #9C9C9C;
             left: 50%;
             top: 0%;
-            transform: translate(-58%, -40%) rotate(-32deg);
-            font-family: Zapfino;
+            z-index: 1;
+            // transform: translate(-58%, -40%) rotate(-32deg);
+            transform: translate(-60%, -70%);
+            // font-family: Zapfino;
             // font-size: 76px;
             // font-size: 21vw;
-            font-size: clamp(6.8rem, 21vw, 9.4rem);
+            // font-size: clamp(6.8rem, 21vw, 9.4rem);
+            height: 60%;
+            // height: clamp(6.8rem, 50%, 9.4rem);
             animation: intro-animation-t 1500ms ease-in-out 2s forwards;
         }
         #text-k {
             left: 50%;
-            padding-right: 1vw;
+            // padding-right: 1vw;
             transform: scaleX(-1);
             font-family: 'Source Code Pro', monospace;
             // font-size: 80px;
@@ -304,40 +273,104 @@ header {
             animation: intro-animation-k 3s ease-in-out 0s forwards;
         }
     }
-    .logo-diamond-container {
+    #logo-line {
         position: absolute;
-        // width: 100vw;
-        width: clamp(18rem, 54vw, 25rem);
-        height: 100%;
+        // top: calc(8rem + #{$logo-height/2} - 0.05rem);
+        // width: calc(40% - #{$logo-height/2});
+        width: 95%;
+        height: 0.1rem;
+        top: 50%;
+        color: $foreground-color;
+        background-color: $foreground-color;
+        opacity: 0;
         z-index: -1;
-        // .logo-diamond {
-        //     position: relative;
-        //     width: 100%;
-        //     height: 100%;
-        >* {
-            box-sizing: border-box;
-            position: absolute;
-            transform: rotate(45deg);
+        animation: logoline-appear-animation 1s ease-in-out 5s forwards;
+    }
+    .diamond-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        .logo-diamond-container {
+            position: relative;
+            // width: 100vw;
+            width: clamp(18rem, 54vw, 25rem);
+            // height: clamp(18rem, 54vw, 25rem);
+            height: 100%;
+            z-index: -1;
+            // .logo-diamond {
+            //     position: relative;
+            //     width: 100%;
+            //     height: 100%;
+            #inner-diamond {
+                box-sizing: border-box;
+                position: absolute;
+                transform: rotate(45deg);
+                opacity: 1;
+                width: 58%;
+                height: 58%;
+                top: 21%;
+                left: 21%;
+                border: 0.1rem solid #868686b6;
+                background-color: $background-color;
+                z-index: 1;
+                clip-path: circle(40% at center);
+                animation: inner-diamond-animation 1500ms ease-in-out 1s forwards;
+            }
+            #outer-diamond {
+                box-sizing: border-box;
+                position: absolute;
+                transform: rotate(45deg);
+                opacity: 0;
+                width: 70%;
+                height: 70%;
+                top: 15%;
+                left: 15%;
+                border: 0.1rem solid #CDCDCD;
+                background-color: $background-color;
+                z-index: 0;
+                animation: outer-diamond-animation 800ms cubic-bezier(0, 1.11, .39, .96) 3800ms forwards;
+            }
+            // }
+            .dot-container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                animation: logodot-appear-animation 1s ease-in-out 5s forwards;
+                z-index: 2;
+            }
+            .logo-dot {
+                position: absolute;
+                height: 5%; //clamp(0.8rem, 2vw, 1.2rem);
+                width: 5%; //clamp(0.8rem, 2vw, 1.2rem);
+                // height: 2vw;
+                // width: 2vw;
+                // height: 0.8rem;
+                // width: 0.8rem;
+                transform: translate(-50%, -50%);
+                background-color: #bbb;
+                border-radius: 50%;
+                opacity: 1;
+                top: 50%;
+                // animation: logodot-appear-animation 1s ease-in-out 5s forwards;
+            }
+            #dot-right {
+                left: 100%;
+                // top: calc(8rem + #{$logo-height/2});
+                // left: calc(50% + #{$logo-height/2});
+                animation: movedot-right 10s infinite ease-in-out 6s;
+            }
+            #dot-left {
+                left: 0%;
+                // top: calc(8rem + #{$logo-height/2});
+                // left: calc(50% - #{$logo-height/2});
+                animation: movedot-left 10s infinite ease-in-out 6s;
+            }
         }
-        #inner-diamond {
-            width: 58%;
-            height: 58%;
-            top: 21%;
-            left: 21%;
-            border: 0.15rem solid #979797;
-            clip-path: circle(40% at center);
-            animation: inner-diamond-animation 2s ease-in-out 1s forwards;
-        }
-        #outer-diamond {
-            opacity: 0;
-            width: 70%;
-            height: 70%;
-            top: 15%;
-            left: 15%;
-            border: 0.15rem solid #CDCDCD;
-            animation: outer-diamond-animation 800ms cubic-bezier(0, 1.11, .39, .96) 3800ms forwards;
-        }
-        // }
     }
 }
 
@@ -670,7 +703,7 @@ footer {
         opacity: 1;
     }
     40% {
-        right: 35%;
+        right: 30%;
         transform: scale(1);
     }
     75% {
@@ -693,7 +726,7 @@ footer {
         opacity: 1;
     }
     40% {
-        left: 35%;
+        left: 30%;
         transform: scale(1) scaleX(1);
     }
     75% {
@@ -752,11 +785,29 @@ footer {
     }
 }
 
-@keyframes nav-transition-animation {
+@keyframes nav-appear-animation {
     from {
         transform: scaleX(0);
     }
     to {
         transform: scaleX(1);
+    }
+}
+
+@keyframes logoline-appear-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.1;
+    }
+}
+
+@keyframes logodot-appear-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.6;
     }
 }
