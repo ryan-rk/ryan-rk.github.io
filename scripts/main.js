@@ -34,20 +34,45 @@ function hideNavTitle() {
 }
 
 function lineDecorScroll() {
-    var verticalLines = document.getElementsByClassName("vertical-dotline");
+    const verticalLines = document.getElementsByClassName("vertical-dotline");
+    const viewHeight = document.documentElement.clientHeight;
+    // const lineDecor = verticalLines[0].children[1];
+    // console.log(verticalLines)
+    // console.log(lineDecor);
+    // lineDecor.style.animation = 'line-decor-animation 2s linear 0s forwards';
+    // var vlBCR = verticalLines[0].getBoundingClientRect();
+    // console.log(`vlbcr: ${vlBCR.top}`);
+    // if (vlBCR.top <= document.documentElement.clientHeight/2) {
+    // }
     for (verticalLine of verticalLines) {
-        var vlBCR = verticalLine.getBoundingClientRect();
-        cpRadius = 31 - (vlBCR.top / 20);
-        if (cpRadius >= 10) {
-            cpRadius = 10;
-        } else if (cpRadius <= 2) {
-            cpRadius = 2;
-        } else {
-            cpRadius = cpRadius;
+        const vlBCR = verticalLine.getBoundingClientRect();
+        if (vlBCR.top <= viewHeight / 2) {
+            // verticalLine.children[1].style.animation = 'line-decor-animation 2s ease-out 0s forwards';
+            verticalLine.children[1].style.transform = 'scaleY(1)';
         }
-        cpString = `circle(${cpRadius}rem at 50% -0.5rem)`
-        verticalLine.style["clip-path"] = cpString;
+        if (vlBCR.top >= viewHeight * 4 / 5) {
+            // verticalLine.children[1].style.animation = 'line-decor-animation 2s ease-out 0s forwards';
+            verticalLine.children[1].style.transform = 'scaleY(0)';
+        }
     }
+
+    const mask = document.getElementsByClassName('mask-container');
+    const maskBCR = mask[0].getBoundingClientRect();
+    // if (((viewHeight / 2 - maskBCR.top) >= 0) && ((viewHeight / 2 - maskBCR.top) <= 100)) {
+    //     console.log(`${maskBCR.top}`);
+    // }
+    //     var vlBCR = verticalLine.getBoundingClientRect();
+    //     cpRadius = 31 - (vlBCR.top / 20);
+    //     if (cpRadius >= 10) {
+    //         cpRadius = 10;
+    //     } else if (cpRadius <= 2) {
+    //         cpRadius = 2;
+    //     } else {
+    //         cpRadius = cpRadius;
+    //     }
+    //     cpString = `circle(${cpRadius}rem at 50% -0.5rem)`
+    //     verticalLine.style["clip-path"] = cpString;
+    // }
 }
 
 function rem2Px(rem) {
@@ -89,7 +114,7 @@ function testFunc() {
 }
 
 // createDots(0);
-// window.addEventListener("scroll", lineDecorScroll, false);
+window.addEventListener("scroll", lineDecorScroll, false);
 // window.addEventListener('resize', createDots, false);
 // const dotBG = document.querySelector(".scroll-wrapper");
 // dotBG.addEventListener("scroll", dotScroll, false);
