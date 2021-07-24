@@ -34,7 +34,6 @@ function hideNavTitle() {
 
 function lineDecorScroll() {
     const verticalLines = document.getElementsByClassName("vertical-dotline");
-    const viewHeight = document.documentElement.clientHeight;
     // const lineDecor = verticalLines[0].children[1];
     // console.log(verticalLines)
     // console.log(lineDecor);
@@ -58,20 +57,6 @@ function lineDecorScroll() {
         //     verticalLine.children[2].style.opacity = 0;
         // }
     }
-
-    const maskContainer = document.getElementsByClassName('mask-container');
-    const mask = document.getElementById('mask');
-    const maskBCR = maskContainer[0].getBoundingClientRect();
-    const maskOffset = (viewHeight * 7 / 10) - maskBCR.top;
-    // console.log(maskBCR.top);
-    if (maskOffset >= 0) {
-        mask.style.transform = 'rotateY(180deg)';
-        mask.style.top = '50%';
-    }
-    // else {
-    //     mask.style.transform = 'rotateY(0deg)';
-    //     mask.style.top = '0%';
-    // }
 
     const allh2 = document.querySelectorAll('h2');
     for (h2 of allh2) {
@@ -147,13 +132,98 @@ function dotScroll() {
     createDots(scrollRatio);
 }
 
-function testFunc() {
-    console.log('resized');
+function maskScroll() {
+    const maskContainer = document.getElementsByClassName('mask-container');
+    const mask = document.getElementById('mask');
+    const maskBCR = maskContainer[0].getBoundingClientRect();
+    const maskOffset = (viewHeight * 5 / 10) - maskBCR.top;
+    // console.log(maskBCR.top);
+    if ((viewHeight * 5 / 10) >= maskBCR.top) {
+        shatterMask(0);
+        // mask.style.transform = 'rotateY(180deg)';
+        //     mask.style.transform = 'rotateY(180deg)';
+        //     mask.style.top = '50%';
+    } else {
+        shatterMask(1);
+        // mask.style.transform = 'rotateY(0deg)';
+        //     mask.style.transform = 'rotateY(0deg)';
+        //     mask.style.top = '0%';
+    }
+    // if ((viewHeight * 3 / 10) >= maskBCR.top) {
+    // } else {
+    // }
+}
+
+function shatterMask(scale_factor) {
+    const maskSvg = document.getElementById('mask');
+    const leftMaskFragments = maskSvg.children[0].children[0].children[0].children;
+    const rightMaskFragments = maskSvg.children[0].children[0].children[1].children;
+    // for (const fragment of leftMask.children) {
+    //     fragmentPoint = fragment.getAttribute('points').split(' ');
+    for (let i = 0; i < leftMaskFragments.length; i++) {
+        fragmentOffsetX = scale_factor * 1 / 4 * leftMaskOffset[i][0];
+        fragmentOffsetY = scale_factor * 1 / 4 * leftMaskOffset[i][1];
+        leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateX(${scale_factor*leftMaskRotate[i][0]}deg) rotateY(${scale_factor*leftMaskRotate[i][1]}deg) rotateZ(${scale_factor*leftMaskRotate[i][2]}deg)`;
+        // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*leftMaskRotate[i][0]}deg)`;
+        // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*leftMaskRotate[i][0]}, ${scale_factor*leftMaskRotate[i][1]}, ${scale_factor*leftMaskRotate[i][2]}, ${scale_factor*leftMaskRotate[i][3]}deg)`;
+    }
+    for (let j = 0; j < rightMaskFragments.length; j++) {
+        fragmentOffsetX = scale_factor * 1 / 4 * rightMaskOffset[j][0];
+        fragmentOffsetY = scale_factor * 1 / 4 * rightMaskOffset[j][1];
+        rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateX(${scale_factor*rightMaskRotate[j][0]}deg) rotateY(${scale_factor*rightMaskRotate[j][1]}deg) rotateZ(${scale_factor*rightMaskRotate[j][2]}deg)`;
+        // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*rightMaskRotate[j][0]}deg)`;
+        // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*rightMaskRotate[j][0]}, ${scale_factor*rightMaskRotate[j][1]}, ${scale_factor*rightMaskRotate[j][2]}, ${scale_factor*rightMaskRotate[j][3]}deg)`;
+    }
+}
+
+function calcMaskOffset() {
+    const maskSvg = document.getElementById('mask');
+    const leftMask = maskSvg.children[0].children[0].children[0];
+    const rightMask = maskSvg.children[0].children[0].children[1];
+    var leftMaskOffset = [];
+    var rightMaskOffset = [];
+    var leftMaskRotate = [];
+    var rightMaskRotate = [];
+    for (const fragment of leftMask.children) {
+        fragmentPoints = fragment.getAttribute('points').split(' ');
+        var totalX = 0;
+        var totalY = 0;
+        for (var i = 0; i < (fragmentPoints.length) / 2; i++) {
+            totalX += Number(fragmentPoints[(2 * i)]);
+            totalY += Number(fragmentPoints[(2 * i) + 1]);
+        }
+        leftMaskOffset.push([(totalX * 2 / fragmentPoints.length) - 140, (totalY * 2 / fragmentPoints.length) - 80])
+            // leftMaskRotate.push([Math.random(), Math.random(), Math.random(), (180 * Math.random()) - 90]);
+        leftMaskRotate.push([(90 * Math.random()) - 45, (90 * Math.random()) - 45, (90 * Math.random()) - 45]);
+    }
+    for (const fragment of rightMask.children) {
+        fragmentPoints = fragment.getAttribute('points').split(' ');
+        var totalX = 0;
+        var totalY = 0;
+        for (var i = 0; i < (fragmentPoints.length) / 2; i++) {
+            totalX += Number(fragmentPoints[(2 * i)]);
+            totalY += Number(fragmentPoints[(2 * i) + 1]);
+        }
+        rightMaskOffset.push([totalX * 2 / fragmentPoints.length, (totalY * 2 / fragmentPoints.length) - 80])
+            // rightMaskRotate.push([Math.random(), Math.random(), Math.random(), (360 * Math.random()) - 180]);
+        rightMaskRotate.push([(90 * Math.random()) - 45, (90 * Math.random()) - 45, (90 * Math.random()) - 45]);
+    }
+    return { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate };
 }
 
 // createDots(0);
+const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
+const viewHeight = document.documentElement.clientHeight;
 window.addEventListener("scroll", lineDecorScroll, false);
+window.addEventListener("scroll", maskScroll, false);
+// console.log(rightMaskOffset);
 // window.addEventListener('resize', createDots, false);
 // const dotBG = document.querySelector(".scroll-wrapper");
 // dotBG.addEventListener("scroll", dotScroll, false);
-const allh2 = document.querySelectorAll('h2');
+// shatterMask();
+// const maskSvg = document.getElementById('mask');
+// const leftMask = maskSvg.children[0].children[0].children[0];
+// const rightMask = maskSvg.children[0].children[0].children[1];
+// const leftMaskPoints = leftMask.children[0].getAttribute("points");
+// const leftMaskPointsArray = leftMaskPoints.split(' ');
+// console.log(leftMaskPointsArray.length);
