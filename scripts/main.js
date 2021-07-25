@@ -133,25 +133,35 @@ function dotScroll() {
 }
 
 function maskScroll() {
-    const maskContainer = document.getElementsByClassName('mask-container');
+    // const maskContainer = document.getElementsByClassName('mask-container');
     const mask = document.getElementById('mask');
-    const maskBCR = maskContainer[0].getBoundingClientRect();
-    const maskOffset = (viewHeight * 5 / 10) - maskBCR.top;
+    // const maskBCR = maskContainer[0].getBoundingClientRect();
+    const maskBCR = mask.getBoundingClientRect();
+    const maskText = document.getElementById('mask-text');
     // console.log(maskBCR.top);
-    if ((viewHeight * 5 / 10) >= maskBCR.top) {
+    if ((viewHeight * 4 / 10) >= maskBCR.top) {
         shatterMask(0);
+        mask.style.animation = 'mask-animation 2s cubic-bezier(.93,.01,.4,1) 1800ms forwards'
+        setTimeout(() => {
+            mask.style.zIndex = 1,
+                maskText.style.transform = 'translateY(-50%) scale(1)';
+        }, 2500);
         // mask.style.transform = 'rotateY(180deg)';
         //     mask.style.transform = 'rotateY(180deg)';
         //     mask.style.top = '50%';
-    } else {
-        shatterMask(1);
-        // mask.style.transform = 'rotateY(0deg)';
-        //     mask.style.transform = 'rotateY(0deg)';
-        //     mask.style.top = '0%';
     }
-    // if ((viewHeight * 3 / 10) >= maskBCR.top) {
-    // } else {
-    // }
+    if ((viewHeight * 8.5 / 10) >= maskBCR.top) {
+        mask.style.opacity = 1;
+    }
+    /*else {
+           shatterMask(1);
+           // mask.style.transform = 'rotateY(0deg)';
+           //     mask.style.transform = 'rotateY(0deg)';
+           //     mask.style.top = '0%';
+       }
+       // if ((viewHeight * 3 / 10) >= maskBCR.top) {
+       // } else {
+       // }*/
 }
 
 function shatterMask(scale_factor) {
@@ -162,14 +172,14 @@ function shatterMask(scale_factor) {
     //     fragmentPoint = fragment.getAttribute('points').split(' ');
     for (let i = 0; i < leftMaskFragments.length; i++) {
         fragmentOffsetX = scale_factor * 1 / 4 * leftMaskOffset[i][0];
-        fragmentOffsetY = scale_factor * 1 / 4 * leftMaskOffset[i][1];
+        fragmentOffsetY = scale_factor * 1 / 3 * leftMaskOffset[i][1];
         leftMaskFragments[i].style.transform = `rotateX(${scale_factor*leftMaskRotate[i][0]}deg) rotateY(${scale_factor*leftMaskRotate[i][1]}deg) rotateZ(${scale_factor*leftMaskRotate[i][2]}deg) translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
         // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*leftMaskRotate[i][0]}deg)`;
         // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*leftMaskRotate[i][0]}, ${scale_factor*leftMaskRotate[i][1]}, ${scale_factor*leftMaskRotate[i][2]}, ${scale_factor*leftMaskRotate[i][3]}deg)`;
     }
     for (let j = 0; j < rightMaskFragments.length; j++) {
         fragmentOffsetX = scale_factor * 1 / 4 * rightMaskOffset[j][0];
-        fragmentOffsetY = scale_factor * 1 / 4 * rightMaskOffset[j][1];
+        fragmentOffsetY = scale_factor * 1 / 3 * rightMaskOffset[j][1];
         rightMaskFragments[j].style.transform = `rotateX(${scale_factor*rightMaskRotate[j][0]}deg) rotateY(${scale_factor*rightMaskRotate[j][1]}deg) rotateZ(${scale_factor*rightMaskRotate[j][2]}deg) translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
         // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*rightMaskRotate[j][0]}deg)`;
         // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*rightMaskRotate[j][0]}, ${scale_factor*rightMaskRotate[j][1]}, ${scale_factor*rightMaskRotate[j][2]}, ${scale_factor*rightMaskRotate[j][3]}deg)`;
@@ -194,7 +204,7 @@ function calcMaskOffset() {
         }
         leftMaskOffset.push([(totalX * 2 / fragmentPoints.length) - 140, (totalY * 2 / fragmentPoints.length) - 80])
             // leftMaskRotate.push([Math.random(), Math.random(), Math.random(), (180 * Math.random()) - 90]);
-        leftMaskRotate.push([(90 * Math.random()) - 45, (90 * Math.random()) - 45, (90 * Math.random()) - 45]);
+        leftMaskRotate.push([(90 * Math.random()) - 45, (80 * Math.random()) - 40, (80 * Math.random()) - 40]);
     }
     for (const fragment of rightMask.children) {
         fragmentPoints = fragment.getAttribute('points').split(' ');
@@ -206,16 +216,26 @@ function calcMaskOffset() {
         }
         rightMaskOffset.push([totalX * 2 / fragmentPoints.length, (totalY * 2 / fragmentPoints.length) - 80])
             // rightMaskRotate.push([Math.random(), Math.random(), Math.random(), (360 * Math.random()) - 180]);
-        rightMaskRotate.push([(90 * Math.random()) - 45, (90 * Math.random()) - 45, (90 * Math.random()) - 45]);
+        rightMaskRotate.push([(90 * Math.random()) - 45, (80 * Math.random()) - 40, (80 * Math.random()) - 40]);
     }
     return { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate };
+}
+
+function uiuxScroll() {
+    const uiuxBCR = uiuxCont[0].getBoundingClientRect();
+    if ((viewHeight * 8 / 10) >= uiuxBCR.top) {
+        uiuxCont[0].style.opacity = 1;
+    }
 }
 
 // createDots(0);
 const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
+const uiuxCont = document.getElementsByClassName('uiux-container');
+shatterMask(1);
 window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", maskScroll, false);
+window.addEventListener("scroll", uiuxScroll, false);
 // console.log(rightMaskOffset);
 // window.addEventListener('resize', createDots, false);
 // const dotBG = document.querySelector(".scroll-wrapper");

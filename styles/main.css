@@ -81,10 +81,10 @@ h4 {
           transform: scaleY(0);
   -webkit-transform-origin: top;
           transform-origin: top;
-  -webkit-transition: -webkit-transform 1500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition: -webkit-transform 1500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition: transform 1500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  transition: transform 1500ms cubic-bezier(0.075, 0.82, 0.165, 1), -webkit-transform 1500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  -webkit-transition: -webkit-transform 1500ms cubic-bezier(0.27, 0.92, 0.33, 0.9);
+  transition: -webkit-transform 1500ms cubic-bezier(0.27, 0.92, 0.33, 0.9);
+  transition: transform 1500ms cubic-bezier(0.27, 0.92, 0.33, 0.9);
+  transition: transform 1500ms cubic-bezier(0.27, 0.92, 0.33, 0.9), -webkit-transform 1500ms cubic-bezier(0.27, 0.92, 0.33, 0.9);
 }
 
 .down-arrow {
@@ -527,6 +527,9 @@ header {
   height: 20rem;
   -ms-flex-line-pack: center;
       align-content: center;
+  opacity: 0;
+  -webkit-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 #biodata .uiux-container #uiux-border {
@@ -595,7 +598,7 @@ header {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   border-radius: 50%;
-  background-color: #3E3E3E;
+  background-color: #888888;
   -webkit-animation: pongball-animation 10s linear infinite;
           animation: pongball-animation 10s linear infinite;
 }
@@ -603,7 +606,7 @@ header {
 #biodata .mask-container {
   position: relative;
   width: 100%;
-  height: 40rem;
+  height: 30rem;
 }
 
 #biodata .mask-container #mask {
@@ -611,16 +614,17 @@ header {
   top: 0%;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  -webkit-transition: -webkit-transform 1s ease-in-out;
-  transition: -webkit-transform 1s ease-in-out;
-  transition: transform 1s ease-in-out;
-  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  z-index: 3;
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 #biodata .mask-container #mask svg {
-  width: 100%;
-  height: auto;
+  position: relative;
+  width: 90%;
+  height: 100%;
 }
 
 #biodata .mask-container #mask svg polygon {
@@ -632,8 +636,25 @@ header {
           transform-origin: center;
 }
 
+#biodata .mask-container #mask-text {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-top: 3rem 0;
+  top: 50%;
+  z-index: 2;
+  -webkit-transform: translateY(-50%) scale(0.9);
+          transform: translateY(-50%) scale(0.9);
+  -webkit-transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in;
+  transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in;
+  transition: transform 1s ease-in, opacity 1s ease-in-out;
+  transition: transform 1s ease-in, opacity 1s ease-in-out, -webkit-transform 1s ease-in;
+}
+
 #skills {
-  margin-top: 12rem;
+  margin-top: 10rem;
   text-align: center;
 }
 
@@ -1650,6 +1671,48 @@ footer img {
   }
   78% {
     top: 80%;
+  }
+}
+
+@-webkit-keyframes mask-animation {
+  0% {
+    -webkit-transform: scaleX(1) scale(1);
+            transform: scaleX(1) scale(1);
+    -webkit-filter: blur(0rem);
+            filter: blur(0rem);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+  }
+  100% {
+    -webkit-transform: scaleX(1) scale(0.85);
+            transform: scaleX(1) scale(0.85);
+    -webkit-filter: blur(0.5rem);
+            filter: blur(0.5rem);
+    opacity: 0.6;
+  }
+}
+
+@keyframes mask-animation {
+  0% {
+    -webkit-transform: scaleX(1) scale(1);
+            transform: scaleX(1) scale(1);
+    -webkit-filter: blur(0rem);
+            filter: blur(0rem);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+  }
+  100% {
+    -webkit-transform: scaleX(1) scale(0.85);
+            transform: scaleX(1) scale(0.85);
+    -webkit-filter: blur(0.5rem);
+            filter: blur(0.5rem);
+    opacity: 0.6;
   }
 }
 
