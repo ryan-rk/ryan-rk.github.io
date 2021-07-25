@@ -174,7 +174,7 @@ nav {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: fixed;
-  width: calc(100vw - 1.6rem);
+  width: calc(100% - 1.6rem);
   height: 4.4rem;
   margin: 0.8rem 0.8rem;
   top: 0;
@@ -496,7 +496,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 #main h2 span {
@@ -521,20 +521,97 @@ header {
   color: #5981E1;
 }
 
-#biodata h2 {
-  padding: 3rem 0;
+#biodata .uiux-container {
+  position: relative;
+  width: 100%;
+  height: 20rem;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#biodata .uiux-container #uiux-border {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 0.1rem solid #888888;
+  -webkit-animation: uiux-border-animation 5s linear infinite;
+          animation: uiux-border-animation 5s linear infinite;
+}
+
+#biodata .uiux-container h2 {
+  padding: 0 2rem;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 2;
+}
+
+#biodata .uiux-container .pong-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+#biodata .uiux-container .pong-container .pong-boards {
+  position: absolute;
+  width: 1rem;
+  height: 3rem;
+  background-color: #c4c4c4;
+}
+
+#biodata .uiux-container .pong-container #pong-left {
+  top: 0%;
+  left: 0%;
+  margin-left: 1rem;
+  -webkit-animation: leftboard-animation 10s linear infinite;
+          animation: leftboard-animation 10s linear infinite;
+}
+
+#biodata .uiux-container .pong-container #pong-right {
+  top: 80%;
+  right: 0%;
+  margin-right: 1rem;
+  -webkit-animation: rightboard-animation 10s linear infinite;
+          animation: rightboard-animation 10s linear infinite;
+}
+
+#biodata .uiux-container .pong-container .pong-ball-container {
+  position: relative;
+  width: calc(100% - 4rem);
+  left: 2rem;
+  height: 100%;
+}
+
+#biodata .uiux-container .pong-container .pong-ball-container #pong-ball {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: #3E3E3E;
+  -webkit-animation: pongball-animation 10s linear infinite;
+          animation: pongball-animation 10s linear infinite;
 }
 
 #biodata .mask-container {
   position: relative;
   width: 100%;
+  height: 40rem;
 }
 
 #biodata .mask-container #mask {
   position: absolute;
   top: 0%;
   width: 100%;
-  height: auto;
+  height: 100%;
+  z-index: 1;
   -webkit-transition: -webkit-transform 1s ease-in-out;
   transition: -webkit-transform 1s ease-in-out;
   transition: transform 1s ease-in-out;
@@ -543,14 +620,14 @@ header {
 
 #biodata .mask-container #mask svg {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 #biodata .mask-container #mask svg polygon {
-  -webkit-transition: -webkit-transform 1500ms ease-in-out;
-  transition: -webkit-transform 1500ms ease-in-out;
-  transition: transform 1500ms ease-in-out;
-  transition: transform 1500ms ease-in-out, -webkit-transform 1500ms ease-in-out;
+  -webkit-transition: -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  transition: -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  transition: transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  transition: transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38), -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
   -webkit-transform-origin: center;
           transform-origin: center;
 }
@@ -1383,6 +1460,196 @@ footer img {
   100% {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
             clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}
+
+@-webkit-keyframes uiux-border-animation {
+  0% {
+    -webkit-clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+            clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+  }
+  25% {
+    -webkit-clip-path: polygon(100% -50%, 150% 0%, 100% 50%, 50% 0%);
+            clip-path: polygon(100% -50%, 150% 0%, 100% 50%, 50% 0%);
+  }
+  50% {
+    -webkit-clip-path: polygon(100% 50%, 150% 100%, 100% 150%, 50% 100%);
+            clip-path: polygon(100% 50%, 150% 100%, 100% 150%, 50% 100%);
+  }
+  75% {
+    -webkit-clip-path: polygon(0% 50%, 50% 100%, 0% 150%, -50% 100%);
+            clip-path: polygon(0% 50%, 50% 100%, 0% 150%, -50% 100%);
+  }
+  100% {
+    -webkit-clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+            clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+  }
+}
+
+@keyframes uiux-border-animation {
+  0% {
+    -webkit-clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+            clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+  }
+  25% {
+    -webkit-clip-path: polygon(100% -50%, 150% 0%, 100% 50%, 50% 0%);
+            clip-path: polygon(100% -50%, 150% 0%, 100% 50%, 50% 0%);
+  }
+  50% {
+    -webkit-clip-path: polygon(100% 50%, 150% 100%, 100% 150%, 50% 100%);
+            clip-path: polygon(100% 50%, 150% 100%, 100% 150%, 50% 100%);
+  }
+  75% {
+    -webkit-clip-path: polygon(0% 50%, 50% 100%, 0% 150%, -50% 100%);
+            clip-path: polygon(0% 50%, 50% 100%, 0% 150%, -50% 100%);
+  }
+  100% {
+    -webkit-clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+            clip-path: polygon(0% -50%, 50% 0%, 0% 50%, -50% 0%);
+  }
+}
+
+@-webkit-keyframes pongball-animation {
+  0% {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+  15% {
+    top: calc(100% - 0.5rem);
+    left: calc(60% + 0.5rem);
+  }
+  24% {
+    top: calc(60% - 0.5rem);
+    left: calc(100% - 0.5rem);
+  }
+  33% {
+    top: 0.5rem;
+    left: calc(75% - 0.5rem);
+  }
+  49% {
+    top: calc(100% - 0.5rem);
+    left: calc(12% - 0.5rem);
+  }
+  53% {
+    top: calc(80% - 0.5rem);
+    left: 0.5rem;
+  }
+  64% {
+    top: 0.5rem;
+    left: calc(50% - 0.5rem);
+  }
+  78% {
+    top: calc(84% - 0.5rem);
+    left: calc(100% - 0.5rem);
+  }
+  81% {
+    top: calc(100% - 0.5rem);
+    left: calc(90% - 0.5rem);
+  }
+}
+
+@keyframes pongball-animation {
+  0% {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+  15% {
+    top: calc(100% - 0.5rem);
+    left: calc(60% + 0.5rem);
+  }
+  24% {
+    top: calc(60% - 0.5rem);
+    left: calc(100% - 0.5rem);
+  }
+  33% {
+    top: 0.5rem;
+    left: calc(75% - 0.5rem);
+  }
+  49% {
+    top: calc(100% - 0.5rem);
+    left: calc(12% - 0.5rem);
+  }
+  53% {
+    top: calc(80% - 0.5rem);
+    left: 0.5rem;
+  }
+  64% {
+    top: 0.5rem;
+    left: calc(50% - 0.5rem);
+  }
+  78% {
+    top: calc(84% - 0.5rem);
+    left: calc(100% - 0.5rem);
+  }
+  81% {
+    top: calc(100% - 0.5rem);
+    left: calc(90% - 0.5rem);
+  }
+}
+
+@-webkit-keyframes leftboard-animation {
+  45% {
+    top: 10%;
+  }
+  53% {
+    top: 65%;
+  }
+  61% {
+    top: 55%;
+  }
+  92% {
+    top: 55%;
+  }
+}
+
+@keyframes leftboard-animation {
+  45% {
+    top: 10%;
+  }
+  53% {
+    top: 65%;
+  }
+  61% {
+    top: 55%;
+  }
+  92% {
+    top: 55%;
+  }
+}
+
+@-webkit-keyframes rightboard-animation {
+  16% {
+    top: 80%;
+  }
+  24% {
+    top: 45%;
+  }
+  32% {
+    top: 50%;
+  }
+  70% {
+    top: 50%;
+  }
+  78% {
+    top: 80%;
+  }
+}
+
+@keyframes rightboard-animation {
+  16% {
+    top: 80%;
+  }
+  24% {
+    top: 45%;
+  }
+  32% {
+    top: 50%;
+  }
+  70% {
+    top: 50%;
+  }
+  78% {
+    top: 80%;
   }
 }
 
