@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="49px" viewBox="0 0 40 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>files</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Other-Skills" transform="translate(-73.000000, -295.000000)">
+            <g id="Group" transform="translate(73.000000, 295.000000)">
+                <path d="M6,-7.10542736e-15 L32.4863002,-7.10542736e-15 L32.4863002,-7.10542736e-15 L36.1385698,2.61662481 C36.8615131,3.13456886 37.4602768,3.80674627 37.8915346,4.58451854 L40,8.38712983 L40,8.38712983 L40,43 C40,46.3137085 37.3137085,49 34,49 L6,49 C2.6862915,49 1.29399067e-15,46.3137085 0,43 L0,6 C-4.05812251e-16,2.6862915 2.6862915,-4.72035214e-15 6,-7.10542736e-15 Z" id="Rectangle" fill="#D0D0D0"></path>
+                <rect id="Rectangle" fill="#FFFFFF" x="5" y="9" width="22" height="4"></rect>
+                <rect id="Rectangle-Copy" fill="#FFFFFF" x="5" y="18" width="19" height="4"></rect>
+                <rect id="Rectangle-Copy-2" fill="#FFFFFF" x="5" y="27" width="23" height="4"></rect>
+                <rect id="Rectangle-Copy-3" fill="#FFFFFF" x="5" y="36" width="31" height="4"></rect>
+                <line x1="31.5" y1="9.5" x2="39.5" y2="8.5" id="Line" stroke="#AEAEAE" stroke-linecap="square"></line>
+                <line x1="31.5" y1="8.5" x2="31.5" y2="0.5" id="Line-2" stroke="#AEAEAE" stroke-linecap="square"></line>
+            </g>
+        </g>
+    </g>
+</svg>

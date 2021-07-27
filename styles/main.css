@@ -159,7 +159,8 @@ h4 {
 
 header,
 #main,
-#biodata {
+#biodata,
+#skills {
   padding: 0 1rem;
 }
 
@@ -662,6 +663,163 @@ header {
   color: #AF67C5;
 }
 
+#skills .skills-category {
+  width: 25%;
+  margin: 1rem;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#skills .skills-category img {
+  width: 6rem;
+}
+
+#skills #skills-direc {
+  margin: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#skills #skills-direc #skills-direc-bar {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 4rem;
+  border-radius: 1.5em 1.5rem 0 0;
+  background-color: #D8D8D8;
+}
+
+#skills #skills-direc #skills-direc-bar button {
+  position: absolute;
+  left: 1rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+#skills #skills-direc #skills-direc-bar button img {
+  width: 1.5rem;
+}
+
+#skills #skills-direc #skills-direc-bar h3 {
+  font-size: 1rem;
+  color: #EE6767;
+}
+
+#skills #skills-direc #skills-direc-bar h3 a {
+  text-decoration: none;
+  color: #3E3E3E;
+}
+
+#skills #skills-direc #skills-direc-body {
+  border-radius: 0 0 1rem 1rem;
+  background-color: #C1C1C1;
+}
+
+#skills #skills-direc #skills-direc-body .direc-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 2rem;
+}
+
+#skills #skills-direc #skills-direc-body #webdev-direc {
+  display: none;
+}
+
+#skills #skills-direc #skills-direc-body #gamedev-direc {
+  display: none;
+}
+
+#skills #skills-direc #skills-direc-body #mobiledev-direc {
+  display: none;
+}
+
+#skills #skills-direc #skills-direc-body #deeplearn-direc {
+  display: none;
+}
+
+#skills #skills-direc #skills-direc-body #engsoft-direc {
+  display: none;
+}
+
+#skills #skills-direc #skills-direc-body #design-direc {
+  display: none;
+}
+
+#skills #skills-direc #skills-direc-body #others-direc {
+  display: none;
+}
+
+#skills #skills-direc #skills-direc-body .terminal-container {
+  display: none;
+}
+
+#skills #skills-direc .file-container {
+  width: 25%;
+  margin: 1rem;
+  vertical-align: top;
+  text-align: center;
+}
+
+#skills #skills-direc .file-container img {
+  width: 6rem;
+  height: 6rem;
+}
+
+#skills #skills-direc .terminal-container {
+  background-color: #263B3F;
+  color: #fdfdfd;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 1.5rem;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+#skills #skills-direc .terminal-container > * {
+  margin: 3rem 0;
+}
+
+#skills #skills-direc .terminal-container p {
+  font-family: 'Source Code Pro', monospace;
+}
+
+#skills #skills-direc .terminal-container p span {
+  color: cyan;
+}
+
+#skills #skills-direc .terminal-container p:first-child {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #c4c4c4;
+}
+
+#skills #skills-direc .terminal-container p:first-child span {
+  color: #25C05D;
+}
+
+#skills #skills-direc .terminal-container ul {
+  list-style: none;
+}
+
 #soft-skills {
   margin-top: 10rem;
 }
@@ -801,61 +959,6 @@ footer a {
 footer img {
   -webkit-transform: scale(2);
           transform: scale(2);
-}
-
-#skills-direc {
-  margin: 1rem 0.6rem;
-}
-
-.skills-category {
-  display: inline-block;
-  width: 25%;
-  margin: 2rem 1rem;
-  vertical-align: top;
-  cursor: pointer;
-}
-
-.skills-category img {
-  width: 6rem;
-}
-
-#skills-direc-bar {
-  display: block;
-  margin: 0 0.1rem;
-  padding: 1.5rem 0.5rem 1rem 1rem;
-  border-radius: 1.5em 1.5rem 0 0;
-  background-color: #D8D8D8;
-}
-
-#skills-direc-bar button {
-  text-decoration: none;
-  background: none;
-  border: none;
-  float: left;
-}
-
-#skills-direc-bar button img {
-  width: 1.5rem;
-}
-
-#skills-direc-bar h2 {
-  margin-left: 1rem;
-  display: inline-block;
-  font-size: 1rem;
-  color: #EE6767;
-}
-
-#skills-direc-bar h2 a {
-  text-decoration: none;
-  color: #3E3E3E;
-}
-
-#skills-direc-body {
-  display: block;
-  margin: 0 0.1rem;
-  padding: 1rem 0.5rem 0.5rem 1rem;
-  border-radius: 0 0 1rem 1rem;
-  background-color: #C1C1C1;
 }
 
 @-webkit-keyframes flipping {

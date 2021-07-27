@@ -153,7 +153,8 @@ h4 {
 // }
 header,
 #main,
-#biodata {
+#biodata,
+#skills {
     padding: 0 1rem;
     // margin-top: 15rem;
 }
@@ -631,6 +632,135 @@ header {
     h1 {
         color: $text-purple;
     }
+    .skills-category {
+        // display: inline-block;
+        width: 25%;
+        margin: 1rem;
+        vertical-align: top;
+        cursor: pointer;
+        img {
+            width: 6rem;
+            // transform: scale(2);
+        }
+    }
+    #skills-direc {
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        #skills-direc-bar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 4rem;
+            // display: block;
+            // margin: 0 0.1rem;
+            // padding: 1.5rem 0.5rem 1rem 1rem;
+            border-radius: 1.5em 1.5rem 0 0;
+            background-color: #D8D8D8;
+            button {
+                position: absolute;
+                left: 1rem;
+                text-decoration: none;
+                background: none;
+                border: none;
+                img {
+                    width: 1.5rem;
+                }
+            }
+            h3 {
+                // margin-left: 1rem;
+                // display: inline-block;
+                font-size: 1rem;
+                // color: $text-green;
+                color: $text-red;
+                a {
+                    text-decoration: none;
+                    color: $main-text-color;
+                }
+            }
+        }
+        #skills-direc-body {
+            // display: block;
+            // margin: 0 0.1rem;
+            // padding: 1rem 0.5rem 0.5rem 1rem;
+            border-radius: 0 0 1rem 1rem;
+            background-color: #C1C1C1;
+            .direc-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin-top: 2rem;
+                // width: 100%;
+            }
+            #webdev-direc {
+                display: none;
+            }
+            #gamedev-direc {
+                display: none;
+            }
+            #mobiledev-direc {
+                display: none;
+            }
+            #deeplearn-direc {
+                display: none;
+            }
+            #engsoft-direc {
+                display: none;
+            }
+            #design-direc {
+                display: none;
+            }
+            #others-direc {
+                display: none;
+            }
+            .terminal-container {
+                display: none;
+            }
+        }
+        .file-container {
+            width: 25%;
+            margin: 1rem;
+            vertical-align: top;
+            text-align: center;
+            // cursor: pointer;
+            img {
+                width: 6rem;
+                height: 6rem;
+            }
+        }
+        .terminal-container {
+            background-color: #263B3F;
+            color: $sub-text-color;
+            padding: 2rem;
+            margin: 1rem;
+            border-radius: 1.5rem;
+            text-align: left;
+            font-size: 1.2rem;
+            >* {
+                margin: 3rem 0;
+            }
+            p {
+                font-family: 'Source Code Pro', monospace;
+                span {
+                    color: cyan;
+                }
+            }
+            p:first-child {
+                margin-top: 0;
+                font-size: 1.5rem;
+                text-align: center;
+                // font-weight: bold;
+                color: $gray1;
+                span {
+                    color: $text-green;
+                }
+            }
+            ul {
+                list-style: none;
+            }
+        }
+    }
 }
 
 #soft-skills {
@@ -754,58 +884,6 @@ footer {
     img {
         transform: scale(2);
     }
-}
-
-#skills-direc {
-    margin: 1rem 0.6rem;
-}
-
-.skills-category {
-    display: inline-block;
-    width: 25%;
-    margin: 2rem 1rem;
-    vertical-align: top;
-    cursor: pointer;
-    img {
-        width: 6rem;
-        // transform: scale(2);
-    }
-}
-
-#skills-direc-bar {
-    display: block;
-    margin: 0 0.1rem;
-    padding: 1.5rem 0.5rem 1rem 1rem;
-    border-radius: 1.5em 1.5rem 0 0;
-    background-color: #D8D8D8;
-    button {
-        text-decoration: none;
-        background: none;
-        border: none;
-        float: left;
-        img {
-            width: 1.5rem;
-        }
-    }
-    h2 {
-        margin-left: 1rem;
-        display: inline-block;
-        font-size: 1rem;
-        // color: $text-green;
-        color: $text-red;
-        a {
-            text-decoration: none;
-            color: $main-text-color;
-        }
-    }
-}
-
-#skills-direc-body {
-    display: block;
-    margin: 0 0.1rem;
-    padding: 1rem 0.5rem 0.5rem 1rem;
-    border-radius: 0 0 1rem 1rem;
-    background-color: #C1C1C1;
 }
 
 @keyframes flipping {
