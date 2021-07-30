@@ -174,6 +174,7 @@ function shatterMask(scale_factor) {
         fragmentOffsetX = scale_factor * 1 / 4 * leftMaskOffset[i][0];
         fragmentOffsetY = scale_factor * 1 / 3 * leftMaskOffset[i][1];
         leftMaskFragments[i].style.transform = `rotateX(${scale_factor*leftMaskRotate[i][0]}deg) rotateY(${scale_factor*leftMaskRotate[i][1]}deg) rotateZ(${scale_factor*leftMaskRotate[i][2]}deg) translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
+        leftMaskFragments[i].style.opacity = 1;
         // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*leftMaskRotate[i][0]}deg)`;
         // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*leftMaskRotate[i][0]}, ${scale_factor*leftMaskRotate[i][1]}, ${scale_factor*leftMaskRotate[i][2]}, ${scale_factor*leftMaskRotate[i][3]}deg)`;
     }
@@ -181,6 +182,7 @@ function shatterMask(scale_factor) {
         fragmentOffsetX = scale_factor * 1 / 4 * rightMaskOffset[j][0];
         fragmentOffsetY = scale_factor * 1 / 3 * rightMaskOffset[j][1];
         rightMaskFragments[j].style.transform = `rotateX(${scale_factor*rightMaskRotate[j][0]}deg) rotateY(${scale_factor*rightMaskRotate[j][1]}deg) rotateZ(${scale_factor*rightMaskRotate[j][2]}deg) translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
+        rightMaskFragments[j].style.opacity = 1;
         // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*rightMaskRotate[j][0]}deg)`;
         // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*rightMaskRotate[j][0]}, ${scale_factor*rightMaskRotate[j][1]}, ${scale_factor*rightMaskRotate[j][2]}, ${scale_factor*rightMaskRotate[j][3]}deg)`;
     }
@@ -228,14 +230,122 @@ function uiuxScroll() {
     }
 }
 
+
+function generalDirecMinMax(isMin) {
+    if (isMin) {
+        generalDirec.style.transform = 'scale(0.8)';
+        generalDirec.style.opacity = 0;
+    } else {
+        generalDirec.style.transform = 'scale(1)';
+        generalDirec.style.opacity = 1;
+    }
+}
+
+function calcDirecTransOrigin(skillsCategory) {
+    const generalDirecBCR = generalDirec.getBoundingClientRect();
+    const skillsCategoryBCR = skillsCategory.getBoundingClientRect();
+    const direcIconX = (skillsCategoryBCR.left + skillsCategoryBCR.right) / 2;
+    const direcIconY = (skillsCategoryBCR.top + skillsCategoryBCR.bottom) / 2;
+    const direcIconOffsetX = 100 * (direcIconX - generalDirecBCR.left) / (generalDirecBCR.right - generalDirecBCR.left);
+    const direcIconOffsetY = 100 * (direcIconY - generalDirecBCR.top) / (generalDirecBCR.bottom - generalDirecBCR.top);
+    return { direcIconOffsetX, direcIconOffsetY };
+    // console.log(`${direcIconOffsetX}% ${direcIconOffsetY}%`);
+    // console.log(`${(skillsCategoryBCR.left)}`)
+}
+
+function skillsCategoryClicked(skillID, openClose) {
+    let direcClicked = '';
+    let direcDisplayStyle = 'grid';
+    if (!openClose) {
+        skillIDSubstring = skillID.substring(0, skillID.indexOf("-back"));
+    } else {
+        skillIDSubstring = skillID;
+    }
+    switch (skillIDSubstring) {
+        case "web-development":
+            direcClicked = 'webdev-direc';
+            break;
+
+        case "game-development":
+            direcClicked = 'gamedev-direc';
+            break;
+
+        case "mobile-development":
+            direcClicked = 'mobiledev-direc';
+            break;
+
+        case "deep-learning":
+            direcClicked = 'deeplearn-direc';
+            break;
+
+        case "engineering-softwares":
+            direcClicked = 'engsoft-direc';
+            break;
+
+        case "design-skills":
+            direcClicked = 'design-direc';
+            break;
+
+        case "others-skills":
+            direcClicked = 'others-direc';
+            break;
+
+        case "terminal-skills":
+            direcClicked = 'terminal';
+            direcDisplayStyle = 'block';
+            break;
+
+        default:
+            console.log('case not included');
+            direcClicked = 'terminal';
+            break;
+    }
+    const direcClickElem = document.getElementById(direcClicked);
+    const { direcIconOffsetX, direcIconOffsetY } = calcDirecTransOrigin(document.getElementById(skillIDSubstring));
+    direcClickElem.style.transformOrigin = `${direcIconOffsetX}% ${direcIconOffsetY}%`;
+    if (openClose) {
+        generalDirecMinMax(true);
+        direcClickElem.style.display = direcDisplayStyle;
+        setTimeout(() => {
+            direcClickElem.style.opacity = 1,
+                direcClickElem.style.transform = 'scale(1)';
+        }, 10);
+    } else {
+        generalDirecMinMax(false);
+        direcClickElem.style.opacity = 0;
+        direcClickElem.style.transform = 'scale(0.2)';
+        setTimeout(() => {
+            direcClickElem.style.display = 'none';
+        }, 500);
+    }
+}
+
+
 // createDots(0);
 const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
 const uiuxCont = document.getElementsByClassName('uiux-container');
+const generalDirec = document.getElementById('general-direc');
+const skillsCategories = document.getElementsByClassName('skills-category');
+// const skillsCategory = document.getElementById('web-development');
 shatterMask(1);
 window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", maskScroll, false);
 window.addEventListener("scroll", uiuxScroll, false);
+
+for (const skillsCategory of skillsCategories) {
+    skillsCategory.addEventListener("click", function() { skillsCategoryClicked(skillsCategory.id, true); }, false);
+}
+
+const backContainers = document.getElementsByClassName('back-container');
+for (const backContainer of backContainers) {
+    backContainer.addEventListener("click", function() { skillsCategoryClicked(backContainer.id, false); }, false);
+}
+const terminalBackButton = document.getElementById('terminal-skills-back');
+terminalBackButton.addEventListener("click", function() { skillsCategoryClicked('terminal-skills-back', false); }, false);
+// console.log(backContainers[0]);
+
+// skillsCategories[0].addEventListener("click", skillsCategoryClicked);
 // console.log(rightMaskOffset);
 // window.addEventListener('resize', createDots, false);
 // const dotBG = document.querySelector(".scroll-wrapper");
@@ -246,4 +356,3 @@ window.addEventListener("scroll", uiuxScroll, false);
 // const rightMask = maskSvg.children[0].children[0].children[1];
 // const leftMaskPoints = leftMask.children[0].getAttribute("points");
 // const leftMaskPointsArray = leftMaskPoints.split(' ');
-// console.log(leftMaskPointsArray.length);

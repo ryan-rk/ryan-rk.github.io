@@ -545,11 +545,12 @@ header {
 }
 
 #biodata .uiux-container h2 {
-  padding: 0 2rem;
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  left: 50%;
+  width: 80%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 2;
 }
 
@@ -629,6 +630,7 @@ header {
 }
 
 #biodata .mask-container #mask svg polygon {
+  opacity: 0;
   -webkit-transition: -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
   transition: -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
   transition: transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
@@ -661,17 +663,6 @@ header {
 
 #skills h1 {
   color: #AF67C5;
-}
-
-#skills .skills-category {
-  width: 25%;
-  margin: 1rem;
-  vertical-align: top;
-  cursor: pointer;
-}
-
-#skills .skills-category img {
-  width: 6rem;
 }
 
 #skills #skills-direc {
@@ -726,54 +717,85 @@ header {
 #skills #skills-direc #skills-direc-body {
   border-radius: 0 0 1rem 1rem;
   background-color: #C1C1C1;
+  padding: 1.5rem;
+  position: relative;
+}
+
+#skills #skills-direc #skills-direc-body .skills-category {
+  width: 100%;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#skills #skills-direc #skills-direc-body .skills-category img {
+  width: 6rem;
 }
 
 #skills #skills-direc #skills-direc-body .direc-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(8rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  grid-gap: 2rem;
+  justify-items: center;
   margin-top: 2rem;
 }
 
-#skills #skills-direc #skills-direc-body #webdev-direc {
+#skills #skills-direc #skills-direc-body .direc-container:not(#general-direc) {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 3rem);
+  height: calc(100% - 3rem);
   display: none;
+  opacity: 0;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+  -webkit-transform-origin: 20% 30%;
+          transform-origin: 20% 30%;
+  z-index: 1;
+  -webkit-transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
+  transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
+  transition: transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95), opacity 400ms linear;
+  transition: transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95), opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
 }
 
-#skills #skills-direc #skills-direc-body #gamedev-direc {
-  display: none;
+#skills #skills-direc #skills-direc-body .back-container {
+  cursor: pointer;
 }
 
-#skills #skills-direc #skills-direc-body #mobiledev-direc {
-  display: none;
-}
-
-#skills #skills-direc #skills-direc-body #deeplearn-direc {
-  display: none;
-}
-
-#skills #skills-direc #skills-direc-body #engsoft-direc {
-  display: none;
-}
-
-#skills #skills-direc #skills-direc-body #design-direc {
-  display: none;
-}
-
-#skills #skills-direc #skills-direc-body #others-direc {
-  display: none;
+#skills #skills-direc #skills-direc-body #general-direc {
+  display: -ms-grid;
+  display: grid;
+  -webkit-transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
+  transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
+  transition: transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95), opacity 400ms linear;
+  transition: transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95), opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
+  z-index: 0;
 }
 
 #skills #skills-direc #skills-direc-body .terminal-container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: none;
+  position: absolute;
+  top: 0;
+  width: calc(100% - 3rem);
+  height: calc(100% - 3rem);
+  margin-top: 2rem;
+  -webkit-transform: scale(0.2);
+          transform: scale(0.2);
+  opacity: 0;
+  z-index: 1;
+  -webkit-transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
+  transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
+  transition: transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95), opacity 400ms linear;
+  transition: transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95), opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
 }
 
 #skills #skills-direc .file-container {
-  width: 25%;
-  margin: 1rem;
+  width: 100%;
   vertical-align: top;
   text-align: center;
 }
@@ -784,17 +806,34 @@ header {
 }
 
 #skills #skills-direc .terminal-container {
+  position: relative;
   background-color: #263B3F;
   color: #fdfdfd;
-  padding: 2rem;
-  margin: 1rem;
+  padding: 1rem 2rem;
   border-radius: 1.5rem;
   text-align: left;
   font-size: 1.2rem;
 }
 
-#skills #skills-direc .terminal-container > * {
-  margin: 3rem 0;
+#skills #skills-direc .terminal-container .terminal-heading {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3rem auto;
+      grid-template-columns: 3rem auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#skills #skills-direc .terminal-container .terminal-heading img {
+  cursor: pointer;
+  margin: 0;
+  width: 2rem;
+}
+
+#skills #skills-direc .terminal-container .terminal-heading #terminal-text {
+  color: #25C05D;
+  text-align: center;
 }
 
 #skills #skills-direc .terminal-container p {
@@ -805,18 +844,17 @@ header {
   color: cyan;
 }
 
-#skills #skills-direc .terminal-container p:first-child {
-  margin-top: 0;
-  font-size: 1.5rem;
-  text-align: center;
-  color: #c4c4c4;
+#skills #skills-direc .terminal-container #echo-command,
+#skills #skills-direc .terminal-container #idle-command {
+  margin-top: 0.8rem;
 }
 
-#skills #skills-direc .terminal-container p:first-child span {
-  color: #25C05D;
+#skills #skills-direc .terminal-container #skills-command {
+  margin-top: 2rem;
 }
 
 #skills #skills-direc .terminal-container ul {
+  color: #25C05D;
   list-style: none;
 }
 

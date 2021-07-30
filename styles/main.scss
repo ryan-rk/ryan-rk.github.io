@@ -489,10 +489,12 @@ header {
             animation: uiux-border-animation 5s linear infinite;
         }
         h2 {
-            padding: 0 2rem;
+            // padding: 0 2rem;
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
+            left: 50%;
+            width: 80%;
+            transform: translate(-50%, -50%);
             z-index: 2;
         }
         .pong-container {
@@ -562,6 +564,7 @@ header {
                 width: 90%;
                 height: 100%;
                 polygon {
+                    opacity: 0;
                     transition: transform 1500ms cubic-bezier(.73, .06, .82, .38);
                     transform-origin: center;
                 }
@@ -632,17 +635,6 @@ header {
     h1 {
         color: $text-purple;
     }
-    .skills-category {
-        // display: inline-block;
-        width: 25%;
-        margin: 1rem;
-        vertical-align: top;
-        cursor: pointer;
-        img {
-            width: 6rem;
-            // transform: scale(2);
-        }
-    }
     #skills-direc {
         margin: 1rem 0;
         display: flex;
@@ -686,41 +678,105 @@ header {
             // padding: 1rem 0.5rem 0.5rem 1rem;
             border-radius: 0 0 1rem 1rem;
             background-color: #C1C1C1;
+            padding: 1.5rem;
+            position: relative;
+            .skills-category {
+                // display: inline-block;
+                width: 100%;
+                vertical-align: top;
+                cursor: pointer;
+                img {
+                    width: 6rem;
+                    // transform: scale(2);
+                }
+            }
             .direc-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
+                // display: flex;
+                // flex-wrap: wrap;
+                // justify-content: space-around;
+                display: grid;
+                // grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+                grid-template-rows: 1fr 1fr;
+                grid-gap: 2rem;
+                justify-items: center;
                 margin-top: 2rem;
                 // width: 100%;
             }
-            #webdev-direc {
+            .direc-container:not(#general-direc) {
+                position: absolute;
+                top: 0;
+                width: calc(100% - 3rem);
+                height: calc(100% - 3rem);
                 display: none;
+                opacity: 0;
+                transform: scale(0.2);
+                transform-origin: 20% 30%;
+                z-index: 1;
+                transition: transform 400ms cubic-bezier(.08, 1.09, .44, .95), opacity 400ms linear;
             }
-            #gamedev-direc {
-                display: none;
+            .back-container {
+                cursor: pointer;
             }
-            #mobiledev-direc {
-                display: none;
+            #general-direc {
+                display: grid;
+                // display: none;
+                transition: transform 400ms cubic-bezier(.08, 1.09, .44, .95), opacity 400ms linear;
+                z-index: 0;
             }
-            #deeplearn-direc {
-                display: none;
-            }
-            #engsoft-direc {
-                display: none;
-            }
-            #design-direc {
-                display: none;
-            }
-            #others-direc {
-                display: none;
-            }
+            // #webdev-direc {
+            //     display: none;
+            //     opacity: 0;
+            //     z-index: 1;
+            // }
+            // #gamedev-direc {
+            //     display: none;
+            //     opacity: 0;
+            //     z-index: 1;
+            // }
+            // #mobiledev-direc {
+            //     display: none;
+            //     opacity: 0;
+            //     z-index: 1;
+            // }
+            // #deeplearn-direc {
+            //     display: none;
+            //     opacity: 0;
+            //     z-index: 1;
+            // }
+            // #engsoft-direc {
+            //     display: none;
+            //     opacity: 0;
+            //     z-index: 1;
+            // }
+            // #design-direc {
+            //     display: none;
+            //     opacity: 0;
+            //     z-index: 1;
+            // }
+            // #others-direc {
+            //     display: none;
+            //     opacity: 0;
+            //     z-index: 1;
+            // }
             .terminal-container {
+                box-sizing: border-box;
+                // display: block;
                 display: none;
+                position: absolute;
+                top: 0;
+                width: calc(100% - 3rem);
+                height: calc(100% - 3rem);
+                margin-top: 2rem;
+                transform: scale(0.2);
+                opacity: 0;
+                z-index: 1;
+                transition: transform 400ms cubic-bezier(.08, 1.09, .44, .95), opacity 400ms linear;
             }
         }
         .file-container {
-            width: 25%;
-            margin: 1rem;
+            width: 100%;
+            // margin: 1rem;
             vertical-align: top;
             text-align: center;
             // cursor: pointer;
@@ -730,15 +786,26 @@ header {
             }
         }
         .terminal-container {
+            position: relative;
             background-color: #263B3F;
             color: $sub-text-color;
-            padding: 2rem;
-            margin: 1rem;
+            padding: 1rem 2rem;
             border-radius: 1.5rem;
             text-align: left;
             font-size: 1.2rem;
-            >* {
-                margin: 3rem 0;
+            .terminal-heading {
+                display: grid;
+                grid-template-columns: 3rem auto;
+                align-items: center;
+                img {
+                    cursor: pointer;
+                    margin: 0;
+                    width: 2rem;
+                }
+                #terminal-text {
+                    color: $text-green;
+                    text-align: center;
+                }
             }
             p {
                 font-family: 'Source Code Pro', monospace;
@@ -746,17 +813,15 @@ header {
                     color: cyan;
                 }
             }
-            p:first-child {
-                margin-top: 0;
-                font-size: 1.5rem;
-                text-align: center;
-                // font-weight: bold;
-                color: $gray1;
-                span {
-                    color: $text-green;
-                }
+            #echo-command,
+            #idle-command {
+                margin-top: 0.8rem;
+            }
+            #skills-command {
+                margin-top: 2rem;
             }
             ul {
+                color: #25C05D;
                 list-style: none;
             }
         }
