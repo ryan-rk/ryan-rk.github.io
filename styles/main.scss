@@ -32,6 +32,7 @@ body {
 h1 {
     font-family: 'Source Code Pro', monospace;
     font-size: $heading-text-size;
+    text-align: center;
     // font-family: 'Exo', sans-serif;
     transform-origin: center;
     transform: scaleX(0);
@@ -155,7 +156,9 @@ header,
 #main,
 #biodata,
 #skills,
-#soft-skills {
+#soft-skills,
+#projects,
+#contact {
     padding: 0 1rem;
     // margin-top: 15rem;
 }
@@ -882,14 +885,19 @@ header {
 
 #projects {
     margin-top: 10rem;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // text-align: center;
     h1 {
         color: $text-green;
     }
     button {
+        box-sizing: border-box;
+        padding: 1.5rem;
         margin-top: 3.5rem;
         background-color: $foreground-color;
-        border-radius: 1rem;
+        border-radius: 1.5rem;
         a {
             color: white;
             font-family: 'Exo', sans-serif;
@@ -901,7 +909,10 @@ header {
 
 #contact {
     margin-top: 10rem;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // text-align: center;
     h1 {
         color: $text-red;
     }
@@ -909,7 +920,8 @@ header {
         text-decoration: none;
         color: $text-purple;
     }
-    #mail {
+    #mail-icon {
+        margin: 2rem;
         width: 50%;
         max-height: 25rem;
     }
@@ -918,16 +930,24 @@ header {
 footer {
     margin-top: 10rem;
     margin-bottom: 1.5rem;
-    text-align: center;
-    h1 {
-        font-size: 0.8rem;
-        padding: 0.5rem;
-    }
-    a {
-        display: block;
-    }
-    img {
-        transform: scale(2);
+    // text-align: center;
+    .author-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 1rem;
+        .footer-line {
+            width: 100%;
+            height: 0.1rem;
+            margin: 1rem 0;
+            background-color: $gray1;
+        }
+        h3 {
+            width: 100%;
+            font-size: 0.8rem;
+            padding: 0.5rem;
+            text-align: center;
+        }
     }
 }
 
