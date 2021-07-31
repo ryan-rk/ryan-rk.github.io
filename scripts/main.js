@@ -102,7 +102,7 @@ function rem2Px(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
-function createDots(scrollRatio = 0.0) {
+function createDots_old(scrollRatio = 0.0) {
     var softSkills = document.getElementById("dots-bg");
     softSkills.innerHTML = "";
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -125,11 +125,53 @@ function createDots(scrollRatio = 0.0) {
     }
 }
 
+function createDots() {
+    const dotsContainer = document.getElementById("dots-bg");
+    dotsContainer.innerHTML = "";
+    const dotsContainerBCR = dotsContainer.getBoundingClientRect();
+    const dotsContainerWidth = dotsContainerBCR.right - dotsContainerBCR.left;
+    const numRow = 10;
+    const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
+    // const waveCycle = dotsContainerWidth / rem2Px(18);
+    dotsContainer.style.gridTemplateColumns = `repeat(${numCol}, 1fr)`;
+    dotsContainer.style.gridTemplateRows = `repeat(${numRow}, 1fr)`;
+    for (let i = 0; i < numRow; i++) {
+        for (let j = 0; j < numCol; j++) {
+            let gridElem = document.createElement("div");
+            gridElem.classList.add("small-dots");
+            // shiftMag = -30 * Math.sin(j * waveCycle * Math.PI / numCol);
+            // gridElem.style.transform = `translate(0, ${shiftMag}px)`;
+            const dotAnimationDelay = rem2Px(10) * Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+            gridElem.style.animationDelay = `${dotAnimationDelay}ms`;
+            // gridElem.style.animation = `dots-animation 2s linear ${dotAnimationDelay} infinite;`
+            // console.log(dotAnimationDelay);
+            dotsContainer.appendChild(gridElem);
+        }
+    }
+}
+
+function transformDots(scrollRatio = 0.0) {
+    const dotsContainer = document.getElementById("dots-bg");
+    const dotsContainerBCR = dotsContainer.getBoundingClientRect();
+    const dotsContainerWidth = dotsContainerBCR.right - dotsContainerBCR.left;
+    const numRow = 10;
+    const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
+    const waveCycle = dotsContainerWidth / rem2Px(18);
+    const dots = document.getElementsByClassName('small-dots');
+    for (let i = 0; i < numRow; i++) {
+        for (let j = 0; j < numCol; j++) {
+            const dot = dots[i * numCol + j];
+            shiftMag = -20 * Math.sin(j * waveCycle * Math.PI / numCol + scrollRatio);
+            dot.style.transform = `translate(0, ${shiftMag}px)`;
+        }
+    }
+}
+
 function dotScroll() {
     const scrollRatio = 2 * Math.PI * (this.scrollLeft / (this.scrollWidth - this.clientWidth));
     // console.log(`horizontal scrolling: ${this.scrollLeft}`)
     // console.log(`scroll percentage:${scrollPercentage}`);
-    createDots(scrollRatio);
+    transformDots(scrollRatio);
 }
 
 function maskScroll() {
@@ -321,13 +363,15 @@ function skillsCategoryClicked(skillID, openClose) {
 }
 
 
-// createDots(0);
 const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
+const viewWidth = document.documentElement.clientWidth;
 const uiuxCont = document.getElementsByClassName('uiux-container');
 const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
 // const skillsCategory = document.getElementById('web-development');
+createDots();
+transformDots(0);
 shatterMask(1);
 window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", maskScroll, false);
@@ -348,8 +392,8 @@ terminalBackButton.addEventListener("click", function() { skillsCategoryClicked(
 // skillsCategories[0].addEventListener("click", skillsCategoryClicked);
 // console.log(rightMaskOffset);
 // window.addEventListener('resize', createDots, false);
-// const dotBG = document.querySelector(".scroll-wrapper");
-// dotBG.addEventListener("scroll", dotScroll, false);
+const dotBG = document.querySelector(".scroll-wrapper");
+dotBG.addEventListener("scroll", dotScroll, false);
 // shatterMask();
 // const maskSvg = document.getElementById('mask');
 // const leftMask = maskSvg.children[0].children[0].children[0];

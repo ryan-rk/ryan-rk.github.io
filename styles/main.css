@@ -160,7 +160,8 @@ h4 {
 header,
 #main,
 #biodata,
-#skills {
+#skills,
+#soft-skills {
   padding: 0 1rem;
 }
 
@@ -860,6 +861,7 @@ header {
 
 #soft-skills {
   margin-top: 10rem;
+  position: relative;
 }
 
 #soft-skills h1 {
@@ -868,7 +870,7 @@ header {
 }
 
 #soft-skills .scroll-wrapper {
-  margin: 5rem 2rem;
+  margin: 5rem 0;
   overflow-x: scroll;
   white-space: nowrap;
   height: 35rem;
@@ -880,16 +882,19 @@ header {
 }
 
 #soft-skills ul li {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   vertical-align: top;
+  padding: 1rem 8vw;
   display: inline-block;
-  font-weight: bold;
-  -webkit-backdrop-filter: blur(0.1rem);
-          backdrop-filter: blur(0.1rem);
+  -webkit-backdrop-filter: blur(0.3rem);
+          backdrop-filter: blur(0.3rem);
 }
 
 #soft-skills ul :nth-child(1) {
   color: #67A4C5;
   margin-top: 0;
+  font-size: 1.5rem;
 }
 
 #soft-skills ul :nth-child(2) {
@@ -924,18 +929,29 @@ header {
 
 #soft-skills #dots-bg {
   position: absolute;
+  top: 6rem;
+  left: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: inherit;
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  height: 36rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
   z-index: -100;
 }
 
 #soft-skills .small-dots {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  display: inline-block;
-  width: 0.2rem;
-  height: 0.2rem;
-  margin: 0.8rem;
+  width: 0.4rem;
+  height: 0.4rem;
   background: #AFAFAF;
   border-radius: 50%;
+  -webkit-animation: dots-animation 5s ease-in-out infinite;
+          animation: dots-animation 5s ease-in-out infinite;
 }
 
 #projects {
@@ -1854,6 +1870,36 @@ footer img {
     -webkit-filter: blur(0.5rem);
             filter: blur(0.5rem);
     opacity: 0.6;
+  }
+}
+
+@-webkit-keyframes dots-animation {
+  0% {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+  30% {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  60% {
+    width: 0.2rem;
+    height: 0.2rem;
+  }
+}
+
+@keyframes dots-animation {
+  0% {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+  30% {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  60% {
+    width: 0.2rem;
+    height: 0.2rem;
   }
 }
 
