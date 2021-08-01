@@ -102,29 +102,6 @@ function rem2Px(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
-function createDots_old(scrollRatio = 0.0) {
-    var softSkills = document.getElementById("dots-bg");
-    softSkills.innerHTML = "";
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    const numCol = Math.floor(vw / rem2Px(1.9));
-    const waveWidth = (vw - (rem2Px(1.8) * numCol)) / 2;
-    softSkills.style.marginLeft = `${waveWidth}px`;
-    numRow = 20;
-    for (let i = 0; i < numRow; i++) {
-        let tableRow = document.createElement("tr")
-        for (let j = 0; j < numCol; j++) {
-            let tableElem = document.createElement("td");
-            tableElem.classList.add("small-dots");
-            shiftMag = -20 * Math.sin(j * 2 * Math.PI / numCol + scrollRatio);
-            tableElem.style.transform = `translate(0, ${shiftMag}px)`;
-            // tableElem.style.width = `${1/numCol*100}%`
-            tableRow.appendChild(tableElem);
-        }
-        softSkills.appendChild(tableRow);
-        // document.body.appendChild(tag);
-    }
-}
-
 function createDots() {
     const dotsContainer = document.getElementById("dots-bg");
     dotsContainer.innerHTML = "";
@@ -141,7 +118,7 @@ function createDots() {
             gridElem.classList.add("small-dots");
             // shiftMag = -30 * Math.sin(j * waveCycle * Math.PI / numCol);
             // gridElem.style.transform = `translate(0, ${shiftMag}px)`;
-            const dotAnimationDelay = rem2Px(10) * Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+            const dotAnimationDelay = 0.5 * viewWidth * Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
             gridElem.style.animationDelay = `${dotAnimationDelay}ms`;
             // gridElem.style.animation = `dots-animation 2s linear ${dotAnimationDelay} infinite;`
             // console.log(dotAnimationDelay);
@@ -268,11 +245,25 @@ function calcMaskOffset() {
 
 function uiuxScroll() {
     const uiuxBCR = uiuxCont[0].getBoundingClientRect();
-    if ((viewHeight * 8 / 10) >= uiuxBCR.top) {
+    if (uiuxBCR.top <= (viewHeight * 8 / 10)) {
         uiuxCont[0].style.opacity = 1;
     }
 }
 
+function skillDirecScroll() {
+    const skillsDirec = document.getElementById('skills-direc');
+    if (skillsDirec.getBoundingClientRect().top <= (viewHeight * 5 / 10)) {
+        // skillsDirec.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)';
+        skillsDirec.style.transform = 'scale(1)';
+    }
+}
+
+function softSkillsScroll() {
+    const softSkillsUl = document.getElementById('soft-skills-ul');
+    if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
+        softSkillsUl.style.opacity = 1;
+    }
+}
 
 function generalDirecMinMax(isMin) {
     if (isMin) {
@@ -381,6 +372,15 @@ function projectIconScroll() {
     }
 }
 
+function footerLineScroll() {
+    const footerLine = document.getElementsByClassName('footer-line');
+    const footer = document.querySelector('footer');
+    if (footer.getBoundingClientRect().bottom <= viewHeight) {
+        footer.style.opacity = 1;
+        footerLine[0].style.transform = 'scaleX(1)';
+    }
+}
+
 
 const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
@@ -396,6 +396,9 @@ window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", maskScroll, false);
 window.addEventListener("scroll", uiuxScroll, false);
 window.addEventListener("scroll", projectIconScroll, false);
+window.addEventListener("scroll", skillDirecScroll, false);
+window.addEventListener("scroll", softSkillsScroll, false);
+window.addEventListener("scroll", footerLineScroll, false);
 
 for (const skillsCategory of skillsCategories) {
     skillsCategory.addEventListener("click", function() { skillsCategoryClicked(skillsCategory.id, true); }, false);

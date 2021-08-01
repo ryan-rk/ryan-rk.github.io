@@ -566,6 +566,9 @@ header {
                 position: relative;
                 width: 90%;
                 height: 100%;
+                #mask-glass {
+                    stroke-width: 0.05rem;
+                }
                 polygon {
                     opacity: 0;
                     transition: transform 1500ms cubic-bezier(.73, .06, .82, .38);
@@ -633,7 +636,7 @@ header {
 }
 
 #skills {
-    margin-top: 10rem;
+    margin-top: 8rem;
     text-align: center;
     h1 {
         color: $text-purple;
@@ -642,6 +645,11 @@ header {
         margin: 1rem 0;
         display: flex;
         flex-direction: column;
+        transform-origin: top;
+        transform: scale(0);
+        // opacity: 0;
+        // clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
         #skills-direc-bar {
             position: relative;
             display: flex;
@@ -813,6 +821,8 @@ header {
     ul {
         list-style-type: none;
         text-align: center;
+        opacity: 0;
+        transition: opacity 1s ease-in;
         li {
             box-sizing: border-box;
             vertical-align: top;
@@ -821,9 +831,20 @@ header {
             backdrop-filter: blur(0.3rem);
         }
          :nth-child(1) {
-            color: #67A4C5;
             margin-top: 0;
-            font-size: 1.5rem;
+            backdrop-filter: none;
+            #soft-skills-title {
+                font-size: 1.5rem;
+                color: #67A4C5;
+                // background-color: $gray1;
+                backdrop-filter: blur(0.3rem);
+                padding: 1rem;
+            }
+            #soft-skills-arrow {
+                height: 5rem;
+                transform: rotate(-90deg);
+                animation: softskills-arrow-animation 5s linear infinite;
+            }
             // width: 100%;
         }
          :nth-child(2) {
@@ -875,7 +896,8 @@ header {
         height: 0.4rem;
         // transform: translate(-50% -50%);
         // margin: 0.8rem;
-        background: #AFAFAF;
+        // background: #AFAFAF;
+        background-color: $gray1;
         border-radius: 50%;
         // transition: transform 200ms linear;
         animation: dots-animation 5s ease-in-out infinite;
@@ -1005,12 +1027,12 @@ header {
             #large-cog {
                 right: 40%;
                 height: 100%;
-                animation: cog-rotation-clockwise 6s linear infinite;
+                animation: rotation-clockwise 6s linear infinite;
             }
             #small-cog {
                 left: 50%;
                 height: 60%;
-                animation: cog-rotation-anticlockwise 6s linear infinite;
+                animation: rotation-anticlockwise 6s linear infinite;
             }
         }
     }
@@ -1039,6 +1061,8 @@ header {
 footer {
     margin-top: 10rem;
     margin-bottom: 1.5rem;
+    opacity: 0;
+    transition: opacity 500ms ease-in;
     // text-align: center;
     .author-container {
         display: flex;
@@ -1050,6 +1074,9 @@ footer {
             height: 0.1rem;
             margin: 1rem 0;
             background-color: $gray1;
+            transform-origin: center;
+            transform: scaleX(0);
+            transition: transform 1s ease-in-out;
         }
         h3 {
             width: 100%;
@@ -1500,7 +1527,7 @@ footer {
     // }
 }
 
-@keyframes cog-rotation-clockwise {
+@keyframes rotation-clockwise {
     from {
         transform: rotate(0deg);
     }
@@ -1509,7 +1536,7 @@ footer {
     }
 }
 
-@keyframes cog-rotation-anticlockwise {
+@keyframes rotation-anticlockwise {
     from {
         transform: rotate(0deg);
     }
@@ -1542,6 +1569,21 @@ footer {
     }
     to {
         transform: scale(1);
+    }
+}
+
+@keyframes softskills-arrow-animation {
+    0% {
+        transform: rotate(-90deg) translateY(0%);
+    }
+    25% {
+        transform: rotate(-90deg) translateY(20%);
+    }
+    75% {
+        transform: rotate(-90deg) translateY(-20%);
+    }
+    100% {
+        transform: rotate(-90deg) translateY(0%);
     }
 }
 
