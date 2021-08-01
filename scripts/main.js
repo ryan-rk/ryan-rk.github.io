@@ -181,7 +181,8 @@ function maskScroll() {
     const maskBCR = mask.getBoundingClientRect();
     const maskText = document.getElementById('mask-text');
     // console.log(maskBCR.top);
-    if ((viewHeight * 4 / 10) >= maskBCR.top) {
+    if (maskBCR.top <= (viewHeight * 4 / 10)) {
+        mask.style.opacity = 1;
         shatterMask(0);
         mask.style.animation = 'mask-animation 2s cubic-bezier(.93,.01,.4,1) 1800ms forwards'
         setTimeout(() => {
@@ -192,9 +193,9 @@ function maskScroll() {
         //     mask.style.transform = 'rotateY(180deg)';
         //     mask.style.top = '50%';
     }
-    if ((viewHeight * 8.5 / 10) >= maskBCR.top) {
-        mask.style.opacity = 1;
-    }
+    // if (maskBCR.top <= (viewHeight * 8.5 / 10)) {
+    //     mask.style.opacity = 1;
+    // }
     /*else {
            shatterMask(1);
            // mask.style.transform = 'rotateY(0deg)';
@@ -248,7 +249,7 @@ function calcMaskOffset() {
         }
         leftMaskOffset.push([(totalX * 2 / fragmentPoints.length) - 140, (totalY * 2 / fragmentPoints.length) - 80])
             // leftMaskRotate.push([Math.random(), Math.random(), Math.random(), (180 * Math.random()) - 90]);
-        leftMaskRotate.push([(90 * Math.random()) - 45, (80 * Math.random()) - 40, (80 * Math.random()) - 40]);
+        leftMaskRotate.push([(180 * Math.random()) - 90, (180 * Math.random()) - 90, (180 * Math.random()) - 90]);
     }
     for (const fragment of rightMask.children) {
         fragmentPoints = fragment.getAttribute('points').split(' ');
@@ -362,6 +363,24 @@ function skillsCategoryClicked(skillID, openClose) {
     }
 }
 
+function projectIconScroll() {
+    const projectIconContainer = document.getElementsByClassName('project-icon-container');
+    const projectIconBCR = projectIconContainer[0].getBoundingClientRect();
+    const projectLines = document.getElementsByClassName('project-line');
+    const tickSquares = document.getElementsByClassName('tick-square');
+    if (projectIconBCR.top <= (viewHeight * 4 / 10)) {
+        projectIconContainer[0].style.opacity = 1;
+        for (let index = 0; index < projectLines.length; index++) {
+            projectLines[index].style.animation = 'scalex-animation 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards';
+            projectLines[index].style.animationDelay = `${index*500}ms`;
+        }
+        for (let index = 0; index < tickSquares.length; index++) {
+            tickSquares[index].style.animation = 'clippath-bottomleft-topright 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards';
+            tickSquares[index].style.animationDelay = `${index*500+200}ms`;
+        }
+    }
+}
+
 
 const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
@@ -376,6 +395,7 @@ shatterMask(1);
 window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", maskScroll, false);
 window.addEventListener("scroll", uiuxScroll, false);
+window.addEventListener("scroll", projectIconScroll, false);
 
 for (const skillsCategory of skillsCategories) {
     skillsCategory.addEventListener("click", function() { skillsCategoryClicked(skillsCategory.id, true); }, false);
