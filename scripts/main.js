@@ -1,12 +1,12 @@
 function expandMenu() {
     const expandedMenu = document.getElementById('expanded-menu');
-    const triangleLeft = document.getElementById('triangle-left');
+    const triangleLeft = document.getElementById('nav-title-triangle');
     // // var menuTriangle = document.getElementById("menu-triangle");
     const navBar = document.querySelector('nav');
     const menuButton = document.getElementById('collapse-menu-button');
     if (expandedMenu.style.display !== 'flex') {
-        menuButton.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;{';
-        navBar.style.height = '17rem';
+        menuButton.innerHTML = '&nbsp;{';
+        navBar.style.height = '18rem';
 
         triangleLeft.style.left = '100%';
         triangleLeft.style.transform = 'rotate(180deg)';
@@ -29,6 +29,34 @@ function hideNavTitle() {
     } else {
         navTitle.style.display = "inline-block";
         navBar.style.width = "calc(100% - 1.6rem)";
+    }
+}
+
+function navListHover(pageID) {
+    const navMenuLists = document.getElementById('nav-menu-list');
+    const currentPageBg = document.getElementById(pageID.concat('-list-bg'));
+    const currentPageTriangle = document.getElementById(pageID.concat('-list-triangle'));
+    currentPageBg.style.transform = 'scaleX(1)'
+    currentPageTriangle.style.filter = 'contrast(0%)';
+    let navListBg = 0;
+    let navListTriangle = 0;
+    for (const navMenuList of navMenuLists.children) {
+        navMenuList.addEventListener('mouseover', event => {
+            navListBg = document.getElementById(navMenuList.id.concat('-bg'));
+            navListTriangle = document.getElementById(navMenuList.id.concat('-triangle'));
+            currentPageBg.style.transform = 'scaleX(0)'
+            currentPageTriangle.style.filter = 'contrast(100%)';
+            navListBg.style.transform = 'scaleX(1)';
+            navListTriangle.style.filter = "contrast(0%)";
+        })
+        navMenuList.addEventListener('mouseleave', event => {
+            navListBg = document.getElementById(navMenuList.id.concat('-bg'));
+            navListTriangle = document.getElementById(navMenuList.id.concat('-triangle'));
+            navListBg.style.transform = 'scaleX(0)';
+            currentPageBg.style.transform = 'scaleX(1)'
+            currentPageTriangle.style.filter = 'contrast(0%)';
+            navListTriangle.style.filter = "contrast(100%)";
+        })
     }
 }
 
@@ -109,6 +137,7 @@ function createDots() {
     const dotsContainerWidth = dotsContainerBCR.right - dotsContainerBCR.left;
     const numRow = 10;
     const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
+    const maxDist = Math.sqrt(Math.pow(numRow, 2) + Math.pow(numCol, 2));
     // const waveCycle = dotsContainerWidth / rem2Px(18);
     dotsContainer.style.gridTemplateColumns = `repeat(${numCol}, 1fr)`;
     dotsContainer.style.gridTemplateRows = `repeat(${numRow}, 1fr)`;
@@ -118,8 +147,13 @@ function createDots() {
             gridElem.classList.add("small-dots");
             // shiftMag = -30 * Math.sin(j * waveCycle * Math.PI / numCol);
             // gridElem.style.transform = `translate(0, ${shiftMag}px)`;
-            const dotAnimationDelay = 0.5 * viewWidth * Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
-            gridElem.style.animationDelay = `${dotAnimationDelay}ms`;
+            const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+            const redOffset = 190 - 100 / maxDist * dotDistTopLeft;
+            const greenOffset = 190 - 110 / maxDist * dotDistTopLeft;
+            const blueOffset = 200 - 65 / maxDist * dotDistTopLeft;
+            gridElem.style.backgroundColor = `rgb(${redOffset}, ${greenOffset}, ${blueOffset})`;
+            // const dotAnimationDelay = 0.5 * viewWidth * Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+            // gridElem.style.animationDelay = `${dotDistTopLeft*0.5*viewWidth}ms`;
             // gridElem.style.animation = `dots-animation 2s linear ${dotAnimationDelay} infinite;`
             // console.log(dotAnimationDelay);
             dotsContainer.appendChild(gridElem);
@@ -145,7 +179,7 @@ function transformDots(scrollRatio = 0.0) {
 }
 
 function dotScroll() {
-    const scrollRatio = 2 * Math.PI * (this.scrollLeft / (this.scrollWidth - this.clientWidth));
+    const scrollRatio = -2 * Math.PI * (this.scrollLeft / (this.scrollWidth - this.clientWidth));
     // console.log(`horizontal scrolling: ${this.scrollLeft}`)
     // console.log(`scroll percentage:${scrollPercentage}`);
     transformDots(scrollRatio);
@@ -260,8 +294,10 @@ function skillDirecScroll() {
 
 function softSkillsScroll() {
     const softSkillsUl = document.getElementById('soft-skills-ul');
-    if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
+    const softSkillsSwipe = document.getElementById('soft-skills-swipe');
+    if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 5 / 10)) {
         softSkillsUl.style.opacity = 1;
+        softSkillsSwipe.style.opacity = 1;
     }
 }
 
@@ -375,13 +411,32 @@ function projectIconScroll() {
 function footerLineScroll() {
     const footerLine = document.getElementsByClassName('footer-line');
     const footer = document.querySelector('footer');
-    if (footer.getBoundingClientRect().bottom <= viewHeight) {
+    if (footer.getBoundingClientRect().top <= (0.95 * viewHeight)) {
         footer.style.opacity = 1;
         footerLine[0].style.transform = 'scaleX(1)';
     }
 }
 
+function createSoftSkillsSwipe() {
+    const softSkillsSwipe = document.getElementById('soft-skills-swipe');
+    const swipeLineSVG = document.createElementNS(svgns, "svg");
+    const svgWidth = viewWidth - rem2Px(12);
+    const svgHeight = rem2Px(1);
+    swipeLineSVG.setAttribute("width", `${svgWidth}px`);
+    swipeLineSVG.setAttribute("height", `${svgHeight}px`);
+    const arrowOffset = rem2Px(1);
+    const swipeLineShort = document.createElementNS(svgns, "polygon");
+    swipeLineShort.setAttribute("fill", "#aaaaaa");
+    swipeLineShort.setAttribute("points", `${arrowOffset} 0 ${0.3*svgWidth} 0 ${0.3*svgWidth-arrowOffset} ${svgHeight/2} ${0.3*svgWidth} ${svgHeight} ${arrowOffset} ${svgHeight} 0 ${svgHeight/2}`);
+    swipeLineSVG.appendChild(swipeLineShort);
+    const swipeLineLong = document.createElementNS(svgns, "polygon");
+    swipeLineLong.setAttribute("fill", "#cccccc");
+    swipeLineLong.setAttribute("points", `${0.3*svgWidth+arrowOffset} 0 ${svgWidth} 0 ${svgWidth-arrowOffset} ${svgHeight/2} ${svgWidth} ${svgHeight} ${0.3*svgWidth+arrowOffset} ${svgHeight} ${0.3*svgWidth} ${svgHeight/2}`);
+    swipeLineSVG.appendChild(swipeLineLong);
+    softSkillsSwipe.appendChild(swipeLineSVG);
+}
 
+const svgns = "http://www.w3.org/2000/svg";
 const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
 const viewWidth = document.documentElement.clientWidth;
@@ -392,6 +447,8 @@ const skillsCategories = document.getElementsByClassName('skills-category');
 createDots();
 transformDots(0);
 shatterMask(1);
+createSoftSkillsSwipe();
+navListHover('home');
 window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", maskScroll, false);
 window.addEventListener("scroll", uiuxScroll, false);
