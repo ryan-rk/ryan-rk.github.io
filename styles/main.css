@@ -31,7 +31,8 @@ h1 {
   transition: transform 400ms ease-in-out, opacity 200ms ease-in-out, -webkit-transform 400ms ease-in-out;
 }
 
-h2 {
+h2,
+#contact-text {
   font-family: 'Exo', sans-serif;
   font-size: 1.1rem;
   font-weight: 100;
@@ -253,8 +254,12 @@ nav #nav-title .nav-center .triangle {
   transition-property: transform, left, -webkit-transform;
   -webkit-transition-duration: 0.5s, 0.5s;
           transition-duration: 0.5s, 0.5s;
-  -webkit-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: cubic-bezier(0.18, 1.01, 0.64, 0.89);
+          transition-timing-function: cubic-bezier(0.18, 1.01, 0.64, 0.89);
+  -webkit-transition: left 500ms cubic-bezier(0.18, 1.01, 0.64, 0.89), -webkit-transform 500ms ease-in-out;
+  transition: left 500ms cubic-bezier(0.18, 1.01, 0.64, 0.89), -webkit-transform 500ms ease-in-out;
+  transition: left 500ms cubic-bezier(0.18, 1.01, 0.64, 0.89), transform 500ms ease-in-out;
+  transition: left 500ms cubic-bezier(0.18, 1.01, 0.64, 0.89), transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
 nav #nav-title .nav-right {
@@ -323,10 +328,10 @@ nav #expanded-menu ul .nav-list-bg {
   opacity: 0.8;
   border-radius: 0.7rem;
   z-index: -1;
-  -webkit-transform-origin: left;
-          transform-origin: left;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
   -webkit-transition: -webkit-transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: -webkit-transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -1266,15 +1271,75 @@ header {
   color: #EE6767;
 }
 
-#contact a {
-  text-decoration: none;
-  color: #AF67C5;
+#contact #contact-text {
+  position: absolute;
+  top: 10rem;
+  width: 100%;
+  opacity: 0;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: opacity 500ms ease-in-out, top 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  transition: opacity 500ms ease-in-out, top 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  transition: opacity 500ms ease-in-out, transform 1s ease-in-out, top 1s ease-in-out;
+  transition: opacity 500ms ease-in-out, transform 1s ease-in-out, top 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  z-index: 2;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
 }
 
-#contact #mail-icon {
-  margin: 2rem;
-  width: 50%;
-  max-height: 25rem;
+#contact #contact-text a {
+  font-size: 2rem;
+  color: #3E3E3E;
+}
+
+#contact a {
+  text-decoration: none;
+}
+
+#contact #mail-container {
+  padding-top: 8rem;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+#contact .mail-icon {
+  display: inline-block;
+  width: clamp(15rem, 60%, 25rem);
+  background-color: #f1f1f1;
+}
+
+#contact #mail-back {
+  position: absolute;
+  z-index: 1;
+}
+
+#contact #mail-front {
+  position: relative;
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  width: clamp(15rem, 60%, 25rem);
+}
+
+#contact #mail-front h3 {
+  position: absolute;
+  top: 35%;
+  left: 6%;
+}
+
+#contact #mail-front a {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: #5981E1;
+}
+
+#contact #mail-front img {
+  width: 99%;
 }
 
 #backdrop {
@@ -2407,6 +2472,50 @@ footer .author-container h3 {
   70% {
     -webkit-clip-path: polygon(0 0, 0 50%, 0 100%, 0 100%, 0 50%, 0 0);
             clip-path: polygon(0 0, 0 50%, 0 100%, 0 100%, 0 50%, 0 0);
+  }
+}
+
+@-webkit-keyframes mail-back-animation {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+  }
+}
+
+@keyframes mail-back-animation {
+  0% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+  100% {
+    -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+  }
+}
+
+@-webkit-keyframes mail-front-animation {
+  0% {
+    -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+
+@keyframes mail-front-animation {
+  0% {
+    -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
   }
 }
 

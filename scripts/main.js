@@ -15,7 +15,8 @@ function expandMenu() {
         triangleLeft.style.left = '0%';
         triangleLeft.style.transform = 'rotate(0deg)';
         expandedMenu.style.opacity = "0";
-        setTimeout(() => { navBar.style.height = "4.4rem", expandedMenu.style.display = "none", menuButton.innerHTML = '{...}'; }, 200);
+        setTimeout(() => { navBar.style.height = "4.4rem", expandedMenu.style.display = "none"; }, 200);
+        setTimeout(() => { menuButton.innerHTML = '{...}'; }, 500);
     }
 }
 
@@ -36,7 +37,7 @@ function navListHover(pageID) {
     const navMenuLists = document.getElementById('nav-menu-list');
     const currentPageBg = document.getElementById(pageID.concat('-list-bg'));
     const currentPageTriangle = document.getElementById(pageID.concat('-list-triangle'));
-    currentPageBg.style.transform = 'scaleX(1)'
+    currentPageBg.style.transform = 'scaleY(1)'
     currentPageTriangle.style.filter = 'contrast(0%)';
     let navListBg = 0;
     let navListTriangle = 0;
@@ -44,16 +45,16 @@ function navListHover(pageID) {
         navMenuList.addEventListener('mouseover', event => {
             navListBg = document.getElementById(navMenuList.id.concat('-bg'));
             navListTriangle = document.getElementById(navMenuList.id.concat('-triangle'));
-            currentPageBg.style.transform = 'scaleX(0)'
+            currentPageBg.style.transform = 'scaleY(0)'
             currentPageTriangle.style.filter = 'contrast(100%)';
-            navListBg.style.transform = 'scaleX(1)';
+            navListBg.style.transform = 'scaleY(1)';
             navListTriangle.style.filter = "contrast(0%)";
         })
         navMenuList.addEventListener('mouseleave', event => {
             navListBg = document.getElementById(navMenuList.id.concat('-bg'));
             navListTriangle = document.getElementById(navMenuList.id.concat('-triangle'));
-            navListBg.style.transform = 'scaleX(0)';
-            currentPageBg.style.transform = 'scaleX(1)'
+            navListBg.style.transform = 'scaleY(0)';
+            currentPageBg.style.transform = 'scaleY(1)'
             currentPageTriangle.style.filter = 'contrast(0%)';
             navListTriangle.style.filter = "contrast(100%)";
         })
@@ -148,9 +149,9 @@ function createDots() {
             // shiftMag = -30 * Math.sin(j * waveCycle * Math.PI / numCol);
             // gridElem.style.transform = `translate(0, ${shiftMag}px)`;
             const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
-            const redOffset = 190 - 100 / maxDist * dotDistTopLeft;
-            const greenOffset = 190 - 110 / maxDist * dotDistTopLeft;
-            const blueOffset = 200 - 65 / maxDist * dotDistTopLeft;
+            const redOffset = 190 - 120 / maxDist * dotDistTopLeft;
+            const greenOffset = 190 - 120 / maxDist * dotDistTopLeft;
+            const blueOffset = 200 + 10 / maxDist * dotDistTopLeft;
             gridElem.style.backgroundColor = `rgb(${redOffset}, ${greenOffset}, ${blueOffset})`;
             // const dotAnimationDelay = 0.5 * viewWidth * Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
             // gridElem.style.animationDelay = `${dotDistTopLeft*0.5*viewWidth}ms`;
@@ -169,11 +170,17 @@ function transformDots(scrollRatio = 0.0) {
     const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
     const waveCycle = dotsContainerWidth / rem2Px(18);
     const dots = document.getElementsByClassName('small-dots');
+    const maxDist = Math.sqrt(Math.pow(numRow, 2) + Math.pow(numCol, 2));
     for (let i = 0; i < numRow; i++) {
         for (let j = 0; j < numCol; j++) {
             const dot = dots[i * numCol + j];
             shiftMag = -20 * Math.sin(j * waveCycle * Math.PI / numCol + scrollRatio);
             dot.style.transform = `translate(0, ${shiftMag}px)`;
+            const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+            const redOffset = 190 - 120 / maxDist * dotDistTopLeft - 30 * scrollRatio;
+            const greenOffset = 190 - 120 / maxDist * dotDistTopLeft;
+            const blueOffset = 200 + 10 / maxDist * dotDistTopLeft;
+            dot.style.backgroundColor = `rgb(${redOffset}, ${greenOffset}, ${blueOffset})`;
         }
     }
 }
@@ -182,6 +189,7 @@ function dotScroll() {
     const scrollRatio = -2 * Math.PI * (this.scrollLeft / (this.scrollWidth - this.clientWidth));
     // console.log(`horizontal scrolling: ${this.scrollLeft}`)
     // console.log(`scroll percentage:${scrollPercentage}`);
+    console.log(scrollRatio);
     transformDots(scrollRatio);
 }
 
@@ -418,25 +426,63 @@ function footerLineScroll() {
 }
 
 function createSoftSkillsSwipe() {
+    const svgns = "http://www.w3.org/2000/svg";
     const softSkillsSwipe = document.getElementById('soft-skills-swipe');
     const swipeLineSVG = document.createElementNS(svgns, "svg");
-    const svgWidth = viewWidth - rem2Px(12);
+    const svgDefs = document.createElementNS(svgns, 'defs');
+    const svgGradient = document.createElementNS(svgns, 'linearGradient')
+    const svgStop1 = document.createElementNS(svgns, 'stop');
+    const svgStop2 = document.createElementNS(svgns, 'stop');
+    svgStop1.setAttribute('offset', '0%');
+    svgStop1.setAttribute('stop-color', 'rgba(140,140,140,1)');
+    svgGradient.appendChild(svgStop1);
+    svgStop2.setAttribute('offset', '100%');
+    svgStop2.setAttribute('stop-color', 'rgba(255,255,255,0)');
+    svgGradient.appendChild(svgStop2);
+    svgGradient.id = 'SwipeGradient';
+    // svgGradient.setAttribute('x1', '0');
+    // svgGradient.setAttribute('x2', '0');
+    // svgGradient.setAttribute('y1', '0');
+    // svgGradient.setAttribute('y2', '1');
+    svgDefs.appendChild(svgGradient);
+    swipeLineSVG.appendChild(svgDefs);
+    const svgWidth = viewWidth - rem2Px(8);
     const svgHeight = rem2Px(1);
     swipeLineSVG.setAttribute("width", `${svgWidth}px`);
     swipeLineSVG.setAttribute("height", `${svgHeight}px`);
     const arrowOffset = rem2Px(1);
     const swipeLineShort = document.createElementNS(svgns, "polygon");
     swipeLineShort.setAttribute("fill", "#aaaaaa");
-    swipeLineShort.setAttribute("points", `${arrowOffset} 0 ${0.3*svgWidth} 0 ${0.3*svgWidth-arrowOffset} ${svgHeight/2} ${0.3*svgWidth} ${svgHeight} ${arrowOffset} ${svgHeight} 0 ${svgHeight/2}`);
+    swipeLineShort.setAttribute("points", `${arrowOffset} 0 ${0.2*svgWidth} 0 ${0.2*svgWidth-arrowOffset} ${svgHeight/2} ${0.2*svgWidth} ${svgHeight} ${arrowOffset} ${svgHeight} 0 ${svgHeight/2}`);
     swipeLineSVG.appendChild(swipeLineShort);
     const swipeLineLong = document.createElementNS(svgns, "polygon");
-    swipeLineLong.setAttribute("fill", "#cccccc");
-    swipeLineLong.setAttribute("points", `${0.3*svgWidth+arrowOffset} 0 ${svgWidth} 0 ${svgWidth-arrowOffset} ${svgHeight/2} ${svgWidth} ${svgHeight} ${0.3*svgWidth+arrowOffset} ${svgHeight} ${0.3*svgWidth} ${svgHeight/2}`);
+    // swipeLineLong.setAttribute("fill", "#cccccc");
+    swipeLineLong.setAttribute("fill", "url(#SwipeGradient)");
+    swipeLineLong.setAttribute("points", `${0.2*svgWidth+arrowOffset} 0 ${svgWidth} 0 ${svgWidth-arrowOffset} ${svgHeight/2} ${svgWidth} ${svgHeight} ${0.2*svgWidth+arrowOffset} ${svgHeight} ${0.2*svgWidth} ${svgHeight/2}`);
     swipeLineSVG.appendChild(swipeLineLong);
     softSkillsSwipe.appendChild(swipeLineSVG);
 }
 
-const svgns = "http://www.w3.org/2000/svg";
+function contactScroll() {
+    const contactText = document.getElementById('contact-text');
+    const mailContainer = document.getElementById('mail-container');
+    const mailBack = document.getElementById('mail-back');
+    const mailFront = document.getElementById('mail-front');
+    if (contactText.getBoundingClientRect().top <= viewHeight * 7 / 10) {
+        contactText.style.opacity = 1;
+        contactText.style.transform = 'scale(1)';
+        contactText.style.top = 0;
+        mailBack.style.animation = 'mail-back-animation 2s ease-in-out forwards';
+        mailBack.style.animationDelay = '1s';
+        mailFront.style.animation = 'mail-front-animation 2s ease-in-out forwards';
+        mailFront.style.animationDelay = '1s';
+        setTimeout(() => {
+            mailBack.style.display = 'none';
+        }, 2000);
+    }
+}
+
+
 const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
 const viewWidth = document.documentElement.clientWidth;
@@ -455,6 +501,7 @@ window.addEventListener("scroll", uiuxScroll, false);
 window.addEventListener("scroll", projectIconScroll, false);
 window.addEventListener("scroll", skillDirecScroll, false);
 window.addEventListener("scroll", softSkillsScroll, false);
+window.addEventListener("scroll", contactScroll, false);
 window.addEventListener("scroll", footerLineScroll, false);
 
 for (const skillsCategory of skillsCategories) {
