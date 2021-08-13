@@ -42,7 +42,8 @@ h1 {
 }
 
 h2,
-#contact-text {
+#contact-text,
+.mask-text {
     font-family: 'Exo', sans-serif;
     font-size: $main-text-size;
     font-weight: 100;
@@ -153,6 +154,7 @@ header,
 nav {
     display: flex;
     flex-direction: column;
+    // justify-content: center;
     box-sizing: border-box;
     position: fixed;
     width: calc(100% - 1.6rem);
@@ -162,7 +164,7 @@ nav {
     // height: calc(min(19rem, 100vw));
     margin: 0.8rem 0.8rem;
     top: 0;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     // font-size: calc(min(1.8rem, 8vw));
     font-family: 'Source Code Pro', monospace;
     // background: rgba(56, 56, 56, 0.62);
@@ -173,8 +175,8 @@ nav {
     backdrop-filter: blur(8px);
     z-index: 100;
     transition: height 0.3s ease-in-out;
-    transform: scaleX(0);
-    animation: nav-appear-animation 500ms ease-in-out 4500ms forwards;
+    transform: scaleX(1);
+    // animation: nav-appear-animation 500ms ease-in-out 4500ms forwards;
     #nav-title {
         font-size: 1.8rem;
         display: flex;
@@ -182,12 +184,15 @@ nav {
         // flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+        height: 3.4rem;
+        // top: 0;
         .nav-left {
             // display: flex;
             // flex-direction: row;
             // align-items: center;
             // width: 100%;
             #home-title {
+                // Using scaleX(1) to revert the scaleX(0) of other h1
                 transform: scaleX(1);
                 opacity: 1;
                 color: $sub-text-color;
@@ -202,17 +207,30 @@ nav {
             position: relative;
             width: 100%;
             height: 60%;
+            display: flex;
+            align-items: center;
             // padding-left: 5%;
-            .triangle {
+            .nav-triangle {
                 cursor: pointer;
                 position: absolute;
                 left: 0%;
-                height: 100%;
+                // height: 100%;
+                width: 0;
+                height: 0;
+                border-top: 0.6rem solid transparent;
+                border-bottom: 0.6rem solid transparent;
+                border-left: 1.2rem solid $gray1;
                 transform-origin: left;
                 transition-property: transform, left;
                 transition-duration: 0.5s, 0.5s;
                 transition-timing-function: cubic-bezier(.18, 1.01, .64, .89);
                 transition: left 500ms cubic-bezier(.18, 1.01, .64, .89), transform 500ms ease-in-out;
+            }
+            #nav-click-triangle {
+                display: inline-block;
+            }
+            #nav-noclick-triangle {
+                display: none;
             }
         }
         .nav-right {
@@ -300,7 +318,16 @@ nav {
                 }
             }
         }
+        #expand-menu-opencurly {
+            display: none;
+            align-items: center;
+            color: $sub-text-color;
+            font-size: 1.8rem;
+            margin-right: 0.5rem;
+        }
         #expand-menu-closecurly {
+            display: flex;
+            align-items: center;
             color: $sub-text-color;
             font-size: 1.8rem;
             margin-left: 0.5rem;
@@ -595,31 +622,48 @@ header {
             z-index: 3;
             text-align: center;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1500ms cubic-bezier(.73, .06, .82, .38);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             svg {
                 position: relative;
-                width: 90%;
+                width: 100%;
+                max-width: 40rem;
+                // min-width: 20rem;
                 height: 100%;
+                overflow: visible;
+                // height: auto;
+                // max-height: 15rem;
                 #mask-glass {
                     stroke-width: 0.05rem;
                 }
                 polygon {
                     opacity: 0;
                     transition: transform 1500ms cubic-bezier(.73, .06, .82, .38);
-                    transform-origin: center;
+                    // transform-origin: center;
                 }
+                // .mask-poly {
+                //     fill: green;
+                // }
             }
         }
-        #mask-text {
-            position: absolute;
+        #mask-text-container {
+            position: relative;
             width: 100%;
-            height: auto;
+            height: 100%;
             box-sizing: border-box;
-            padding-top: 3rem 0;
-            top: 50%;
+            // padding-top: 3rem 0;
+            // top: 50%;
             z-index: 2;
-            transform: translateY(-50%) scale(0.9);
+            transform: scale(0.9);
             transition: transform 1s ease-in, opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .mask-text {
+                padding: 2rem 0;
+            }
             // display: flex;
             // flex-direction: column;
             // justify-content: center;
@@ -1780,6 +1824,54 @@ footer {
         flex-direction: column;
         .nav-center {
             display: none;
+        }
+    }
+}
+
+@media only screen and (min-width: 54rem) {
+    nav {
+        // padding: 0.5rem 1rem;
+        flex-direction: row;
+        align-items: center;
+        #nav-title {
+            .nav-center {
+                width: 2rem;
+                .nav-triangle {
+                    cursor: default;
+                }
+                #nav-noclick-triangle {
+                    display: inline-block;
+                }
+                #nav-click-triangle {
+                    display: none;
+                }
+            }
+            .nav-right {
+                display: none;
+            }
+        }
+        #expanded-menu {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-top: 0;
+            width: 100%;
+            opacity: 1;
+            ul {
+                flex-direction: row;
+                align-items: center;
+                .nav-list-triangle {
+                    margin: 0 0;
+                }
+            }
+            #expand-menu-opencurly {
+                display: flex;
+                align-items: center;
+                // width: 100%;
+                color: $sub-text-color;
+                font-size: 1.8rem;
+                margin-right: 0.5rem;
+            }
         }
     }
 }

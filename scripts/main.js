@@ -1,6 +1,7 @@
 function expandMenu() {
+    console.log('expand menu activated');
     const expandedMenu = document.getElementById('expanded-menu');
-    const triangleLeft = document.getElementById('nav-title-triangle');
+    const triangleLeft = document.getElementById('nav-click-triangle');
     // // var menuTriangle = document.getElementById("menu-triangle");
     const navBar = document.querySelector('nav');
     const menuButton = document.getElementById('collapse-menu-button');
@@ -10,7 +11,7 @@ function expandMenu() {
 
         triangleLeft.style.left = '100%';
         triangleLeft.style.transform = 'rotate(180deg)';
-        setTimeout(() => { expandedMenu.style.display = 'flex', expandedMenu.style.opacity = "1"; }, 200);
+        setTimeout(() => { expandedMenu.style.display = 'flex', expandedMenu.style.opacity = "1"; }, 300);
     } else {
         triangleLeft.style.left = '0%';
         triangleLeft.style.transform = 'rotate(0deg)';
@@ -54,9 +55,9 @@ function navListHover(pageID) {
             navListBg = document.getElementById(navMenuList.id.concat('-bg'));
             navListTriangle = document.getElementById(navMenuList.id.concat('-triangle'));
             navListBg.style.transform = 'scaleY(0)';
+            navListTriangle.style.filter = "contrast(100%)";
             currentPageBg.style.transform = 'scaleY(1)'
             currentPageTriangle.style.filter = 'contrast(0%)';
-            navListTriangle.style.filter = "contrast(100%)";
         })
     }
 }
@@ -196,34 +197,26 @@ function dotScroll() {
 function maskScroll() {
     // const maskContainer = document.getElementsByClassName('mask-container');
     const mask = document.getElementById('mask');
+    const maskText = document.getElementsByClassName('mask-text');
     // const maskBCR = maskContainer[0].getBoundingClientRect();
-    const maskBCR = mask.getBoundingClientRect();
-    const maskText = document.getElementById('mask-text');
-    // console.log(maskBCR.top);
-    if (maskBCR.top <= (viewHeight * 4 / 10)) {
-        mask.style.opacity = 1;
-        shatterMask(0);
-        mask.style.animation = 'mask-animation 2s cubic-bezier(.93,.01,.4,1) 1800ms forwards'
+    const maskTextContainer = document.getElementById('mask-text-container');
+    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 5 / 10)) {
+        maskText[0].style.opacity = 1;
+        setTimeout(() => {
+            maskText[1].style.opacity = 1;
+        }, 1000);
+        setTimeout(() => {
+            mask.style.opacity = 1,
+                shatterMask(0),
+                mask.style.animation = 'mask-animation 2s cubic-bezier(.93,.01,.4,1) 1800ms forwards'
+        }, 2000);
         setTimeout(() => {
             mask.style.zIndex = 1,
-                maskText.style.transform = 'translateY(-50%) scale(1)';
-        }, 2500);
-        // mask.style.transform = 'rotateY(180deg)';
-        //     mask.style.transform = 'rotateY(180deg)';
-        //     mask.style.top = '50%';
+                maskTextContainer.style.transform = 'scale(1)';
+        }, 4500);
     }
-    // if (maskBCR.top <= (viewHeight * 8.5 / 10)) {
-    //     mask.style.opacity = 1;
-    // }
-    /*else {
-           shatterMask(1);
-           // mask.style.transform = 'rotateY(0deg)';
-           //     mask.style.transform = 'rotateY(0deg)';
-           //     mask.style.top = '0%';
-       }
-       // if ((viewHeight * 3 / 10) >= maskBCR.top) {
-       // } else {
-       // }*/
+    // mask.style.opacity = 1;
+    // shatterMask(1);
 }
 
 function shatterMask(scale_factor) {
@@ -527,3 +520,30 @@ dotBG.addEventListener("scroll", dotScroll, false);
 // const rightMask = maskSvg.children[0].children[0].children[1];
 // const leftMaskPoints = leftMask.children[0].getAttribute("points");
 // const leftMaskPointsArray = leftMaskPoints.split(' ');
+
+// fix issue of nav bar display changed to none after clicking collapse menu button in mobile mode
+if (matchMedia) {
+    const mq = window.matchMedia("(min-width: 54rem)");
+    mq.addEventListener("change", () => {
+        navBarOnResize(mq);
+    });
+}
+
+function navBarOnResize(mq) {
+    const expandedMenu = document.getElementById('expanded-menu');
+    const navBar = document.querySelector('nav');
+    const triangleLeft = document.getElementById('nav-click-triangle');
+    const menuButton = document.getElementById('collapse-menu-button');
+    if (mq.matches) {
+        triangleLeft.style.left = '0%';
+        triangleLeft.style.transform = 'rotate(0deg)';
+        menuButton.innerHTML = '{...}';
+
+        navBar.style.height = '4.4rem';
+        expandedMenu.style.display = 'flex';
+        expandedMenu.style.opacity = 1;
+    } else {
+        expandedMenu.style.display = 'none';
+        expandedMenu.style.opacity = 0;
+    }
+}

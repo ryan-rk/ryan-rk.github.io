@@ -21,7 +21,10 @@
             </div>
             <div class="nav-center">
                 <!-- <div class="triangle-container"> -->
-                <img class="triangle" id="nav-title-triangle" onclick="expandMenu()" src="assets/img/menu-triangle.svg" alt="menu triangle"></img>
+                <div class="nav-triangle" id="nav-click-triangle" onclick="expandMenu()"></div>
+                <div class="nav-triangle" id="nav-noclick-triangle"></div>
+                <!-- <img class="triangle" id="nav-click-triangle" onclick="expandMenu()" src="assets/img/menu-triangle.svg" alt="menu triangle"></img> -->
+                <!-- <img class="triangle" id="nav-noclick-triangle" src="assets/img/menu-triangle.svg" alt="menu triangle"></img> -->
                 <!-- </div> -->
             </div>
             <div class="nav-right" id="collapse-menu-button" onclick="expandMenu()">{...}</div>
@@ -30,6 +33,7 @@
         </div>
         <div id="expanded-menu">
             <!-- <div id="expand-menu-opencurly">{</div> -->
+            <div id="expand-menu-opencurly">{</div>
             <ul id="nav-menu-list">
                 <li id='home-list'>
                     <div class="nav-list-triangle" id="home-list-triangle"></div>
@@ -179,10 +183,14 @@
                 </svg>
             </div>
             <!-- <div class="biodata-text"> -->
-            <h2 class="biodata-element" id="mask-text">Masked by a years of major in
-                <nobr>Mechanical Engineering</nobr><br><br><br><br>Currently a postgraduate student conducting researches related to
-                <nobr>deep learning and structure design</nobr>
-            </h2>
+            <div class="biodata-element" id="mask-text-container">
+                <div class="mask-text">Masked by a years of major in
+                    <nobr>Mechanical Engineering</nobr>
+                </div>
+                <div class="mask-text">Currently a postgraduate student conducting researches related to
+                    <nobr>deep learning and structure design</nobr>
+                </div>
+            </div>
             <!-- <h2 class="biodata-element">Currently a postgraduate student conducting researches related to
                     <nobr>deep learning and structure design</nobr>
                 </h2> -->
