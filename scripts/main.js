@@ -161,12 +161,13 @@ function createDots() {
             dotsContainer.appendChild(gridElem);
         }
     }
+    return dotsContainerWidth;
 }
 
 function transformDots(scrollRatio = 0.0) {
-    const dotsContainer = document.getElementById("dots-bg");
-    const dotsContainerBCR = dotsContainer.getBoundingClientRect();
-    const dotsContainerWidth = dotsContainerBCR.right - dotsContainerBCR.left;
+    // const dotsContainer = document.getElementById("dots-bg");
+    // const dotsContainerBCR = dotsContainer.getBoundingClientRect();
+    // const dotsContainerWidth = dotsContainerBCR.right - dotsContainerBCR.left;
     const numRow = 10;
     const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
     const waveCycle = dotsContainerWidth / rem2Px(18);
@@ -175,9 +176,9 @@ function transformDots(scrollRatio = 0.0) {
     for (let i = 0; i < numRow; i++) {
         for (let j = 0; j < numCol; j++) {
             const dot = dots[i * numCol + j];
-            shiftMag = -20 * Math.sin(j * waveCycle * Math.PI / numCol + scrollRatio);
-            dot.style.transform = `translate(0, ${shiftMag}px)`;
             const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+            shiftMag = -1 * Math.sin(dotDistTopLeft * waveCycle * Math.PI / numCol + scrollRatio);
+            dot.style.transform = `translate(${shiftMag}rem, ${shiftMag}rem)`;
             const redOffset = 190 - 120 / maxDist * dotDistTopLeft - 30 * scrollRatio;
             const greenOffset = 190 - 120 / maxDist * dotDistTopLeft;
             const blueOffset = 200 + 10 / maxDist * dotDistTopLeft;
@@ -190,8 +191,7 @@ function dotScroll() {
     const scrollRatio = -2 * Math.PI * (this.scrollLeft / (this.scrollWidth - this.clientWidth));
     // console.log(`horizontal scrolling: ${this.scrollLeft}`)
     // console.log(`scroll percentage:${scrollPercentage}`);
-    console.log(scrollRatio);
-    transformDots(scrollRatio);
+    transformDots(scrollRatio, dotsContainerWidth);
 }
 
 function maskScroll() {
@@ -200,88 +200,109 @@ function maskScroll() {
     const maskText = document.getElementsByClassName('mask-text');
     // const maskBCR = maskContainer[0].getBoundingClientRect();
     const maskTextContainer = document.getElementById('mask-text-container');
-    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 5 / 10)) {
+    const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
+    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 6 / 10)) {
         maskText[0].style.opacity = 1;
         setTimeout(() => {
             maskText[1].style.opacity = 1;
         }, 1000);
+        for (const maskFragment of maskFragmentsClass) {
+            // maskFragment.style.animation = 'fade-in-animation 1000ms ease-in forwards';
+            maskFragment.style.animationName = 'fade-in-animation';
+            maskFragment.style.animationDuration = '10ms';
+            // maskFragment.style.transition = 'transform 1500ms cubic-bezier(.73, .06, .82, .38)';
+        }
         setTimeout(() => {
-            mask.style.opacity = 1,
-                shatterMask(0),
-                mask.style.animation = 'mask-animation 2s cubic-bezier(.93,.01,.4,1) 1800ms forwards'
-        }, 2000);
+            // mask.style.opacity = 1;
+            shatterMask(1);
+            maskTextContainer.style.transform = 'scale(1)';
+            // mask.style.animation = 'mask-animation 2s cubic-bezier(.93,.01,.4,1) 1800ms forwards'
+        }, 5400);
         setTimeout(() => {
-            mask.style.zIndex = 1,
-                maskTextContainer.style.transform = 'scale(1)';
-        }, 4500);
+            shatterMask(0),
+                mask.style.transform = 'scale(0.8)',
+                mask.style.filter = 'blur(0.5rem)',
+                mask.style.opacity = 0.6,
+                mask.style.zIndex = 1;
+        }, 6400);
+        window.removeEventListener("scroll", maskScroll);
     }
+    // else {
+    //     for (const maskFragment of maskFragmentsClass) {
+    //         maskFragment.style.transition = 'transform 1500ms cubic-bezier(.38, .82, .06, .73)';
+    //     }
+    //     // shatterMask(1);
+    // }
     // mask.style.opacity = 1;
     // shatterMask(1);
 }
 
 function shatterMask(scale_factor) {
-    const maskSvg = document.getElementById('mask');
-    const leftMaskFragments = maskSvg.children[0].children[0].children[0].children;
-    const rightMaskFragments = maskSvg.children[0].children[0].children[1].children;
+    // const maskSvg = document.getElementById('mask');
+    // const leftMaskFragments = maskSvg.children[0].children[0].children[0].children;
+    // const rightMaskFragments = maskSvg.children[0].children[0].children[1].children;
+    const maskFragments = document.getElementsByClassName('mask-fragments');
     // for (const fragment of leftMask.children) {
     //     fragmentPoint = fragment.getAttribute('points').split(' ');
-    for (let i = 0; i < leftMaskFragments.length; i++) {
-        fragmentOffsetX = scale_factor * 1 / 4 * leftMaskOffset[i][0];
-        fragmentOffsetY = scale_factor * 1 / 3 * leftMaskOffset[i][1];
-        leftMaskFragments[i].style.transform = `rotateX(${scale_factor*leftMaskRotate[i][0]}deg) rotateY(${scale_factor*leftMaskRotate[i][1]}deg) rotateZ(${scale_factor*leftMaskRotate[i][2]}deg) translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
-        leftMaskFragments[i].style.opacity = 1;
-        // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*leftMaskRotate[i][0]}deg)`;
-        // leftMaskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*leftMaskRotate[i][0]}, ${scale_factor*leftMaskRotate[i][1]}, ${scale_factor*leftMaskRotate[i][2]}, ${scale_factor*leftMaskRotate[i][3]}deg)`;
-    }
-    for (let j = 0; j < rightMaskFragments.length; j++) {
-        fragmentOffsetX = scale_factor * 1 / 4 * rightMaskOffset[j][0];
-        fragmentOffsetY = scale_factor * 1 / 3 * rightMaskOffset[j][1];
-        rightMaskFragments[j].style.transform = `rotateX(${scale_factor*rightMaskRotate[j][0]}deg) rotateY(${scale_factor*rightMaskRotate[j][1]}deg) rotateZ(${scale_factor*rightMaskRotate[j][2]}deg) translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
-        rightMaskFragments[j].style.opacity = 1;
-        // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotateY(${scale_factor*rightMaskRotate[j][0]}deg)`;
-        // rightMaskFragments[j].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${scale_factor*rightMaskRotate[j][0]}, ${scale_factor*rightMaskRotate[j][1]}, ${scale_factor*rightMaskRotate[j][2]}, ${scale_factor*rightMaskRotate[j][3]}deg)`;
+    for (let i = 0; i < maskFragments.length; i++) {
+        fragmentOffsetX = scale_factor * 8 * maskFragmentsOffset[i][0];
+        fragmentOffsetY = scale_factor * 10 * maskFragmentsOffset[i][1];
+        if (scale_factor === 0) {
+            maskFragments[i].style.transition = 'transform 1500ms cubic-bezier(.73, .06, .82, .38)';
+        } else {
+            maskFragments[i].style.transition = 'transform 1500ms cubic-bezier(.38, .82, .06, .73)';
+        }
+        maskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
     }
 }
 
 function calcMaskOffset() {
-    const maskSvg = document.getElementById('mask');
-    const leftMask = maskSvg.children[0].children[0].children[0];
-    const rightMask = maskSvg.children[0].children[0].children[1];
-    var leftMaskOffset = [];
-    var rightMaskOffset = [];
-    var leftMaskRotate = [];
-    var rightMaskRotate = [];
-    for (const fragment of leftMask.children) {
-        fragmentPoints = fragment.getAttribute('points').split(' ');
+    // const maskSvg = document.getElementById('mask');
+    const maskFragments = document.getElementsByClassName('mask-fragments');
+    // const leftMaskFragments = maskSvg.children[0].children[0].children[0].children;
+    // const rightMaskFragments = maskSvg.children[0].children[0].children[1].children;
+    var maskFragmentsOffset = [];
+    // var leftMaskOffset = [];
+    // var rightMaskOffset = [];
+    var maskOverallXOffset = [];
+    // for (const leftMaskFragment of leftMaskFragments) {
+    for (var fragment = 0; fragment < maskFragments.length; fragment++) {
+        fragmentPoints = maskFragments[fragment].getAttribute('points').split(' ');
         var totalX = 0;
         var totalY = 0;
         for (var i = 0; i < (fragmentPoints.length) / 2; i++) {
-            totalX += Number(fragmentPoints[(2 * i)]);
-            totalY += Number(fragmentPoints[(2 * i) + 1]);
+            totalX += parseFloat(fragmentPoints[(2 * i)]);
+            totalY += parseFloat(fragmentPoints[(2 * i) + 1]);
         }
-        leftMaskOffset.push([(totalX * 2 / fragmentPoints.length) - 140, (totalY * 2 / fragmentPoints.length) - 80])
-            // leftMaskRotate.push([Math.random(), Math.random(), Math.random(), (180 * Math.random()) - 90]);
-        leftMaskRotate.push([(180 * Math.random()) - 90, (180 * Math.random()) - 90, (180 * Math.random()) - 90]);
-    }
-    for (const fragment of rightMask.children) {
-        fragmentPoints = fragment.getAttribute('points').split(' ');
-        var totalX = 0;
-        var totalY = 0;
-        for (var i = 0; i < (fragmentPoints.length) / 2; i++) {
-            totalX += Number(fragmentPoints[(2 * i)]);
-            totalY += Number(fragmentPoints[(2 * i) + 1]);
+        // the cumulative x coor of each point is divided by total number of points / 2 since fragmentPoints contains both x and y coor
+        const fragmentMeanXCoor = (totalX * 2 / fragmentPoints.length);
+        const fragmentMeanYCoor = (totalY * 2 / fragmentPoints.length);
+        if (fragment < 25) {
+            maskFragmentsOffset.push([(fragmentMeanXCoor - 147.5), (fragmentMeanYCoor - 80)]);
+            maskOverallXOffset.push(147.5 - fragmentMeanXCoor);
+        } else {
+            maskFragmentsOffset.push([(fragmentMeanXCoor), (fragmentMeanYCoor - 80)]);
+            maskOverallXOffset.push(fragmentMeanXCoor);
         }
-        rightMaskOffset.push([totalX * 2 / fragmentPoints.length, (totalY * 2 / fragmentPoints.length) - 80])
-            // rightMaskRotate.push([Math.random(), Math.random(), Math.random(), (360 * Math.random()) - 180]);
-        rightMaskRotate.push([(90 * Math.random()) - 45, (80 * Math.random()) - 40, (80 * Math.random()) - 40]);
     }
-    return { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate };
+    var xOffsetSortOrder = new Array(maskOverallXOffset.length);
+    for (var i = 0; i < maskOverallXOffset.length; ++i) {
+        xOffsetSortOrder[i] = i;
+    }
+    xOffsetSortOrder.sort(function(a, b) { return maskOverallXOffset[a] < maskOverallXOffset[b] ? -1 : maskOverallXOffset[a] > maskOverallXOffset[b] ? 1 : 0; });
+    for (let i = 0; i < maskFragments.length; i++) {
+        // maskFragments[i].style.animationDelay = `${i*100}ms`;
+        maskFragments[xOffsetSortOrder[i]].style.animationDelay = `${(Math.log(i*0.25+0.5)-Math.log(0.5))*600+3000}ms`;
+        // maskFragments[i].setAttribute('fill', `rgb(${maskOverallXOffset[i]*3},0,0)`);
+    }
+    return maskFragmentsOffset;
 }
 
 function uiuxScroll() {
     const uiuxBCR = uiuxCont[0].getBoundingClientRect();
     if (uiuxBCR.top <= (viewHeight * 8 / 10)) {
         uiuxCont[0].style.opacity = 1;
+        window.removeEventListener("scroll", uiuxScroll);
     }
 }
 
@@ -290,15 +311,18 @@ function skillDirecScroll() {
     if (skillsDirec.getBoundingClientRect().top <= (viewHeight * 5 / 10)) {
         // skillsDirec.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)';
         skillsDirec.style.transform = 'scale(1)';
+        window.removeEventListener("scroll", skillDirecScroll);
     }
 }
 
 function softSkillsScroll() {
     const softSkillsUl = document.getElementById('soft-skills-ul');
     const softSkillsSwipe = document.getElementById('soft-skills-swipe');
-    if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 5 / 10)) {
+    if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
         softSkillsUl.style.opacity = 1;
         softSkillsSwipe.style.opacity = 1;
+        softSkillsSwipe.children[0].style.animation = 'softskills-arrow-animation 5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite';
+        window.removeEventListener("scroll", softSkillsScroll);
     }
 }
 
@@ -406,6 +430,7 @@ function projectIconScroll() {
             tickSquares[index].style.animation = 'clippath-bottomleft-topright 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards';
             tickSquares[index].style.animationDelay = `${index*500+200}ms`;
         }
+        window.removeEventListener("scroll", projectIconScroll);
     }
 }
 
@@ -415,6 +440,7 @@ function footerLineScroll() {
     if (footer.getBoundingClientRect().top <= (0.95 * viewHeight)) {
         footer.style.opacity = 1;
         footerLine[0].style.transform = 'scaleX(1)';
+        window.removeEventListener("scroll", footerLineScroll);
     }
 }
 
@@ -465,27 +491,28 @@ function contactScroll() {
         contactText.style.opacity = 1;
         contactText.style.transform = 'scale(1)';
         contactText.style.top = 0;
-        mailBack.style.animation = 'mail-back-animation 2s ease-in-out forwards';
+        mailBack.style.animation = 'mail-back-animation 1s ease-in-out forwards';
         mailBack.style.animationDelay = '1s';
-        mailFront.style.animation = 'mail-front-animation 2s ease-in-out forwards';
+        mailFront.style.animation = 'mail-front-animation 1s ease-in-out forwards';
         mailFront.style.animationDelay = '1s';
         setTimeout(() => {
             mailBack.style.display = 'none';
-        }, 2000);
+        }, 1500);
+        window.removeEventListener("scroll", contactScroll);
     }
 }
 
 
-const { leftMaskOffset, rightMaskOffset, leftMaskRotate, rightMaskRotate } = calcMaskOffset();
+const maskFragmentsOffset = calcMaskOffset();
 const viewHeight = document.documentElement.clientHeight;
 const viewWidth = document.documentElement.clientWidth;
 const uiuxCont = document.getElementsByClassName('uiux-container');
 const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
 // const skillsCategory = document.getElementById('web-development');
-createDots();
+const dotsContainerWidth = createDots();
 transformDots(0);
-shatterMask(1);
+// shatterMask(0);
 createSoftSkillsSwipe();
 navListHover('home');
 window.addEventListener("scroll", lineDecorScroll, false);
@@ -511,7 +538,10 @@ terminalBackButton.addEventListener("click", function() { skillsCategoryClicked(
 
 // skillsCategories[0].addEventListener("click", skillsCategoryClicked);
 // console.log(rightMaskOffset);
-// window.addEventListener('resize', createDots, false);
+// window.addEventListener('resize', () => {
+//     createDots();
+//     transformDots(0);
+// });
 const dotBG = document.querySelector(".scroll-wrapper");
 dotBG.addEventListener("scroll", dotScroll, false);
 // shatterMask();
@@ -523,7 +553,7 @@ dotBG.addEventListener("scroll", dotScroll, false);
 
 // fix issue of nav bar display changed to none after clicking collapse menu button in mobile mode
 if (matchMedia) {
-    const mq = window.matchMedia("(min-width: 54rem)");
+    const mq = window.matchMedia("(min-width: 50rem)");
     mq.addEventListener("change", () => {
         navBarOnResize(mq);
     });

@@ -10,12 +10,6 @@ body {
   font-size: 1.1rem;
 }
 
-::-webkit-scrollbar {
-  height: 8px;
-  overflow: visible;
-  width: 8px;
-}
-
 h1 {
   font-family: 'Source Code Pro', monospace;
   font-size: 2.5rem;
@@ -200,8 +194,10 @@ nav {
   z-index: 100;
   -webkit-transition: height 0.3s ease-in-out;
   transition: height 0.3s ease-in-out;
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-animation: nav-appear-animation 500ms ease-in-out 4500ms forwards;
+          animation: nav-appear-animation 500ms ease-in-out 4500ms forwards;
 }
 
 nav #nav-title {
@@ -641,7 +637,7 @@ header {
   transition: opacity 1s ease-in-out;
 }
 
-#biodata .uiux-container #uiux-border {
+#biodata .uiux-container .uiux-border {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
@@ -650,6 +646,11 @@ header {
   border: 0.1rem solid #888888;
   -webkit-animation: uiux-border-animation 5s linear infinite;
           animation: uiux-border-animation 5s linear infinite;
+}
+
+#biodata .uiux-container #uiux-border2 {
+  -webkit-animation-delay: -2500ms;
+          animation-delay: -2500ms;
 }
 
 #biodata .uiux-container h2 {
@@ -726,9 +727,9 @@ header {
   height: 100%;
   z-index: 3;
   text-align: center;
-  opacity: 0;
-  -webkit-transition: opacity 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
-  transition: opacity 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  opacity: 1;
+  -webkit-transition: all 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  transition: all 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -752,12 +753,22 @@ header {
   stroke-width: 0.05rem;
 }
 
-#biodata .mask-container #mask svg polygon {
+#biodata .mask-container #mask svg .mask-fragments {
   opacity: 0;
-  -webkit-transition: -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
-  transition: -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
-  transition: transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
-  transition: transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38), -webkit-transform 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  -webkit-transition: -webkit-transform 1500ms cubic-bezier(0.38, 0.82, 0.06, 0.73);
+  transition: -webkit-transform 1500ms cubic-bezier(0.38, 0.82, 0.06, 0.73);
+  transition: transform 1500ms cubic-bezier(0.38, 0.82, 0.06, 0.73);
+  transition: transform 1500ms cubic-bezier(0.38, 0.82, 0.06, 0.73), -webkit-transform 1500ms cubic-bezier(0.38, 0.82, 0.06, 0.73);
+  -webkit-animation-name: none;
+          animation-name: none;
+  -webkit-animation-duration: 100ms;
+          animation-duration: 100ms;
+  -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 
 #biodata .mask-container #mask-text-container {
@@ -769,10 +780,10 @@ header {
   z-index: 2;
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
-  -webkit-transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in;
-  transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in;
-  transition: transform 1s ease-in, opacity 1s ease-in-out;
-  transition: transform 1s ease-in, opacity 1s ease-in-out, -webkit-transform 1s ease-in;
+  -webkit-transition: -webkit-transform 2600ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  transition: -webkit-transform 2600ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  transition: transform 2600ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
+  transition: transform 2600ms cubic-bezier(0.73, 0.06, 0.82, 0.38), -webkit-transform 2600ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -850,8 +861,9 @@ header {
   color: #EE6767;
 }
 
-#skills #skills-direc #skills-direc-bar h3 a {
-  text-decoration: none;
+#skills #skills-direc #skills-direc-bar h3 p {
+  cursor: pointer;
+  display: inline;
   color: #fdfdfd;
 }
 
@@ -893,6 +905,7 @@ header {
 }
 
 #skills #skills-direc #skills-direc-body .direc-container {
+  top: 0;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(5rem, 1fr))[auto-fill];
@@ -901,7 +914,6 @@ header {
       grid-template-rows: 1fr 1fr;
   grid-gap: 2rem;
   justify-items: center;
-  margin-top: 2rem;
 }
 
 #skills #skills-direc #skills-direc-body .direc-container:not(#general-direc) {
@@ -913,8 +925,7 @@ header {
   opacity: 0;
   -webkit-transform: scale(0.2);
           transform: scale(0.2);
-  -webkit-transform-origin: 20% 30%;
-          transform-origin: 20% 30%;
+  margin-top: 1.5rem;
   z-index: 1;
   -webkit-transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
   transition: opacity 400ms linear, -webkit-transform 400ms cubic-bezier(0.08, 1.09, 0.44, 0.95);
@@ -1044,8 +1055,6 @@ header {
 #soft-skills #soft-skills-swipe svg {
   -webkit-clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 100% 100%, 100% 50%, 100% 0%);
           clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 100% 100%, 100% 50%, 100% 0%);
-  -webkit-animation: softskills-arrow-animation 5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
-          animation: softskills-arrow-animation 5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
 }
 
 #soft-skills .scroll-wrapper {
@@ -2574,6 +2583,24 @@ footer .author-container h3 {
   }
 }
 
+@-webkit-keyframes fade-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media only screen and (max-width: 20rem) {
   #nav-title {
     -webkit-box-orient: vertical;
@@ -2586,7 +2613,7 @@ footer .author-container h3 {
   }
 }
 
-@media only screen and (min-width: 54rem) {
+@media only screen and (min-width: 50rem) {
   nav {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -2636,7 +2663,7 @@ footer .author-container h3 {
             align-items: center;
   }
   nav #expanded-menu ul .nav-list-triangle {
-    margin: 0 0;
+    display: none;
   }
   nav #expanded-menu #expand-menu-opencurly {
     display: -webkit-box;
