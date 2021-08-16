@@ -638,7 +638,7 @@ header {
                 // height: auto;
                 // max-height: 15rem;
                 #mask-glass {
-                    stroke-width: 0.05rem;
+                    stroke-width: 0.02rem;
                 }
                 .mask-fragments {
                     opacity: 0;
@@ -668,13 +668,20 @@ header {
             // padding-top: 3rem 0;
             // top: 50%;
             z-index: 2;
-            transform: scale(0.9);
-            transition: transform 2600ms cubic-bezier(.73, .06, .82, .38);
+            // transform: scale(0.9);
+            // transition: transform 2600ms cubic-bezier(.73, .06, .82, .38);
             display: flex;
             flex-direction: column;
             justify-content: center;
             .mask-text {
                 padding: 2rem 0;
+            }
+            #mask-text-top {
+                display: block;
+            }
+            #mask-text-bottom {
+                display: none;
+                opacity: 1;
             }
             // display: flex;
             // flex-direction: column;
@@ -1226,7 +1233,8 @@ header {
             top: 60%;
             left: 50%;
             transform: translateX(-50%);
-            color: $text-blue;
+            color: $main-text-color;
+            animation: blinking-animation 3s ease-in-out infinite;
         }
         img {
             width: 99%;

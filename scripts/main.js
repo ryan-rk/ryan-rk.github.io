@@ -94,9 +94,6 @@ function lineDecorScroll() {
         if (h2BCR.top <= viewHeight * 7 / 10) {
             h2.style.opacity = 1;
         }
-        // else {
-        //     h2.style.opacity = 0;
-        // }
     }
 
     const allh1 = document.querySelectorAll('h1');
@@ -106,26 +103,7 @@ function lineDecorScroll() {
             h1.style.transform = 'scaleX(1)';
             h1.style.opacity = 1;
         }
-        // else {
-        //     h1.style.transform = 'scaleX(0)';
-        //     h1.style.opacity = 0;
-        // }
     }
-    // if (((viewHeight / 2 - maskBCR.top) >= 0) && ((viewHeight / 2 - maskBCR.top) <= 100)) {
-    //     console.log(`${maskBCR.top}`);
-    // }
-    //     var vlBCR = verticalLine.getBoundingClientRect();
-    //     cpRadius = 31 - (vlBCR.top / 20);
-    //     if (cpRadius >= 10) {
-    //         cpRadius = 10;
-    //     } else if (cpRadius <= 2) {
-    //         cpRadius = 2;
-    //     } else {
-    //         cpRadius = cpRadius;
-    //     }
-    //     cpString = `circle(${cpRadius}rem at 50% -0.5rem)`
-    //     verticalLine.style["clip-path"] = cpString;
-    // }
 }
 
 function rem2Px(rem) {
@@ -203,21 +181,24 @@ function maskScroll() {
     const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
     if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 6 / 10)) {
         maskText[0].style.opacity = 1;
+        // setTimeout(() => {
+        //     maskText[1].style.opacity = 1;
+        // }, 5000);
         setTimeout(() => {
-            maskText[1].style.opacity = 1;
-        }, 1000);
-        for (const maskFragment of maskFragmentsClass) {
-            // maskFragment.style.animation = 'fade-in-animation 1000ms ease-in forwards';
-            maskFragment.style.animationName = 'fade-in-animation';
-            maskFragment.style.animationDuration = '10ms';
-            // maskFragment.style.transition = 'transform 1500ms cubic-bezier(.73, .06, .82, .38)';
-        }
+            for (const maskFragment of maskFragmentsClass) {
+                // maskFragment.style.animation = 'fade-in-animation 1000ms ease-in forwards';
+                maskFragment.style.animationName = 'fade-in-animation';
+                maskFragment.style.animationDuration = '10ms';
+                // maskFragment.style.transition = 'transform 1500ms cubic-bezier(.73, .06, .82, .38)';
+            }
+        }, 2000);
         setTimeout(() => {
             // mask.style.opacity = 1;
+            maskText[1].style.display = 'block';
             shatterMask(1);
-            maskTextContainer.style.transform = 'scale(1)';
+            // maskTextContainer.style.transform = 'scale(1)';
             // mask.style.animation = 'mask-animation 2s cubic-bezier(.93,.01,.4,1) 1800ms forwards'
-        }, 5400);
+        }, 5000);
         setTimeout(() => {
             shatterMask(0),
                 mask.style.transform = 'scale(0.8)',
@@ -292,7 +273,7 @@ function calcMaskOffset() {
     xOffsetSortOrder.sort(function(a, b) { return maskOverallXOffset[a] < maskOverallXOffset[b] ? -1 : maskOverallXOffset[a] > maskOverallXOffset[b] ? 1 : 0; });
     for (let i = 0; i < maskFragments.length; i++) {
         // maskFragments[i].style.animationDelay = `${i*100}ms`;
-        maskFragments[xOffsetSortOrder[i]].style.animationDelay = `${(Math.log(i*0.25+0.5)-Math.log(0.5))*600+3000}ms`;
+        maskFragments[xOffsetSortOrder[i]].style.animationDelay = `${(Math.log(i*0.25+0.5)-Math.log(0.5))*600}ms`;
         // maskFragments[i].setAttribute('fill', `rgb(${maskOverallXOffset[i]*3},0,0)`);
     }
     return maskFragmentsOffset;
