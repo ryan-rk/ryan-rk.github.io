@@ -113,6 +113,8 @@ h4 {
   position: relative;
   height: 10rem;
   width: 100%;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 }
 
 .scrollup-sign > * {
@@ -601,7 +603,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 #main h2 span {
@@ -619,7 +621,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 12rem;
+  margin-top: 8rem;
 }
 
 #biodata h1 {
@@ -804,7 +806,7 @@ header {
 }
 
 #skills {
-  margin-top: 8rem;
+  margin-top: 4rem;
   text-align: center;
 }
 
@@ -1422,8 +1424,8 @@ header {
 
 #backdrop .backdrop-square:nth-child(1) {
   position: absolute;
-  width: 35vw;
-  height: 35vw;
+  width: 2vw;
+  height: 2vw;
   top: 50%;
   left: 50%;
   background-color: lavender;
@@ -1435,9 +1437,9 @@ header {
 
 #backdrop .backdrop-square:nth-child(2) {
   position: absolute;
-  width: 20vw;
-  height: 20vw;
-  top: 10%;
+  width: 2.5vw;
+  height: 2.5vw;
+  top: 20%;
   left: 10%;
   background-color: rgba(100, 148, 237, 0.267);
   -webkit-filter: blur(3px);
@@ -2220,10 +2222,10 @@ footer .author-container h3 {
 
 @-webkit-keyframes leftboard-animation {
   45% {
-    top: 10%;
+    top: 30%;
   }
-  53% {
-    top: 65%;
+  52% {
+    top: 74%;
   }
   61% {
     top: 55%;
@@ -2235,10 +2237,10 @@ footer .author-container h3 {
 
 @keyframes leftboard-animation {
   45% {
-    top: 10%;
+    top: 30%;
   }
-  53% {
-    top: 65%;
+  52% {
+    top: 74%;
   }
   61% {
     top: 55%;
