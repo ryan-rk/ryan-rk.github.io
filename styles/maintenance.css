@@ -643,12 +643,12 @@ footer a {
             transform: translateY(0%);
   }
   20% {
-    -webkit-transform: translateY(-20%);
-            transform: translateY(-20%);
+    -webkit-transform: translateY(-19%);
+            transform: translateY(-19%);
   }
   80% {
-    -webkit-transform: translateY(-20%);
-            transform: translateY(-20%);
+    -webkit-transform: translateY(-19%);
+            transform: translateY(-19%);
   }
   100% {
     -webkit-transform: translateY(0%);
@@ -662,12 +662,12 @@ footer a {
             transform: translateY(0%);
   }
   20% {
-    -webkit-transform: translateY(-20%);
-            transform: translateY(-20%);
+    -webkit-transform: translateY(-19%);
+            transform: translateY(-19%);
   }
   80% {
-    -webkit-transform: translateY(-20%);
-            transform: translateY(-20%);
+    -webkit-transform: translateY(-19%);
+            transform: translateY(-19%);
   }
   100% {
     -webkit-transform: translateY(0%);
