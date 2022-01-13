@@ -72,7 +72,12 @@ function shatterMask(isShatter) {
         } else {
             maskFragments[i].style.transition = 'transform 1500ms cubic-bezier(.38, .82, .06, .73)';
         }
-        maskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%)`;
+        const randomDeg = Math.random() * (90 + 90) - 90;
+        const randomAxis1 = Math.random() * 2 - 1;
+        const randomAxis2 = Math.random() * 2 - 1;
+        const randomAxis3 = Math.random() * 2 - 1;
+        // maskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate(${isShatter * randomDeg}deg)`;
+        maskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${randomAxis1}, ${randomAxis2}, ${randomAxis3}, ${isShatter * randomDeg}deg)`;
     }
 }
 
@@ -361,18 +366,18 @@ function maskScroll() {
                 maskFragment.style.animationName = 'fade-in-animation';
                 maskFragment.style.animationDuration = '10ms';
             }
-        }, 2000);
+        }, 1000);
         setTimeout(() => {
             maskText[1].style.display = 'block';
             shatterMask(1);
-        }, 5000);
+        }, 4000);
         setTimeout(() => {
             shatterMask(0),
                 mask.style.transform = 'scale(0.8)',
                 mask.style.filter = 'blur(0.5rem)',
                 mask.style.opacity = 0.6,
                 mask.style.zIndex = 1;
-        }, 6400);
+        }, 5400);
         window.removeEventListener("scroll", maskScroll);
     }
 }
