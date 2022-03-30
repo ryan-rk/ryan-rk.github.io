@@ -61,6 +61,32 @@ function navListHover(pageID) {
 
 
 // --- Functions dealing with mask animation in biodata section ---
+
+function populateMask() {
+    console.log('mask start populating');
+    const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
+    const mask = document.getElementById('mask');
+    const maskText = document.getElementsByClassName('mask-text');
+    const clickSign1 = document.getElementById('click-sign1');
+    clickSign1.style.display = "none";
+    for (const maskFragment of maskFragmentsClass) {
+        maskFragment.style.animationName = 'fade-in-animation';
+        maskFragment.style.animationDuration = '10ms';
+    }
+    setTimeout(() => {
+        maskText[1].style.display = 'block';
+        maskText[2].style.display = 'block';
+        shatterMask(1);
+    }, 4000);
+    setTimeout(() => {
+        shatterMask(0),
+            mask.style.transform = 'scale(0.8)',
+            mask.style.filter = 'blur(0.5rem)',
+            mask.style.opacity = 0.6,
+            mask.style.zIndex = 1;
+    }, 5400);
+}
+
 // Shatter or unshatter the mask
 function shatterMask(isShatter) {
     const maskFragments = document.getElementsByClassName('mask-fragments');
@@ -306,18 +332,22 @@ function dotScroll() {
 function headingScroll() {
     const allh1 = document.querySelectorAll('h1');
     for (h1 of allh1) {
-        const h1BCR = h1.getBoundingClientRect();
-        if (h1BCR.top <= viewHeight * 3 / 5) {
-            h1.style.transform = 'scaleX(1)';
-            h1.style.opacity = 1;
+        if (h1.className != 'notice-text') {
+            const h1BCR = h1.getBoundingClientRect();
+            if (h1BCR.top <= viewHeight * 3 / 5) {
+                h1.style.transform = 'scaleX(1)';
+                h1.style.opacity = 1;
+            }
         }
     }
 
     const allh2 = document.querySelectorAll('h2');
     for (h2 of allh2) {
-        const h2BCR = h2.getBoundingClientRect();
-        if (h2BCR.top <= viewHeight * 7 / 10) {
-            h2.style.opacity = 1;
+        if (h2.className != 'notice-text') {
+            const h2BCR = h2.getBoundingClientRect();
+            if (h2BCR.top <= viewHeight * 7 / 10) {
+                h2.style.opacity = 1;
+            }
         }
     }
 }
@@ -345,40 +375,58 @@ function scrollUpSignScroll() {
     }
 }
 
-function uiuxScroll() {
-    const uiuxCont = document.getElementsByClassName('uiux-container');
-    const uiuxBCR = uiuxCont[0].getBoundingClientRect();
-    if (uiuxBCR.top <= (viewHeight * 8 / 10)) {
-        uiuxCont[0].style.opacity = 1;
-        window.removeEventListener("scroll", uiuxScroll);
+function noticeContainerScroll() {
+    const noticeTexts = document.getElementsByClassName('notice-text');
+    const noticeBorders = document.getElementsByClassName('notice-border');
+    if (noticeTexts[0].getBoundingClientRect().top <= viewHeight * 6 / 10) {
+        for (noticeText of noticeTexts) {
+            noticeText.style.opacity = 1;
+        }
+        for (noticeBorder of noticeBorders) {
+            noticeBorder.style.opacity = 1;
+        }
+        window.removeEventListener('scroll', noticeContainerScroll);
     }
 }
 
-function maskScroll() {
-    const mask = document.getElementById('mask');
-    const maskText = document.getElementsByClassName('mask-text');
+// function uiuxScroll() {
+//     const uiuxCont = document.getElementsByClassName('uiux-container');
+//     const uiuxBCR = uiuxCont[0].getBoundingClientRect();
+//     if (uiuxBCR.top <= (viewHeight * 8 / 10)) {
+//         uiuxCont[0].style.opacity = 1;
+//         window.removeEventListener("scroll", uiuxScroll);
+//     }
+// }
+
+function biodataScroll() {
+    // const mask = document.getElementById('mask');
+    // const maskText = document.getElementsByClassName('mask-text');
     const maskTextContainer = document.getElementById('mask-text-container');
-    const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
+    // const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
+    const clickSignInner = document.getElementById('click-inner1');
+    const clickSignOuter = document.getElementById('click-outer1');
     if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 6 / 10)) {
-        maskText[0].style.opacity = 1;
-        setTimeout(() => {
-            for (const maskFragment of maskFragmentsClass) {
-                maskFragment.style.animationName = 'fade-in-animation';
-                maskFragment.style.animationDuration = '10ms';
-            }
-        }, 1000);
-        setTimeout(() => {
-            maskText[1].style.display = 'block';
-            shatterMask(1);
-        }, 4000);
-        setTimeout(() => {
-            shatterMask(0),
-                mask.style.transform = 'scale(0.8)',
-                mask.style.filter = 'blur(0.5rem)',
-                mask.style.opacity = 0.6,
-                mask.style.zIndex = 1;
-        }, 5400);
-        window.removeEventListener("scroll", maskScroll);
+        // maskText[0].style.opacity = 1;
+        clickSignInner.style.animation = 'click-inner-animation 2s ease-in-out infinite';
+        clickSignOuter.style.animation = 'click-outer-animation 2s ease-in-out infinite';
+        // setTimeout(() => {
+        //     for (const maskFragment of maskFragmentsClass) {
+        //         maskFragment.style.animationName = 'fade-in-animation';
+        //         maskFragment.style.animationDuration = '10ms';
+        //     }
+        // }, 1000);
+        // setTimeout(() => {
+        //     maskText[1].style.display = 'block';
+        //     shatterMask(1);
+        // }, 4000);
+        // setTimeout(() => {
+        //     shatterMask(0),
+        //         mask.style.transform = 'scale(0.8)',
+        //         mask.style.filter = 'blur(0.5rem)',
+        //         mask.style.opacity = 0.6,
+        //         mask.style.zIndex = 1;
+        // }, 5400);
+        window.removeEventListener("scroll", biodataScroll);
     }
 }
 
@@ -461,13 +509,17 @@ navListHover('home');
 window.addEventListener("scroll", scrollUpSignScroll, false);
 window.addEventListener("scroll", headingScroll, false);
 window.addEventListener("scroll", lineDecorScroll, false);
-window.addEventListener("scroll", maskScroll, false);
-window.addEventListener("scroll", uiuxScroll, false);
+window.addEventListener("scroll", noticeContainerScroll, false);
+window.addEventListener("scroll", biodataScroll, false);
+// window.addEventListener("scroll", uiuxScroll, false);
 window.addEventListener("scroll", projectIconScroll, false);
 window.addEventListener("scroll", skillDirecScroll, false);
 window.addEventListener("scroll", softSkillsScroll, false);
 window.addEventListener("scroll", contactScroll, false);
 window.addEventListener("scroll", footerLineScroll, false);
+
+const clickSign1 = document.getElementById('mask-text-container');
+clickSign1.addEventListener("click", populateMask);
 
 // Click events for skills directory
 for (const skillsCategory of skillsCategories) {

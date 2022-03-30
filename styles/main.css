@@ -160,6 +160,50 @@ h4 {
           animation: scrollup-line-animation 4s ease-in-out 5s infinite;
 }
 
+.click-sign {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  height: 5rem;
+  width: 100%;
+  z-index: 10;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
+}
+
+.click-sign > * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.click-sign .inner-circle {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border: 0.2rem solid #c4c4c4;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.click-sign .outer-circle {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border: 0.1rem solid #c4c4c4;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transform: translateY(-25%) scale(0.5);
+          transform: translateY(-25%) scale(0.5);
+}
+
 header,
 #main,
 #biodata,
@@ -531,7 +575,7 @@ header {
   height: 58%;
   top: 21%;
   left: 21%;
-  border: 0.1rem solid #868686b6;
+  border: 0.15rem solid #868686a1;
   background-color: #f1f1f1;
   z-index: 1;
   -webkit-clip-path: circle(40% at center);
@@ -551,7 +595,7 @@ header {
   height: 70%;
   top: 15%;
   left: 15%;
-  border: 0.1rem solid #CDCDCD;
+  border: 0.1rem solid #969ece77;
   background-color: #f1f1f1;
   z-index: 0;
   -webkit-animation: outer-diamond-animation 800ms cubic-bezier(0, 1.11, 0.39, 0.96) 3800ms forwards;
@@ -574,7 +618,7 @@ header {
   width: 5%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: #bbb;
+  background-color: rgba(187, 187, 187, 0.4);
   border-radius: 50%;
   opacity: 1;
   top: 50%;
@@ -596,6 +640,7 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 3rem;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -608,6 +653,56 @@ header {
 
 #main h2 span {
   color: #EE6767;
+}
+
+#main .notice-container {
+  position: relative;
+  width: 100%;
+  height: 20rem;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+#main .notice-container .notice-border {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 0.1rem solid #888888;
+  -webkit-animation: uiux-border-animation 5s linear infinite;
+          animation: uiux-border-animation 5s linear infinite;
+  -webkit-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+#main .notice-container #notice-border2 {
+  -webkit-animation-delay: -2500ms;
+          animation-delay: -2500ms;
+}
+
+#main .notice-container .notice-text {
+  -webkit-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+#main .notice-container h1 {
+  color: #84858a9a;
+  padding-top: 0.5rem;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+#main .notice-container h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #859fc0;
+  z-index: 2;
 }
 
 #biodata {
@@ -716,6 +811,10 @@ header {
           animation: pongball-animation 10s linear infinite;
 }
 
+#biodata #mask-text-fg {
+  margin-top: 1rem;
+}
+
 #biodata .mask-container {
   position: relative;
   width: 100%;
@@ -727,7 +826,7 @@ header {
   top: 0%;
   width: 100%;
   height: 100%;
-  z-index: 3;
+  z-index: 2;
   text-align: center;
   opacity: 1;
   -webkit-transition: all 1500ms cubic-bezier(0.73, 0.06, 0.82, 0.38);
@@ -779,7 +878,7 @@ header {
   height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  z-index: 2;
+  z-index: 3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -797,7 +896,8 @@ header {
 }
 
 #biodata .mask-container #mask-text-container #mask-text-top {
-  display: block;
+  display: none;
+  opacity: 1;
 }
 
 #biodata .mask-container #mask-text-container #mask-text-bottom {
@@ -1190,10 +1290,10 @@ header {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   background-color: #f1f1f1;
-  -webkit-transition: -webkit-transform 800ms ease-in-out;
-  transition: -webkit-transform 800ms ease-in-out;
-  transition: transform 800ms ease-in-out;
-  transition: transform 800ms ease-in-out, -webkit-transform 800ms ease-in-out;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
   z-index: 0;
 }
 
@@ -1943,7 +2043,7 @@ footer .author-container h3 {
     opacity: 0;
   }
   to {
-    opacity: 0.6;
+    opacity: 1;
   }
 }
 
@@ -1952,7 +2052,7 @@ footer .author-container h3 {
     opacity: 0;
   }
   to {
-    opacity: 0.6;
+    opacity: 1;
   }
 }
 
@@ -2093,6 +2193,92 @@ footer .author-container h3 {
   100% {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
             clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}
+
+@-webkit-keyframes click-inner-animation {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes click-inner-animation {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes click-outer-animation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-25%) scale(0.5);
+            transform: translateY(-25%) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+    -webkit-transform: translateY(-25%) scale(1);
+            transform: translateY(-25%) scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes click-outer-animation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-25%) scale(0.5);
+            transform: translateY(-25%) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+    -webkit-transform: translateY(-25%) scale(1);
+            transform: translateY(-25%) scale(1);
+  }
+  100% {
+    opacity: 0;
   }
 }
 
