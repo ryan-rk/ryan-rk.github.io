@@ -7,12 +7,12 @@ $text-green: #25C05D;
 $text-blue: #5981E1;
 $text-purple: #AF67C5;
 $text-cyan: #4EBBC8;
-$gray1: #c4c4c4;
-$gray2: #888888;
+$gray1: #949494;
+$gray2: #575757;
 $main-text-size: 1.1rem;
 $heading-text-size: 2.5rem;
 $logo-height: 18rem;
-$drop-shadow: 0 0 3px 1px rgba(166, 166, 166, 0.88);
+$drop-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
 * {
     margin: 0;
     padding: 0;
@@ -195,7 +195,7 @@ nav {
     top: 0;
     padding: 0.5rem 1rem;
     font-family: 'Source Code Pro', monospace;
-    background: rgba(100, 100, 100, 0.62);
+    background: rgba(247, 247, 247, 0.384);
     box-shadow: $drop-shadow;
     border-radius: 1rem;
     backdrop-filter: blur(8px);
@@ -214,9 +214,9 @@ nav {
             #home-title {
                 transform: scaleX(1);
                 opacity: 1;
-                color: $sub-text-color;
+                color: #9fa0a3;
                 span {
-                    color: $text-green;
+                    color: #6773C5;
                 }
                 font-family: inherit;
                 font-size: inherit;
@@ -236,7 +236,7 @@ nav {
                 height: 0;
                 border-top: 0.6rem solid transparent;
                 border-bottom: 0.6rem solid transparent;
-                border-left: 1.2rem solid $gray1;
+                border-left: 1.2rem solid #999999;
                 transform-origin: left;
                 transition-property: transform, left;
                 transition-duration: 0.5s, 0.5s;
@@ -253,7 +253,7 @@ nav {
         .nav-right {
             cursor: pointer;
             background: none;
-            color: $sub-text-color;
+            color: #a5a5a5;
             border: none;
             -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
         }
@@ -278,13 +278,13 @@ nav {
                 border-bottom: 0.5rem solid transparent;
             }
             #home-list-triangle {
-                border-left: 0.8rem solid $text-green;
+                border-left: 0.8rem solid #93dae2;
             }
             #projects-list-triangle {
-                border-left: 0.8rem solid $text-cyan;
+                border-left: 0.8rem solid #81afdb;
             }
             #aboutme-list-triangle {
-                border-left: 0.8rem solid $text-blue;
+                border-left: 0.8rem solid #7f8ad1;
             }
             .nav-list-bg {
                 position: absolute;
@@ -301,38 +301,47 @@ nav {
                 transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
             }
             #home-list-bg {
-                background-color: $text-green;
+                background-color: #93dae2a1;
             }
             #projects-list-bg {
                 display: block;
-                background-color: $text-cyan;
+                background-color: #a2c4e4a1;
             }
             #aboutme-list-bg {
                 display: block;
-                background-color: $text-blue;
+                background-color: #a6acd8a1;
             }
             li {
                 position: relative;
                 margin: 0.1rem 0;
                 padding: 0.5rem;
                 a {
-                    color: white;
+                    // color: #9fa0a3;
                     text-decoration: none;
                     font-size: 1.6rem;
+                }
+                #home-text {
+                    color: #4ca4ad;
+                }
+                #projects-text {
+                    color: #5b86af;
+                }
+                #aboutme-text {
+                    color: #7f8ad1;
                 }
             }
         }
         #expand-menu-opencurly {
             display: none;
             align-items: center;
-            color: $sub-text-color;
+            color: #a5a5a5;
             font-size: 1.8rem;
             margin-right: 0.5rem;
         }
         #expand-menu-closecurly {
             display: flex;
             align-items: center;
-            color: $sub-text-color;
+            color: #a5a5a5;
             font-size: 1.8rem;
             margin-left: 0.5rem;
         }
@@ -377,7 +386,7 @@ header {
             right: 50%;
             font-family: 'Source Code Pro', monospace;
             font-size: calc(min(20vw, 9rem));
-            color: #A9A5BD;
+            color: #726c91;
             animation: intro-animation-r 3s ease-in-out 0s forwards;
         }
         #text-t {
@@ -394,7 +403,7 @@ header {
             transform: scaleX(-1);
             font-family: 'Source Code Pro', monospace;
             font-size: calc(min(20vw, 9rem));
-            color: #B8ABC8;
+            color: #9884b1;
             animation: intro-animation-k 3s ease-in-out 0s forwards;
         }
     }
@@ -431,8 +440,8 @@ header {
                 height: 58%;
                 top: 21%;
                 left: 21%;
-                border: 0.15rem solid #868686a1;
-                background-color: $background-color;
+                border: 0.15rem solid #e6e6e6c7;
+                background-color: #dadada46;
                 z-index: 1;
                 clip-path: circle(40% at center);
                 animation: inner-diamond-animation 1500ms ease-in-out 1s forwards;
@@ -446,8 +455,8 @@ header {
                 height: 70%;
                 top: 15%;
                 left: 15%;
-                border: 0.1rem solid #969ece77;
-                background-color: $background-color;
+                border: 0.1rem solid #ffffffd8;
+                // background-color: $background-color;
                 z-index: 0;
                 animation: outer-diamond-animation 800ms cubic-bezier(0, 1.11, .39, .96) 3800ms forwards;
             }
@@ -464,7 +473,7 @@ header {
                 height: 5%;
                 width: 5%;
                 transform: translate(-50%, -50%);
-                background-color: rgba(187, 187, 187, 0.4);
+                background-color: rgba(147, 132, 202, 0.541);
                 border-radius: 50%;
                 opacity: 1;
                 top: 50%;
@@ -500,8 +509,9 @@ header {
         width: 100%;
         height: 20rem;
         align-content: center;
-        background-color: #314053;
+        background-color: #4d73a36c;
         opacity: 0;
+        backdrop-filter: blur(8px);
         transition: opacity 1s ease-in-out;
         .notice-border {
             box-sizing: border-box;
@@ -509,7 +519,7 @@ header {
             width: 100%;
             height: 100%;
             position: absolute;
-            border: 0.2rem solid #92d0f1;
+            border: 0.2rem solid #d3cfff;
             animation: uiux-border-animation 5s linear infinite;
             transition: opacity 1s ease-in-out;
         }
@@ -520,7 +530,7 @@ header {
             transition: opacity 1s ease-in-out;
         }
         h1 {
-            color: #ffffff;
+            color: #688bb8;
             padding-top: 2rem;
             transform: scaleX(1);
         }
@@ -530,7 +540,7 @@ header {
             left: 50%;
             width: 80%;
             transform: translate(-50%, -50%);
-            color: #b6d4ff;
+            color: #e7eff8;
             z-index: 2;
         }
     }
@@ -630,10 +640,10 @@ header {
         height: 98%;
     }
     #biotext-fg {
-        background-color: #ececec;
+        background-color: #faf3ff;
     }
     #biotext-bg {
-        background-color: #383838;
+        background-color: #5e5e5e8c;
         transform: translate(0.8rem, 0.8rem);
     }
     #mask-text-top {
@@ -829,6 +839,7 @@ header {
             background-color: #e0e0e04b;
             backdrop-filter: blur(8px);
             padding: 1.5rem;
+            padding-bottom: 3rem;
             position: relative;
             box-shadow: $drop-shadow;
             p {
@@ -1226,26 +1237,33 @@ header {
     top: 0;
     left: 0;
     z-index: -1000;
-    .backdrop-square:nth-child(1) {
+    #backdrop-background {
         position: absolute;
-        width: 2vw;
-        height: 2vw;
-        top: 50%;
-        left: 50%;
-        background-color: lavender;
-        filter: blur(2px);
-        animation: rotation-clockwise 5s linear infinite;
+        width: 100%;
+        height: 100%;
+        // background-color: #314053;
+        background: linear-gradient(rgb(238, 193, 213) 0%, rgb(168, 193, 221) 100%);
     }
-    .backdrop-square:nth-child(2) {
-        position: absolute;
-        width: 2.5vw;
-        height: 2.5vw;
-        top: 20%;
-        left: 10%;
-        background-color: rgba(100, 148, 237, 0.267);
-        filter: blur(3px);
-        animation: rotation-clockwise 7s linear infinite;
-    }
+    // .backdrop-square:nth-child(1) {
+    //     position: absolute;
+    //     width: 2vw;
+    //     height: 2vw;
+    //     top: 50%;
+    //     left: 50%;
+    //     background-color: lavender;
+    //     filter: blur(2px);
+    //     animation: rotation-clockwise 5s linear infinite;
+    // }
+    // .backdrop-square:nth-child(2) {
+    //     position: absolute;
+    //     width: 2.5vw;
+    //     height: 2.5vw;
+    //     top: 20%;
+    //     left: 10%;
+    //     background-color: rgba(100, 148, 237, 0.267);
+    //     filter: blur(3px);
+    //     animation: rotation-clockwise 7s linear infinite;
+    // }
 }
 
 footer {

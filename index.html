@@ -18,7 +18,7 @@
     <nav>
         <div id="nav-title">
             <div class="nav-left">
-                <h1 id="home-title">ryan.<span>RK()</span></h1>
+                <h1 id="home-title">ryan.<span><b>RK()</b></span></h1>
             </div>
             <div class="nav-center">
                 <div class="nav-triangle" id="nav-click-triangle" onclick="expandMenu()"></div>
@@ -31,17 +31,17 @@
             <ul id="nav-menu-list">
                 <li id='home-list'>
                     <div class="nav-list-triangle" id="home-list-triangle"></div>
-                    <a href=#>Home()</a>
+                    <a id="home-text" href=#>Home()</a>
                     <div class="nav-list-bg" id="home-list-bg"></div>
                 </li>
                 <li id='projects-list'>
                     <div class="nav-list-triangle" id="projects-list-triangle"></div>
-                    <a href="maintenance.html">Projects()</a>
+                    <a id="projects-text" href="maintenance.html">Projects()</a>
                     <div class="nav-list-bg" id="projects-list-bg"></div>
                 </li>
                 <li id='aboutme-list'>
                     <div class="nav-list-triangle" id="aboutme-list-triangle"></div>
-                    <a href="maintenance.html">AboutMe()</a>
+                    <a id="aboutme-text" href="maintenance.html">AboutMe()</a>
                     <div class="nav-list-bg" id="aboutme-list-bg"></div>
                 </li>
             </ul>
@@ -85,7 +85,7 @@
         <div class="notice-container">
             <div class="notice-border" id="notice-border1"></div>
             <div class="notice-border" id="notice-border2"></div>
-            <h1 class="notice-text">_NOTICE_</h1>
+            <!-- <h1 class="notice-text">_NOTICE_</h1> -->
             <h2 class="notice-text">
                 A shiny new portfolio site is currently being built utilizing latest framework for a better presentation. I hope you are as excited and looking forward to it as I do. Meanwhile, why not take a stroll on the current site which is built on pure CSS and
                 JS.
@@ -489,10 +489,9 @@
             </div>
         </div>
     </section>
-    <!-- <section id="backdrop">
-        <div class="backdrop-square"></div>
-        <div class="backdrop-square"></div>
-    </section> -->
+    <section id="backdrop">
+        <div id="backdrop-background"></div>
+    </section>
     <footer>
         <div class="author-container">
             <div class="footer-line"></div>

@@ -126,7 +126,7 @@ h4 {
   position: absolute;
   width: 3rem;
   height: 3rem;
-  border: 0.2rem solid #c4c4c4;
+  border: 0.2rem solid #949494;
   border-radius: 50%;
   top: 6rem;
   opacity: 0;
@@ -138,7 +138,7 @@ h4 {
   position: absolute;
   width: 5rem;
   height: 5rem;
-  border: 0.1rem solid #c4c4c4;
+  border: 0.1rem solid #949494;
   border-radius: 50%;
   top: 7.5rem;
   opacity: 0;
@@ -153,7 +153,7 @@ h4 {
   width: 0.1rem;
   height: 6rem;
   top: 3rem;
-  background-color: #c4c4c4;
+  background-color: #949494;
   -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
           clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
   -webkit-animation: scrollup-line-animation 4s ease-in-out 5s infinite;
@@ -188,7 +188,7 @@ h4 {
   position: absolute;
   width: 2rem;
   height: 2rem;
-  border: 0.2rem solid #c4c4c4;
+  border: 0.2rem solid #949494;
   border-radius: 50%;
   opacity: 0;
 }
@@ -197,7 +197,7 @@ h4 {
   position: absolute;
   width: 4rem;
   height: 4rem;
-  border: 0.1rem solid #c4c4c4;
+  border: 0.1rem solid #949494;
   border-radius: 50%;
   opacity: 0;
   -webkit-transform: translateY(-25%) scale(0.5);
@@ -231,9 +231,9 @@ nav {
   top: 0;
   padding: 0.5rem 1rem;
   font-family: 'Source Code Pro', monospace;
-  background: rgba(100, 100, 100, 0.62);
-  -webkit-box-shadow: 0 0 3px 1px rgba(166, 166, 166, 0.88);
-          box-shadow: 0 0 3px 1px rgba(166, 166, 166, 0.88);
+  background: rgba(247, 247, 247, 0.384);
+  -webkit-box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
+          box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
   border-radius: 1rem;
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
@@ -268,13 +268,13 @@ nav #nav-title .nav-left #home-title {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   opacity: 1;
-  color: #fdfdfd;
+  color: #9fa0a3;
   font-family: inherit;
   font-size: inherit;
 }
 
 nav #nav-title .nav-left #home-title span {
-  color: #25C05D;
+  color: #6773C5;
 }
 
 nav #nav-title .nav-center {
@@ -297,7 +297,7 @@ nav #nav-title .nav-center .nav-triangle {
   height: 0;
   border-top: 0.6rem solid transparent;
   border-bottom: 0.6rem solid transparent;
-  border-left: 1.2rem solid #c4c4c4;
+  border-left: 1.2rem solid #999999;
   -webkit-transform-origin: left;
           transform-origin: left;
   -webkit-transition-property: left, -webkit-transform;
@@ -325,7 +325,7 @@ nav #nav-title .nav-center #nav-noclick-triangle {
 nav #nav-title .nav-right {
   cursor: pointer;
   background: none;
-  color: #fdfdfd;
+  color: #a5a5a5;
   border: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
@@ -367,15 +367,15 @@ nav #expanded-menu ul .nav-list-triangle {
 }
 
 nav #expanded-menu ul #home-list-triangle {
-  border-left: 0.8rem solid #25C05D;
+  border-left: 0.8rem solid #93dae2;
 }
 
 nav #expanded-menu ul #projects-list-triangle {
-  border-left: 0.8rem solid #4EBBC8;
+  border-left: 0.8rem solid #81afdb;
 }
 
 nav #expanded-menu ul #aboutme-list-triangle {
-  border-left: 0.8rem solid #5981E1;
+  border-left: 0.8rem solid #7f8ad1;
 }
 
 nav #expanded-menu ul .nav-list-bg {
@@ -399,17 +399,17 @@ nav #expanded-menu ul .nav-list-bg {
 }
 
 nav #expanded-menu ul #home-list-bg {
-  background-color: #25C05D;
+  background-color: #93dae2a1;
 }
 
 nav #expanded-menu ul #projects-list-bg {
   display: block;
-  background-color: #4EBBC8;
+  background-color: #a2c4e4a1;
 }
 
 nav #expanded-menu ul #aboutme-list-bg {
   display: block;
-  background-color: #5981E1;
+  background-color: #a6acd8a1;
 }
 
 nav #expanded-menu ul li {
@@ -419,9 +419,20 @@ nav #expanded-menu ul li {
 }
 
 nav #expanded-menu ul li a {
-  color: white;
   text-decoration: none;
   font-size: 1.6rem;
+}
+
+nav #expanded-menu ul li #home-text {
+  color: #4ca4ad;
+}
+
+nav #expanded-menu ul li #projects-text {
+  color: #5b86af;
+}
+
+nav #expanded-menu ul li #aboutme-text {
+  color: #7f8ad1;
 }
 
 nav #expanded-menu #expand-menu-opencurly {
@@ -429,7 +440,7 @@ nav #expanded-menu #expand-menu-opencurly {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #fdfdfd;
+  color: #a5a5a5;
   font-size: 1.8rem;
   margin-right: 0.5rem;
 }
@@ -441,7 +452,7 @@ nav #expanded-menu #expand-menu-closecurly {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #fdfdfd;
+  color: #a5a5a5;
   font-size: 1.8rem;
   margin-left: 0.5rem;
 }
@@ -500,7 +511,7 @@ header {
   right: 50%;
   font-family: 'Source Code Pro', monospace;
   font-size: calc(min(20vw, 9rem));
-  color: #A9A5BD;
+  color: #726c91;
   -webkit-animation: intro-animation-r 3s ease-in-out 0s forwards;
           animation: intro-animation-r 3s ease-in-out 0s forwards;
 }
@@ -523,7 +534,7 @@ header {
           transform: scaleX(-1);
   font-family: 'Source Code Pro', monospace;
   font-size: calc(min(20vw, 9rem));
-  color: #B8ABC8;
+  color: #9884b1;
   -webkit-animation: intro-animation-k 3s ease-in-out 0s forwards;
           animation: intro-animation-k 3s ease-in-out 0s forwards;
 }
@@ -575,8 +586,8 @@ header {
   height: 58%;
   top: 21%;
   left: 21%;
-  border: 0.15rem solid #868686a1;
-  background-color: #f1f1f1;
+  border: 0.15rem solid #e6e6e6c7;
+  background-color: #dadada46;
   z-index: 1;
   -webkit-clip-path: circle(40% at center);
           clip-path: circle(40% at center);
@@ -595,8 +606,7 @@ header {
   height: 70%;
   top: 15%;
   left: 15%;
-  border: 0.1rem solid #969ece77;
-  background-color: #f1f1f1;
+  border: 0.1rem solid #ffffffd8;
   z-index: 0;
   -webkit-animation: outer-diamond-animation 800ms cubic-bezier(0, 1.11, 0.39, 0.96) 3800ms forwards;
           animation: outer-diamond-animation 800ms cubic-bezier(0, 1.11, 0.39, 0.96) 3800ms forwards;
@@ -618,7 +628,7 @@ header {
   width: 5%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(187, 187, 187, 0.4);
+  background-color: rgba(147, 132, 202, 0.541);
   border-radius: 50%;
   opacity: 1;
   top: 50%;
@@ -665,8 +675,10 @@ header {
   height: 20rem;
   -ms-flex-line-pack: center;
       align-content: center;
-  background-color: #314053;
+  background-color: #4d73a36c;
   opacity: 0;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
   -webkit-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out;
 }
@@ -678,7 +690,7 @@ header {
   width: 100%;
   height: 100%;
   position: absolute;
-  border: 0.2rem solid #92d0f1;
+  border: 0.2rem solid #d3cfff;
   -webkit-animation: uiux-border-animation 5s linear infinite;
           animation: uiux-border-animation 5s linear infinite;
   -webkit-transition: opacity 1s ease-in-out;
@@ -696,7 +708,7 @@ header {
 }
 
 #main .notice-container h1 {
-  color: #ffffff;
+  color: #688bb8;
   padding-top: 2rem;
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
@@ -709,7 +721,7 @@ header {
   width: 80%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  color: #b6d4ff;
+  color: #e7eff8;
   z-index: 2;
 }
 
@@ -748,7 +760,7 @@ header {
   width: 100%;
   height: 100%;
   position: absolute;
-  border: 0.1rem solid #888888;
+  border: 0.1rem solid #575757;
   -webkit-animation: uiux-border-animation 5s linear infinite;
           animation: uiux-border-animation 5s linear infinite;
 }
@@ -779,7 +791,7 @@ header {
   position: absolute;
   width: 1rem;
   height: 3rem;
-  background-color: #c4c4c4;
+  background-color: #949494;
 }
 
 #biodata .uiux-container .pong-container #pong-left {
@@ -814,7 +826,7 @@ header {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   border-radius: 50%;
-  background-color: #888888;
+  background-color: #575757;
   -webkit-animation: pongball-animation 10s linear infinite;
           animation: pongball-animation 10s linear infinite;
 }
@@ -838,11 +850,11 @@ header {
 }
 
 #biodata #biotext-fg {
-  background-color: #ececec;
+  background-color: #faf3ff;
 }
 
 #biodata #biotext-bg {
-  background-color: #383838;
+  background-color: #5e5e5e8c;
   -webkit-transform: translate(0.8rem, 0.8rem);
           transform: translate(0.8rem, 0.8rem);
 }
@@ -1133,9 +1145,10 @@ header {
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
   padding: 1.5rem;
+  padding-bottom: 3rem;
   position: relative;
-  -webkit-box-shadow: 0 0 3px 1px rgba(166, 166, 166, 0.88);
-          box-shadow: 0 0 3px 1px rgba(166, 166, 166, 0.88);
+  -webkit-box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
+          box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
 }
 
 #skills #skills-direc #skills-direc-body p {
@@ -1540,7 +1553,7 @@ header {
   margin-left: 5%;
   width: 50%;
   height: 40%;
-  background-color: #c4c4c4;
+  background-color: #949494;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transform-origin: left;
@@ -1677,30 +1690,12 @@ header {
   z-index: -1000;
 }
 
-#backdrop .backdrop-square:nth-child(1) {
+#backdrop #backdrop-background {
   position: absolute;
-  width: 2vw;
-  height: 2vw;
-  top: 50%;
-  left: 50%;
-  background-color: lavender;
-  -webkit-filter: blur(2px);
-          filter: blur(2px);
-  -webkit-animation: rotation-clockwise 5s linear infinite;
-          animation: rotation-clockwise 5s linear infinite;
-}
-
-#backdrop .backdrop-square:nth-child(2) {
-  position: absolute;
-  width: 2.5vw;
-  height: 2.5vw;
-  top: 20%;
-  left: 10%;
-  background-color: rgba(100, 148, 237, 0.267);
-  -webkit-filter: blur(3px);
-          filter: blur(3px);
-  -webkit-animation: rotation-clockwise 7s linear infinite;
-          animation: rotation-clockwise 7s linear infinite;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#eec1d5), to(#a8c1dd));
+  background: linear-gradient(#eec1d5 0%, #a8c1dd 100%);
 }
 
 footer {
@@ -1729,7 +1724,7 @@ footer .author-container .footer-line {
   width: 100%;
   height: 0.1rem;
   margin: 1rem 0;
-  background-color: #c4c4c4;
+  background-color: #949494;
   -webkit-transform-origin: center;
           transform-origin: center;
   -webkit-transform: scaleX(0);
