@@ -8,21 +8,26 @@ body {
   font-family: 'Exo', sans-serif;
   font-weight: thin;
   font-size: 1.1rem;
+  overflow-x: hidden;
 }
 
 h1 {
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Exo', sans-serif;
   font-size: 2.5rem;
   text-align: center;
   -webkit-transform-origin: center;
           transform-origin: center;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
   opacity: 0;
-  -webkit-transition: opacity 200ms ease-in-out, -webkit-transform 400ms ease-in-out;
-  transition: opacity 200ms ease-in-out, -webkit-transform 400ms ease-in-out;
-  transition: transform 400ms ease-in-out, opacity 200ms ease-in-out;
-  transition: transform 400ms ease-in-out, opacity 200ms ease-in-out, -webkit-transform 400ms ease-in-out;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
+}
+
+h1:not(#home-title) {
+  padding: 1rem;
+  background-color: #ffffff2e;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 1rem;
 }
 
 h2,
@@ -33,8 +38,8 @@ h2,
   font-weight: 100;
   text-align: center;
   opacity: 0;
-  -webkit-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1500ms ease-in-out;
+  transition: opacity 1500ms ease-in-out;
 }
 
 h3 {
@@ -60,14 +65,14 @@ h4 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  opacity: 0.2;
+  opacity: 0.4;
   padding: 1rem 0;
 }
 
 .vertical-dotline .dot-decor {
   width: 0.2rem;
   height: 0.2rem;
-  border: 0.2rem solid #3E3E3E;
+  border: 0.2rem solid #fff;
   border-radius: 50%;
   opacity: 0;
   -webkit-transition: opacity 500ms ease-in-out;
@@ -77,7 +82,7 @@ h4 {
 .vertical-dotline .line-decor {
   width: 0.1rem;
   height: 9rem;
-  background-color: #3E3E3E;
+  background-color: #fff;
   -webkit-transform: scaleY(0);
           transform: scaleY(0);
   -webkit-transform-origin: top;
@@ -396,20 +401,15 @@ nav #expanded-menu ul .nav-list-bg {
   transition: -webkit-transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1), -webkit-transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-nav #expanded-menu ul #home-list-bg {
-  background-color: #93dae2a1;
+  background-color: #ffffffd5;
 }
 
 nav #expanded-menu ul #projects-list-bg {
   display: block;
-  background-color: #a2c4e4a1;
 }
 
 nav #expanded-menu ul #aboutme-list-bg {
   display: block;
-  background-color: #a6acd8a1;
 }
 
 nav #expanded-menu ul li {
@@ -424,7 +424,7 @@ nav #expanded-menu ul li a {
 }
 
 nav #expanded-menu ul li #home-text {
-  color: #4ca4ad;
+  color: #525698;
 }
 
 nav #expanded-menu ul li #projects-text {
@@ -675,7 +675,7 @@ header {
   height: 20rem;
   -ms-flex-line-pack: center;
       align-content: center;
-  background-color: #4d73a36c;
+  background-color: #707fd5a0;
   opacity: 0;
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
@@ -707,13 +707,6 @@ header {
   transition: opacity 1s ease-in-out;
 }
 
-#main .notice-container h1 {
-  color: #688bb8;
-  padding-top: 2rem;
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-}
-
 #main .notice-container h2 {
   position: absolute;
   top: 50%;
@@ -740,7 +733,7 @@ header {
 }
 
 #biodata h1 {
-  color: #5981E1;
+  color: #9199ca;
 }
 
 #biodata .uiux-container {
@@ -834,9 +827,8 @@ header {
 #biodata .biotext-container {
   position: relative;
   width: 100%;
-  height: 20rem;
-  -webkit-transform: scaleY(0);
-          transform: scaleY(0);
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   -webkit-transition: -webkit-transform 0.4s ease-in-out;
   transition: -webkit-transform 0.4s ease-in-out;
   transition: transform 0.4s ease-in-out;
@@ -861,11 +853,10 @@ header {
 
 #biodata #mask-text-top {
   position: absolute;
-  top: 50%;
   left: 50%;
   width: 90%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   z-index: 2;
 }
 
@@ -959,19 +950,17 @@ header {
 #biodata .mask-container #mask-text-container #mask-text-bg {
   display: none;
   opacity: 0;
-  -webkit-transition: opacity 2s ease-in-out, background-color 2s ease-in-out, -webkit-backdrop-filter 2s ease-in-out;
-  transition: opacity 2s ease-in-out, background-color 2s ease-in-out, -webkit-backdrop-filter 2s ease-in-out;
-  transition: opacity 2s ease-in-out, background-color 2s ease-in-out, backdrop-filter 2s ease-in-out;
-  transition: opacity 2s ease-in-out, background-color 2s ease-in-out, backdrop-filter 2s ease-in-out, -webkit-backdrop-filter 2s ease-in-out;
+  -webkit-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
   border-radius: 1rem;
 }
 
-#biodata .mask-container #mask-text-container #art-span {
-  color: #EE6767;
+#biodata .mask-container #mask-text-container #art-span .mask-chars {
+  background-color: #a6a9be5c;
 }
 
-#biodata .mask-container #mask-text-container #programming-span {
-  color: #25C05D;
+#biodata .mask-container #mask-text-container #programming-span .mask-chars {
+  background-color: #9ebeb967;
 }
 
 #biodata .mask-container #mask-text-container .mask-chars {
@@ -1031,13 +1020,13 @@ header {
 }
 
 #biodata #art-panel {
-  background-color: #a6a9be28;
+  background-color: #a6a9be5c;
   -webkit-transform-origin: top right;
           transform-origin: top right;
 }
 
 #biodata #programming-panel {
-  background-color: #9ebeb928;
+  background-color: #9ebeb967;
   -webkit-transform-origin: top left;
           transform-origin: top left;
 }
@@ -1073,12 +1062,25 @@ header {
 }
 
 #skills {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   margin-top: 4rem;
   text-align: center;
 }
 
 #skills h1 {
-  color: #AF67C5;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: #b39db8;
 }
 
 #skills #skills-direc {
@@ -1101,7 +1103,6 @@ header {
 }
 
 #skills #skills-direc #skills-direc-bar {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1130,7 +1131,7 @@ header {
 
 #skills #skills-direc #skills-direc-bar h3 {
   font-size: 1rem;
-  color: #EE6767;
+  color: #c699af;
 }
 
 #skills #skills-direc #skills-direc-bar h3 p {
@@ -1146,7 +1147,6 @@ header {
           backdrop-filter: blur(8px);
   padding: 1.5rem;
   padding-bottom: 3rem;
-  position: relative;
   -webkit-box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
           box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
 }
@@ -1277,7 +1277,7 @@ header {
 }
 
 #skills #skills-direc .terminal-container .terminal-heading #terminal-text {
-  color: #25C05D;
+  color: #7890a6;
   text-align: center;
 }
 
@@ -1308,12 +1308,21 @@ header {
 }
 
 #soft-skills {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-top: 10rem;
-  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #soft-skills h1 {
-  color: #4EBBC8;
+  color: #ce8eb9;
   text-align: center;
 }
 
@@ -1419,6 +1428,186 @@ header {
   border-radius: 50%;
 }
 
+#soft-skills #soft-skills-container {
+  position: relative;
+  margin-top: 10rem;
+}
+
+#soft-skills #soft-skills-container #softskills-center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#soft-skills #soft-skills-container #softskills-center-container #softskills-center-relative {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+}
+
+#soft-skills #soft-skills-container #softskills-center-container #softskills-center-fg {
+  position: relative;
+  width: 30%;
+  height: 30%;
+}
+
+#soft-skills #soft-skills-container #softskills-center-container #softskills-center-bg {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: #ffffff80;
+  border-radius: 50%;
+}
+
+#soft-skills #soft-skills-container .softskills-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  width: 30vw;
+  height: 20rem;
+  -webkit-perspective: 500px;
+          perspective: 500px;
+}
+
+#soft-skills #soft-skills-container .softskills-card-text {
+  text-align: center;
+  color: #525698;
+}
+
+#soft-skills #soft-skills-container .softskills-card-fg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+}
+
+#soft-skills #soft-skills-container .softskills-card-fg:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+#soft-skills #soft-skills-container .softskills-card-bg {
+  position: absolute;
+  top: -1rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: #9fa6db68;
+  -webkit-transform: rotateX(80deg);
+          transform: rotateX(80deg);
+}
+
+#soft-skills #soft-skills-container #teamwork-fg .person-outline {
+  height: 30%;
+}
+
+#soft-skills #soft-skills-container #teamwork-fg #person-outline2,
+#soft-skills #soft-skills-container #teamwork-fg #person-outline3 {
+  position: absolute;
+  top: -2rem;
+  opacity: 0;
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+#soft-skills #soft-skills-container #teamwork-fg #person-outline2 {
+  left: 0;
+}
+
+#soft-skills #soft-skills-container #teamwork-fg #person-outline3 {
+  right: 0;
+}
+
+#soft-skills #soft-skills-container #teamwork-fg:hover #person-outline2,
+#soft-skills #soft-skills-container #teamwork-fg:hover #person-outline3 {
+  top: 0;
+  opacity: 1;
+}
+
+#soft-skills #soft-skills-container #softskills-desc-container {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0, 0);
+          transform: translate(-50%, -50%) scale(0, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+  z-index: 2;
+}
+
+#soft-skills #soft-skills-container #softskills-desc-container #softskills-desc-bg {
+  background-color: rgba(80, 87, 123, 0.652);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#soft-skills #soft-skills-container #softskills-desc-container #softskills-desc-title {
+  z-index: 1;
+  margin-top: 1rem;
+  font-size: larger;
+  color: #fff;
+}
+
+#soft-skills #soft-skills-container #softskills-desc-container #softskills-desc-text {
+  z-index: 1;
+  padding: 1.5rem;
+  font-size: 1rem;
+  color: #e3e3e3;
+}
+
 #projects {
   margin-top: 10rem;
   display: -webkit-box;
@@ -1434,7 +1623,7 @@ header {
 }
 
 #projects h1 {
-  color: #25C05D;
+  color: #7890a6;
 }
 
 #projects .project-button {
@@ -1443,8 +1632,8 @@ header {
   height: 4rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: #383838;
-  border: 0.2rem solid #383838;
+  background-color: #4a4a4a7e;
+  border: 0.2rem solid #e6daff;
 }
 
 #projects .project-button #project-button-bg {
@@ -1457,7 +1646,7 @@ header {
           transform-origin: left;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
-  background-color: #f1f1f1;
+  background-color: #c6b9e2;
   -webkit-transition: -webkit-transform 500ms ease-in-out;
   transition: -webkit-transform 500ms ease-in-out;
   transition: transform 500ms ease-in-out;
@@ -1605,7 +1794,7 @@ header {
 }
 
 #contact h1 {
-  color: #EE6767;
+  color: #c699af;
 }
 
 #contact #contact-text {
@@ -1645,7 +1834,6 @@ header {
 #contact .mail-icon {
   display: inline-block;
   width: clamp(15rem, 60%, 25rem);
-  background-color: #f1f1f1;
 }
 
 #contact #mail-back {
@@ -1724,7 +1912,7 @@ footer .author-container .footer-line {
   width: 100%;
   height: 0.1rem;
   margin: 1rem 0;
-  background-color: #949494;
+  background-color: rgba(255, 255, 255, 0.593);
   -webkit-transform-origin: center;
           transform-origin: center;
   -webkit-transform: scaleX(0);
@@ -1740,6 +1928,7 @@ footer .author-container h3 {
   font-size: 0.8rem;
   padding: 0.5rem;
   text-align: center;
+  color: rgba(255, 255, 255, 0.944);
 }
 
 @-webkit-keyframes flipping {
@@ -2608,6 +2797,20 @@ footer .author-container h3 {
 }
 
 @keyframes exploded-char-animation {
+  to {
+    top: 0;
+    left: 0;
+  }
+}
+
+@-webkit-keyframes defrag-fade-animation {
+  to {
+    top: 0;
+    left: 0;
+  }
+}
+
+@keyframes defrag-fade-animation {
   to {
     top: 0;
     left: 0;

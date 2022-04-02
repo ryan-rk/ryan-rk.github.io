@@ -108,8 +108,8 @@
                 <nobr>Machine Learning/</nobr>
                 <nobr>Deep Learning.</nobr>
             </h2>
-            <div class="biotext-panel" id="biotext-bg"></div>
-            <div class="biotext-panel" id="biotext-fg"></div>
+            <!-- <div class="biotext-panel" id="biotext-bg"></div> -->
+            <!-- <div class="biotext-panel" id="biotext-fg"></div> -->
         </div>
         <!-- <div class="uiux-container">
             <div class="uiux-border" id="uiux-border1"></div>
@@ -183,7 +183,7 @@
             <div class="biodata-element" id="mask-text-container">
                 <div class="mask-text" id="mask-text-fg">However ...</div>
                 <!-- <div class="mask-text" id="mask-text-bg"><span id="irrelevant-span">Beneath the mask lies an </span><span id="art-span">artistic soul</span><span id="irrelevant-span"> with a great passion for </span><span id="programming-span">computer programming</span></div> -->
-                <div class="mask-text" id="mask-text-bg">Beneath the mask lies an artistic soul with a great passion for computer programming</div>
+                <div class="mask-text" id="mask-text-bg">Beneath the mask lies an <span id="art-span">artistic soul</span> with a great passion for <span id="programming-span">computer programming</span></div>
                 <!-- <div class="mask-text" id="mask-text-bottom">Currently a postgraduate student conducting researches related to -->
                 <!-- <nobr>deep learning and structure design</nobr> -->
                 <!-- </div> -->
@@ -195,12 +195,12 @@
         </div>
         <div class="biodata-panel-container">
             <div class="biodata-panel" id="art-panel">
-                <div class="art-panel-text" id="art-panel-title">Artistic Soul</div>
+                <div class="art-panel-text" id="art-panel-title">Art</div>
                 <img src="assets/img/art-ss.png" alt="" class="biodata-panel-img" id="art-ss">
                 <div class="art-panel-text" id="art-panel-detail">Creative mind with deep love for art creation. Interested in UI/UX and illustration design.</div>
             </div>
             <div class="biodata-panel" id="programming-panel">
-                <div class="programming-panel-text" id="programming-panel-title">Computer Programming</div>
+                <div class="programming-panel-text" id="programming-panel-title">Programming</div>
                 <img src="assets/img/programming-ss.png" alt="" class="biodata-panel-img" id="programming-ss">
                 <div class="programming-panel-text" id="programming-panel-detail">Passionate in everything related to programming, especially Softwares and Games development.</div>
             </div>
@@ -419,21 +419,36 @@
     </section>
     <section id="soft-skills">
         <h1 class="soft-skills-element">SOFT SKILLS</h1>
+        <div class="vertical-dotline">
+            <div class="dot-decor"></div>
+            <div class="line-decor"></div>
+            <div class="dot-decor"></div>
+        </div>
+        <div id="soft-skills-container">
+            <div id="softskills-center-container">
+                <div id="softskills-center-relative">
+                    <span id="softskills-center-bg"></span>
+                    <img src="assets/img/softskills-icon.svg" alt="" id="softskills-center-fg">
+                </div>
+            </div>
+            <div id="softskills-desc-container">
+                <div id="softskills-desc-bg"></div>
+                <p id="softskills-desc-title">Softskill</p>
+                <p id="softskills-desc-text">Description</p>
+            </div>
+            <div class="softskills-card" id="teamwork-leadership">
+                <div class="softskills-card-bg"></div>
+                <div class="softskills-card-fg" id="teamwork-fg">
+                    <img src="assets/img/person-outline1.svg" alt="Icon for teamwork" class="person-outline" id="person-outline1">
+                    <p class="softskills-card-text">Teamwork & Leadership</p>
+                    <img src="assets/img/person-outline2.svg" alt="Icon for teamwork" class="person-outline" id="person-outline2">
+                    <img src="assets/img/person-outline3.svg" alt="Icon for teamwork" class="person-outline" id="person-outline3">
+                </div>
+            </div>
+        </div>
         <!-- <table id="dots-bg"></table> -->
-        <div id="dots-bg"></div>
-        <div id="soft-skills-swipe">
-        </div>
-        <div class="scroll-wrapper">
-            <ul id="soft-skills-ul">
-                <li class="soft-skills-element">- Positions/Departments joined in university societies -</li>
-                <li class="soft-skills-element">Program and Events Planning</li>
-                <li class="soft-skills-element">Multimedia and Technicals</li>
-                <li class="soft-skills-element">Marketing</li>
-                <li class="soft-skills-element">Secretary</li>
-                <li class="soft-skills-element">Publicity</li>
-                <li class="soft-skills-element">President</li>
-            </ul>
-        </div>
+        <!-- <div id="dots-bg"></div> -->
+        <!-- <div id="soft-skills-swipe"></div> -->
     </section>
     <section id="projects">
         <h1 class="projects-element">NOTABLE PROJECTS</h1>
@@ -481,11 +496,11 @@
             <div class="contact-element" id="contact-text">Feel free to contact me through the following email or visit the
                 <br><a href="maintenance.html">ABOUT ME</a></br> page to further connect with me
             </div>
-            <img src="assets/img/mail-back.svg" alt="mail icon" class="mail-icon" id="mail-back">
+            <img src="assets/img/mail-back.svg" alt="mail icon" class="mail-icon mail-icon-img" id="mail-back">
             <div class="mail-icon" id="mail-front">
                 <h3>To:</h3>
                 <a href="mailto:rktan@connect.ust.hk">rktan@connect.ust.hk</a>
-                <img src="assets/img/mail-front.svg" alt="mail icon">
+                <img src="assets/img/mail-front.svg" alt="mail icon" class="mail-icon-img">
             </div>
         </div>
     </section>

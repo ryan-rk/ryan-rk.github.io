@@ -2,11 +2,11 @@ $main-text-color: #3E3E3E;
 $sub-text-color: #fdfdfd;
 $background-color: #f1f1f1;
 $foreground-color: #383838;
-$text-red: #EE6767;
-$text-green: #25C05D;
-$text-blue: #5981E1;
-$text-purple: #AF67C5;
-$text-cyan: #4EBBC8;
+$text-red: #c699af;
+$text-green: #7890a6;
+$text-blue: #9199ca;
+$text-purple: #b39db8;
+$text-cyan: #ce8eb9;
 $gray1: #949494;
 $gray2: #575757;
 $main-text-size: 1.1rem;
@@ -23,6 +23,7 @@ body {
     font-family: 'Exo', sans-serif;
     font-weight: thin;
     font-size: $main-text-size;
+    overflow-x: hidden;
 }
 
 // ::-webkit-scrollbar {
@@ -31,13 +32,23 @@ body {
 //     width: 8px;
 // }
 h1 {
-    font-family: 'Source Code Pro', monospace;
+    // font-family: 'Source Code Pro', monospace;
+    font-family: 'Exo', sans-serif;
     font-size: $heading-text-size;
     text-align: center;
     transform-origin: center;
-    transform: scaleX(0);
+    // transform: scaleX(0);
     opacity: 0;
-    transition: transform 400ms ease-in-out, opacity 200ms ease-in-out;
+    transition: opacity 500ms ease-in-out;
+    // transition: transform 400ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+h1:not(#home-title) {
+    // position: absolute;
+    padding: 1rem;
+    background-color: #ffffff2e;
+    backdrop-filter: blur(8px);
+    border-radius: 1rem;
 }
 
 h2,
@@ -48,7 +59,7 @@ h2,
     font-weight: 100;
     text-align: center;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1500ms ease-in-out;
 }
 
 h3 {
@@ -67,12 +78,12 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0.2;
+    opacity: 0.4;
     padding: 1rem 0;
     .dot-decor {
         width: 0.2rem;
         height: 0.2rem;
-        border: 0.2rem solid $main-text-color;
+        border: 0.2rem solid #fff;
         border-radius: 50%;
         opacity: 0;
         transition: opacity 500ms ease-in-out;
@@ -80,7 +91,7 @@ h4 {
     .line-decor {
         width: 0.1rem;
         height: 9rem;
-        background-color: $main-text-color;
+        background-color: #fff;
         transform: scaleY(0);
         transform-origin: top;
         transition: transform 1500ms cubic-bezier(.27, .92, .33, .9);
@@ -299,17 +310,18 @@ nav {
                 transform-origin: center;
                 transform: scaleY(0);
                 transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+                background-color: #ffffffd5;
             }
-            #home-list-bg {
-                background-color: #93dae2a1;
-            }
+            // #home-list-bg {
+            //     background-color: #93dae2a1;
+            // }
             #projects-list-bg {
                 display: block;
-                background-color: #a2c4e4a1;
+                // background-color: #a2c4e4a1;
             }
             #aboutme-list-bg {
                 display: block;
-                background-color: #a6acd8a1;
+                // background-color: #a6acd8a1;
             }
             li {
                 position: relative;
@@ -321,7 +333,7 @@ nav {
                     font-size: 1.6rem;
                 }
                 #home-text {
-                    color: #4ca4ad;
+                    color: #525698;
                 }
                 #projects-text {
                     color: #5b86af;
@@ -509,7 +521,7 @@ header {
         width: 100%;
         height: 20rem;
         align-content: center;
-        background-color: #4d73a36c;
+        background-color: #707fd5a0;
         opacity: 0;
         backdrop-filter: blur(8px);
         transition: opacity 1s ease-in-out;
@@ -529,11 +541,11 @@ header {
         .notice-text {
             transition: opacity 1s ease-in-out;
         }
-        h1 {
-            color: #688bb8;
-            padding-top: 2rem;
-            transform: scaleX(1);
-        }
+        // h1 {
+        //     color: #688bb8;
+        //     padding-top: 2rem;
+        //     transform: scaleX(1);
+        // }
         h2 {
             position: absolute;
             top: 50%;
@@ -626,8 +638,10 @@ header {
         position: relative;
         width: 100%;
         // height: min(10rem);
-        height: 20rem;
-        transform: scaleY(0);
+        // height: 20rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        // transform: scaleY(0);
         transition: transform 0.4s ease-in-out;
         // height: 100%;
         // top: 50%;
@@ -648,10 +662,11 @@ header {
     }
     #mask-text-top {
         position: absolute;
-        top: 50%;
+        // top: 50%;
         left: 50%;
         width: 90%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
+        // transform: translate(-50%, -50%);
         z-index: 2;
         // margin-top: 2rem;
         // padding: 2rem 1rem;
@@ -715,16 +730,21 @@ header {
             #mask-text-bg {
                 display: none;
                 opacity: 0;
-                transition: opacity 2s ease-in-out, background-color 2s ease-in-out, backdrop-filter 2s ease-in-out;
+                transition: opacity 2s ease-in-out;
+                // transition: opacity 2s ease-in-out, background-color 2s ease-in-out, backdrop-filter 2s ease-in-out;
                 // background-color: #bdbdbd5e;
                 border-radius: 1rem;
                 // backdrop-filter: blur(8px);
             }
             #art-span {
-                color: $text-red;
+                .mask-chars {
+                    background-color: #a6a9be5c;
+                }
             }
             #programming-span {
-                color: $text-green;
+                .mask-chars {
+                    background-color: #9ebeb967;
+                }
             }
             .mask-chars {
                 position: relative;
@@ -761,11 +781,11 @@ header {
         transform: scale(0, 0);
     }
     #art-panel {
-        background-color: #a6a9be28;
+        background-color: #a6a9be5c;
         transform-origin: top right;
     }
     #programming-panel {
-        background-color: #9ebeb928;
+        background-color: #9ebeb967;
         transform-origin: top left;
     }
     #programming-panel-title {
@@ -794,9 +814,13 @@ header {
 }
 
 #skills {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     margin-top: 4rem;
     text-align: center;
     h1 {
+        align-self: center;
         color: $text-purple;
     }
     #skills-direc {
@@ -807,7 +831,7 @@ header {
         transform: scale(0);
         transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
         #skills-direc-bar {
-            position: relative;
+            // position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -840,7 +864,7 @@ header {
             backdrop-filter: blur(8px);
             padding: 1.5rem;
             padding-bottom: 3rem;
-            position: relative;
+            // position: relative;
             box-shadow: $drop-shadow;
             p {
                 font-size: 0.8rem;
@@ -962,8 +986,11 @@ header {
 }
 
 #soft-skills {
+    display: flex;
+    flex-direction: column;
     margin-top: 10rem;
-    position: relative;
+    align-items: center;
+    // position: relative;
     h1 {
         color: $text-cyan;
         text-align: center;
@@ -1048,6 +1075,141 @@ header {
         opacity: 0.7;
         border-radius: 50%;
     }
+    #soft-skills-container {
+        position: relative;
+        margin-top: 10rem;
+        #softskills-center-container {
+            // min-height: 20rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            // align-items: stretch;
+            // position: absolute;
+            // height: 100%;
+            // #softskills-center-fg {
+            //     position: inherit;
+            // }
+            #softskills-center-relative {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 20rem;
+                height: 20rem;
+            }
+            #softskills-center-fg {
+                position: relative;
+                width: 30%;
+                height: 30%;
+            }
+            #softskills-center-bg {
+                position: absolute;
+                width: 50%;
+                height: 50%;
+                // width: 100%;
+                // height: 200px;
+                background-color: #ffffff80;
+                border-radius: 50%;
+            }
+        }
+        .softskills-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            width: 30vw;
+            height: 20rem;
+            perspective: 500px;
+        }
+        .softskills-card-text {
+            text-align: center;
+            // margin-top: 1rem;
+            color: #525698;
+        }
+        .softskills-card-fg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: transform 500ms ease-in-out;
+        }
+        .softskills-card-fg:hover {
+            transform: scale(1.2);
+        }
+        .softskills-card-bg {
+            position: absolute;
+            top: -1rem;
+            height: 100%;
+            width: 100%;
+            border-radius: 1rem;
+            background-color: #9fa6db68;
+            transform: rotateX(80deg);
+        }
+        // teamwork and leadership
+        #teamwork-fg {
+            .person-outline {
+                height: 30%;
+            }
+            #person-outline2,
+            #person-outline3 {
+                position: absolute;
+                top: -2rem;
+                opacity: 0;
+                transition: all 500ms ease-in-out;
+            }
+            #person-outline2 {
+                left: 0;
+            }
+            #person-outline3 {
+                right: 0;
+            }
+        }
+        #teamwork-fg:hover {
+            #person-outline2,
+            #person-outline3 {
+                top: 0;
+                opacity: 1;
+            }
+        }
+        // soft skills description
+        #softskills-desc-container {
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0, 0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 500ms ease-in-out;
+            // justify-content: center;
+            z-index: 2;
+            #softskills-desc-bg {
+                background-color: rgba(80, 87, 123, 0.652);
+                backdrop-filter: blur(8px);
+                border-radius: 1rem;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            #softskills-desc-title {
+                z-index: 1;
+                margin-top: 1rem;
+                font-size: larger;
+                color: #fff;
+            }
+            #softskills-desc-text {
+                z-index: 1;
+                padding: 1.5rem;
+                font-size: 1rem;
+                color: rgb(227, 227, 227);
+            }
+        }
+    }
 }
 
 #projects {
@@ -1063,8 +1225,8 @@ header {
         width: 15rem;
         height: 4rem;
         box-sizing: border-box;
-        background-color: $foreground-color;
-        border: 0.2rem solid $foreground-color;
+        background-color: #4a4a4a7e;
+        border: 0.2rem solid #e6daff;
         #project-button-bg {
             position: absolute;
             width: 100%;
@@ -1073,7 +1235,7 @@ header {
             left: 0;
             transform-origin: left;
             transform: scaleX(0);
-            background-color: $background-color;
+            background-color: #c6b9e2;
             transition: transform 500ms ease-in-out;
             z-index: 0;
         }
@@ -1201,7 +1363,7 @@ header {
     .mail-icon {
         display: inline-block;
         width: clamp(15rem, 60%, 25rem);
-        background-color: $background-color;
+        // background-color: $background-color;
     }
     #mail-back {
         position: absolute;
@@ -1280,7 +1442,7 @@ footer {
             width: 100%;
             height: 0.1rem;
             margin: 1rem 0;
-            background-color: $gray1;
+            background-color: rgba(255, 255, 255, 0.593);
             transform-origin: center;
             transform: scaleX(0);
             transition: transform 1s ease-in-out;
@@ -1290,6 +1452,7 @@ footer {
             font-size: 0.8rem;
             padding: 0.5rem;
             text-align: center;
+            color: rgba(255, 255, 255, 0.944);
         }
     }
 }
@@ -1712,6 +1875,14 @@ footer {
     to {
         top: 0;
         left: 0;
+    }
+}
+
+@keyframes defrag-fade-animation {
+    to {
+        top: 0;
+        left: 0;
+        // opacity: 1;
     }
 }
 

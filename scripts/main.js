@@ -5,6 +5,33 @@ function rem2Px(rem) {
 }
 
 
+// --- Functions for headings and text animations
+function explodeAllH1Text() {
+    const allh1 = document.querySelectorAll('h1');
+    for (let i = 0; i < allh1.length; i++) {
+        const h1 = allh1[i];
+        if (h1.id != 'home-title') {
+            explodeH1Text(h1, i);
+        }
+    }
+}
+
+function explodeH1Text(h1element, elementIndex) {
+    h1element.innerHTML = h1element.textContent.replace(/./g, `<span class=\"exploded-chars${elementIndex}\">$&</span>`);
+
+    let explodedChars = document.getElementsByClassName(`exploded-chars${elementIndex}`);
+    for (let i = 0; i < explodedChars.length; i++) {
+        explodedChars[i].style.position = "relative";
+        // let left = innerWidth * Math.random();
+        let left = innerWidth;
+        if (Math.random() < 0.5) {
+            explodedChars[i].style.left = "-" + left + "px";
+        } else {
+            explodedChars[i].style.left = left + "px";
+        }
+    }
+}
+
 
 // --- Functions for Navbar ---
 // Functions dealing with click to expand/hide mobile menu
@@ -58,8 +85,6 @@ function navListHover(pageID) {
     }
 }
 
-
-
 // --- Functions dealing with mask animation in biodata section ---
 
 function populateMask() {
@@ -96,13 +121,13 @@ function maskExplode(isReverse) {
         }
         const mask = document.getElementById('mask');
         mask.style.transform = 'scale(0.8)';
-        // mask.style.filter = 'blur(0.5rem)';
+        mask.style.filter = 'blur(0.5rem)';
         mask.style.opacity = 0.6;
         mask.style.zIndex = 1;
-        setTimeout(() => {
-            masktextBg.style.backgroundColor = "#bdbdbd5e",
-                masktextBg.style.backdropFilter = "blur(8px)";
-        }, 1000);
+        // setTimeout(() => {
+        //     masktextBg.style.backgroundColor = "#bdbdbd5e",
+        //         masktextBg.style.backdropFilter = "blur(8px)";
+        // }, 1000);
         // const maskContainer = document.getElementsByClassName("mask-container");
         // maskContainer[0].addEventListener("scroll", maskScroll, false);
     }
@@ -298,7 +323,50 @@ function calcDirecTransOrigin(skillsCategory) {
 
 
 
-// --- Functions dealing with swipe arrow and dots bg in softskills section ---
+// --- Functions dealing with soft skills section
+function updateAndShowDesc(cardIndex) {
+    updateSoftskillsDesc(cardIndex);
+    const descContainer = document.getElementById('softskills-desc-container');
+    // descContainer.style.display = "flex";
+    descContainer.addEventListener("click", hideSoftskillsDesc, false);
+    if (!isDescPanelOpen) {
+        descContainer.style.transform = "translate(-50%, -50%) scale(1, 1)";
+        isDescPanelOpen = true;
+    }
+}
+
+function updateSoftskillsDesc(cardIndex) {
+    const descContainer = document.getElementById('softskills-desc-container');
+    const descBg = document.getElementById('softskills-desc-bg');
+    const descTitle = document.getElementById('softskills-desc-title');
+    const descText = document.getElementById('softskills-desc-text');
+    switch (cardIndex) {
+        case 1:
+            descContainer.style.transformOrigin = "top left";
+            // descBg.style.backgroundColor = "rgba(115, 131, 221, 0.4)"
+            descTitle.innerHTML = "Teamwork & Leadership";
+            descText.innerHTML = "Lead and organize different events in university societies, including exhibition, concert and prom night.<br><br>Positions held include: Presidents, Head of various departments (eg: Multech, Publicity, Program and Event planning)."
+            break;
+
+        default:
+            console.log("Card index not implemented");
+            break;
+    }
+}
+
+function hideSoftskillsDesc() {
+    window.removeEventListener("click", hideSoftskillsDesc);
+    const descContainer = document.getElementById('softskills-desc-container');
+    descContainer.style.transform = "translate(-50%, -50%) scale(0, 0)";
+    setTimeout(() => {
+        isDescPanelOpen = false;
+    }, 500);
+    // setTimeout(() => {
+    //     descContainer.style.display = "none";
+    // }, 500);
+}
+
+
 // Create swipe arrow svg to indicate softskills horizontal scrolling
 function createSoftSkillsSwipe() {
     const svgns = "http://www.w3.org/2000/svg";
@@ -388,17 +456,32 @@ function dotScroll() {
 
 
 
+
+
+
+// _________________________________________________________________________________
 // --- Functions dealing with transition/animation of elements when scrolled into position ---
 function headingScroll() {
     const allh1 = document.querySelectorAll('h1');
-    for (h1 of allh1) {
-        if (h1.className != 'notice-text') {
-            const h1BCR = h1.getBoundingClientRect();
-            if (h1BCR.top <= viewHeight * 3 / 5) {
-                h1.style.transform = 'scaleX(1)';
-                h1.style.opacity = 1;
+    for (let i = 0; i < allh1.length; i++) {
+        // for (h1 of allh1) {
+        // if (h1.className != 'notice-text') {
+        const h1 = allh1[i];
+        const h1BCR = h1.getBoundingClientRect();
+        if (h1BCR.top <= viewHeight * 3 / 5 && h1.style.opacity == 0) {
+            // if (h1.id != 'home-title') {
+            // explodeH1Text(h1, i);
+            // h1.style.transform = 'scaleX(1)';
+            h1.style.opacity = 1;
+            const explodedChars = document.getElementsByClassName(`exploded-chars${i}`);
+            for (const explodedChar of explodedChars) {
+                // let randomDelay = Math.random() * 1000;
+                explodedChar.style.animation = `defrag-fade-animation 1000ms cubic-bezier(.79,.01,.15,.99) ${Math.random() * 500}ms forwards`;
+                // explodedChar.style.animation = `defrag-fade-animation 1000ms cubic-bezier(.79,.01,.15,.99) forwards`;
             }
+            // }
         }
+        // }
     }
 
     const allh2 = document.querySelectorAll('h2');
@@ -469,10 +552,10 @@ function biodataScroll() {
     // const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
     const clickSignInner = document.getElementById('click-inner1');
     const clickSignOuter = document.getElementById('click-outer1');
-    if (biotextContainer[0].getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
-        biotextContainer[0].style.transform = "scaleY(1)";
-    }
-    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 8 / 10)) {
+    // if (biotextContainer[0].getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
+    //     biotextContainer[0].style.transform = "scaleY(1)";
+    // }
+    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 6 / 10)) {
         maskTextFg.style.opacity = 1;
         // maskText[0].style.opacity = 1;
         // biotextPanel[1].style.transform = "scaleY(1)";
@@ -596,6 +679,7 @@ const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
 // const dotsContainerWidth = createDots();
 // transformDots(0);
+explodeAllH1Text();
 explodeMaskText();
 // createSoftSkillsSwipe();
 navListHover('home');
@@ -626,6 +710,11 @@ for (const backContainer of backContainers) {
 }
 const terminalBackButton = document.getElementById('terminal-skills-back');
 terminalBackButton.addEventListener("click", function() { skillsCategoryClicked('terminal-skills-back', false); }, false);
+
+
+isDescPanelOpen = false;
+const teamworkFg = document.getElementById('teamwork-fg');
+teamworkFg.addEventListener("click", function() { updateAndShowDesc(1); }, false)
 
 
 // Horizontal scrolling for dots bg in softskills section
