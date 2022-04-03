@@ -1,3 +1,5 @@
+/// Please bear with the codes, I know they are definitely screaming for refactoring
+
 // --- Functions for general purposes ---
 // convert rem value to pixel
 function rem2Px(rem) {
@@ -343,9 +345,16 @@ function updateSoftskillsDesc(cardIndex) {
     switch (cardIndex) {
         case 1:
             descContainer.style.transformOrigin = "top left";
-            // descBg.style.backgroundColor = "rgba(115, 131, 221, 0.4)"
+            descBg.style.backgroundColor = "rgba(80, 87, 123, 0.652)";
             descTitle.innerHTML = "Teamwork & Leadership";
             descText.innerHTML = "Lead and organize different events in university societies, including exhibition, concert and prom night.<br><br>Positions held include: Presidents, Head of various departments (eg: Multech, Publicity, Program and Event planning)."
+            break;
+
+        case 2:
+            descContainer.style.transformOrigin = "top right";
+            descBg.style.backgroundColor = "rgba(80, 118, 123, 0.652)";
+            descTitle.innerHTML = "Time Management";
+            descText.innerHTML = "Strict management on time, especially on completion of projects. PhD research projects often involved strict deadlines such as meeting the journal/proposal submission deadline, or tasks deadline during collaboration with other research teams.<br><br>Participated in various hackathon-like events which require the completion of projects within a specified short time frame, especially various Game Jams."
             break;
 
         default:
@@ -715,6 +724,8 @@ terminalBackButton.addEventListener("click", function() { skillsCategoryClicked(
 isDescPanelOpen = false;
 const teamworkFg = document.getElementById('teamwork-fg');
 teamworkFg.addEventListener("click", function() { updateAndShowDesc(1); }, false)
+const timeManagementFg = document.getElementById('time-fg');
+timeManagementFg.addEventListener("click", function() { updateAndShowDesc(2); }, false)
 
 
 // Horizontal scrolling for dots bg in softskills section

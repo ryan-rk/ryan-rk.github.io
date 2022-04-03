@@ -86,10 +86,10 @@
             <div class="notice-border" id="notice-border1"></div>
             <div class="notice-border" id="notice-border2"></div>
             <!-- <h1 class="notice-text">_NOTICE_</h1> -->
-            <h2 class="notice-text">
-                A shiny new portfolio site is currently being built utilizing latest framework for a better presentation. I hope you are as excited and looking forward to it as I do. Meanwhile, why not take a stroll on the current site which is built on pure CSS and
-                JS.
-            </h2>
+            <p class="notice-text">
+                Despite the possibility to build a site using widely popular frameworks, the current site was built purely with vanilla CSS and JS to showcase their versatility and potential. However to achieve a better presentation, a shiny new portfolio site is also
+                currently under production utilizing some of the latest frameworks. I hope you are as excited and looking forward to it as I do.
+            </p>
         </div>
         <h2 class="header-element">With that said, enjoy a <span>simplistic</span> experience while navigating through the site and
             <nobr>getting to know me</nobr>
@@ -436,13 +436,36 @@
                 <p id="softskills-desc-title">Softskill</p>
                 <p id="softskills-desc-text">Description</p>
             </div>
-            <div class="softskills-card" id="teamwork-leadership">
-                <div class="softskills-card-bg"></div>
-                <div class="softskills-card-fg" id="teamwork-fg">
-                    <img src="assets/img/person-outline1.svg" alt="Icon for teamwork" class="person-outline" id="person-outline1">
-                    <p class="softskills-card-text">Teamwork & Leadership</p>
-                    <img src="assets/img/person-outline2.svg" alt="Icon for teamwork" class="person-outline" id="person-outline2">
-                    <img src="assets/img/person-outline3.svg" alt="Icon for teamwork" class="person-outline" id="person-outline3">
+            <div id="softskills-categories">
+                <div class="softskills-card" id="teamwork-leadership">
+                    <div class="softskills-card-fg" id="teamwork-fg">
+                        <img src="assets/img/person-outline1.svg" alt="Icon for teamwork" class="person-outline" id="person-outline1">
+                        <p class="softskills-card-text" id="teamwork-card-text">Teamwork & Leadership</p>
+                        <img src="assets/img/person-outline2.svg" alt="Icon for teamwork" class="person-outline" id="person-outline2">
+                        <img src="assets/img/person-outline3.svg" alt="Icon for teamwork" class="person-outline" id="person-outline3">
+                    </div>
+                    <div class="softskills-card-bg"></div>
+                </div>
+                <div class="softskills-card" id="time-management">
+                    <div class="softskills-card-fg" id="time-fg">
+                        <img src="assets/img/clock.svg" alt="Icon for clock" class="time-management-icon" id="clock-icon">
+                        <p class="softskills-card-text" id="time-card-text">Time Management</p>
+                    </div>
+                    <div class="softskills-card-bg"></div>
+                </div>
+                <div class="softskills-card" id="creativity">
+                    <div class="softskills-card-fg" id="creativity-fg">
+                        <img src="assets/img/head-bottom.svg" alt="Icon for head" class="creativity-head-icon" id="head-bottom-icon">
+                        <p class="softskills-card-text" id="creativity-card-text">Creativity</p>
+                    </div>
+                    <div class="softskills-card-bg"></div>
+                </div>
+                <div class="softskills-card" id="adaptability">
+                    <div class="softskills-card-fg" id="adaptability-fg">
+                        <img src="assets/img/square-hole.svg" alt="Icon for square hole" class="adaptability-icon" id="square-hole-icon">
+                        <p class="softskills-card-text" id="adaptability-card-text">Adaptability</p>
+                    </div>
+                    <div class="softskills-card-bg"></div>
                 </div>
             </div>
         </div>
@@ -515,7 +538,6 @@
     </footer>
 
     <script src="scripts/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
 </body>
 
