@@ -374,7 +374,7 @@ function updateSoftskillsDesc(cardIndex) {
             descContainer.style.transformOrigin = "bottom right";
             descBg.style.backgroundColor = "rgba(123, 81, 80, 0.652)";
             descTitle.innerHTML = "Adaptability";
-            descText.innerHTML = ""
+            descText.innerHTML = "Easily adapt to and blend into different environments and community. Attentive observer and fast learner, especially on various computers or programming tools. Always seeking to effectively apply learned knowledge to practical use case.<br><br>Also having the ability to converse in different languages including: English, Chinese, Cantonese, Fujien, Malay, and French."
             break;
 
         default:
@@ -421,6 +421,19 @@ function creativityAnimation(isReverse) {
         headInner.style.top = "-20%";
         headInner.style.opacity = 1;
     }
+}
+
+function adaptabilityAnimation(isReverse) {
+    const rectangularBlock = document.getElementById('rectangular-block');
+    const triangularBlock = document.getElementById('triangular-block');
+    const squareHole = document.getElementById('square-hole-icon');
+    const triangularHole = document.getElementById('triangle-hole-icon');
+    rectangularBlock.style.opacity = isReverse ? 1 : 0;
+    triangularBlock.style.opacity = isReverse ? 0 : 1;
+    squareHole.style.left = isReverse ? "0%" : "-120%";
+    squareHole.style.opacity = isReverse ? 1 : 0;
+    triangularHole.style.left = isReverse ? "120%" : "0%";
+    triangularHole.style.opacity = isReverse ? 0 : 1;
 }
 
 
@@ -782,6 +795,8 @@ creativityFg.addEventListener("mouseenter", function() { creativityAnimation(fal
 creativityFg.addEventListener("mouseleave", function() { creativityAnimation(true); }, false)
 const adaptabilityFg = document.getElementById('adaptability-fg');
 adaptabilityFg.addEventListener("click", function() { updateAndShowDesc(4); }, false)
+adaptabilityFg.addEventListener("mouseenter", function() { adaptabilityAnimation(false); }, false)
+adaptabilityFg.addEventListener("mouseleave", function() { adaptabilityAnimation(true); }, false)
 
 
 // Horizontal scrolling for dots bg in softskills section

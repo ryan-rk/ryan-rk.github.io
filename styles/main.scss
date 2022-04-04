@@ -787,11 +787,11 @@ header {
     }
     #art-panel {
         background-color: #a6a9be5c;
-        transform-origin: top right;
+        transform-origin: top;
     }
     #programming-panel {
         background-color: #9ebeb967;
-        transform-origin: top left;
+        transform-origin: top;
     }
     #programming-panel-title {
         color: #227065b0;
@@ -1086,7 +1086,7 @@ header {
         #softskills-center-container {
             // min-height: 20rem;
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             // align-items: stretch;
@@ -1264,10 +1264,10 @@ header {
                     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out, top 500ms ease-in-out;
                     opacity: 0;
                     #creativity-light-bulb {
-                        width: 70%;
+                        width: 60%;
                     }
                     #creativity-light-shine {
-                        top: 20%;
+                        top: 25%;
                         position: absolute;
                         width: 100%;
                         transition: opacity 500ms ease-in-out;
@@ -1296,10 +1296,48 @@ header {
         #adaptability {
             #adaptability-fg {
                 .softskills-card-text {
-                    color: #964e6b;
+                    color: #96524e;
                 }
-                #square-hole-icon {
-                    width: 50%;
+                #adaptability-shape-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    position: relative;
+                    width: 100%;
+                    #adaptability-base-container {
+                        position: relative;
+                        width: 70%;
+                        display: flex;
+                        justify-content: center;
+                        .adaptability-base-shape {
+                            width: 100%;
+                            transition: left 600ms ease-in-out, opacity 500ms ease-in-out;
+                        }
+                        #square-hole-icon {
+                            position: relative;
+                            // left: 0%;
+                        }
+                        #triangle-hole-icon {
+                            opacity: 0;
+                            position: absolute;
+                            left: 120%;
+                        }
+                    }
+                    #adaptability-block-container {
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+                        top: -10%;
+                        width: 60%;
+                        .adaptability-block {
+                            width: 60%;
+                            transition: opacity 500ms ease-in-out;
+                        }
+                        #triangular-block {
+                            position: absolute;
+                            opacity: 0;
+                        }
+                    }
                 }
             }
             .softskills-card-bg {
