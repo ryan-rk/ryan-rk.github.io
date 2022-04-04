@@ -539,6 +539,7 @@ header {
             animation-delay: -2500ms;
         }
         .notice-text {
+            text-align: center;
             transition: opacity 1s ease-in-out;
         }
         // h1 {
@@ -732,6 +733,8 @@ header {
             #mask-text-bg {
                 display: none;
                 opacity: 0;
+                color: rgb(254, 248, 255);
+                text-shadow: 0.1rem 0.1rem 8px black;
                 transition: opacity 2s ease-in-out;
                 // transition: opacity 2s ease-in-out, background-color 2s ease-in-out, backdrop-filter 2s ease-in-out;
                 // background-color: #bdbdbd5e;
@@ -1133,10 +1136,11 @@ header {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            align-items: center;
             position: relative;
             // width: 50%;
             width: 30vw;
-            height: 20vw;
+            height: calc(min(20vw, 10rem));
             perspective: 100px;
         }
         .softskills-card-text {
@@ -1151,6 +1155,7 @@ header {
             transition: transform 500ms ease-in-out;
             transform-origin: bottom;
             z-index: 1;
+            width: calc(min(100%, 10rem));
         }
         .softskills-card-fg:hover {
             transform: scale(1.2);
@@ -1162,6 +1167,7 @@ header {
             // top: 100%;
             height: 2rem;
             width: 100%;
+            // width: calc(min(100%, 10rem));
             // transform: translateY(80%);
             border-radius: 1vw;
             transform: translateY(20%) rotateX(70deg);
@@ -1206,8 +1212,31 @@ header {
                 .softskills-card-text {
                     color: #3c656f;
                 }
-                #clock-icon {
+                #clock-container {
+                    position: relative;
                     width: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    #short-clock-hand {
+                        width: 30%;
+                        position: absolute;
+                        z-index: 1;
+                        transform-origin: left;
+                        transform: translate(50%, 0);
+                        transition: transform 800ms ease-in-out;
+                    }
+                    #long-clock-hand {
+                        height: 50%;
+                        transform-origin: bottom;
+                        position: absolute;
+                        z-index: 1;
+                        transform: translate(0, -50%);
+                        transition: transform 800ms ease-in-out;
+                    }
+                    #clock-icon {
+                        width: 100%;
+                    }
                 }
             }
             .softskills-card-bg {
@@ -1220,8 +1249,43 @@ header {
                 .softskills-card-text {
                     color: #8e4a90;
                 }
-                #head-bottom-icon {
-                    width: 40%;
+            }
+            #head-container {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                width: 50%;
+                #head-inner {
+                    display: flex;
+                    justify-content: center;
+                    position: absolute;
+                    height: 80%;
+                    // top: -20%;
+                    transition: transform 500ms ease-in-out, opacity 500ms ease-in-out, top 500ms ease-in-out;
+                    opacity: 0;
+                    #creativity-light-bulb {
+                        width: 70%;
+                    }
+                    #creativity-light-shine {
+                        top: 20%;
+                        position: absolute;
+                        width: 100%;
+                        transition: opacity 500ms ease-in-out;
+                    }
+                }
+                #head-outer {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    z-index: 1;
+                    // position: relative;
+                    // height: 50%;
+                    #head-top-icon {
+                        width: 90%;
+                        transform-origin: bottom left;
+                        transition: transform 500ms ease-in-out;
+                        // transform: rotate(-90deg);
+                    }
                 }
             }
             .softskills-card-bg {
@@ -1258,7 +1322,7 @@ header {
             // justify-content: center;
             z-index: 2;
             #softskills-desc-bg {
-                // background-color: rgba(80, 118, 123, 0.652);
+                // background-color: rgba(123, 81, 80, 0.652);
                 backdrop-filter: blur(8px);
                 border-radius: 1rem;
                 position: absolute;

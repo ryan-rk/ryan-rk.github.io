@@ -702,6 +702,7 @@ header {
 }
 
 #main .notice-container .notice-text {
+  text-align: center;
   -webkit-transition: opacity 1s ease-in-out;
   transition: opacity 1s ease-in-out;
 }
@@ -945,6 +946,8 @@ header {
 #biodata .mask-container #mask-text-container #mask-text-bg {
   display: none;
   opacity: 0;
+  color: #fef8ff;
+  text-shadow: 0.1rem 0.1rem 8px black;
   -webkit-transition: opacity 2s ease-in-out;
   transition: opacity 2s ease-in-out;
   border-radius: 1rem;
@@ -1498,9 +1501,12 @@ header {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
   width: 30vw;
-  height: 20vw;
+  height: calc(min(20vw, 10rem));
   -webkit-perspective: 100px;
           perspective: 100px;
 }
@@ -1528,6 +1534,7 @@ header {
   -webkit-transform-origin: bottom;
           transform-origin: bottom;
   z-index: 1;
+  width: calc(min(100%, 10rem));
 }
 
 #soft-skills #soft-skills-container .softskills-card-fg:hover {
@@ -1583,8 +1590,50 @@ header {
   color: #3c656f;
 }
 
-#soft-skills #soft-skills-container #time-management #time-fg #clock-icon {
+#soft-skills #soft-skills-container #time-management #time-fg #clock-container {
+  position: relative;
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#soft-skills #soft-skills-container #time-management #time-fg #clock-container #short-clock-hand {
+  width: 30%;
+  position: absolute;
+  z-index: 1;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: translate(50%, 0);
+          transform: translate(50%, 0);
+  -webkit-transition: -webkit-transform 800ms ease-in-out;
+  transition: -webkit-transform 800ms ease-in-out;
+  transition: transform 800ms ease-in-out;
+  transition: transform 800ms ease-in-out, -webkit-transform 800ms ease-in-out;
+}
+
+#soft-skills #soft-skills-container #time-management #time-fg #clock-container #long-clock-hand {
+  height: 50%;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  position: absolute;
+  z-index: 1;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  -webkit-transition: -webkit-transform 800ms ease-in-out;
+  transition: -webkit-transform 800ms ease-in-out;
+  transition: transform 800ms ease-in-out;
+  transition: transform 800ms ease-in-out, -webkit-transform 800ms ease-in-out;
+}
+
+#soft-skills #soft-skills-container #time-management #time-fg #clock-container #clock-icon {
+  width: 100%;
 }
 
 #soft-skills #soft-skills-container #time-management .softskills-card-bg {
@@ -1595,8 +1644,65 @@ header {
   color: #8e4a90;
 }
 
-#soft-skills #soft-skills-container #creativity #creativity-fg #head-bottom-icon {
-  width: 40%;
+#soft-skills #soft-skills-container #creativity #head-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  width: 50%;
+}
+
+#soft-skills #soft-skills-container #creativity #head-container #head-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  height: 80%;
+  -webkit-transition: opacity 500ms ease-in-out, top 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out, top 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, opacity 500ms ease-in-out, top 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, opacity 500ms ease-in-out, top 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+  opacity: 0;
+}
+
+#soft-skills #soft-skills-container #creativity #head-container #head-inner #creativity-light-bulb {
+  width: 70%;
+}
+
+#soft-skills #soft-skills-container #creativity #head-container #head-inner #creativity-light-shine {
+  top: 20%;
+  position: absolute;
+  width: 100%;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
+}
+
+#soft-skills #soft-skills-container #creativity #head-container #head-outer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  z-index: 1;
+}
+
+#soft-skills #soft-skills-container #creativity #head-container #head-outer #head-top-icon {
+  width: 90%;
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
 #soft-skills #soft-skills-container #creativity .softskills-card-bg {

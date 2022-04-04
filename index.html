@@ -1,3 +1,6 @@
+<!-- I know the codes are definitely screaming for refactoring, so if you are still gonna look at them please bear with me. -->
+
+<!-- And a quick note, there is no easter egg here, so you can leave if you are looking for one. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,8 +90,8 @@
             <div class="notice-border" id="notice-border2"></div>
             <!-- <h1 class="notice-text">_NOTICE_</h1> -->
             <p class="notice-text">
-                Despite the possibility to build a site using widely popular frameworks, the current site was built purely with vanilla CSS and JS to showcase their versatility and potential. However to achieve a better presentation, a shiny new portfolio site is also
-                currently under production utilizing some of the latest frameworks. I hope you are as excited and looking forward to it as I do.
+                While there are various popular frameworks out there, vanilla CSS and JS are used to build the current site to showcase their versatility and potential. However in order to achieve a better presentation, a shiny new portfolio site is also currently under
+                production utilizing some of the latest frameworks. I hope you are as excited and looking forward to it as I do.
             </p>
         </div>
         <h2 class="header-element">With that said, enjoy a <span>simplistic</span> experience while navigating through the site and
@@ -440,7 +443,7 @@
                 <div class="softskills-card" id="teamwork-leadership">
                     <div class="softskills-card-fg" id="teamwork-fg">
                         <img src="assets/img/person-outline1.svg" alt="Icon for teamwork" class="person-outline" id="person-outline1">
-                        <p class="softskills-card-text" id="teamwork-card-text">Teamwork & Leadership</p>
+                        <p class="softskills-card-text" id="teamwork-card-text">Teamwork& Leadership</p>
                         <img src="assets/img/person-outline2.svg" alt="Icon for teamwork" class="person-outline" id="person-outline2">
                         <img src="assets/img/person-outline3.svg" alt="Icon for teamwork" class="person-outline" id="person-outline3">
                     </div>
@@ -448,14 +451,27 @@
                 </div>
                 <div class="softskills-card" id="time-management">
                     <div class="softskills-card-fg" id="time-fg">
-                        <img src="assets/img/clock.svg" alt="Icon for clock" class="time-management-icon" id="clock-icon">
+                        <div id="clock-container">
+                            <img src="assets/img/short-clock-hand.svg" alt="short clock hand" id="short-clock-hand">
+                            <img src="assets/img/long-clock-hand.svg" alt="long clock hand" id="long-clock-hand">
+                            <img src="assets/img/clock.svg" alt="Icon for clock" class="time-management-icon" id="clock-icon">
+                        </div>
                         <p class="softskills-card-text" id="time-card-text">Time Management</p>
                     </div>
                     <div class="softskills-card-bg"></div>
                 </div>
                 <div class="softskills-card" id="creativity">
                     <div class="softskills-card-fg" id="creativity-fg">
-                        <img src="assets/img/head-bottom.svg" alt="Icon for head" class="creativity-head-icon" id="head-bottom-icon">
+                        <div id="head-container">
+                            <div id="head-inner">
+                                <img src="assets/img/light-shine.svg" alt="Icon for light shine" id="creativity-light-shine">
+                                <img src="assets/img/light-bulb.svg" alt="Icon for light bulb" id="creativity-light-bulb">
+                            </div>
+                            <div id="head-outer">
+                                <img src="assets/img/head-top.svg" alt="Icon for head" id="head-top-icon">
+                                <img src="assets/img/head-bottom.svg" alt="Icon for head" id="head-bottom-icon">
+                            </div>
+                        </div>
                         <p class="softskills-card-text" id="creativity-card-text">Creativity</p>
                     </div>
                     <div class="softskills-card-bg"></div>
@@ -533,7 +549,7 @@
     <footer>
         <div class="author-container">
             <div class="footer-line"></div>
-            <h3>Site styled and scripted by RyanRK (2022)</h3>
+            <h3>Site styled (CSS) and scripted (JS) by RyanRK (2022)</h3>
         </div>
     </footer>
 

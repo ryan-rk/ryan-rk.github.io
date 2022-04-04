@@ -25,11 +25,17 @@ function explodeH1Text(h1element, elementIndex) {
     for (let i = 0; i < explodedChars.length; i++) {
         explodedChars[i].style.position = "relative";
         // let left = innerWidth * Math.random();
-        let left = innerWidth;
+        // let left = innerWidth;
+        // if (Math.random() < 0.5) {
+        //     explodedChars[i].style.left = "-" + left + "px";
+        // } else {
+        //     explodedChars[i].style.left = left + "px";
+        // }
+        let top = (Math.random() + 1) * 0.2 * innerHeight;
         if (Math.random() < 0.5) {
-            explodedChars[i].style.left = "-" + left + "px";
+            explodedChars[i].style.top = "-" + top + "px";
         } else {
-            explodedChars[i].style.left = left + "px";
+            explodedChars[i].style.top = top + "px";
         }
     }
 }
@@ -357,6 +363,20 @@ function updateSoftskillsDesc(cardIndex) {
             descText.innerHTML = "Strict management on time, especially on completion of projects. PhD research projects often involved strict deadlines such as meeting the journal/proposal submission deadline, or tasks deadline during collaboration with other research teams.<br><br>Participated in various hackathon-like events which require the completion of projects within a specified short time frame, especially various Game Jams."
             break;
 
+        case 3:
+            descContainer.style.transformOrigin = "bottom left";
+            descBg.style.backgroundColor = "rgba(121, 80, 123, 0.652)";
+            descTitle.innerHTML = "Creativity";
+            descText.innerHTML = "Strong interest in developing creative contents which includes: Animation and video composing (After Effects), UI/UX design (Figma), Illustration or pixel art creation (Aseprite), Photo editing (Photoshop/GIMP), Audio and music creation (GarageBand/Audition).<br><br>Having great attention to details and loves to create things or arts that can make people happy because why not."
+            break;
+
+        case 4:
+            descContainer.style.transformOrigin = "bottom right";
+            descBg.style.backgroundColor = "rgba(123, 81, 80, 0.652)";
+            descTitle.innerHTML = "Adaptability";
+            descText.innerHTML = ""
+            break;
+
         default:
             console.log("Card index not implemented");
             break;
@@ -373,6 +393,34 @@ function hideSoftskillsDesc() {
     // setTimeout(() => {
     //     descContainer.style.display = "none";
     // }, 500);
+}
+
+function rotateClockHand(isReverse) {
+    const shortClockHand = document.getElementById('short-clock-hand');
+    const longClockHand = document.getElementById('long-clock-hand');
+    if (isReverse) {
+        shortClockHand.style.transform = "translate(50%, 0) rotate(0deg)";
+        longClockHand.style.transform = "translate(0, -50%) rotate(0deg)";
+    } else {
+        shortClockHand.style.transform = "translate(50%, 0) rotate(60deg)";
+        longClockHand.style.transform = "translate(0, -50%) rotate(720deg)";
+    }
+}
+
+function creativityAnimation(isReverse) {
+    // const headBottom = document.getElementById('head-bottom-icon');
+    const headTop = document.getElementById('head-top-icon');
+    const headInner = document.getElementById('head-inner');
+    // const lightBulb = document.getElementById('creativity-light-bulb');
+    if (isReverse) {
+        headTop.style.transform = "rotate(0deg)";
+        headInner.style.top = "0%";
+        headInner.style.opacity = 0;
+    } else {
+        headTop.style.transform = "rotate(-90deg)";
+        headInner.style.top = "-20%";
+        headInner.style.opacity = 1;
+    }
 }
 
 
@@ -726,6 +774,14 @@ const teamworkFg = document.getElementById('teamwork-fg');
 teamworkFg.addEventListener("click", function() { updateAndShowDesc(1); }, false)
 const timeManagementFg = document.getElementById('time-fg');
 timeManagementFg.addEventListener("click", function() { updateAndShowDesc(2); }, false)
+timeManagementFg.addEventListener("mouseenter", function() { rotateClockHand(false); }, false)
+timeManagementFg.addEventListener("mouseleave", function() { rotateClockHand(true); }, false)
+const creativityFg = document.getElementById('creativity-fg');
+creativityFg.addEventListener("click", function() { updateAndShowDesc(3); }, false)
+creativityFg.addEventListener("mouseenter", function() { creativityAnimation(false); }, false)
+creativityFg.addEventListener("mouseleave", function() { creativityAnimation(true); }, false)
+const adaptabilityFg = document.getElementById('adaptability-fg');
+adaptabilityFg.addEventListener("click", function() { updateAndShowDesc(4); }, false)
 
 
 // Horizontal scrolling for dots bg in softskills section
