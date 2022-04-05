@@ -276,6 +276,10 @@ function skillsCategoryClicked(skillID, openClose) {
             direcClicked = 'deeplearn-direc';
             break;
 
+        case "database-management":
+            direcClicked = 'dbm-direc';
+            break;
+
         case "engineering-softwares":
             direcClicked = 'engsoft-direc';
             break;

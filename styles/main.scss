@@ -734,7 +734,7 @@ header {
                 display: none;
                 opacity: 0;
                 color: rgb(254, 248, 255);
-                text-shadow: 0.1rem 0.1rem 8px black;
+                text-shadow: 0.1rem 0.1rem 2px black;
                 transition: opacity 2s ease-in-out;
                 // transition: opacity 2s ease-in-out, background-color 2s ease-in-out, backdrop-filter 2s ease-in-out;
                 // background-color: #bdbdbd5e;
@@ -769,13 +769,14 @@ header {
     .biodata-panel-container {
         display: flex;
         // background-color: #25C05D;
-        flex-wrap: wrap;
-        flex-direction: row;
-        align-items: stretch;
+        // flex-wrap: wrap;
+        // flex-direction: row;
+        align-items: center;
     }
     .biodata-panel {
         flex-grow: 1;
-        width: 40%;
+        // width: 40%;
+        // max-height: 10rem;
         margin: 1%;
         border-radius: 1rem;
         backdrop-filter: blur(8px);
@@ -783,7 +784,7 @@ header {
         flex-direction: column;
         align-items: center;
         transition: transform 300ms ease-in-out;
-        transform: scale(0, 0);
+        // transform: scale(0, 0);
     }
     #art-panel {
         background-color: #a6a9be5c;
@@ -794,27 +795,39 @@ header {
         transform-origin: top;
     }
     #programming-panel-title {
+        text-align: center;
         color: #227065b0;
         font-size: larger;
     }
     #art-panel-title {
+        text-align: center;
         color: #4956b979;
         font-size: larger;
     }
     .art-panel-text {
-        text-align: center;
-        padding: 2rem;
+        // text-align: center;
+        padding: 1rem;
     }
     .programming-panel-text {
-        text-align: center;
-        padding: 2rem;
+        // text-align: center;
+        padding: 1rem;
     }
     .biodata-panel-img {
-        margin: 5%;
-        width: 60%;
+        margin: 0.5rem;
+        // width: 10rem;
+        // width: 30vw;
+        height: 30vw;
+        // height: calc(min(30vw, 100rem));
+        max-height: 10rem;
         border-radius: 1rem;
         transition: transform 400ms ease-in-out;
         // height: 5rem;
+    }
+    .biodata-panel-imgtext {
+        display: flex;
+        // flex-direction: row;
+        align-items: center;
+        padding: 1rem;
     }
 }
 
@@ -1086,7 +1099,7 @@ header {
         #softskills-center-container {
             // min-height: 20rem;
             position: absolute;
-            top: 60%;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
             // align-items: stretch;
@@ -1101,8 +1114,10 @@ header {
                 align-items: center;
                 justify-content: center;
                 position: relative;
-                width: 20rem;
-                height: 20rem;
+                width: calc(min(40vw, 25rem));
+                height: calc(min(40vw, 25rem));
+                // width: 25rem;
+                // height: 25rem;
                 perspective: 200px;
                 // transform: perspective(200px) rotateX(-30deg) rotateY(-20deg);
             }
@@ -1130,6 +1145,7 @@ header {
             width: 100vw;
             display: grid;
             row-gap: 5rem;
+            // row-gap: calc(max(5rem, 15rem - 20vw));
             column-gap: 10vw;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
@@ -1266,6 +1282,7 @@ header {
                     justify-content: center;
                     position: absolute;
                     height: 80%;
+                    top: 0%;
                     // top: -20%;
                     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out, top 500ms ease-in-out;
                     opacity: 0;
@@ -1358,7 +1375,7 @@ header {
         #softskills-desc-container {
             position: absolute;
             width: 70vw;
-            height: 20rem;
+            // height: 20rem;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0, 0);
@@ -2241,5 +2258,23 @@ footer {
                 margin-right: 0.5rem;
             }
         }
+    }
+}
+
+@media only screen and (max-width: 60rem) {
+    .biodata-panel-imgtext {
+        flex-direction: column;
+    }
+    #programming-panel-detail {
+        text-align: center;
+    }
+    #art-panel-detail {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 35rem) {
+    .biodata-panel-container {
+        flex-direction: column;
     }
 }

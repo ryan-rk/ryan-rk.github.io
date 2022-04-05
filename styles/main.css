@@ -947,7 +947,7 @@ header {
   display: none;
   opacity: 0;
   color: #fef8ff;
-  text-shadow: 0.1rem 0.1rem 8px black;
+  text-shadow: 0.1rem 0.1rem 2px black;
   -webkit-transition: opacity 2s ease-in-out;
   transition: opacity 2s ease-in-out;
   border-radius: 1rem;
@@ -979,22 +979,15 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #biodata .biodata-panel {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  width: 40%;
   margin: 1%;
   border-radius: 1rem;
   -webkit-backdrop-filter: blur(8px);
@@ -1013,8 +1006,6 @@ header {
   transition: -webkit-transform 300ms ease-in-out;
   transition: transform 300ms ease-in-out;
   transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
-  -webkit-transform: scale(0, 0);
-          transform: scale(0, 0);
 }
 
 #biodata #art-panel {
@@ -1030,33 +1021,44 @@ header {
 }
 
 #biodata #programming-panel-title {
+  text-align: center;
   color: #227065b0;
   font-size: larger;
 }
 
 #biodata #art-panel-title {
+  text-align: center;
   color: #4956b979;
   font-size: larger;
 }
 
 #biodata .art-panel-text {
-  text-align: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 #biodata .programming-panel-text {
-  text-align: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 #biodata .biodata-panel-img {
-  margin: 5%;
-  width: 60%;
+  margin: 0.5rem;
+  height: 30vw;
+  max-height: 10rem;
   border-radius: 1rem;
   -webkit-transition: -webkit-transform 400ms ease-in-out;
   transition: -webkit-transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out;
   transition: transform 400ms ease-in-out, -webkit-transform 400ms ease-in-out;
+}
+
+#biodata .biodata-panel-imgtext {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
 }
 
 #skills {
@@ -1434,7 +1436,7 @@ header {
 
 #soft-skills #soft-skills-container #softskills-center-container {
   position: absolute;
-  top: 60%;
+  top: 55%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -1455,8 +1457,8 @@ header {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  width: 20rem;
-  height: 20rem;
+  width: calc(min(40vw, 25rem));
+  height: calc(min(40vw, 25rem));
   -webkit-perspective: 200px;
           perspective: 200px;
 }
@@ -1669,6 +1671,7 @@ header {
           justify-content: center;
   position: absolute;
   height: 80%;
+  top: 0%;
   -webkit-transition: opacity 500ms ease-in-out, top 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
   transition: opacity 500ms ease-in-out, top 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
   transition: transform 500ms ease-in-out, opacity 500ms ease-in-out, top 500ms ease-in-out;
@@ -1789,7 +1792,6 @@ header {
 #soft-skills #soft-skills-container #softskills-desc-container {
   position: absolute;
   width: 70vw;
-  height: 20rem;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%) scale(0, 0);
@@ -3398,6 +3400,30 @@ footer .author-container h3 {
     color: #fdfdfd;
     font-size: 1.8rem;
     margin-right: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 60rem) {
+  .biodata-panel-imgtext {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #programming-panel-detail {
+    text-align: center;
+  }
+  #art-panel-detail {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 35rem) {
+  .biodata-panel-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 /*# sourceMappingURL=main.css.map */
