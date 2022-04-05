@@ -424,16 +424,16 @@ function creativityAnimation(isReverse) {
 }
 
 function adaptabilityAnimation(isReverse) {
-    const rectangularBlock = document.getElementById('rectangular-block');
-    const triangularBlock = document.getElementById('triangular-block');
-    const squareHole = document.getElementById('square-hole-icon');
-    const triangularHole = document.getElementById('triangle-hole-icon');
-    rectangularBlock.style.opacity = isReverse ? 1 : 0;
-    triangularBlock.style.opacity = isReverse ? 0 : 1;
-    squareHole.style.left = isReverse ? "0%" : "-120%";
-    squareHole.style.opacity = isReverse ? 1 : 0;
-    triangularHole.style.left = isReverse ? "120%" : "0%";
-    triangularHole.style.opacity = isReverse ? 0 : 1;
+    const circleBlock = document.getElementById('circle-block');
+    const circleHole = document.getElementById('circle-hole');
+    const triangleBlock = document.getElementById('triangle-block');
+    const triangleHole = document.getElementById('triangle-hole');
+    const adaptabilityBase = document.getElementById('adaptability-base-container');
+    circleBlock.style.opacity = isReverse ? 0 : 1;
+    triangleBlock.style.opacity = isReverse ? 1 : 0;
+    circleHole.style.opacity = isReverse ? 0 : 1;
+    triangleHole.style.opacity = isReverse ? 1 : 0;
+    adaptabilityBase.style.transform = isReverse ? "translateX(0%)" : "translateX(-100%)";
 }
 
 

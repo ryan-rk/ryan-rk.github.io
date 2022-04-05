@@ -1145,6 +1145,7 @@ header {
           backdrop-filter: blur(8px);
   padding: 1.5rem;
   padding-bottom: 3rem;
+  position: relative;
   -webkit-box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
           box-shadow: 0 0 3px 1px rgba(211, 211, 211, 0.719);
 }
@@ -1456,6 +1457,8 @@ header {
   position: relative;
   width: 20rem;
   height: 20rem;
+  -webkit-perspective: 200px;
+          perspective: 200px;
 }
 
 #soft-skills #soft-skills-container #softskills-center-container #softskills-center-fg {
@@ -1468,7 +1471,7 @@ header {
   position: absolute;
   width: 50%;
   height: 50%;
-  background-color: #ffffff80;
+  background-color: #ffffff4d;
   border-radius: 50%;
 }
 
@@ -1610,12 +1613,12 @@ header {
   z-index: 1;
   -webkit-transform-origin: left;
           transform-origin: left;
-  -webkit-transform: translate(50%, 0);
-          transform: translate(50%, 0);
   -webkit-transition: -webkit-transform 800ms ease-in-out;
   transition: -webkit-transform 800ms ease-in-out;
   transition: transform 800ms ease-in-out;
   transition: transform 800ms ease-in-out, -webkit-transform 800ms ease-in-out;
+  -webkit-transform: translate(50%, 0) rotate(0deg);
+          transform: translate(50%, 0) rotate(0deg);
 }
 
 #soft-skills #soft-skills-container #time-management #time-fg #clock-container #long-clock-hand {
@@ -1624,12 +1627,12 @@ header {
           transform-origin: bottom;
   position: absolute;
   z-index: 1;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
   -webkit-transition: -webkit-transform 800ms ease-in-out;
   transition: -webkit-transform 800ms ease-in-out;
   transition: transform 800ms ease-in-out;
   transition: transform 800ms ease-in-out, -webkit-transform 800ms ease-in-out;
+  -webkit-transform: translate(0, -50%) rotate(0deg);
+          transform: translate(0, -50%) rotate(0deg);
 }
 
 #soft-skills #soft-skills-container #time-management #time-fg #clock-container #clock-icon {
@@ -1705,6 +1708,10 @@ header {
   transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
+#soft-skills #soft-skills-container #creativity #head-container #head-outer #head-bottom-icon {
+  width: 100%;
+}
+
 #soft-skills #soft-skills-container #creativity .softskills-card-bg {
   background-color: #da8edc68;
 }
@@ -1734,25 +1741,20 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-transition: -webkit-transform 600ms ease-in-out;
+  transition: -webkit-transform 600ms ease-in-out;
+  transition: transform 600ms ease-in-out;
+  transition: transform 600ms ease-in-out, -webkit-transform 600ms ease-in-out;
 }
 
 #soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-base-container .adaptability-base-shape {
   width: 100%;
-  -webkit-transition: left 600ms ease-in-out, opacity 500ms ease-in-out;
-  transition: left 600ms ease-in-out, opacity 500ms ease-in-out;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 }
 
-#soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-base-container #square-hole-icon {
-  position: relative;
-}
-
-#soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-base-container #triangle-hole-icon {
+#soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-base-container #circle-hole {
   opacity: 0;
-  position: absolute;
-  left: 120%;
 }
 
 #soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-block-container {
@@ -1773,7 +1775,7 @@ header {
   transition: opacity 500ms ease-in-out;
 }
 
-#soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-block-container #triangular-block {
+#soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-block-container #circle-block {
   position: absolute;
   opacity: 0;
 }
