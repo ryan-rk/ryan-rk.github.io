@@ -332,6 +332,52 @@ function calcDirecTransOrigin(skillsCategory) {
 
 
 // --- Functions dealing with soft skills section
+function rotateSoftskillsCenter(skillIndex) {
+    const centerBg = document.getElementById('softskills-center-bg');
+    const centerFg = document.getElementById('softskills-center-fg');
+    // centerFg.style.transform = "translateZ(2rem)";
+    switch (skillIndex) {
+        case 1:
+            centerFg.style.transform = "rotateX(30deg) rotateY(-20deg) translateZ(2rem)";
+            centerBg.style.transform = "rotateX(30deg) rotateY(-20deg)";
+            break;
+
+        case 2:
+            centerFg.style.transform = "rotateX(30deg) rotateY(20deg) translateZ(2rem)";
+            centerBg.style.transform = "rotateX(30deg) rotateY(20deg)";
+            break;
+
+        case 3:
+            centerFg.style.transform = "rotateX(-30deg) rotateY(-20deg) translateZ(2rem)";
+            centerBg.style.transform = "rotateX(-30deg) rotateY(-20deg)";
+            break;
+
+        case 4:
+            centerFg.style.transform = "rotateX(-30deg) rotateY(20deg) translateZ(2rem)";
+            centerBg.style.transform = "rotateX(-30deg) rotateY(20deg)";
+            break;
+
+        default:
+            console.log("Soft skills index not implemented");
+            collapseSoftskillsCenter();
+            break;
+    }
+    // const softskillsContainer = document.getElementById('soft-skills-container');
+    // const containerBCR = softskillsContainer.getBoundingClientRect();
+    // const containerCenterY = containerBCR.bottom - containerBCR.top;
+    // const mouseOffsetX = event.clientX - innerWidth / 2;
+    // const mouseOffsetY = event.clientY - containerCenterY;
+    // const angleOffset = Math.atan2(mouseOffsetY, mouseOffsetX) * 180 / Math.PI;
+    // centerContainer.style.transform = `rotate(${angleOffset}deg)`;
+}
+
+function collapseSoftskillsCenter() {
+    const centerBg = document.getElementById('softskills-center-bg');
+    const centerFg = document.getElementById('softskills-center-fg');
+    centerFg.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
+    centerBg.style.transform = "rotateX(0deg) rotateY(0deg)";
+}
+
 function updateAndShowDesc(cardIndex) {
     updateSoftskillsDesc(cardIndex);
     const descContainer = document.getElementById('softskills-desc-container');
@@ -367,14 +413,14 @@ function updateSoftskillsDesc(cardIndex) {
             descContainer.style.transformOrigin = "bottom left";
             descBg.style.backgroundColor = "rgba(121, 80, 123, 0.652)";
             descTitle.innerHTML = "Creativity";
-            descText.innerHTML = "Strong interest in developing creative contents which includes: Animation and video composing (After Effects), UI/UX design (Figma), Illustration or pixel art creation (Aseprite), Photo editing (Photoshop/GIMP), Audio and music creation (GarageBand/Audition).<br><br>Having great attention to details and loves to create things or arts that can make people happy because why not."
+            descText.innerHTML = "Strong interest in developing creative contents which includes: animation and video composing (After Effects), UI/UX design (Figma), illustration or pixel art creation (Aseprite), photo editing (Photoshop/GIMP), audio and music creation (GarageBand/Audition).<br><br>Having great attention to details and loves to create things or arts that can make people happy because why not."
             break;
 
         case 4:
             descContainer.style.transformOrigin = "bottom right";
             descBg.style.backgroundColor = "rgba(123, 81, 80, 0.652)";
             descTitle.innerHTML = "Adaptability";
-            descText.innerHTML = "Easily adapt to and blend into different environments and community. Attentive observer and fast learner, especially on various computers or programming tools. Always seeking to effectively apply learned knowledge to practical use case.<br><br>Also having the ability to converse in different languages including: English, Chinese, Cantonese, Fujien, Malay, and French."
+            descText.innerHTML = "Easily adapt and blend into different environments and communities. Attentive observer and fast learner, especially on various computers or programming tools. Always seeking to effectively apply learned knowledge to practical use cases.<br><br>Also having the ability to converse in different languages including: English, Chinese, Cantonese, Fujien, Malay, and French."
             break;
 
         default:
@@ -395,15 +441,31 @@ function hideSoftskillsDesc() {
     // }, 500);
 }
 
+function teamworkAnimation(isReverse) {
+    const personOutline2 = document.getElementById('person-outline2');
+    const personOutline3 = document.getElementById('person-outline3');
+    personOutline2.style.top = isReverse ? "-2rem" : "0";
+    personOutline2.style.opacity = isReverse ? "0" : "1";
+    personOutline3.style.top = isReverse ? "-2rem" : "0";
+    personOutline3.style.opacity = isReverse ? "0" : "1";
+    if (isReverse) {
+        collapseSoftskillsCenter();
+    } else {
+        rotateSoftskillsCenter(1);
+    }
+}
+
 function rotateClockHand(isReverse) {
     const shortClockHand = document.getElementById('short-clock-hand');
     const longClockHand = document.getElementById('long-clock-hand');
     if (isReverse) {
         shortClockHand.style.transform = "translate(50%, 0) rotate(0deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(0deg)";
+        collapseSoftskillsCenter();
     } else {
         shortClockHand.style.transform = "translate(50%, 0) rotate(60deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(720deg)";
+        rotateSoftskillsCenter(2);
     }
 }
 
@@ -416,10 +478,12 @@ function creativityAnimation(isReverse) {
         headTop.style.transform = "rotate(0deg)";
         headInner.style.top = "0%";
         headInner.style.opacity = 0;
+        collapseSoftskillsCenter();
     } else {
         headTop.style.transform = "rotate(-90deg)";
         headInner.style.top = "-20%";
         headInner.style.opacity = 1;
+        rotateSoftskillsCenter(3);
     }
 }
 
@@ -434,6 +498,11 @@ function adaptabilityAnimation(isReverse) {
     circleHole.style.opacity = isReverse ? 0 : 1;
     triangleHole.style.opacity = isReverse ? 1 : 0;
     adaptabilityBase.style.transform = isReverse ? "translateX(0%)" : "translateX(-100%)";
+    if (isReverse) {
+        collapseSoftskillsCenter();
+    } else {
+        rotateSoftskillsCenter(4);
+    }
 }
 
 
@@ -781,22 +850,24 @@ for (const backContainer of backContainers) {
 const terminalBackButton = document.getElementById('terminal-skills-back');
 terminalBackButton.addEventListener("click", function() { skillsCategoryClicked('terminal-skills-back', false); }, false);
 
-
+// soft-skills section
 isDescPanelOpen = false;
 const teamworkFg = document.getElementById('teamwork-fg');
-teamworkFg.addEventListener("click", function() { updateAndShowDesc(1); }, false)
+teamworkFg.addEventListener("click", function() { updateAndShowDesc(1); }, false);
+teamworkFg.addEventListener("mouseenter", function() { teamworkAnimation(false); }, false);
+teamworkFg.addEventListener("mouseleave", function() { teamworkAnimation(true); }, false);
 const timeManagementFg = document.getElementById('time-fg');
-timeManagementFg.addEventListener("click", function() { updateAndShowDesc(2); }, false)
-timeManagementFg.addEventListener("mouseenter", function() { rotateClockHand(false); }, false)
-timeManagementFg.addEventListener("mouseleave", function() { rotateClockHand(true); }, false)
+timeManagementFg.addEventListener("click", function() { updateAndShowDesc(2); }, false);
+timeManagementFg.addEventListener("mouseenter", function() { rotateClockHand(false); }, false);
+timeManagementFg.addEventListener("mouseleave", function() { rotateClockHand(true); }, false);
 const creativityFg = document.getElementById('creativity-fg');
-creativityFg.addEventListener("click", function() { updateAndShowDesc(3); }, false)
-creativityFg.addEventListener("mouseenter", function() { creativityAnimation(false); }, false)
-creativityFg.addEventListener("mouseleave", function() { creativityAnimation(true); }, false)
+creativityFg.addEventListener("click", function() { updateAndShowDesc(3); }, false);
+creativityFg.addEventListener("mouseenter", function() { creativityAnimation(false); }, false);
+creativityFg.addEventListener("mouseleave", function() { creativityAnimation(true); }, false);
 const adaptabilityFg = document.getElementById('adaptability-fg');
-adaptabilityFg.addEventListener("click", function() { updateAndShowDesc(4); }, false)
-adaptabilityFg.addEventListener("mouseenter", function() { adaptabilityAnimation(false); }, false)
-adaptabilityFg.addEventListener("mouseleave", function() { adaptabilityAnimation(true); }, false)
+adaptabilityFg.addEventListener("click", function() { updateAndShowDesc(4); }, false);
+adaptabilityFg.addEventListener("mouseenter", function() { adaptabilityAnimation(false); }, false);
+adaptabilityFg.addEventListener("mouseleave", function() { adaptabilityAnimation(true); }, false);
 
 
 // Horizontal scrolling for dots bg in softskills section

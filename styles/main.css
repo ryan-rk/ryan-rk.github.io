@@ -1465,6 +1465,10 @@ header {
   position: relative;
   width: 30%;
   height: 30%;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
 #soft-skills #soft-skills-container #softskills-center-container #softskills-center-bg {
@@ -1473,6 +1477,10 @@ header {
   height: 50%;
   background-color: #ffffff4d;
   border-radius: 50%;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
 #soft-skills #soft-skills-container #softskills-categories {
@@ -1577,12 +1585,6 @@ header {
 
 #soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg #person-outline3 {
   right: 0;
-}
-
-#soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg:hover #person-outline2,
-#soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg:hover #person-outline3 {
-  top: 0;
-  opacity: 1;
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership .softskills-card-bg {

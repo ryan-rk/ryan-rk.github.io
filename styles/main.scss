@@ -1104,11 +1104,14 @@ header {
                 width: 20rem;
                 height: 20rem;
                 perspective: 200px;
+                // transform: perspective(200px) rotateX(-30deg) rotateY(-20deg);
             }
             #softskills-center-fg {
                 position: relative;
                 width: 30%;
                 height: 30%;
+                transition: transform 500ms ease-in-out;
+                // transform: rotateX(-30deg) rotateY(-20deg) translateZ(2rem);
             }
             #softskills-center-bg {
                 position: absolute;
@@ -1118,7 +1121,8 @@ header {
                 // height: 200px;
                 background-color: #ffffff4d;
                 border-radius: 50%;
-                // transform: rotateY(-40deg);
+                transition: transform 500ms ease-in-out;
+                // transform: rotateX(-30deg) rotateY(-20deg);
             }
         }
         #softskills-categories {
@@ -1197,13 +1201,13 @@ header {
                     right: 0;
                 }
             }
-            #teamwork-fg:hover {
-                #person-outline2,
-                #person-outline3 {
-                    top: 0;
-                    opacity: 1;
-                }
-            }
+            // #teamwork-fg:hover {
+            //     #person-outline2,
+            //     #person-outline3 {
+            //         top: 0;
+            //         opacity: 1;
+            //     }
+            // }
             .softskills-card-bg {
                 background-color: #9fa6db68;
             }
