@@ -1,0 +1,13 @@
+<svg width="186" height="213" viewBox="0 0 186 213" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35.5 97.8554L70 117.292V156.144L35.5 136.708V97.8554ZM70.5 116.426L36.0187 96.9998L70.5 77.5737L104.981 96.9998L70.5 116.426ZM71 117.292L105.5 97.8554V136.708L71 156.144V117.292Z" stroke="black"/>
+<path d="M1.5 73.0639L83 118.877V210.436L1.5 164.622V73.0639ZM84.5 116.279L3.06112 70.4999L84.5 24.7207L165.939 70.4999L84.5 116.279ZM86 118.877L167.5 73.0639V164.622L86 210.436V118.877Z" stroke="black" stroke-width="3"/>
+<line x1="84" y1="23.9999" x2="84" y2="115" stroke="black" stroke-width="2" stroke-dasharray="2 2"/>
+<line x1="1.51075" y1="163.128" x2="83.5107" y2="117.128" stroke="black" stroke-width="2" stroke-dasharray="2 2"/>
+<line x1="168.524" y1="164.879" x2="83.524" y2="118.879" stroke="black" stroke-width="2" stroke-dasharray="2 2"/>
+<line x1="182" y1="72.9998" x2="182" y2="163" stroke="black" stroke-width="2"/>
+<circle cx="182" cy="163" r="4" fill="black"/>
+<circle cx="182" cy="72.9998" r="4" fill="black"/>
+<line x1="89.4641" y1="5.4641" x2="167.406" y2="50.4641" stroke="black" stroke-width="2"/>
+<circle cx="167.406" cy="50.4641" r="4" transform="rotate(-60 167.406 50.4641)" fill="black"/>
+<circle cx="89.4641" cy="5.46411" r="4" transform="rotate(-60 89.4641 5.46411)" fill="black"/>
+</svg>
