@@ -1,0 +1,230 @@
+h1,
+h2 {
+  opacity: 1;
+}
+
+h1:not(#home-title) {
+  font-family: 'Source Code Pro', monospace;
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  background-color: rgba(240, 255, 255, 0.229);
+}
+
+nav {
+  -webkit-animation: nav-appear-animation 500ms ease-in-out forwards;
+          animation: nav-appear-animation 500ms ease-in-out forwards;
+}
+
+nav #home-title span b {
+  color: #14b0a0;
+}
+
+.project-section {
+  position: relative;
+  margin-top: 6rem;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.project-section .back-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 4rem;
+  padding: 0.5rem;
+}
+
+.project-section .back-button .back-button-fg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.project-section .back-button .back-button-fg .button-line {
+  margin: 1rem;
+  height: 0.1rem;
+  width: 10rem;
+  background-color: aliceblue;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+}
+
+.project-section .back-button .back-button-fg .button-line-left {
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+.project-section .back-button .back-button-fg .button-line-right {
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+.project-section .back-button .back-button-bg {
+  z-index: -1;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 0.2rem solid rgba(240, 255, 255, 0.528);
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+}
+
+.project-section .project-icon {
+  position: absolute;
+  top: 7rem;
+}
+
+.project-section .project-title,
+.project-section .project-desc {
+  padding: 2rem;
+}
+
+.project-section .project-desc {
+  margin-top: 3rem;
+}
+
+.project-section .projects-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.project-section .projects-grid .project-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(240, 255, 255, 0.434);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 1rem;
+}
+
+.project-section .projects-grid .project-card .card-img {
+  position: relative;
+  top: -0.8rem;
+  left: -0.8rem;
+  border-radius: 0.8rem;
+  margin: 1rem;
+  margin-top: 2rem;
+  width: 60%;
+  -webkit-box-shadow: 0.8rem 0.8rem rgba(24, 24, 24, 0.219);
+          box-shadow: 0.8rem 0.8rem rgba(24, 24, 24, 0.219);
+}
+
+.project-section .projects-grid .project-card .card-text-container {
+  padding: 1rem;
+}
+
+.project-section .projects-grid .project-card .card-text-container .card-title {
+  padding: 0.5rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.project-section .projects-grid .project-card .card-text-container .card-desc {
+  padding: 1rem;
+  text-align: justify;
+  font-weight: 200;
+}
+
+#game-projects #game-projects-title {
+  color: #067e6c;
+}
+
+#game-projects #game-projects-desc a {
+  color: #156378;
+}
+
+#game-projects .card-desc a {
+  color: #156378;
+}
+
+#game-projects #reality-shifter .card-title {
+  color: #167279;
+}
+
+#game-projects #cavo-cado .card-title {
+  color: #12bb4d;
+}
+
+#game-projects #rogue-flapper .card-title {
+  color: #91ae5b;
+}
+
+#game-projects #megaman-sf .card-title {
+  color: #28a5b3;
+}
+
+#background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+}
+
+#background #background-color {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#c1dcee), to(#a2c4aa));
+  background: linear-gradient(#c1dcee 0%, #a2c4aa 100%);
+}
+
+@-webkit-keyframes nav-appear-animation {
+  from {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  to {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+
+@keyframes nav-appear-animation {
+  from {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  to {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
+/*# sourceMappingURL=projects.css.map */

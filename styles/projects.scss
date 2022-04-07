@@ -1,0 +1,166 @@
+h1,
+h2 {
+    opacity: 1;
+}
+
+h1:not(#home-title) {
+    font-family: 'Source Code Pro', monospace;
+    backdrop-filter: blur(3px);
+    background-color: rgba(240, 255, 255, 0.229);
+}
+
+nav {
+    animation: nav-appear-animation 500ms ease-in-out forwards;
+    #home-title {
+        span {
+            b {
+                color: rgb(20, 176, 160);
+            }
+        }
+    }
+}
+
+.project-section {
+    position: relative;
+    margin-top: 6rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .back-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 4rem;
+        padding: 0.5rem;
+        .back-button-fg {
+            display: flex;
+            align-items: center;
+            .button-line {
+                margin: 1rem;
+                height: 0.1rem;
+                width: 10rem;
+                background-color: aliceblue;
+                transform: scaleX(0);
+                transition: transform 500ms ease-in-out;
+            }
+            .button-line-left {
+                transform-origin: right;
+            }
+            .button-line-right {
+                transform-origin: left;
+            }
+        }
+        .back-button-bg {
+            z-index: -1;
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 0.2rem solid rgba(240, 255, 255, 0.528);
+            transition: transform 500ms ease-in-out;
+        }
+    }
+    .project-icon {
+        position: absolute;
+        // transform: translateY(50%);
+        top: 7rem;
+    }
+    .project-title,
+    .project-desc {
+        padding: 2rem;
+    }
+    .project-desc {
+        margin-top: 3rem;
+    }
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(240, 255, 255, 0.434);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            .card-img {
+                position: relative;
+                top: -0.8rem;
+                left: -0.8rem;
+                border-radius: 0.8rem;
+                margin: 1rem;
+                margin-top: 2rem;
+                width: 60%;
+                box-shadow: 0.8rem 0.8rem rgba(24, 24, 24, 0.219);
+                // height: 10rem;
+            }
+            .card-text-container {
+                padding: 1rem;
+                .card-title {
+                    padding: 0.5rem;
+                    font-size: 2rem;
+                    font-weight: 400;
+                }
+                .card-desc {
+                    padding: 1rem;
+                    text-align: justify;
+                    font-weight: 200;
+                }
+            }
+        }
+    }
+}
+
+#game-projects {
+    #game-projects-title {
+        // color: rgb(83, 170, 141);
+        color: rgb(6, 126, 108);
+    }
+    #game-projects-desc {
+        a {
+            color: rgb(21, 99, 120);
+        }
+    }
+    .card-desc {
+        a {
+            color: rgb(21, 99, 120);
+        }
+    }
+    #reality-shifter .card-title {
+        color: rgb(22, 114, 121);
+    }
+    #cavo-cado .card-title {
+        color: rgb(18, 187, 77);
+    }
+    #rogue-flapper .card-title {
+        color: rgb(145, 174, 91);
+    }
+    #megaman-sf .card-title {
+        color: rgb(40, 165, 179);
+    }
+}
+
+#background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+    #background-color {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgb(193, 220, 238) 0%, rgb(162, 196, 170) 100%);
+    }
+}
+
+@keyframes nav-appear-animation {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}

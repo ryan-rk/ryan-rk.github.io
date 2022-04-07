@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/projects.css">
+</head>
+
+<body>
+    <nav>
+        <div id="nav-title">
+            <div class="nav-left">
+                <h1 id="home-title">ryan.<span><b>RK()</b></span></h1>
+            </div>
+            <div class="nav-center">
+                <div class="nav-triangle" id="nav-click-triangle" onclick="expandMenu()"></div>
+                <div class="nav-triangle" id="nav-noclick-triangle"></div>
+            </div>
+            <div class="nav-right" id="collapse-menu-button" onclick="expandMenu()">{...}</div>
+        </div>
+        <div id="expanded-menu">
+            <div id="expand-menu-opencurly">{</div>
+            <ul id="nav-menu-list">
+                <li id='home-list'>
+                    <div class="nav-list-triangle" id="home-list-triangle"></div>
+                    <a id="home-text" href=#>Home()</a>
+                    <div class="nav-list-bg" id="home-list-bg"></div>
+                </li>
+                <li id='projects-list'>
+                    <div class="nav-list-triangle" id="projects-list-triangle"></div>
+                    <a id="projects-text" href="maintenance.html">Projects()</a>
+                    <div class="nav-list-bg" id="projects-list-bg"></div>
+                </li>
+                <li id='aboutme-list'>
+                    <div class="nav-list-triangle" id="aboutme-list-triangle"></div>
+                    <a id="aboutme-text" href="maintenance.html">AboutMe()</a>
+                    <div class="nav-list-bg" id="aboutme-list-bg"></div>
+                </li>
+            </ul>
+            <div id="expand-menu-closecurly">}</div>
+        </div>
+    </nav>
+
+    <section class="project-section" id="game-projects">
+        <div class="back-button">
+            <div class="back-button-fg">
+                <div class="button-line button-line-left"></div>
+                <h2 class="back-button-text">Back to Gallery</h2>
+                <div class="button-line button-line-right"></div>
+            </div>
+            <div class="back-button-bg"></div>
+        </div>
+        <img src="assets/img/controller-icon.svg" alt="Icon of game controller" class="project-icon" id="game-projects-icon">
+        <h1 class="project-title" id="game-projects-title">GAMES DEV</h1>
+        <h2 class="project-desc" id="game-projects-desc">Games ideas and prototypes developed across almost 1 year of my game development journey. Feel free to visit and try out the growing list of games published on my <a href="#">itch.io</a> site.</h2>
+        <div class="projects-grid">
+            <div class="project-card" id="reality-shifter">
+                <img src="assets/img/programming-ss.png" alt="Reality Shifter game screenshot" class="card-img">
+                <div class="card-text-container">
+                    <h2 class="card-title">Reality Shifter</h2>
+                    <p class="card-desc">
+                        A puzzle platformer initially made with Unity for game jam submission, polished into a MVP. Avoid obstacles/hazards and reach the goal in each stage by utilizing the protagonist's ability to Reality Shift. Check out the game at my
+                        <a href="#">itch.io</a> site.
+                    </p>
+                </div>
+            </div>
+            <div class="project-card" id="cavo-cado">
+                <img src="assets/img/programming-ss.png" alt="Cavo Cado game screenshot" class="card-img">
+                <div class="card-text-container">
+                    <h2 class="card-title">Cavo Cado</h2>
+                    <p class="card-desc">A Metroidvania where you follow the adventure of Cavo and Cado as they try to escape the imprisonment of the corrupted Vegetation King.
+                        <nobr>[In production]</nobr>
+                    </p>
+                </div>
+            </div>
+            <div class="project-card" id="rogue-flapper">
+                <img src="assets/img/programming-ss.png" alt="Rogue Flapper game screenshot" class="card-img">
+                <div class="card-text-container">
+                    <h2 class="card-title">Rogue Flapper</h2>
+                    <p class="card-desc">A roguelite recreation of the Flappy Bird game on iOS using Apple's SpriteKit framework. Introducing elements like powerup and enemies.
+                        <nobr>[In production]</nobr>
+                    </p>
+                </div>
+            </div>
+            <div class="project-card" id="megaman-sf">
+                <img src="assets/img/programming-ss.png" alt="Megaman StarForce game screenshot" class="card-img">
+                <div class="card-text-container">
+                    <h2 class="card-title">RE: MegaMan StarForce</h2>
+                    <p class="card-desc">A fanmade prototype on the recreation of MegaMan StarForce gameplay in MegaMan BattleNetwork style using GameMaker. (Rights reserved by Capcom)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="background">
+        <div id="background-color"></div>
+    </section>
+
+    <script src="scripts/projects.js"></script>
+
+</body>
+
+</html>
