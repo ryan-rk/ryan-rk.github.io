@@ -18,19 +18,32 @@ nav {
             }
         }
     }
+    #expanded-menu ul .nav-list-bg {
+        background-color: rgb(228, 228, 228);
+    }
 }
 
 #gallery-section {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // position: fixed;
+    // width: 100vw;
+    // height: 100vh;
+    // display: flex;
+    // display: none;
+    // justify-content: center;
+    // align-items: center;
+    #float-project-icon {
+        opacity: 0;
+        position: absolute;
+        transition: top 800ms ease-in-out, left 800ms ease-in-out;
+    }
     #gallery-container {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: opacity 500ms ease-in-out;
         #gallery-frames-arrows {
             display: flex;
             align-items: center;
@@ -113,96 +126,110 @@ nav {
 }
 
 .project-section {
-    position: relative;
-    margin-top: 6rem;
-    padding: 2rem;
-    display: flex;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    .back-button {
-        display: flex;
-        justify-content: center;
+    // margin-top: 6rem;
+    .section-foreground {
+        position: relative;
+        padding: 2rem;
+        // display: flex;
+        display: none;
+        flex-direction: column;
         align-items: center;
-        margin-bottom: 4rem;
-        padding: 0.5rem;
-        .back-button-fg {
+        transition: opacity 500ms ease-in-out;
+        .back-button {
+            margin-top: 6rem;
             display: flex;
+            justify-content: center;
             align-items: center;
-            .button-line {
-                margin: 1rem;
-                height: 0.1rem;
-                width: calc(min(20rem, 30vw));
-                background-color: aliceblue;
-                transform: scaleX(0);
+            margin-bottom: 4rem;
+            padding: 0.5rem;
+            .back-button-fg {
+                display: flex;
+                align-items: center;
+                .button-line {
+                    margin: 1rem;
+                    height: 0.1rem;
+                    width: calc(min(20rem, 30vw));
+                    background-color: aliceblue;
+                    transform: scaleX(0);
+                    transition: transform 500ms ease-in-out;
+                }
+                .button-line-left {
+                    transform-origin: right;
+                }
+                .button-line-right {
+                    transform-origin: left;
+                }
+            }
+            .back-button-bg {
+                z-index: -1;
+                position: absolute;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                border: 0.2rem solid rgba(240, 255, 255, 0.528);
                 transition: transform 500ms ease-in-out;
             }
-            .button-line-left {
-                transform-origin: right;
-            }
-            .button-line-right {
-                transform-origin: left;
-            }
         }
-        .back-button-bg {
-            z-index: -1;
-            position: absolute;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            border: 0.2rem solid rgba(240, 255, 255, 0.528);
-            transition: transform 500ms ease-in-out;
+        // .project-icon {
+        //     position: absolute;
+        //     transform: translateY(50%);
+        //     top: 15rem;
+        // }
+        .project-title,
+        .project-desc {
+            padding: 2rem;
         }
-    }
-    .project-icon {
-        position: absolute;
-        // transform: translateY(50%);
-        top: 7rem;
-    }
-    .project-title,
-    .project-desc {
-        padding: 2rem;
-    }
-    .project-desc {
-        margin-top: 3rem;
-    }
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
-        // grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-        .project-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(240, 255, 255, 0.434);
-            backdrop-filter: blur(8px);
-            border-radius: 1rem;
-            .card-img {
-                position: relative;
-                top: -0.8rem;
-                left: -0.8rem;
-                border-radius: 0.8rem;
-                margin: 1rem;
-                margin-top: 2rem;
-                width: 60%;
-                box-shadow: 0.8rem 0.8rem rgba(24, 24, 24, 0.219);
-                // height: 10rem;
-            }
-            .card-text-container {
-                padding: 1rem;
-                .card-title {
-                    padding: 0.5rem;
-                    font-size: 2rem;
-                    font-weight: 400;
+        .project-desc {
+            margin-top: 3rem;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+            // grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            .project-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: rgba(240, 255, 255, 0.434);
+                backdrop-filter: blur(8px);
+                border-radius: 1rem;
+                .card-img {
+                    position: relative;
+                    top: -0.8rem;
+                    left: -0.8rem;
+                    border-radius: 0.8rem;
+                    margin: 1rem;
+                    margin-top: 2rem;
+                    width: 60%;
+                    box-shadow: 0.8rem 0.8rem rgba(24, 24, 24, 0.219);
+                    // height: 10rem;
                 }
-                .card-desc {
+                .card-text-container {
                     padding: 1rem;
-                    text-align: justify;
-                    font-weight: 200;
+                    .card-title {
+                        padding: 0.5rem;
+                        font-size: 2rem;
+                        font-weight: 400;
+                    }
+                    .card-desc {
+                        padding: 1rem;
+                        text-align: justify;
+                        font-weight: 200;
+                    }
                 }
             }
         }
+    }
+    .section-background {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: -10;
+        clip-path: circle(0%);
+        transition: clip-path 800ms ease-in-out;
     }
 }
 
@@ -232,6 +259,9 @@ nav {
     }
     #megaman-sf .card-title {
         color: rgb(40, 165, 179);
+    }
+    .section-background {
+        background: linear-gradient(rgb(193, 220, 238) 0%, rgb(162, 196, 170) 100%);
     }
 }
 

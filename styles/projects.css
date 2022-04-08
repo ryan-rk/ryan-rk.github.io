@@ -19,7 +19,18 @@ nav #home-title span b {
   color: #14b0a0;
 }
 
-#gallery-section {
+nav #expanded-menu ul .nav-list-bg {
+  background-color: #e4e4e4;
+}
+
+#gallery-section #float-project-icon {
+  opacity: 0;
+  position: absolute;
+  -webkit-transition: top 800ms ease-in-out, left 800ms ease-in-out;
+  transition: top 800ms ease-in-out, left 800ms ease-in-out;
+}
+
+#gallery-section #gallery-container {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -32,18 +43,8 @@ nav #home-title span b {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-#gallery-section #gallery-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 }
 
 #gallery-section #gallery-container #gallery-frames-arrows {
@@ -178,13 +179,9 @@ nav #home-title span b {
   color: white;
 }
 
-.project-section {
+.project-section .section-foreground {
   position: relative;
-  margin-top: 6rem;
   padding: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -193,9 +190,12 @@ nav #home-title span b {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 }
 
-.project-section .back-button {
+.project-section .section-foreground .back-button {
+  margin-top: 6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -209,7 +209,7 @@ nav #home-title span b {
   padding: 0.5rem;
 }
 
-.project-section .back-button .back-button-fg {
+.project-section .section-foreground .back-button .back-button-fg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -218,7 +218,7 @@ nav #home-title span b {
           align-items: center;
 }
 
-.project-section .back-button .back-button-fg .button-line {
+.project-section .section-foreground .back-button .back-button-fg .button-line {
   margin: 1rem;
   height: 0.1rem;
   width: calc(min(20rem, 30vw));
@@ -231,17 +231,17 @@ nav #home-title span b {
   transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
-.project-section .back-button .back-button-fg .button-line-left {
+.project-section .section-foreground .back-button .back-button-fg .button-line-left {
   -webkit-transform-origin: right;
           transform-origin: right;
 }
 
-.project-section .back-button .back-button-fg .button-line-right {
+.project-section .section-foreground .back-button .back-button-fg .button-line-right {
   -webkit-transform-origin: left;
           transform-origin: left;
 }
 
-.project-section .back-button .back-button-bg {
+.project-section .section-foreground .back-button .back-button-bg {
   z-index: -1;
   position: absolute;
   width: 2rem;
@@ -254,21 +254,16 @@ nav #home-title span b {
   transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
-.project-section .project-icon {
-  position: absolute;
-  top: 7rem;
-}
-
-.project-section .project-title,
-.project-section .project-desc {
+.project-section .section-foreground .project-title,
+.project-section .section-foreground .project-desc {
   padding: 2rem;
 }
 
-.project-section .project-desc {
+.project-section .section-foreground .project-desc {
   margin-top: 3rem;
 }
 
-.project-section .projects-grid {
+.project-section .section-foreground .projects-grid {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(25rem, 1fr))[auto-fill];
@@ -276,7 +271,7 @@ nav #home-title span b {
   gap: 1.5rem;
 }
 
-.project-section .projects-grid .project-card {
+.project-section .section-foreground .projects-grid .project-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -293,7 +288,7 @@ nav #home-title span b {
   border-radius: 1rem;
 }
 
-.project-section .projects-grid .project-card .card-img {
+.project-section .section-foreground .projects-grid .project-card .card-img {
   position: relative;
   top: -0.8rem;
   left: -0.8rem;
@@ -305,20 +300,35 @@ nav #home-title span b {
           box-shadow: 0.8rem 0.8rem rgba(24, 24, 24, 0.219);
 }
 
-.project-section .projects-grid .project-card .card-text-container {
+.project-section .section-foreground .projects-grid .project-card .card-text-container {
   padding: 1rem;
 }
 
-.project-section .projects-grid .project-card .card-text-container .card-title {
+.project-section .section-foreground .projects-grid .project-card .card-text-container .card-title {
   padding: 0.5rem;
   font-size: 2rem;
   font-weight: 400;
 }
 
-.project-section .projects-grid .project-card .card-text-container .card-desc {
+.project-section .section-foreground .projects-grid .project-card .card-text-container .card-desc {
   padding: 1rem;
   text-align: justify;
   font-weight: 200;
+}
+
+.project-section .section-background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  -webkit-clip-path: circle(0%);
+          clip-path: circle(0%);
+  -webkit-transition: -webkit-clip-path 800ms ease-in-out;
+  transition: -webkit-clip-path 800ms ease-in-out;
+  transition: clip-path 800ms ease-in-out;
+  transition: clip-path 800ms ease-in-out, -webkit-clip-path 800ms ease-in-out;
 }
 
 #game-projects #game-projects-title {
@@ -347,6 +357,11 @@ nav #home-title span b {
 
 #game-projects #megaman-sf .card-title {
   color: #28a5b3;
+}
+
+#game-projects .section-background {
+  background: -webkit-gradient(linear, left top, left bottom, from(#c1dcee), to(#a2c4aa));
+  background: linear-gradient(#c1dcee 0%, #a2c4aa 100%);
 }
 
 #background {

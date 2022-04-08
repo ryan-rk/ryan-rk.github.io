@@ -1,3 +1,54 @@
+// --- Classes ---
+class ProjectSection {
+    constructor(name) {
+        this.name = name;
+        this.isActivated = false;
+        this.sectionElement = document.getElementById(name);
+        const sectionQuery = "#" + name;
+        this.backButton = document.querySelector(sectionQuery + " .back-button");
+        this.backButton.addEventListener('click', () => { this.backButtonClickHandler() }, false);
+        this.sectionForeground = document.querySelector(sectionQuery + " .section-foreground");
+        this.sectionBackground = document.querySelector(sectionQuery + " .section-background");
+    }
+
+    updateForeground(isActive) {
+        if (isActive) {
+            this.sectionForeground.style.display = "flex";
+            this.sectionForeground.style.opacity = 1;
+        } else {
+            this.sectionForeground.style.display = "none";
+            this.sectionForeground.style.opacity = 0;
+        }
+    }
+
+    scaleBackground(isExpand) {
+        this.sectionBackground.style.clipPath = isExpand ? "circle(100%)" : "circle(0%)";
+    }
+
+    backButtonClickHandler() {
+        this.setActivation(false);
+        updateGallerySection(true);
+    }
+
+    setActivation(isActive) {
+        if (isActive) {
+            if (this.isActivated) { return; }
+            this.scaleBackground(true);
+            this.updateForeground(true);
+            this.isActivated = true;
+        } else {
+            if (!this.isActivated) { return; }
+            this.updateForeground(false);
+            this.scaleBackground(false);
+            this.isActivated = false;
+        }
+    }
+}
+
+
+
+
+
 // --- Functions for Navbar ---
 // Functions dealing with click to expand/hide mobile menu
 function expandMenu() {
@@ -51,6 +102,73 @@ function navListHover(pageID) {
 }
 
 
+// __________________________________
+// Functions for gallery section
+// __________________________________
+function inspectButtonClickHandler() {
+    if (isStartDeactivateGallery) { return; }
+    isStartDeactivateGallery = true;
+    updateGallerySection(false);
+}
+
+function updateGallerySection(isActive) {
+    console.log("Updating gallery section");
+    const galleryContainer = document.getElementById('gallery-container');
+    if (isActive) {
+        setTimeout(() => {
+            galleryContainer.style.opacity = 1;
+        }, 500);
+    } else {
+        galleryContainer.style.opacity = 0;
+        initializeProjectIconFloat();
+    }
+}
+
+function initializeProjectIconFloat() {
+    const frameInnerIcons = document.getElementsByClassName('frame-inner');
+    const projectIconFloat = document.getElementById("float-project-icon");
+    const projectIconBCR = frameInnerIcons[selectedProjectIndex].getBoundingClientRect();
+
+    projectIconFloat.style.opacity = 1;
+    projectIconFloat.style.top = `${projectIconBCR.top}px`;
+    projectIconFloat.style.left = `${projectIconBCR.left}px`;
+    projectIconFloat.style.width = `${projectIconBCR.right - projectIconBCR.left}px`
+    projectIconFloat.style.height = `${projectIconBCR.bottom - projectIconBCR.top}px`
+
+    setTimeout(() => {
+        animateProjectIconFloat();
+    }, 500);
+}
+
+function animateProjectIconFloat() {
+    const projectIconFloat = document.getElementById("float-project-icon");
+    console.log("Start animation");
+    projectIconFloat.style.top = `${viewHeight/2 - projectIconFloat.clientHeight / 2}px`;
+    projectIconFloat.style.left = `${viewWidth/2 - projectIconFloat.clientWidth / 2}px`;
+    setTimeout(() => {
+        projectIconFloat.style.opacity = 0;
+        inspectSelectedProjects();
+    }, 800);
+}
+
+function inspectSelectedProjects() {
+    switch (selectedProjectIndex) {
+        case 0:
+            gameSection.setActivation(true);
+            break;
+
+        default:
+            console.log("Project index not implemented");
+            break;
+    }
+}
+
+function updateTextContainer() {}
+
+
+// __________________________________
+// Functions for projects section
+// __________________________________
 // --- Functions for back button ---
 function backButtonHover(isReverse) {
     const buttonLines = document.getElementsByClassName('button-line');
@@ -73,10 +191,22 @@ function backButtonHover(isReverse) {
 
 
 
+const viewHeight = document.documentElement.clientHeight;
+const viewWidth = document.documentElement.clientWidth;
 
 navListHover('projects');
+const gameSection = new ProjectSection("game-projects");
 const backButtons = document.getElementsByClassName('back-button');
 for (const backButton of backButtons) {
     backButton.addEventListener('mouseover', () => { backButtonHover(false) }, false);
     backButton.addEventListener('mouseleave', () => { backButtonHover(true) }, false);
 }
+
+var selectedProjectIndex = 0;
+var isStartDeactivateGallery = false;
+const inspectButton = document.getElementById("inspect-button");
+inspectButton.addEventListener("click", inspectButtonClickHandler, false);
+
+// initializeProjectIconFloat();
+// const galleryFramesContainer = document.getElementById("gallery-frames-container");
+// galleryFramesContainer.addEventListener("click", animateProjectIconFloat, false);

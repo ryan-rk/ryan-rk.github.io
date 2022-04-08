@@ -46,6 +46,7 @@
     </nav>
 
     <section id="gallery-section">
+        <img src="assets/img/controller-icon.svg" alt="icon of selected project" id="float-project-icon">
         <div id="gallery-container">
             <div id="gallery-frames-arrows">
                 <img src="assets/img/menu-triangle.svg" alt="left arrow" id="frame-left-arrow">
@@ -69,54 +70,57 @@
     </section>
 
     <section class="project-section" id="game-projects">
-        <div class="back-button">
-            <div class="back-button-fg">
-                <div class="button-line button-line-left"></div>
-                <h2 class="back-button-text">Back to Gallery</h2>
-                <div class="button-line button-line-right"></div>
+        <div class="section-foreground">
+            <div class="back-button">
+                <div class="back-button-fg">
+                    <div class="button-line button-line-left"></div>
+                    <h2 class="back-button-text">Back to Gallery</h2>
+                    <div class="button-line button-line-right"></div>
+                </div>
+                <div class="back-button-bg"></div>
             </div>
-            <div class="back-button-bg"></div>
+            <!-- <img src="assets/img/controller-icon.svg" alt="Icon of game controller" class="project-icon" id="game-projects-icon"> -->
+            <h1 class="project-title" id="game-projects-title">GAMES DEV</h1>
+            <h2 class="project-desc" id="game-projects-desc">Games ideas and prototypes developed across almost 1 year of my game development journey. Feel free to visit and try out the growing list of games published on my <a href="#">itch.io</a> site.</h2>
+            <div class="projects-grid">
+                <div class="project-card" id="reality-shifter">
+                    <img src="assets/img/programming-ss.png" alt="Reality Shifter game screenshot" class="card-img">
+                    <div class="card-text-container">
+                        <h2 class="card-title">Reality Shifter</h2>
+                        <p class="card-desc">
+                            A puzzle platformer initially made with Unity for game jam submission, polished into a MVP. Avoid obstacles/hazards and reach the goal in each stage by utilizing the protagonist's ability to Reality Shift. Check out the game at my
+                            <a href="#">itch.io</a> site.
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card" id="cavo-cado">
+                    <img src="assets/img/programming-ss.png" alt="Cavo Cado game screenshot" class="card-img">
+                    <div class="card-text-container">
+                        <h2 class="card-title">Cavo Cado</h2>
+                        <p class="card-desc">A Metroidvania where you follow the adventure of Cavo and Cado as they try to escape the imprisonment of the corrupted Vegetation King.
+                            <nobr>[In production]</nobr>
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card" id="rogue-flapper">
+                    <img src="assets/img/programming-ss.png" alt="Rogue Flapper game screenshot" class="card-img">
+                    <div class="card-text-container">
+                        <h2 class="card-title">Rogue Flapper</h2>
+                        <p class="card-desc">A roguelite recreation of the Flappy Bird game on iOS using Apple's SpriteKit framework. Introducing elements like powerup and enemies.
+                            <nobr>[In production]</nobr>
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card" id="megaman-sf">
+                    <img src="assets/img/programming-ss.png" alt="Megaman StarForce game screenshot" class="card-img">
+                    <div class="card-text-container">
+                        <h2 class="card-title">RE: MegaMan StarForce</h2>
+                        <p class="card-desc">A fanmade prototype on the recreation of MegaMan StarForce gameplay in MegaMan BattleNetwork style using GameMaker. (TM by Capcom)</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <img src="assets/img/controller-icon.svg" alt="Icon of game controller" class="project-icon" id="game-projects-icon">
-        <h1 class="project-title" id="game-projects-title">GAMES DEV</h1>
-        <h2 class="project-desc" id="game-projects-desc">Games ideas and prototypes developed across almost 1 year of my game development journey. Feel free to visit and try out the growing list of games published on my <a href="#">itch.io</a> site.</h2>
-        <div class="projects-grid">
-            <div class="project-card" id="reality-shifter">
-                <img src="assets/img/programming-ss.png" alt="Reality Shifter game screenshot" class="card-img">
-                <div class="card-text-container">
-                    <h2 class="card-title">Reality Shifter</h2>
-                    <p class="card-desc">
-                        A puzzle platformer initially made with Unity for game jam submission, polished into a MVP. Avoid obstacles/hazards and reach the goal in each stage by utilizing the protagonist's ability to Reality Shift. Check out the game at my
-                        <a href="#">itch.io</a> site.
-                    </p>
-                </div>
-            </div>
-            <div class="project-card" id="cavo-cado">
-                <img src="assets/img/programming-ss.png" alt="Cavo Cado game screenshot" class="card-img">
-                <div class="card-text-container">
-                    <h2 class="card-title">Cavo Cado</h2>
-                    <p class="card-desc">A Metroidvania where you follow the adventure of Cavo and Cado as they try to escape the imprisonment of the corrupted Vegetation King.
-                        <nobr>[In production]</nobr>
-                    </p>
-                </div>
-            </div>
-            <div class="project-card" id="rogue-flapper">
-                <img src="assets/img/programming-ss.png" alt="Rogue Flapper game screenshot" class="card-img">
-                <div class="card-text-container">
-                    <h2 class="card-title">Rogue Flapper</h2>
-                    <p class="card-desc">A roguelite recreation of the Flappy Bird game on iOS using Apple's SpriteKit framework. Introducing elements like powerup and enemies.
-                        <nobr>[In production]</nobr>
-                    </p>
-                </div>
-            </div>
-            <div class="project-card" id="megaman-sf">
-                <img src="assets/img/programming-ss.png" alt="Megaman StarForce game screenshot" class="card-img">
-                <div class="card-text-container">
-                    <h2 class="card-title">RE: MegaMan StarForce</h2>
-                    <p class="card-desc">A fanmade prototype on the recreation of MegaMan StarForce gameplay in MegaMan BattleNetwork style using GameMaker. (TM by Capcom)</p>
-                </div>
-            </div>
-        </div>
+        <div class="section-background"></div>
     </section>
 
     <section id="background">
