@@ -8,21 +8,65 @@ class ProjectSection {
         this.backButton = document.querySelector(sectionQuery + " .back-button");
         this.backButton.addEventListener('click', () => { this.backButtonClickHandler() }, false);
         this.sectionForeground = document.querySelector(sectionQuery + " .section-foreground");
+        this.sectionCards = document.querySelectorAll(sectionQuery + " .project-card");
         this.sectionBackground = document.querySelector(sectionQuery + " .section-background");
+        this.scaleBackground(false);
     }
 
     updateForeground(isActive) {
         if (isActive) {
             this.sectionForeground.style.display = "flex";
-            this.sectionForeground.style.opacity = 1;
+            setTimeout(() => {
+                this.sectionForeground.style.opacity = 1,
+                    this.slideCards(true);
+            }, 1500);
         } else {
-            this.sectionForeground.style.display = "none";
             this.sectionForeground.style.opacity = 0;
+            this.slideCards(false);
+            setTimeout(() => {
+                this.sectionForeground.style.display = "none";
+            }, 1500);
+        }
+    }
+
+    slideCards(isActive) {
+        if (isActive) {
+            for (let i = 0; i < this.sectionCards.length; i++) {
+                this.sectionCards[i].style.transitionDelay = `${i * 200}ms`;
+                this.sectionCards[i].style.transform = "translateY(0%)";
+                this.sectionCards[i].style.opacity = 1;
+            }
+            console.log("slide in cards");
+        } else {
+            for (let i = 0; i < this.sectionCards.length; i++) {
+                this.sectionCards[i].style.transitionDelay = `${(this.sectionCards.length - 1 - i) * 80}ms`;
+                this.sectionCards[i].style.transform = "translateY(50%)";
+                this.sectionCards[i].style.opacity = 0;
+            }
+            console.log("slide out cards");
         }
     }
 
     scaleBackground(isExpand) {
-        this.sectionBackground.style.clipPath = isExpand ? "circle(100%)" : "circle(0%)";
+        const [centerX, centerY] = calculateCurrentFrameCenter();
+        if (isExpand) {
+            this.sectionBackground.style.transitionDuration = "0ms";
+            this.sectionBackground.style.clipPath = `circle(0% at ${centerX}px ${centerY}px)`;
+            setTimeout(() => {
+                this.sectionBackground.style.transitionDuration = "800ms",
+                    this.sectionBackground.style.clipPath = `circle(200% at ${centerX}px ${centerY}px)`;
+            }, 100);
+        } else {
+            if (this.isActivated) {
+                this.sectionBackground.style.transitionDuration = "0ms";
+                this.sectionBackground.style.clipPath = `circle(100% at ${centerX}px ${centerY}px)`;
+                setTimeout(() => {
+                    this.sectionBackground.style.transitionDuration = "800ms",
+                        this.sectionBackground.style.clipPath = `circle(0% at ${centerX}px ${centerY}px)`;
+                }, 100);
+            }
+        }
+        // this.sectionBackground.style.clipPath = isExpand ? `circle(100% at ${centerX}px ${centerY}px)` : `circle(0% at ${centerX}px ${centerY}px)`;
     }
 
     backButtonClickHandler() {
@@ -109,17 +153,27 @@ function inspectButtonClickHandler() {
     if (isStartDeactivateGallery) { return; }
     isStartDeactivateGallery = true;
     updateGallerySection(false);
+    inspectSelectedProjects();
+}
+
+function calculateCurrentFrameCenter() {
+    const galleryFrameBCR = document.getElementsByClassName('gallery-frame')[selectedProjectIndex].getBoundingClientRect();
+    const centerX = (galleryFrameBCR.left + galleryFrameBCR.right) / 2;
+    const centerY = (galleryFrameBCR.top + galleryFrameBCR.bottom) / 2;
+    return [centerX, centerY];
 }
 
 function updateGallerySection(isActive) {
-    console.log("Updating gallery section");
     const galleryContainer = document.getElementById('gallery-container');
     if (isActive) {
-        setTimeout(() => {
-            galleryContainer.style.opacity = 1;
-        }, 500);
+        galleryContainer.style.transition = "opacity 500ms ease-in-out 500ms, visibility 0s ease-in-out 500ms";
+        galleryContainer.style.opacity = 1;
+        galleryContainer.style.visibility = "visible";
     } else {
+        galleryContainer.style.transition = "opacity 500ms ease-in-out, visibility 0s ease-in-out 1000ms";
         galleryContainer.style.opacity = 0;
+        galleryContainer.style.visibility = "hidden";
+        isStartDeactivateGallery = false;
         initializeProjectIconFloat();
     }
 }
@@ -134,21 +188,23 @@ function initializeProjectIconFloat() {
     projectIconFloat.style.left = `${projectIconBCR.left}px`;
     projectIconFloat.style.width = `${projectIconBCR.right - projectIconBCR.left}px`
     projectIconFloat.style.height = `${projectIconBCR.bottom - projectIconBCR.top}px`
+    projectIconFloat.style.transitionDuration = "0s, 0s, 0s";
+    projectIconFloat.style.transitionDelay = "0s, 0s, 0s";
 
     setTimeout(() => {
         animateProjectIconFloat();
-    }, 500);
+    }, 300);
 }
 
 function animateProjectIconFloat() {
     const projectIconFloat = document.getElementById("float-project-icon");
-    console.log("Start animation");
-    projectIconFloat.style.top = `${viewHeight/2 - projectIconFloat.clientHeight / 2}px`;
-    projectIconFloat.style.left = `${viewWidth/2 - projectIconFloat.clientWidth / 2}px`;
-    setTimeout(() => {
-        projectIconFloat.style.opacity = 0;
-        inspectSelectedProjects();
-    }, 800);
+    // const projectTitleBCR = document.getElementsByClassName("project-title")[selectedProjectIndex].getBoundingClientRect();
+    projectIconFloat.style.top = `${viewHeight()/2 - projectIconFloat.clientHeight / 2}px`;
+    // projectIconFloat.style.top = `${(projectTitleBCR.top + projectTitleBCR.bottom)/2 - projectIconFloat.clientHeight/2}px`;
+    projectIconFloat.style.left = `${viewWidth()/2 - projectIconFloat.clientWidth / 2}px`;
+    projectIconFloat.style.transitionDuration = "800ms, 800ms, 500ms";
+    projectIconFloat.style.transitionDelay = "0ms, 0ms, 800ms"
+    projectIconFloat.style.opacity = 0;
 }
 
 function inspectSelectedProjects() {
@@ -162,6 +218,8 @@ function inspectSelectedProjects() {
             break;
     }
 }
+
+function gallerySelector() {}
 
 function updateTextContainer() {}
 
@@ -191,8 +249,13 @@ function backButtonHover(isReverse) {
 
 
 
-const viewHeight = document.documentElement.clientHeight;
-const viewWidth = document.documentElement.clientWidth;
+const viewHeight = () => { return document.documentElement.clientHeight };
+const viewWidth = () => { return document.documentElement.clientWidth };
+
+var selectedProjectIndex = 0;
+var isStartDeactivateGallery = false;
+const inspectButton = document.getElementById("inspect-button");
+inspectButton.addEventListener("click", inspectButtonClickHandler, false);
 
 navListHover('projects');
 const gameSection = new ProjectSection("game-projects");
@@ -201,11 +264,6 @@ for (const backButton of backButtons) {
     backButton.addEventListener('mouseover', () => { backButtonHover(false) }, false);
     backButton.addEventListener('mouseleave', () => { backButtonHover(true) }, false);
 }
-
-var selectedProjectIndex = 0;
-var isStartDeactivateGallery = false;
-const inspectButton = document.getElementById("inspect-button");
-inspectButton.addEventListener("click", inspectButtonClickHandler, false);
 
 // initializeProjectIconFloat();
 // const galleryFramesContainer = document.getElementById("gallery-frames-container");

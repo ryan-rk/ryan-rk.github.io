@@ -10,6 +10,7 @@ h1:not(#home-title) {
 }
 
 nav {
+    // background: rgba(227, 227, 227, 0.415);
     animation: nav-appear-animation 500ms ease-in-out forwards;
     #home-title {
         span {
@@ -18,9 +19,11 @@ nav {
             }
         }
     }
-    #expanded-menu ul .nav-list-bg {
-        background-color: rgb(228, 228, 228);
-    }
+    // #expanded-menu ul .nav-list-bg {
+    // background-color: rgb(248, 248, 248);
+    // box-shadow: 0 0 0.1rem 0.1rem rgba(173, 173, 173, 0.719);
+    // border: 0.1rem solid rgb(214, 214, 214);
+    // }
 }
 
 #gallery-section {
@@ -34,16 +37,21 @@ nav {
     #float-project-icon {
         opacity: 0;
         position: absolute;
-        transition: top 800ms ease-in-out, left 800ms ease-in-out;
+        // transition: top 800ms ease-in-out, left 800ms ease-in-out;
+        // transition-duration: 800ms, 800ms, 0s;
+        transition-timing-function: ease-in-out;
+        transition-property: top, left, opacity;
+        transition-delay: 0ms, 0ms, 0ms;
     }
     #gallery-container {
         position: fixed;
         width: 100vw;
         height: 100vh;
         display: flex;
+        // display: none;
         justify-content: center;
         align-items: center;
-        transition: opacity 500ms ease-in-out;
+        // transition: opacity 500ms ease-in-out;
         #gallery-frames-arrows {
             display: flex;
             align-items: center;
@@ -134,13 +142,14 @@ nav {
         display: none;
         flex-direction: column;
         align-items: center;
+        opacity: 0;
         transition: opacity 500ms ease-in-out;
         .back-button {
             margin-top: 6rem;
+            // margin-bottom: 4rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 4rem;
             padding: 0.5rem;
             .back-button-fg {
                 display: flex;
@@ -175,16 +184,16 @@ nav {
         //     transform: translateY(50%);
         //     top: 15rem;
         // }
-        .project-title,
-        .project-desc {
+        .project-title {
+            margin: 2rem;
             padding: 2rem;
         }
-        .project-desc {
-            margin-top: 3rem;
-        }
+        // .project-desc {
+        //     margin-top: 3rem;
+        // }
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
             // grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
             .project-card {
@@ -194,6 +203,9 @@ nav {
                 background-color: rgba(240, 255, 255, 0.434);
                 backdrop-filter: blur(8px);
                 border-radius: 1rem;
+                transform: translateY(50%);
+                opacity: 0;
+                transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
                 .card-img {
                     position: relative;
                     top: -0.8rem;
@@ -276,7 +288,8 @@ nav {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: linear-gradient(rgb(193, 220, 238) 0%, rgb(162, 196, 170) 100%);
+        // background: rgb(72, 72, 72);
+        background: linear-gradient(rgb(170, 170, 170) 0%, rgb(255, 255, 255) 100%);
     }
 }
 
