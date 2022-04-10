@@ -219,9 +219,81 @@ function inspectSelectedProjects() {
     }
 }
 
-function gallerySelector() {}
+function projectSelector(isIncrease) {
+    if (isIncrease) {
+        if (selectedProjectIndex >= (sectionNames.length - 1)) {
+            return;
+        }
+        selectedProjectIndex = Math.min(Math.max(selectedProjectIndex + 1, 0), sectionNames.length - 1)
+        updateGalleryFrame(true);
+        updateTextContainer();
+        updateGalleryArrow();
+        blinkGalleryLight();
+    } else {
+        if (selectedProjectIndex <= 0) {
+            return;
+        }
+        selectedProjectIndex = Math.min(Math.max(selectedProjectIndex - 1, 0), sectionNames.length - 1)
+        updateGalleryFrame(false);
+        updateTextContainer();
+        updateGalleryArrow();
+        blinkGalleryLight();
+    }
+}
 
-function updateTextContainer() {}
+function updateGalleryArrow() {
+    const frameLeftArrow = document.getElementById('frame-left-arrow');
+    const frameRightArrow = document.getElementById('frame-right-arrow');
+    if (selectedProjectIndex <= 0) {
+        frameLeftArrow.style.visibility = "hidden";
+    } else if (selectedProjectIndex >= (sectionNames.length - 1)) {
+        frameRightArrow.style.visibility = "hidden";
+    } else {
+        frameLeftArrow.style.visibility = "visible";
+        frameRightArrow.style.visibility = "visible";
+    }
+}
+
+function updateGalleryFrame(isForward) {
+    const galleryFrames = document.getElementsByClassName('gallery-frame');
+    if (isForward) {
+        if (selectedProjectIndex <= 0) { return; }
+        galleryFrames[selectedProjectIndex - 1].style.transformOrigin = "left";
+        galleryFrames[selectedProjectIndex - 1].style.transform = "scaleX(0)";
+        galleryFrames[selectedProjectIndex].style.transformOrigin = "right";
+        galleryFrames[selectedProjectIndex].style.transform = "scaleX(1)";
+    } else {
+        if (selectedProjectIndex >= (sectionNames.length - 1)) { return; }
+        galleryFrames[selectedProjectIndex + 1].style.transformOrigin = "right";
+        galleryFrames[selectedProjectIndex + 1].style.transform = "scaleX(0)";
+        galleryFrames[selectedProjectIndex].style.transformOrigin = "left";
+        galleryFrames[selectedProjectIndex].style.transform = "scaleX(1)";
+    }
+}
+
+function blinkGalleryLight() {
+    const galleryLight = document.getElementById('gallery-light');
+    galleryLight.style.opacity = 0;
+    setTimeout(() => {
+        galleryLight.style.opacity = 1;
+    }, 300);
+}
+
+function updateTextContainer() {
+    const galleryTextContainer = document.getElementById('gallery-text-container');
+    galleryTextContainer.style.opacity = 0;
+    setTimeout(() => {
+        updateTitleDesc(),
+            galleryTextContainer.style.opacity = 1;
+    }, 300);
+}
+
+function updateTitleDesc() {
+    const currentSectionTitle = document.getElementById('section-title');
+    const currentSectionDesc = document.getElementById('section-desc');
+    currentSectionTitle.innerHTML = sectionNames[selectedProjectIndex];
+    currentSectionDesc.innerHTML = sectionDescs[selectedProjectIndex];
+}
 
 
 // __________________________________
@@ -252,8 +324,26 @@ function backButtonHover(isReverse) {
 const viewHeight = () => { return document.documentElement.clientHeight };
 const viewWidth = () => { return document.documentElement.clientWidth };
 
+const sectionNames = ["GAME DEV", "APPS DEV", "DEEP LEARNING", "VIDEO COMPOSING", "ART CREATIONS", "3D MODELLING"];
+const sectionDescs = [
+    "Games ideas and prototypes developed across my game dev journey.",
+    "Mobile apps developed for iOS and iPadOS.",
+    "Research projects utilizing deep learning models for various applications.",
+    "Videos made for participation in competition or special events.",
+    "Arts created out of inspirations from various sources, with Pixel arts being my favourite style.",
+    "3D models constructed using some of the popular 3D modelling softwares."
+]
+
 var selectedProjectIndex = 0;
 var isStartDeactivateGallery = false;
+
+updateTitleDesc();
+updateGalleryArrow();
+const frameLeftArrow = document.getElementById('frame-left-arrow');
+frameLeftArrow.addEventListener("click", () => { projectSelector(false) }, false);
+const frameRightArrow = document.getElementById('frame-right-arrow');
+frameRightArrow.addEventListener("click", () => { projectSelector(true) }, false);
+
 const inspectButton = document.getElementById("inspect-button");
 inspectButton.addEventListener("click", inspectButtonClickHandler, false);
 

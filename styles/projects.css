@@ -46,6 +46,7 @@ nav #home-title span b {
 }
 
 #gallery-section #gallery-container #gallery-frames-arrows {
+  padding: 0 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -55,6 +56,22 @@ nav #home-title span b {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: relative;
+  width: calc(min(100%, 20rem));
+  height: 100%;
+}
+
+#gallery-section #gallery-container #gallery-frames-arrows #gallery-light {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  -webkit-transition: opacity 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(240, 255, 255, 0)), color-stop(25%, rgba(240, 255, 255, 0.65)), color-stop(90%, rgba(240, 255, 255, 0.2)), to(rgba(240, 255, 255, 0)));
+  background: linear-gradient(rgba(240, 255, 255, 0) 0%, rgba(240, 255, 255, 0.65) 25%, rgba(240, 255, 255, 0.2) 90%, rgba(240, 255, 255, 0) 100%);
+  -webkit-clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
 }
 
 #gallery-section #gallery-container #gallery-frames-arrows #frame-left-arrow,
@@ -69,18 +86,6 @@ nav #home-title span b {
 }
 
 #gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container .gallery-frame {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -91,7 +96,25 @@ nav #home-title span b {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: calc(min(100%, 20rem));
+  width: 80%;
+}
+
+#gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container .gallery-frame {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
 #gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container .gallery-frame .frame-inner {
@@ -103,7 +126,27 @@ nav #home-title span b {
   width: 100%;
 }
 
+#gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container .gallery-frame:not(#game-dev-frame) {
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+}
+
+#gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container #apps-dev-frame .frame-inner {
+  width: 40%;
+}
+
+#gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container #art-creation-frame .frame-inner {
+  -webkit-transform: translateY(10%);
+          transform: translateY(10%);
+  width: 50%;
+}
+
+#gallery-section #gallery-container #gallery-frames-arrows #gallery-frames-container #model3d-frame .frame-inner {
+  width: 50%;
+}
+
 #gallery-section #gallery-container #gallery-text-container {
+  width: 50vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -114,6 +157,10 @@ nav #home-title span b {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 0rem 1rem;
+  padding: 1rem 0;
+  -webkit-transition: opacity 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
 }
 
 #gallery-section #gallery-container #gallery-text-container h1 {
@@ -122,7 +169,7 @@ nav #home-title span b {
           backdrop-filter: blur(0px);
 }
 
-#gallery-section #gallery-container #gallery-text-container #project-desc {
+#gallery-section #gallery-container #gallery-text-container #section-desc {
   padding: 2rem;
 }
 
@@ -401,6 +448,21 @@ nav #home-title span b {
   to {
     -webkit-transform: scaleX(1);
             transform: scaleX(1);
+  }
+}
+
+@media only screen and (max-width: 40rem) {
+  #gallery-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+  #gallery-container #gallery-frames-arrows {
+    margin-top: 10rem;
   }
 }
 /*# sourceMappingURL=projects.css.map */
