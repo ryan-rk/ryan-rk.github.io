@@ -52,27 +52,39 @@ nav {
         justify-content: center;
         align-items: center;
         // transition: opacity 500ms ease-in-out;
-        #gallery-frames-arrows {
+        #gallery-viewport {
             padding: 0 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             width: calc(min(100%, 20rem));
-            height: 100%;
-            #gallery-light {
+            height: 50%;
+            #gallery-light-container {
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                z-index: 10;
-                transition: opacity 300ms ease-in-out;
-                background: linear-gradient(rgba(240, 255, 255, 0) 0%, rgba(240, 255, 255, 0.65) 25%, rgba(240, 255, 255, 0.2) 90%, rgba(240, 255, 255, 0) 100%);
-                clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
+                z-index: 5;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                #gallery-light-source {
+                    width: 30%;
+                }
+                #gallery-light {
+                    height: 100%;
+                    width: 100%;
+                    transition: opacity 300ms ease-in-out;
+                    background: linear-gradient(rgba(240, 255, 255, 0) 0%, rgba(240, 255, 255, 0.65) 25%, rgba(240, 255, 255, 0.2) 90%, rgba(240, 255, 255, 0) 100%);
+                    clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
+                }
             }
             #frame-left-arrow,
             #frame-right-arrow {
                 height: 2rem;
                 padding: 0.5rem;
+                z-index: 10;
             }
             #frame-left-arrow {
                 transform: scaleX(-1);
@@ -163,6 +175,35 @@ nav {
                 #inspect-button-text {
                     color: rgb(255, 255, 255);
                 }
+            }
+        }
+        #gallery-bottom-decor {
+            position: absolute;
+            width: 100%;
+            top: 90vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            #bottom-left-line,
+            #bottom-right-line {
+                width: 40%;
+                height: 0.1rem;
+                background-color: rgba(158, 158, 158, 0.5);
+            }
+            #bottom-center-diamond {
+                border: 0.15rem solid rgba(146, 146, 146, 0.8);
+                transform: rotate(45deg);
+                width: 1rem;
+                height: 1rem;
+                animation: bottom-diamond-animation 2s linear -1s infinite;
+            }
+            .bottom-side-diamond {
+                border: 0.15rem solid rgba(146, 146, 146, 0.6);
+                transform: rotate(45deg);
+                margin: 1rem;
+                width: 0.5rem;
+                height: 0.5rem;
+                animation: bottom-diamond-animation 2s linear infinite;
             }
         }
     }
@@ -337,13 +378,43 @@ nav {
     }
 }
 
+@keyframes bottom-diamond-animation {
+    0% {
+        transform: rotate(45deg) scale(1);
+    }
+    25% {
+        transform: rotate(45deg) scale(0.8);
+    }
+    75% {
+        transform: rotate(45deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(45deg) scale(1);
+    }
+}
+
 @media only screen and (max-width: 40rem) {
-    #gallery-container {
-        flex-direction: column;
-        align-items: stretch;
-        // background-color: aquamarine;
-        #gallery-frames-arrows {
-            margin-top: 10rem;
+    #gallery-section {
+        #gallery-container {
+            flex-direction: column;
+            justify-content: flex-start;
+            // background-color: aquamarine;
+            #gallery-viewport {
+                margin-top: 10rem;
+            }
+            #gallery-text-container {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 40rem) {
+    #gallery-section {
+        #gallery-container {
+            #gallery-bottom-decor {
+                display: flex;
+            }
         }
     }
 }
