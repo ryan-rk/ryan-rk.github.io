@@ -51,7 +51,6 @@ nav {
         // display: none;
         justify-content: center;
         align-items: center;
-        // transition: opacity 500ms ease-in-out;
         #gallery-viewport {
             padding: 0 1rem;
             display: flex;
@@ -119,7 +118,6 @@ nav {
                     width: 40%;
                 }
                 #art-creation-frame .frame-inner {
-                    transform: translateY(10%);
                     width: 50%;
                 }
                 #model3d-frame .frame-inner {
@@ -195,7 +193,7 @@ nav {
                 transform: rotate(45deg);
                 width: 1rem;
                 height: 1rem;
-                animation: bottom-diamond-animation 2s linear -1s infinite;
+                animation: bottom-diamond-animation 3s ease-in-out -0.5s infinite;
             }
             .bottom-side-diamond {
                 border: 0.15rem solid rgba(146, 146, 146, 0.6);
@@ -203,7 +201,7 @@ nav {
                 margin: 1rem;
                 width: 0.5rem;
                 height: 0.5rem;
-                animation: bottom-diamond-animation 2s linear infinite;
+                animation: bottom-diamond-animation 3s ease-in-out infinite;
             }
         }
     }
@@ -255,22 +253,13 @@ nav {
                 transition: transform 500ms ease-in-out;
             }
         }
-        // .project-icon {
-        //     position: absolute;
-        //     transform: translateY(50%);
-        //     top: 15rem;
-        // }
         .project-title {
             margin: 2rem;
             padding: 2rem;
         }
-        // .project-desc {
-        //     margin-top: 3rem;
-        // }
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-            // grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
             .project-card {
                 display: flex;
@@ -326,11 +315,6 @@ nav {
         // color: rgb(83, 170, 141);
         color: rgb(6, 126, 108);
     }
-    #game-projects-desc {
-        a {
-            color: rgb(21, 99, 120);
-        }
-    }
     .card-desc {
         a {
             color: rgb(21, 99, 120);
@@ -353,6 +337,96 @@ nav {
     }
 }
 
+#apps-projects {
+    #apps-projects-title {
+        color: rgb(55, 55, 164);
+    }
+    #hk-beta .card-title {
+        color: rgb(135, 27, 130);
+    }
+    #love-story .card-title {
+        color: rgb(119, 115, 218);
+    }
+    .section-background {
+        background: linear-gradient(rgb(135, 135, 198) 0%, rgb(103, 207, 223) 100%);
+    }
+}
+
+#dl-projects {
+    #dl-projects-title {
+        color: rgb(84, 55, 97);
+    }
+    #inverse-design .card-title {
+        color: rgb(135, 27, 94);
+    }
+    #mapping-network .card-title {
+        color: rgb(54, 53, 99);
+    }
+    #mapnet .card-title {
+        color: rgb(25, 16, 150);
+    }
+    .section-background {
+        background: linear-gradient(rgb(105, 129, 146) 0%, rgb(188, 168, 223) 100%);
+    }
+}
+
+#video-projects {
+    // .section-foreground {
+    //     display: flex;
+    //     opacity: 1;
+    // }
+    #video-projects-title {
+        color: rgb(114, 131, 31);
+    }
+    #microsoft-promo .card-title {
+        color: rgb(141, 145, 83);
+    }
+    .section-background {
+        background: linear-gradient(rgb(194, 220, 184) 0%, rgb(223, 189, 168) 100%);
+        // clip-path: circle(100%);
+    }
+}
+
+#art-projects {
+    // .section-foreground {
+    //     display: flex;
+    //     opacity: 1;
+    // }
+    #art-projects-title {
+        color: rgb(114, 38, 47);
+    }
+    #uiux-projects .card-title {
+        color: rgb(176, 65, 75);
+    }
+    #pixel-arts .card-title {
+        color: rgb(220, 83, 170);
+    }
+    #photos-editing .card-title {
+        color: rgb(237, 134, 120);
+    }
+    .section-background {
+        background: linear-gradient(rgb(205, 152, 203) 0%, rgb(223, 168, 181) 100%);
+        // clip-path: circle(100%);
+    }
+}
+
+#model3d-projects {
+    // .section-foreground {
+    //     display: flex;
+    //     opacity: 1;
+    // }
+    #model3d-projects-title {
+        color: rgb(90, 17, 17);
+    }
+    #solidworks-projects .card-title {
+        color: rgb(124, 62, 33);
+    }
+    .section-background {
+        background: linear-gradient(rgb(210, 129, 129) 0%, rgb(177, 165, 149) 100%);
+        // clip-path: circle(100%);
+    }
+}
+
 #background {
     position: fixed;
     width: 100vw;
@@ -364,7 +438,6 @@ nav {
         position: absolute;
         width: 100%;
         height: 100%;
-        // background: rgb(72, 72, 72);
         background: linear-gradient(rgb(170, 170, 170) 0%, rgb(255, 255, 255) 100%);
     }
 }
@@ -380,16 +453,13 @@ nav {
 
 @keyframes bottom-diamond-animation {
     0% {
-        transform: rotate(45deg) scale(1);
-    }
-    25% {
         transform: rotate(45deg) scale(0.8);
     }
-    75% {
+    50% {
         transform: rotate(45deg) scale(1.2);
     }
     100% {
-        transform: rotate(45deg) scale(1);
+        transform: rotate(45deg) scale(0.8);
     }
 }
 

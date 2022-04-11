@@ -36,14 +36,12 @@ class ProjectSection {
                 this.sectionCards[i].style.transform = "translateY(0%)";
                 this.sectionCards[i].style.opacity = 1;
             }
-            console.log("slide in cards");
         } else {
             for (let i = 0; i < this.sectionCards.length; i++) {
                 this.sectionCards[i].style.transitionDelay = `${(this.sectionCards.length - 1 - i) * 80}ms`;
                 this.sectionCards[i].style.transform = "translateY(50%)";
                 this.sectionCards[i].style.opacity = 0;
             }
-            console.log("slide out cards");
         }
     }
 
@@ -151,9 +149,37 @@ function navListHover(pageID) {
 // __________________________________
 function inspectButtonClickHandler() {
     if (isStartDeactivateGallery) { return; }
+    switch (selectedProjectIndex) {
+        case 0:
+            gameSection.setActivation(true);
+            break;
+
+        case 1:
+            appSection.setActivation(true);
+            break;
+
+        case 2:
+            dlSection.setActivation(true);
+            break;
+
+        case 3:
+            videoSection.setActivation(true);
+            break;
+
+        case 4:
+            artSection.setActivation(true);
+            break;
+
+        case 5:
+            model3dSection.setActivation(true);
+            break;
+
+        default:
+            console.log("Project index not implemented");
+            return;
+    }
     isStartDeactivateGallery = true;
     updateGallerySection(false);
-    inspectSelectedProjects();
 }
 
 function calculateCurrentFrameCenter() {
@@ -179,6 +205,7 @@ function updateGallerySection(isActive) {
 }
 
 function initializeProjectIconFloat() {
+    updateProjectIconFloatSrc();
     const frameInnerIcons = document.getElementsByClassName('frame-inner');
     const projectIconFloat = document.getElementById("float-project-icon");
     const projectIconBCR = frameInnerIcons[selectedProjectIndex].getBoundingClientRect();
@@ -196,6 +223,39 @@ function initializeProjectIconFloat() {
     }, 300);
 }
 
+function updateProjectIconFloatSrc() {
+    const projectIconFloat = document.getElementById("float-project-icon");
+    switch (selectedProjectIndex) {
+        case 0:
+            projectIconFloat.src = "assets/img/controller-icon.svg";
+            break;
+
+        case 1:
+            projectIconFloat.src = "assets/img/apps-icon.svg";
+            break;
+
+        case 2:
+            projectIconFloat.src = "assets/img/deep-learning-icon.svg";
+            break;
+
+        case 3:
+            projectIconFloat.src = "assets/img/video-icon.svg";
+            break;
+
+        case 4:
+            projectIconFloat.src = "assets/img/art-icon.svg";
+            break;
+
+        case 5:
+            projectIconFloat.src = "assets/img/model3d-icon.svg";
+            break;
+
+        default:
+            projectIconFloat.src = "assets/img/controller-icon.svg";
+            break;
+    }
+}
+
 function animateProjectIconFloat() {
     const projectIconFloat = document.getElementById("float-project-icon");
     // const projectTitleBCR = document.getElementsByClassName("project-title")[selectedProjectIndex].getBoundingClientRect();
@@ -205,18 +265,6 @@ function animateProjectIconFloat() {
     projectIconFloat.style.transitionDuration = "800ms, 800ms, 500ms";
     projectIconFloat.style.transitionDelay = "0ms, 0ms, 800ms"
     projectIconFloat.style.opacity = 0;
-}
-
-function inspectSelectedProjects() {
-    switch (selectedProjectIndex) {
-        case 0:
-            gameSection.setActivation(true);
-            break;
-
-        default:
-            console.log("Project index not implemented");
-            break;
-    }
 }
 
 function projectSelector(isIncrease) {
@@ -330,25 +378,29 @@ const sectionDescs = [
     "Mobile apps developed for iOS and iPadOS.",
     "Research projects utilizing deep learning models for various applications.",
     "Videos made for participation in competition or special events.",
-    "Arts created out of inspirations from various sources, with Pixel arts being my favourite style.",
+    "Arts created out of inspirations from various sources using different tools",
     "3D models constructed using some of the popular 3D modelling softwares."
 ]
 
 var selectedProjectIndex = 0;
 var isStartDeactivateGallery = false;
-
+navListHover('projects');
 updateTitleDesc();
 updateGalleryArrow();
 const frameLeftArrow = document.getElementById('frame-left-arrow');
 frameLeftArrow.addEventListener("click", () => { projectSelector(false) }, false);
 const frameRightArrow = document.getElementById('frame-right-arrow');
 frameRightArrow.addEventListener("click", () => { projectSelector(true) }, false);
-
 const inspectButton = document.getElementById("inspect-button");
 inspectButton.addEventListener("click", inspectButtonClickHandler, false);
 
-navListHover('projects');
+
 const gameSection = new ProjectSection("game-projects");
+const appSection = new ProjectSection("apps-projects");
+const dlSection = new ProjectSection("dl-projects");
+const videoSection = new ProjectSection("video-projects");
+const artSection = new ProjectSection("art-projects");
+const model3dSection = new ProjectSection("model3d-projects");
 const backButtons = document.getElementsByClassName('back-button');
 for (const backButton of backButtons) {
     backButton.addEventListener('mouseover', () => { backButtonHover(false) }, false);

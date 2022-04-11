@@ -159,8 +159,6 @@ nav #home-title span b {
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container #art-creation-frame .frame-inner {
-  -webkit-transform: translateY(10%);
-          transform: translateY(10%);
   width: 50%;
 }
 
@@ -273,8 +271,8 @@ nav #home-title span b {
           transform: rotate(45deg);
   width: 1rem;
   height: 1rem;
-  -webkit-animation: bottom-diamond-animation 2s linear -1s infinite;
-          animation: bottom-diamond-animation 2s linear -1s infinite;
+  -webkit-animation: bottom-diamond-animation 3s ease-in-out -0.5s infinite;
+          animation: bottom-diamond-animation 3s ease-in-out -0.5s infinite;
 }
 
 #gallery-section #gallery-container #gallery-bottom-decor .bottom-side-diamond {
@@ -284,8 +282,8 @@ nav #home-title span b {
   margin: 1rem;
   width: 0.5rem;
   height: 0.5rem;
-  -webkit-animation: bottom-diamond-animation 2s linear infinite;
-          animation: bottom-diamond-animation 2s linear infinite;
+  -webkit-animation: bottom-diamond-animation 3s ease-in-out infinite;
+          animation: bottom-diamond-animation 3s ease-in-out infinite;
 }
 
 .project-section .section-foreground {
@@ -447,10 +445,6 @@ nav #home-title span b {
   color: #067e6c;
 }
 
-#game-projects #game-projects-desc a {
-  color: #156378;
-}
-
 #game-projects .card-desc a {
   color: #156378;
 }
@@ -474,6 +468,91 @@ nav #home-title span b {
 #game-projects .section-background {
   background: -webkit-gradient(linear, left top, left bottom, from(#c1dcee), to(#a2c4aa));
   background: linear-gradient(#c1dcee 0%, #a2c4aa 100%);
+}
+
+#apps-projects #apps-projects-title {
+  color: #3737a4;
+}
+
+#apps-projects #hk-beta .card-title {
+  color: #871b82;
+}
+
+#apps-projects #love-story .card-title {
+  color: #7773da;
+}
+
+#apps-projects .section-background {
+  background: -webkit-gradient(linear, left top, left bottom, from(#8787c6), to(#67cfdf));
+  background: linear-gradient(#8787c6 0%, #67cfdf 100%);
+}
+
+#dl-projects #dl-projects-title {
+  color: #543761;
+}
+
+#dl-projects #inverse-design .card-title {
+  color: #871b5e;
+}
+
+#dl-projects #mapping-network .card-title {
+  color: #363563;
+}
+
+#dl-projects #mapnet .card-title {
+  color: #191096;
+}
+
+#dl-projects .section-background {
+  background: -webkit-gradient(linear, left top, left bottom, from(#698192), to(#bca8df));
+  background: linear-gradient(#698192 0%, #bca8df 100%);
+}
+
+#video-projects #video-projects-title {
+  color: #72831f;
+}
+
+#video-projects #microsoft-promo .card-title {
+  color: #8d9153;
+}
+
+#video-projects .section-background {
+  background: -webkit-gradient(linear, left top, left bottom, from(#c2dcb8), to(#dfbda8));
+  background: linear-gradient(#c2dcb8 0%, #dfbda8 100%);
+}
+
+#art-projects #art-projects-title {
+  color: #72262f;
+}
+
+#art-projects #uiux-projects .card-title {
+  color: #b0414b;
+}
+
+#art-projects #pixel-arts .card-title {
+  color: #dc53aa;
+}
+
+#art-projects #photos-editing .card-title {
+  color: #ed8678;
+}
+
+#art-projects .section-background {
+  background: -webkit-gradient(linear, left top, left bottom, from(#cd98cb), to(#dfa8b5));
+  background: linear-gradient(#cd98cb 0%, #dfa8b5 100%);
+}
+
+#model3d-projects #model3d-projects-title {
+  color: #5a1111;
+}
+
+#model3d-projects #solidworks-projects .card-title {
+  color: #7c3e21;
+}
+
+#model3d-projects .section-background {
+  background: -webkit-gradient(linear, left top, left bottom, from(#d28181), to(#b1a595));
+  background: linear-gradient(#d28181 0%, #b1a595 100%);
 }
 
 #background {
@@ -517,39 +596,31 @@ nav #home-title span b {
 
 @-webkit-keyframes bottom-diamond-animation {
   0% {
-    -webkit-transform: rotate(45deg) scale(1);
-            transform: rotate(45deg) scale(1);
-  }
-  25% {
     -webkit-transform: rotate(45deg) scale(0.8);
             transform: rotate(45deg) scale(0.8);
   }
-  75% {
+  50% {
     -webkit-transform: rotate(45deg) scale(1.2);
             transform: rotate(45deg) scale(1.2);
   }
   100% {
-    -webkit-transform: rotate(45deg) scale(1);
-            transform: rotate(45deg) scale(1);
+    -webkit-transform: rotate(45deg) scale(0.8);
+            transform: rotate(45deg) scale(0.8);
   }
 }
 
 @keyframes bottom-diamond-animation {
   0% {
-    -webkit-transform: rotate(45deg) scale(1);
-            transform: rotate(45deg) scale(1);
-  }
-  25% {
     -webkit-transform: rotate(45deg) scale(0.8);
             transform: rotate(45deg) scale(0.8);
   }
-  75% {
+  50% {
     -webkit-transform: rotate(45deg) scale(1.2);
             transform: rotate(45deg) scale(1.2);
   }
   100% {
-    -webkit-transform: rotate(45deg) scale(1);
-            transform: rotate(45deg) scale(1);
+    -webkit-transform: rotate(45deg) scale(0.8);
+            transform: rotate(45deg) scale(0.8);
   }
 }
 
