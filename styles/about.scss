@@ -1,0 +1,37 @@
+h1,
+h2 {
+    opacity: 1;
+}
+
+h1:not(#home-title) {
+    font-family: 'Source Code Pro', monospace;
+    backdrop-filter: blur(3px);
+    background-color: rgba(240, 255, 255, 0.229);
+}
+
+nav {
+    // background: rgba(227, 227, 227, 0.415);
+    animation: nav-appear-animation 500ms ease-in-out forwards;
+    #home-title {
+        span {
+            b {
+                color: rgb(92, 85, 135);
+            }
+        }
+    }
+}
+
+#background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+    #background-color {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgb(230, 246, 237) 0%, rgb(201, 220, 248) 100%);
+    }
+}
