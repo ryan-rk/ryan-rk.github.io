@@ -5,8 +5,9 @@ h2 {
 
 h1:not(#home-title) {
     font-family: 'Source Code Pro', monospace;
-    backdrop-filter: blur(3px);
-    background-color: rgba(240, 255, 255, 0.229);
+    backdrop-filter: blur(0px);
+    background-color: rgba(51, 71, 123, 0);
+    padding: 0;
 }
 
 nav {
@@ -16,6 +17,78 @@ nav {
         span {
             b {
                 color: rgb(92, 85, 135);
+            }
+        }
+    }
+}
+
+#fg-container {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    // padding: 0 2rem;
+    #centering-container {
+        display: flex;
+        align-items: center;
+        #left-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem;
+            #rklogo {
+                width: 10rem;
+                border: 0.1rem solid rgb(101, 97, 133);
+                border-radius: 50%;
+            }
+            #name-icon-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                #rk-name {
+                    font-size: 1rem;
+                    margin-top: 1rem;
+                }
+                #social-icon-container {
+                    display: flex;
+                    #linkedin-icon {
+                        padding-right: 1rem;
+                        padding-top: 1rem;
+                        width: 2rem;
+                    }
+                    #ig-icon {
+                        padding-left: 1rem;
+                        padding-top: 1rem;
+                        width: 2rem;
+                    }
+                }
+            }
+        }
+        #right-container {
+            margin: 1rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            #text-title {
+                position: absolute;
+                z-index: 10;
+                font-size: 1.5rem;
+                color: rgb(240, 243, 255);
+                padding: 1rem;
+                border-radius: 1.5rem;
+                background-color: rgba(135, 148, 200, 0.465);
+                backdrop-filter: blur(8px);
+            }
+            #text-desc {
+                margin-top: 2rem;
+                text-align: justify;
+                padding: 3rem 2rem;
+                background-color: rgba(240, 255, 255, 0.449);
+                backdrop-filter: blur(8px);
+                border-radius: 2rem;
             }
         }
     }
@@ -33,5 +106,26 @@ nav {
         width: 100%;
         height: 100%;
         background: linear-gradient(rgb(230, 246, 237) 0%, rgb(201, 220, 248) 100%);
+    }
+}
+
+@media only screen and (max-width: 50rem) {
+    #fg-container {
+        align-items: flex-start;
+        padding-top: 10rem;
+        // margin-top: 10rem;
+        #centering-container {
+            flex-direction: column;
+            #left-container {
+                flex-direction: row;
+                #name-icon-container {
+                    margin-left: 2rem;
+                    align-items: flex-start;
+                    #rk-name {
+                        text-align: left;
+                    }
+                }
+            }
+        }
     }
 }

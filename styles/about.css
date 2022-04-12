@@ -5,9 +5,10 @@ h2 {
 
 h1:not(#home-title) {
   font-family: 'Source Code Pro', monospace;
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
-  background-color: rgba(240, 255, 255, 0.229);
+  -webkit-backdrop-filter: blur(0px);
+          backdrop-filter: blur(0px);
+  background-color: rgba(51, 71, 123, 0);
+  padding: 0;
 }
 
 nav {
@@ -17,6 +18,126 @@ nav {
 
 nav #home-title span b {
   color: #5c5587;
+}
+
+#fg-container {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#fg-container #centering-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#fg-container #centering-container #left-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+}
+
+#fg-container #centering-container #left-container #rklogo {
+  width: 10rem;
+  border: 0.1rem solid #656185;
+  border-radius: 50%;
+}
+
+#fg-container #centering-container #left-container #name-icon-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#fg-container #centering-container #left-container #name-icon-container #rk-name {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+#fg-container #centering-container #left-container #name-icon-container #social-icon-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#fg-container #centering-container #left-container #name-icon-container #social-icon-container #linkedin-icon {
+  padding-right: 1rem;
+  padding-top: 1rem;
+  width: 2rem;
+}
+
+#fg-container #centering-container #left-container #name-icon-container #social-icon-container #ig-icon {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  width: 2rem;
+}
+
+#fg-container #centering-container #right-container {
+  margin: 1rem 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#fg-container #centering-container #right-container #text-title {
+  position: absolute;
+  z-index: 10;
+  font-size: 1.5rem;
+  color: #f0f3ff;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: rgba(135, 148, 200, 0.465);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+#fg-container #centering-container #right-container #text-desc {
+  margin-top: 2rem;
+  text-align: justify;
+  padding: 3rem 2rem;
+  background-color: rgba(240, 255, 255, 0.449);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 2rem;
 }
 
 #background {
@@ -34,5 +155,35 @@ nav #home-title span b {
   height: 100%;
   background: -webkit-gradient(linear, left top, left bottom, from(#e6f6ed), to(#c9dcf8));
   background: linear-gradient(#e6f6ed 0%, #c9dcf8 100%);
+}
+
+@media only screen and (max-width: 50rem) {
+  #fg-container {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    padding-top: 10rem;
+  }
+  #fg-container #centering-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #fg-container #centering-container #left-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  #fg-container #centering-container #left-container #name-icon-container {
+    margin-left: 2rem;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  #fg-container #centering-container #left-container #name-icon-container #rk-name {
+    text-align: left;
+  }
 }
 /*# sourceMappingURL=about.css.map */
