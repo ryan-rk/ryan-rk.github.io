@@ -221,10 +221,10 @@ nav #home-title span b {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   background-color: #000000;
-  -webkit-transition: -webkit-transform 500ms ease-in-out;
-  transition: -webkit-transform 500ms ease-in-out;
-  transition: transform 500ms ease-in-out;
-  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+  -webkit-transition: -webkit-transform 250ms ease-in-out;
+  transition: -webkit-transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
   z-index: 0;
 }
 
@@ -232,8 +232,8 @@ nav #home-title span b {
   z-index: 1;
   color: #000;
   font-size: 1.5rem;
-  -webkit-transition: color 800ms ease-in-out;
-  transition: color 800ms ease-in-out;
+  -webkit-transition: color 250ms ease-in-out;
+  transition: color 250ms ease-in-out;
 }
 
 #gallery-section #gallery-container #gallery-text-container #inspect-button:hover #inspect-button-bg {
