@@ -23,6 +23,8 @@ nav {
 }
 
 #fg-container {
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out 500ms;
     box-sizing: border-box;
     display: flex;
     // display: none;
@@ -124,6 +126,8 @@ nav {
 }
 
 #background {
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -139,9 +143,11 @@ nav {
 }
 
 canvas {
-    // background-color: aquamarine;
     position: fixed;
     z-index: -5;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 1000ms cubic-bezier(.06, .65, .25, .97) 1500ms, opacity 800ms ease-in-out;
 }
 
 @media only screen and (max-width: 50rem) {

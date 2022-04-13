@@ -13,6 +13,8 @@ class Circle {
         this.scaleDiff = this.maxScale - this.minScale;
         this.mouseTranslateX = 0;
         this.mouseTranslateY = 0;
+        this.distanceThres = rem2Px(1800);
+        this.mouseTranslateScale = 1e-9; //rem2Px(0.1);
     }
 
     drawStroke() {
@@ -48,6 +50,16 @@ class Circle {
 
     mouseTranslate(mouseX, mouseY) {
         const sqrDistance = Math.pow(this.x - mouseX, 2) + Math.pow(this.y - mouseY, 2);
+        if (sqrDistance < this.distanceThres) {
+            const offsetMagnitude = this.mouseTranslateScale * Math.pow(sqrDistance - this.distanceThres, 2);
+            this.mouseTranslateX = offsetMagnitude * (this.x - mouseX);
+            this.mouseTranslateY = offsetMagnitude * (this.y - mouseY);
+        } else {
+            this.mouseTranslateX = 0;
+            this.mouseTranslateY = 0;
+        }
+        // const sqrDiffX = Math.pow(this.X - mouseX, 2);
+        // const sqrDiffY = Math.pow(this.Y - mouseY, 2);
     }
 }
 
@@ -57,6 +69,15 @@ class Circle {
 // convert rem value to pixel
 function rem2Px(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+function initializePage() {
+    const fgContainer = document.getElementById("fg-container");
+    fgContainer.style.opacity = 1;
+    const background = document.getElementById("background");
+    background.style.opacity = 1;
+    canvas.style.transform = "scale(1)";
+    canvas.style.opacity = 1;
 }
 
 
@@ -167,10 +188,11 @@ function generateGridCircles() {
 
 // --- Functions to track mouse locations ---
 function mousemove(event) {
-    console.log("pageX: ", event.pageX,
-        "pageY: ", event.pageY,
-        "clientX: ", event.clientX,
-        "clientY:", event.clientY)
+    for (let i = 0; i < gridCircles.length; i++) {
+        for (let j = 0; j < gridCircles[i].length; j++) {
+            gridCircles[i][j].mouseTranslate(event.clientX, event.clientY);
+        }
+    }
 }
 
 
@@ -180,7 +202,7 @@ const viewWidth = () => { return document.documentElement.clientWidth };
 
 navListHover('aboutme');
 
-// window.addEventListener('mousemove', mousemove);
+window.addEventListener('mousemove', mousemove);
 
 const canvas = document.querySelector('canvas');
 const ctx = initCanvas();
@@ -188,3 +210,5 @@ var gridCircles = generateGridCircles();
 var frameIndex = 0;
 animateCanvas();
 window.addEventListener('resize', canvasResize);
+
+initializePage();
