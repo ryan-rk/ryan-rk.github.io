@@ -19,6 +19,12 @@ nav #home-title span b {
   color: #14b0a0;
 }
 
+#gallery-section {
+  opacity: 0;
+  -webkit-transition: opacity 1000ms ease-in-out 500ms;
+  transition: opacity 1000ms ease-in-out 500ms;
+}
+
 #gallery-section #float-project-icon {
   opacity: 0;
   position: absolute;
@@ -570,6 +576,9 @@ nav #home-title span b {
   height: 100%;
   background: -webkit-gradient(linear, left top, left bottom, from(#aaaaaa), to(white));
   background: linear-gradient(#aaaaaa 0%, white 100%);
+  opacity: 0;
+  -webkit-transition: opacity 1000ms ease-in-out;
+  transition: opacity 1000ms ease-in-out;
 }
 
 @-webkit-keyframes nav-appear-animation {

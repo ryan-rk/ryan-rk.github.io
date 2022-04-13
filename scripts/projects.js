@@ -89,6 +89,12 @@ class ProjectSection {
 
 
 
+function initializePage() {
+    const gallerySection = document.getElementById("gallery-section");
+    gallerySection.style.opacity = 1;
+    const background = document.getElementById("background-color");
+    background.style.opacity = 1;
+}
 
 
 // --- Functions for Navbar ---
@@ -384,6 +390,7 @@ const sectionDescs = [
 
 var selectedProjectIndex = 0;
 var isStartDeactivateGallery = false;
+initializePage();
 navListHover('projects');
 updateTitleDesc();
 updateGalleryArrow();

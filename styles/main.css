@@ -1431,12 +1431,11 @@ header {
 
 #soft-skills #soft-skills-container {
   position: relative;
-  margin-top: 2rem;
 }
 
 #soft-skills #soft-skills-container #softskills-center-container {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -1457,8 +1456,8 @@ header {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  width: calc(min(40vw, 25rem));
-  height: calc(min(40vw, 25rem));
+  width: 25rem;
+  height: 25rem;
   -webkit-perspective: 200px;
           perspective: 200px;
 }
@@ -1491,8 +1490,6 @@ header {
   display: -ms-grid;
   display: grid;
   row-gap: 5rem;
-  -webkit-column-gap: 10vw;
-          column-gap: 10vw;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
   -ms-grid-rows: 1fr 1fr;
@@ -1504,6 +1501,17 @@ header {
 }
 
 #soft-skills #soft-skills-container .softskills-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#soft-skills #soft-skills-container .softskills-card-text {
+  text-align: center;
+  margin: 1rem;
+}
+
+#soft-skills #soft-skills-container .card-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1519,13 +1527,17 @@ header {
           align-items: center;
   position: relative;
   width: 30vw;
-  height: calc(min(20vw, 10rem));
-  -webkit-perspective: 100px;
-          perspective: 100px;
+  height: calc(min(20vw, 12rem));
 }
 
-#soft-skills #soft-skills-container .softskills-card-text {
-  text-align: center;
+#soft-skills #soft-skills-container .card-circle {
+  margin: 1rem 5vw;
+  width: calc(min(1vw, 2rem));
+  height: calc(min(1vw, 2rem));
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
 }
 
 #soft-skills #soft-skills-container .softskills-card-fg {
@@ -1539,15 +1551,16 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   position: relative;
   -webkit-transition: -webkit-transform 500ms ease-in-out;
   transition: -webkit-transform 500ms ease-in-out;
   transition: transform 500ms ease-in-out;
   transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
-  -webkit-transform-origin: bottom;
-          transform-origin: bottom;
   z-index: 1;
-  width: calc(min(100%, 10rem));
+  width: calc(min(70%, 12rem));
 }
 
 #soft-skills #soft-skills-container .softskills-card-fg:hover {
@@ -1557,15 +1570,40 @@ header {
 
 #soft-skills #soft-skills-container .softskills-card-bg {
   position: absolute;
-  height: 2rem;
+  height: 100%;
   width: 100%;
-  border-radius: 1vw;
-  -webkit-transform: translateY(20%) rotateX(70deg);
-          transform: translateY(20%) rotateX(70deg);
+  border-radius: 3vw;
+  -webkit-clip-path: polygon(10% 0%, 0 0, 0 100%, 10% 100%, 10% 90%, 90% 90%, 90% 100%, 100% 100%, 100% 0, 90% 0, 90% 10%, 10% 10%);
+          clip-path: polygon(10% 0%, 0 0, 0 100%, 10% 100%, 10% 90%, 90% 90%, 90% 100%, 100% 100%, 100% 0, 90% 0, 90% 10%, 10% 10%);
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+}
+
+#soft-skills #soft-skills-container #teamwork-leadership {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+#soft-skills #soft-skills-container #teamwork-leadership .card-circle {
+  border: 0.3rem solid rgba(83, 90, 161, 0.488);
+  border-radius: 0 50% 0 50%;
+}
+
+#soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg #person-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg .person-outline {
-  width: 30%;
+  width: 35%;
+  padding: 0 0.5vw;
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg .softskills-card-text {
@@ -1574,23 +1612,34 @@ header {
 
 #soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg #person-outline2,
 #soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg #person-outline3 {
-  position: absolute;
-  top: -2rem;
   opacity: 0;
   -webkit-transition: all 500ms ease-in-out;
   transition: all 500ms ease-in-out;
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg #person-outline2 {
-  left: 0;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership #teamwork-fg #person-outline3 {
-  right: 0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership .softskills-card-bg {
-  background-color: #9fa6db68;
+  border: 0.2rem solid #3e4aa568;
+}
+
+#soft-skills #soft-skills-container #time-management {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+#soft-skills #soft-skills-container #time-management .card-circle {
+  border: 0.3rem solid rgba(67, 132, 111, 0.488);
+  border-radius: 50% 0 50% 0;
 }
 
 #soft-skills #soft-skills-container #time-management #time-fg .softskills-card-text {
@@ -1599,7 +1648,7 @@ header {
 
 #soft-skills #soft-skills-container #time-management #time-fg #clock-container {
   position: relative;
-  width: 50%;
+  width: 60%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1644,7 +1693,12 @@ header {
 }
 
 #soft-skills #soft-skills-container #time-management .softskills-card-bg {
-  background-color: #578e9c68;
+  border: 0.2rem solid #578e9c68;
+}
+
+#soft-skills #soft-skills-container #creativity .card-circle {
+  border: 0.3rem solid rgba(152, 71, 159, 0.488);
+  border-radius: 50% 0 50% 0;
 }
 
 #soft-skills #soft-skills-container #creativity #creativity-fg .softskills-card-text {
@@ -1718,7 +1772,12 @@ header {
 }
 
 #soft-skills #soft-skills-container #creativity .softskills-card-bg {
-  background-color: #da8edc68;
+  border: 0.2rem solid #a54ca868;
+}
+
+#soft-skills #soft-skills-container #adaptability .card-circle {
+  border: 0.3rem solid rgba(159, 71, 71, 0.488);
+  border-radius: 0 50% 0 50%;
 }
 
 #soft-skills #soft-skills-container #adaptability #adaptability-fg .softskills-card-text {
@@ -1786,7 +1845,7 @@ header {
 }
 
 #soft-skills #soft-skills-container #adaptability .softskills-card-bg {
-  background-color: #e1939d68;
+  border: 0.2rem solid #a3404d68;
 }
 
 #soft-skills #soft-skills-container #softskills-desc-container {

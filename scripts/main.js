@@ -6,6 +6,11 @@ function rem2Px(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
+function initializePage() {
+    const backdrop = document.getElementById("backdrop");
+    backdrop.style.opacity = 1;
+}
+
 
 // --- Functions for headings and text animations
 function explodeAllH1Text() {
@@ -403,7 +408,7 @@ function updateSoftskillsDesc(cardIndex) {
             descContainer.style.transformOrigin = "top left";
             descBg.style.backgroundColor = "rgba(80, 87, 123, 0.652)";
             descTitle.innerHTML = "Teamwork & Leadership";
-            descText.innerHTML = "Lead and organize different events in university societies, including exhibition, concert and prom night.<br><br>Positions held include: Presidents, Head of various departments (eg: Multech, Publicity, Program and Event planning)."
+            descText.innerHTML = "Lead and organize different events in university societies, including exhibition, concert and prom night.<br><br>Positions held include: Presidents, Head of various departments (eg: Multech, Publicity, Program and Event planning). Also partaken the role of sports manager to lead college's sport team to sport events such as Rugby and Volleyball."
             break;
 
         case 2:
@@ -417,7 +422,7 @@ function updateSoftskillsDesc(cardIndex) {
             descContainer.style.transformOrigin = "bottom left";
             descBg.style.backgroundColor = "rgba(121, 80, 123, 0.652)";
             descTitle.innerHTML = "Creativity";
-            descText.innerHTML = "Strong interest in developing creative contents which includes: animation and video composing (After Effects), UI/UX design (Figma), illustration or pixel art creation (Aseprite), photo editing (Photoshop/GIMP), audio and music creation (GarageBand/Audition).<br><br>Having great attention to details and loves to create things or arts that can make people happy because why not."
+            descText.innerHTML = "Strong interest in developing creative contents which includes: animation and video composing (After Effects), UI/UX design (Figma), illustration or pixel art creation (Aseprite), photo editing (Photoshop/GIMP), audio and music creation (GarageBand/Audition).<br><br>Having great attention to details and always strive to create things or arts from innovative ideas and that which can make people happy because why not."
             break;
 
         case 4:
@@ -448,13 +453,27 @@ function hideSoftskillsDesc() {
 function teamworkAnimation(isReverse) {
     const personOutline2 = document.getElementById('person-outline2');
     const personOutline3 = document.getElementById('person-outline3');
-    personOutline2.style.top = isReverse ? "-2rem" : "0";
-    personOutline2.style.opacity = isReverse ? "0" : "1";
-    personOutline3.style.top = isReverse ? "-2rem" : "0";
-    personOutline3.style.opacity = isReverse ? "0" : "1";
+    const teamworkCardBg = document.querySelector('#teamwork-leadership .softskills-card-bg');
+    const teamworkCircle = document.querySelector('#teamwork-leadership .card-circle');
+    // personOutline2.style.top = isReverse ? "-2rem" : "0";
+    // personOutline2.style.opacity = isReverse ? "0" : "1";
+    // personOutline3.style.top = isReverse ? "-2rem" : "0";
+    // personOutline3.style.opacity = isReverse ? "0" : "1";
     if (isReverse) {
+        personOutline2.style.opacity = "0";
+        personOutline2.style.transform = "translate(50%, -50%)";
+        personOutline3.style.opacity = "0";
+        personOutline3.style.transform = "translate(-50%, -50%)";
+        teamworkCircle.style.transform = "translate(0, 0)";
+        teamworkCardBg.style.transform = "scaleX(1)";
         collapseSoftskillsCenter();
     } else {
+        personOutline2.style.opacity = "1";
+        personOutline2.style.transform = "translate(0, 0)";
+        personOutline3.style.opacity = "1";
+        personOutline3.style.transform = "translate(0, 0)";
+        teamworkCircle.style.transform = "translate(-50%, -50%)";
+        teamworkCardBg.style.transform = "scaleX(1.1)";
         rotateSoftskillsCenter(1);
     }
 }
@@ -462,13 +481,19 @@ function teamworkAnimation(isReverse) {
 function rotateClockHand(isReverse) {
     const shortClockHand = document.getElementById('short-clock-hand');
     const longClockHand = document.getElementById('long-clock-hand');
+    const timeCardBg = document.querySelector('#time-management .softskills-card-bg');
+    const timeCircle = document.querySelector('#time-management .card-circle');
     if (isReverse) {
         shortClockHand.style.transform = "translate(50%, 0) rotate(0deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(0deg)";
+        timeCircle.style.transform = "translate(0, 0)";
+        timeCardBg.style.transform = "scaleX(1)";
         collapseSoftskillsCenter();
     } else {
         shortClockHand.style.transform = "translate(50%, 0) rotate(60deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(720deg)";
+        timeCircle.style.transform = "translate(50%, -50%)";
+        timeCardBg.style.transform = "scaleX(1.1)";
         rotateSoftskillsCenter(2);
     }
 }
@@ -477,16 +502,22 @@ function creativityAnimation(isReverse) {
     // const headBottom = document.getElementById('head-bottom-icon');
     const headTop = document.getElementById('head-top-icon');
     const headInner = document.getElementById('head-inner');
+    const cardBg = document.querySelector('#creativity .softskills-card-bg');
+    const cardCirle = document.querySelector('#creativity .card-circle');
     // const lightBulb = document.getElementById('creativity-light-bulb');
     if (isReverse) {
         headTop.style.transform = "rotate(0deg)";
         headInner.style.top = "0%";
         headInner.style.opacity = 0;
+        cardCirle.style.transform = "translate(0, 0)";
+        cardBg.style.transform = "scaleX(1)";
         collapseSoftskillsCenter();
     } else {
         headTop.style.transform = "rotate(-90deg)";
         headInner.style.top = "-20%";
         headInner.style.opacity = 1;
+        cardCirle.style.transform = "translate(-50%, 50%)";
+        cardBg.style.transform = "scaleX(1.1)";
         rotateSoftskillsCenter(3);
     }
 }
@@ -497,14 +528,25 @@ function adaptabilityAnimation(isReverse) {
     const triangleBlock = document.getElementById('triangle-block');
     const triangleHole = document.getElementById('triangle-hole');
     const adaptabilityBase = document.getElementById('adaptability-base-container');
-    circleBlock.style.opacity = isReverse ? 0 : 1;
-    triangleBlock.style.opacity = isReverse ? 1 : 0;
-    circleHole.style.opacity = isReverse ? 0 : 1;
-    triangleHole.style.opacity = isReverse ? 1 : 0;
-    adaptabilityBase.style.transform = isReverse ? "translateX(0%)" : "translateX(-100%)";
+    const cardBg = document.querySelector('#adaptability .softskills-card-bg');
+    const cardCirle = document.querySelector('#adaptability .card-circle');
     if (isReverse) {
+        circleBlock.style.opacity = 0;
+        triangleBlock.style.opacity = 1;
+        circleHole.style.opacity = 0;
+        triangleHole.style.opacity = 1;
+        adaptabilityBase.style.transform = "translateX(0%)";
+        cardCirle.style.transform = "translate(0, 0)";
+        cardBg.style.transform = "scaleX(1)";
         collapseSoftskillsCenter();
     } else {
+        circleBlock.style.opacity = 1;
+        triangleBlock.style.opacity = 0;
+        circleHole.style.opacity = 1;
+        triangleHole.style.opacity = 0;
+        adaptabilityBase.style.transform = "translateX(-100%)";
+        cardCirle.style.transform = "translate(50%, 50%)";
+        cardBg.style.transform = "scaleX(1.1)";
         rotateSoftskillsCenter(4);
     }
 }
@@ -820,6 +862,7 @@ const maskFragmentsOffset = calcMaskOffset();
 const maskRotationAxes = calculateMaskRotationAxis();
 const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
+// initializePage();
 // const dotsContainerWidth = createDots();
 // transformDots(0);
 explodeAllH1Text();
