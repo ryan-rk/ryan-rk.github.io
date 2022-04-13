@@ -46,6 +46,32 @@ nav #home-title span b {
 }
 
 #fg-container #centering-container #left-container {
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 1rem;
+}
+
+#fg-container #centering-container #left-container #rklogo {
+  width: 10rem;
+  border: 0.1rem solid #656185;
+  border-radius: 50%;
+  -webkit-backdrop-filter: blur(0.2rem);
+          backdrop-filter: blur(0.2rem);
+}
+
+#fg-container #centering-container #left-container #dotline-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -57,11 +83,19 @@ nav #home-title span b {
       -ms-flex-align: center;
           align-items: center;
   margin: 1rem;
+  height: 40%;
 }
 
-#fg-container #centering-container #left-container #rklogo {
-  width: 10rem;
-  border: 0.1rem solid #656185;
+#fg-container #centering-container #left-container #dotline-container #dotline-line {
+  height: calc(100% - 1rem);
+  width: 0.1rem;
+  background-color: rgba(114, 83, 192, 0.419);
+}
+
+#fg-container #centering-container #left-container #dotline-container .dotline-dot {
+  width: 0.3rem;
+  height: 0.3rem;
+  border: 0.15rem solid rgba(106, 95, 163, 0.571);
   border-radius: 50%;
 }
 
@@ -73,12 +107,10 @@ nav #home-title span b {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 1rem;
 }
 
 #fg-container #centering-container #left-container #name-icon-container #rk-name {
@@ -92,15 +124,19 @@ nav #home-title span b {
   display: flex;
 }
 
+#fg-container #centering-container #left-container #name-icon-container #social-icon-container .social-icon {
+  width: 100%;
+}
+
 #fg-container #centering-container #left-container #name-icon-container #social-icon-container #linkedin-icon {
-  padding-right: 1rem;
-  padding-top: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
   width: 2rem;
 }
 
 #fg-container #centering-container #left-container #name-icon-container #social-icon-container #ig-icon {
-  padding-left: 1rem;
-  padding-top: 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
   width: 2rem;
 }
 
@@ -131,12 +167,13 @@ nav #home-title span b {
 }
 
 #fg-container #centering-container #right-container #text-desc {
+  line-height: 2;
   margin-top: 2rem;
   text-align: justify;
   padding: 3rem 2rem;
-  background-color: rgba(240, 255, 255, 0.449);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
+  background-color: rgba(240, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(0.3rem);
+          backdrop-filter: blur(0.3rem);
   border-radius: 2rem;
 }
 
@@ -157,6 +194,11 @@ nav #home-title span b {
   background: linear-gradient(#e6f6ed 0%, #c9dcf8 100%);
 }
 
+canvas {
+  position: fixed;
+  z-index: -5;
+}
+
 @media only screen and (max-width: 50rem) {
   #fg-container {
     -webkit-box-align: start;
@@ -171,10 +213,16 @@ nav #home-title span b {
             flex-direction: column;
   }
   #fg-container #centering-container #left-container {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+  }
+  #fg-container #centering-container #left-container #dotline-container {
+    display: none;
   }
   #fg-container #centering-container #left-container #name-icon-container {
     margin-left: 2rem;

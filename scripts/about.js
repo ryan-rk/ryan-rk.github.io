@@ -1,3 +1,65 @@
+class Circle {
+    constructor(x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.scaledX = x;
+        this.scaledY = y;
+        this.scaledRadius = radius;
+        this.animationSpeed = 0.01;
+        this.translationalAmplitude = rem2Px(1);
+        this.minScale = 0.8;
+        this.maxScale = 1.2;
+        this.scaleDiff = this.maxScale - this.minScale;
+        this.mouseTranslateX = 0;
+        this.mouseTranslateY = 0;
+    }
+
+    drawStroke() {
+        ctx.beginPath();
+        ctx.arc(this.scaledX + this.mouseTranslateX, this.scaledY + this.mouseTranslateY, this.scaledRadius, 0, Math.PI * 2, false);
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+    }
+
+    drawFill() {
+        ctx.beginPath();
+        ctx.arc(this.scaledX + this.mouseTranslateX, this.scaledY + this.mouseTranslateY, this.scaledRadius, 0, Math.PI * 2, false);
+        ctx.fillStyle = "#ab97c4"
+        ctx.fill();
+    }
+
+    translate(offsetX, offsetY) {
+        this.scaledX = this.x + offsetX;
+        this.scaledY = this.y + offsetY;
+    }
+
+    scale(factor) {
+        this.scaledRadius = this.radius * factor;
+    }
+
+    animate(delay) {
+        // const sineOffset = Math.sin((delay / this.animationSpeed) % (2 * Math.PI));
+        const sineOffset = Math.sin(delay * this.animationSpeed);
+        this.translate(this.translationalAmplitude * sineOffset, this.translationalAmplitude * sineOffset);
+        this.scale((sineOffset + 1) / 2 * this.scaleDiff + this.minScale);
+        this.drawFill();
+    }
+
+    mouseTranslate(mouseX, mouseY) {
+        const sqrDistance = Math.pow(this.x - mouseX, 2) + Math.pow(this.y - mouseY, 2);
+    }
+}
+
+
+
+// --- Functions for general purposes ---
+// convert rem value to pixel
+function rem2Px(rem) {
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+
 // --- Functions for Navbar ---
 // Functions dealing with click to expand/hide mobile menu
 function expandMenu() {
@@ -52,8 +114,77 @@ function navListHover(pageID) {
 
 
 
+// --- Functions for canvas ---
+function initCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    return canvas.getContext('2d');
+}
+
+function canvasResize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gridCircles = generateGridCircles();
+}
+
+function animateCanvas() {
+    requestAnimationFrame(animateCanvas);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (let i = 0; i < gridCircles.length; i++) {
+        for (let j = 0; j < gridCircles[i].length; j++) {
+            gridCircles[i][j].animate(frameIndex + 30 * i + 30 * j);
+        }
+    }
+    frameIndex += 1;
+}
+
+
+function generateGridCircles() {
+    const circleRadius = rem2Px(0.15);
+    const gridTopPadding = rem2Px(14);
+    const gridPadding = window.innerWidth * 0.05;
+    const gridInterval = Math.max(rem2Px(2.5), window.innerWidth / 22);
+    const numCol = Math.floor((window.innerWidth - 2 * gridPadding) / gridInterval);
+    const numRow = Math.floor((window.innerHeight - gridTopPadding - gridPadding) / gridInterval);
+    const startX = (window.innerWidth - (numCol * gridInterval)) / 2;
+    const startY = gridTopPadding;
+    var gridCircles = [];
+    for (let i = 0; i <= numCol; i++) {
+        var gridCol = [];
+        for (let j = 0; j <= numRow; j++) {
+            const posX = startX + (i * gridInterval);
+            const posY = startY + (j * gridInterval);
+            const circle = new Circle(posX, posY, circleRadius);
+            gridCol.push(circle);
+            circle.drawFill();
+        }
+        gridCircles.push(gridCol);
+    }
+    return gridCircles;
+}
+
+
+
+// --- Functions to track mouse locations ---
+function mousemove(event) {
+    console.log("pageX: ", event.pageX,
+        "pageY: ", event.pageY,
+        "clientX: ", event.clientX,
+        "clientY:", event.clientY)
+}
+
+
 
 const viewHeight = () => { return document.documentElement.clientHeight };
 const viewWidth = () => { return document.documentElement.clientWidth };
 
 navListHover('aboutme');
+
+// window.addEventListener('mousemove', mousemove);
+
+const canvas = document.querySelector('canvas');
+const ctx = initCanvas();
+var gridCircles = generateGridCircles();
+var frameIndex = 0;
+animateCanvas();
+window.addEventListener('resize', canvasResize);
