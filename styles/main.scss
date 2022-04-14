@@ -643,7 +643,7 @@ header {
         // height: min(10rem);
         // height: 20rem;
         margin-top: 5rem;
-        margin-bottom: 5rem;
+        margin-bottom: 6rem;
         // transform: scaleY(0);
         transition: transform 0.4s ease-in-out;
         // height: 100%;
@@ -678,24 +678,29 @@ header {
     .mask-container {
         position: relative;
         width: 100%;
-        min-height: 20rem;
+        // height: 30rem;
+        height: calc(clamp(20rem, 40vw, 30rem));
+        // min-height: 20rem;
         // height: 30rem;
         #mask {
             position: absolute;
-            top: 0%;
+            // top: 40%;
             width: 100%;
             height: 100%;
             z-index: 2;
             text-align: center;
             opacity: 1;
-            transition: all 1500ms cubic-bezier(.73, .06, .82, .38);
+            // transition: top 500ms cubic-bezier(.07, .7, .07, .94) 1s;
+            // transition: all 1500ms cubic-bezier(.73, .06, .82, .38);
+            transition: transform 1000ms cubic-bezier(.07, .7, .07, .94) 1800ms;
+            // transition: all 1500ms ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
             svg {
                 position: relative;
                 width: 100%;
-                max-width: 40rem;
+                max-width: 50rem;
                 height: 100%;
                 overflow: visible;
                 #mask-glass {
@@ -722,6 +727,9 @@ header {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transition: transform 1000ms cubic-bezier(.07, .7, .07, .94) 1800ms;
+            // transition: top 500ms cubic-bezier(.07, .7, .07, .94) 1s;
+            // top: -50%;
             .mask-text {
                 padding: 2rem 0;
             }
@@ -732,10 +740,11 @@ header {
             }
             #mask-text-bg {
                 display: none;
-                opacity: 0;
-                color: rgb(254, 248, 255);
-                text-shadow: 0.1rem 0.1rem 2px black;
-                transition: opacity 2s ease-in-out;
+                // opacity: 0;
+                transform: scale(0);
+                // color: rgb(254, 248, 255);
+                // text-shadow: 0.1rem 0.1rem 2px black;
+                transition: transform 1s ease-in-out;
                 // transition: opacity 2s ease-in-out, background-color 2s ease-in-out, backdrop-filter 2s ease-in-out;
                 // background-color: #bdbdbd5e;
                 border-radius: 1rem;
@@ -768,14 +777,42 @@ header {
     }
     .biodata-panel-container {
         display: flex;
+        width: 100%;
+        max-width: 80rem;
+        height: 15rem;
         // background-color: #25C05D;
         // flex-wrap: wrap;
         // flex-direction: row;
+        justify-content: space-around;
+        align-items: stretch;
+        transform-origin: 50% 0%;
+        transform: translateY(-100%) scale(0);
+        transition: transform 1000ms cubic-bezier(.07, .7, .07, .94);
+    }
+    #diamond-line-container {
+        display: flex;
         align-items: center;
+        justify-content: center;
+        width: 80%;
+        transform: scaleX(0);
+        transition: transform 500ms ease-in-out 1500ms;
+        // height: 1rem;
+        .diamond-line {
+            width: 40%;
+            height: 0.1rem;
+            background-color: rgba(160, 136, 169, 0.551);
+            margin: 1rem;
+        }
+        .diamond-center {
+            width: 1rem;
+            height: 1rem;
+            border: 0.1rem solid rgba(134, 100, 162, 0.642);
+            transform: rotate(45deg);
+        }
     }
     .biodata-panel {
-        flex-grow: 1;
-        // width: 40%;
+        // flex-grow: 1;
+        width: 40%;
         // max-height: 10rem;
         margin: 1%;
         border-radius: 1rem;
@@ -783,25 +820,45 @@ header {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         transition: transform 300ms ease-in-out;
+        // perspective: 1000px;
         // transform: scale(0, 0);
     }
-    #art-panel {
-        background-color: #a6a9be5c;
-        transform-origin: top;
+    // #art-panel {
+    //     background-color: #a6a9be5c;
+    //     transform-origin: top;
+    // }
+    // #programming-panel {
+    //     background-color: #9ebeb967;
+    //     transform-origin: top;
+    // }
+    .biodata-panel-bg {
+        // width: 100%;
+        // height: 100%;
+        width: 15rem;
+        height: 15rem;
+        position: absolute;
+        z-index: -1;
+        clip-path: polygon(0% 50%, 50% 100%, 100% 50%, 50% 0%);
+        // transform: rotate(45deg);
     }
-    #programming-panel {
-        background-color: #9ebeb967;
-        transform-origin: top;
+    #art-panel-bg {
+        background-color: #9ea3c98b;
+        // transform: rotateX(50deg);
+        // transform: rotate3d(1, 1, 1, 45deg);
     }
-    #programming-panel-title {
-        text-align: center;
-        color: #227065b0;
-        font-size: larger;
+    #programming-panel-bg {
+        background-color: #7db5ac7e;
     }
     #art-panel-title {
         text-align: center;
         color: #4956b979;
+        font-size: larger;
+    }
+    #programming-panel-title {
+        text-align: center;
+        color: #227065b0;
         font-size: larger;
     }
     .art-panel-text {
@@ -2124,8 +2181,9 @@ footer {
 
 @keyframes exploded-char-animation {
     to {
-        top: 0;
+        // top: 0;
         left: 0;
+        opacity: 1;
     }
 }
 
@@ -2326,8 +2384,21 @@ footer {
     }
 }
 
-@media only screen and (max-width: 35rem) {
-    .biodata-panel-container {
-        flex-direction: column;
+@media only screen and (max-width: 60rem) {
+    #biodata {
+        .biodata-panel-container {
+            #diamond-line-container {
+                display: none;
+            }
+        }
     }
 }
+
+// @media only screen and (max-width: 35rem) {
+//     #biodata {
+//         .biodata-panel-container {
+//             flex-direction: column;
+//             align-items: center;
+//         }
+//     }
+// }

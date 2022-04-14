@@ -6,6 +6,10 @@ function rem2Px(rem) {
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }
 
+function randomIntervalInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function initializePage() {
     const backdrop = document.getElementById("backdrop");
     backdrop.style.opacity = 1;
@@ -114,7 +118,7 @@ function populateMask() {
         maskFragment.style.animationDuration = '10ms';
     }
     setTimeout(() => { maskTextFg.style.display = "none", clickSign1.style.display = "none", maskExplode(false); }, 4000);
-    setTimeout(() => { maskExplode(true); }, 5400);
+    setTimeout(() => { maskExplode(true); }, 5800);
 }
 
 function maskExplode(isReverse) {
@@ -123,20 +127,27 @@ function maskExplode(isReverse) {
         masktextBg.style.display = 'block';;
         setTimeout(() => { masktextBg.style.opacity = 1; }, 100);
         shatterMask(1);
+        masktextBg.style.transform = 'scale(1)';
+        const maskChars = document.getElementsByClassName('mask-chars');
+        for (const maskChar of maskChars) {
+            // maskChar.style.animation = `exploded-char-animation 500ms cubic-bezier(.73, .06, .82, .38) ${Math.random() * 1000}ms forwards`;
+            maskChar.style.animation = `exploded-char-animation 500ms ease-in-out ${Math.random() * 500}ms forwards`;
+        }
+        const biodataPanelContainer = document.getElementsByClassName('biodata-panel-container');
+        biodataPanelContainer[0].style.transform = "translateY(0) scale(1)";
+        const diamondLineContainer = document.getElementById('diamond-line-container');
+        diamondLineContainer.style.transform = "scale(1)";
         // for (const maskChar of maskChars) {
         //     maskChar.style.opacity = 1;
         // }
     } else {
         shatterMask(0);
-        const maskChars = document.getElementsByClassName('mask-chars');
-        for (const maskChar of maskChars) {
-            maskChar.style.animation = "exploded-char-animation 1400ms cubic-bezier(.73, .06, .82, .38) forwards";
-        }
-        const mask = document.getElementById('mask');
-        mask.style.transform = 'scale(0.8)';
-        mask.style.filter = 'blur(0.5rem)';
-        mask.style.opacity = 0.6;
-        mask.style.zIndex = 1;
+        postMaskExplosion();
+        // setTimeout(() => {
+        //     mask.style.transform = 'translateY(50%)';
+        // }, 2000);
+        // mask.style.filter = 'blur(0.5rem)';
+        // mask.style.opacity = 0.6;
         // setTimeout(() => {
         //     masktextBg.style.backgroundColor = "#bdbdbd5e",
         //         masktextBg.style.backdropFilter = "blur(8px)";
@@ -146,23 +157,35 @@ function maskExplode(isReverse) {
     }
 }
 
-function explodeMaskText() {
-    document.getElementById('mask-text-bg').innerHTML = document.getElementById('mask-text-bg').textContent.replace(/./g, "<span class=\"mask-chars\">$&</span>");
+function postMaskExplosion() {
+    const mask = document.getElementById('mask');
+    mask.style.transform = 'translateY(20%) scale(0.8)';
+    mask.style.zIndex = 10;
+    const maskTextContainer = document.getElementById('mask-text-container');
+    maskTextContainer.style.transform = "translateY(-20%)";
+}
 
-    let explodedChar = document.getElementsByClassName("mask-chars");
-    for (let i = 0; i < explodedChar.length; i++) {
-        let left = innerWidth * Math.random();
-        let top = viewHeight * Math.random();
-        if (Math.random() < 0.5) {
-            explodedChar[i].style.left = "-" + left + "px";
+function explodeMaskText() {
+    const maskTextContainer = document.getElementById('mask-text-bg');
+    maskTextContainer.innerHTML = document.getElementById('mask-text-bg').textContent.replace(/./g, "<span class=\"mask-chars\">$&</span>");
+
+    const explodedChars = document.getElementsByClassName("mask-chars");
+    for (let i = 0; i < explodedChars.length; i++) {
+        // const left = innerWidth * Math.random();
+        // let top = viewHeight * Math.random();
+        explodedChars[i].style.opacity = 0;
+        if (Math.random() > 0.5) {
+            explodedChars[i].style.left = "-" + rem2Px(2) + "px";
+            // explodedChars[i].style.left = "-" + (10 * (i - explodedChars.length / 2)) + "px";
         } else {
-            explodedChar[i].style.left = left + "px";
+            explodedChars[i].style.left = rem2Px(2) + "px";
+            // explodedChars[i].style.left = (10 * (explodedChars.length / 2 - i)) + "px";
         }
-        if (Math.random() < 0.5) {
-            explodedChar[i].style.top = "-" + top + "px";
-        } else {
-            explodedChar[i].style.top = top + "px";
-        }
+        // if (Math.random() < 0.5) {
+        //     explodedChar[i].style.top = "-" + top + "px";
+        // } else {
+        //     explodedChar[i].style.top = top + "px";
+        // }
     }
 }
 
@@ -239,6 +262,36 @@ function calculateMaskRotationAxis() {
         randomAxes.push([randomAxis1, randomAxis2, randomAxis3]);
     }
     return randomAxes;
+}
+
+function generateBiodataPanelBg() {
+    const artPanelBg = document.getElementById('art-panel-bg');
+    // const artAxis1 = randomIntervalInt(-1, 1);
+    // const artAxis2 = randomIntervalInt(-1, 1);
+    // const artAxis3 = randomIntervalInt(-1, 1);
+    // const artRotate = randomIntervalInt(-40, 40);
+    // artPanelBg.style.transform = `rotate3d(${artAxis1}, ${artAxis2}, ${artAxis3}, ${artRotate}deg)`;
+
+    const programmingPanelBg = document.getElementById('programming-panel-bg');
+    // const programmingAxis1 = randomIntervalInt(-1, 1);
+    // const programmingAxis2 = randomIntervalInt(-1, 1);
+    // const programmingAxis3 = randomIntervalInt(-1, 1);
+    // const programmingRotate = randomIntervalInt(-40, -40);
+    // programmingPanelBg.style.transform = `rotate3d(${programmingAxis1}, ${programmingAxis2}, ${programmingAxis3}, ${programmingRotate}deg)`;
+    // artPanelBg.style.clipPath = randomQuadClipPath();
+    // programmingPanelBg.style.clipPath = randomQuadClipPath();
+}
+
+function randomQuadClipPath() {
+    const randomQuad1X = randomIntervalInt(0, 30);
+    const randomQuad1Y = randomIntervalInt(0, 30);
+    const randomQuad2X = randomIntervalInt(70, 100);
+    const randomQuad2Y = randomIntervalInt(0, 30);
+    const randomQuad3X = randomIntervalInt(70, 100);
+    const randomQuad3Y = randomIntervalInt(70, 100);
+    const randomQuad4X = randomIntervalInt(0, 30);
+    const randomQuad4Y = randomIntervalInt(70, 100);
+    return `polygon(${randomQuad1X}% ${randomQuad1Y}%, ${randomQuad2X}% ${randomQuad2Y}%, ${randomQuad3X}% ${randomQuad3Y}%, ${randomQuad4X}% ${randomQuad4Y}%)`;
 }
 
 
@@ -894,6 +947,7 @@ const skillsCategories = document.getElementsByClassName('skills-category');
 // transformDots(0);
 explodeAllH1Text();
 explodeMaskText();
+generateBiodataPanelBg();
 // createSoftSkillsSwipe();
 navListHover('home');
 window.addEventListener("scroll", scrollUpSignScroll, false);
