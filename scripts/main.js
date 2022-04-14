@@ -388,6 +388,9 @@ function collapseSoftskillsCenter() {
 }
 
 function updateAndShowDesc(cardIndex) {
+    if (isDescPanelOpen) {
+        return;
+    }
     updateSoftskillsDesc(cardIndex);
     const descContainer = document.getElementById('softskills-desc-container');
     // descContainer.style.display = "flex";
@@ -405,28 +408,28 @@ function updateSoftskillsDesc(cardIndex) {
     const descText = document.getElementById('softskills-desc-text');
     switch (cardIndex) {
         case 1:
-            descContainer.style.transformOrigin = "top left";
+            descContainer.style.transformOrigin = "left 30%";
             descBg.style.backgroundColor = "rgba(80, 87, 123, 0.652)";
             descTitle.innerHTML = "Teamwork & Leadership";
             descText.innerHTML = "Lead and organize different events in university societies, including exhibition, concert and prom night.<br><br>Positions held include: Presidents, Head of various departments (eg: Multech, Publicity, Program and Event planning). Also partaken the role of sports manager to lead college's sport team to sport events such as Rugby and Volleyball."
             break;
 
         case 2:
-            descContainer.style.transformOrigin = "top right";
+            descContainer.style.transformOrigin = "right 30%";
             descBg.style.backgroundColor = "rgba(80, 118, 123, 0.652)";
             descTitle.innerHTML = "Time Management";
             descText.innerHTML = "Strict management on time, especially on completion of projects. PhD research projects often involved strict deadlines such as meeting the journal/proposal submission deadline, or tasks deadline during collaboration with other research teams.<br><br>Participated in various hackathon-like events which require the completion of projects within a specified short time frame, especially various Game Jams."
             break;
 
         case 3:
-            descContainer.style.transformOrigin = "bottom left";
+            descContainer.style.transformOrigin = "left 70%";
             descBg.style.backgroundColor = "rgba(121, 80, 123, 0.652)";
             descTitle.innerHTML = "Creativity";
             descText.innerHTML = "Strong interest in developing creative contents which includes: animation and video composing (After Effects), UI/UX design (Figma), illustration or pixel art creation (Aseprite), photo editing (Photoshop/GIMP), audio and music creation (GarageBand/Audition).<br><br>Having great attention to details and always strive to create things or arts from innovative ideas and that which can make people happy because why not."
             break;
 
         case 4:
-            descContainer.style.transformOrigin = "bottom right";
+            descContainer.style.transformOrigin = "right 70%";
             descBg.style.backgroundColor = "rgba(123, 81, 80, 0.652)";
             descTitle.innerHTML = "Adaptability";
             descText.innerHTML = "Easily adapt and blend into different environments and communities. Attentive observer and fast learner, especially on various computers or programming tools. Always seeking to effectively apply learned knowledge to practical use cases.<br><br>Also having the ability to converse in different languages including: English, Chinese, Cantonese, Fujien, Malay, and French."
@@ -443,7 +446,11 @@ function hideSoftskillsDesc() {
     const descContainer = document.getElementById('softskills-desc-container');
     descContainer.style.transform = "translate(-50%, -50%) scale(0, 0)";
     setTimeout(() => {
-        isDescPanelOpen = false;
+        isDescPanelOpen = false,
+            teamworkAnimation(true),
+            timeAnimation(true),
+            creativityAnimation(true),
+            adaptabilityAnimation(true);
     }, 500);
     // setTimeout(() => {
     //     descContainer.style.display = "none";
@@ -451,14 +458,14 @@ function hideSoftskillsDesc() {
 }
 
 function teamworkAnimation(isReverse) {
+    if (isDescPanelOpen) {
+        return;
+    }
     const personOutline2 = document.getElementById('person-outline2');
     const personOutline3 = document.getElementById('person-outline3');
     const teamworkCardBg = document.querySelector('#teamwork-leadership .softskills-card-bg');
     const teamworkCircle = document.querySelector('#teamwork-leadership .card-circle');
-    // personOutline2.style.top = isReverse ? "-2rem" : "0";
-    // personOutline2.style.opacity = isReverse ? "0" : "1";
-    // personOutline3.style.top = isReverse ? "-2rem" : "0";
-    // personOutline3.style.opacity = isReverse ? "0" : "1";
+    const cardFg = document.querySelector('#teamwork-leadership .softskills-card-fg');
     if (isReverse) {
         personOutline2.style.opacity = "0";
         personOutline2.style.transform = "translate(50%, -50%)";
@@ -466,6 +473,7 @@ function teamworkAnimation(isReverse) {
         personOutline3.style.transform = "translate(-50%, -50%)";
         teamworkCircle.style.transform = "translate(0, 0)";
         teamworkCardBg.style.transform = "scaleX(1)";
+        cardFg.style.transform = "scale(1)";
         collapseSoftskillsCenter();
     } else {
         personOutline2.style.opacity = "1";
@@ -474,36 +482,47 @@ function teamworkAnimation(isReverse) {
         personOutline3.style.transform = "translate(0, 0)";
         teamworkCircle.style.transform = "translate(-50%, -50%)";
         teamworkCardBg.style.transform = "scaleX(1.1)";
+        cardFg.style.transform = "scale(1.2)";
         rotateSoftskillsCenter(1);
     }
 }
 
-function rotateClockHand(isReverse) {
+function timeAnimation(isReverse) {
+    if (isDescPanelOpen) {
+        return;
+    }
     const shortClockHand = document.getElementById('short-clock-hand');
     const longClockHand = document.getElementById('long-clock-hand');
     const timeCardBg = document.querySelector('#time-management .softskills-card-bg');
     const timeCircle = document.querySelector('#time-management .card-circle');
+    const cardFg = document.querySelector('#time-management .softskills-card-fg');
     if (isReverse) {
         shortClockHand.style.transform = "translate(50%, 0) rotate(0deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(0deg)";
         timeCircle.style.transform = "translate(0, 0)";
         timeCardBg.style.transform = "scaleX(1)";
+        cardFg.style.transform = "scale(1)";
         collapseSoftskillsCenter();
     } else {
         shortClockHand.style.transform = "translate(50%, 0) rotate(60deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(720deg)";
         timeCircle.style.transform = "translate(50%, -50%)";
         timeCardBg.style.transform = "scaleX(1.1)";
+        cardFg.style.transform = "scale(1.2)";
         rotateSoftskillsCenter(2);
     }
 }
 
 function creativityAnimation(isReverse) {
+    if (isDescPanelOpen) {
+        return;
+    }
     // const headBottom = document.getElementById('head-bottom-icon');
     const headTop = document.getElementById('head-top-icon');
     const headInner = document.getElementById('head-inner');
     const cardBg = document.querySelector('#creativity .softskills-card-bg');
     const cardCirle = document.querySelector('#creativity .card-circle');
+    const cardFg = document.querySelector('#creativity .softskills-card-fg');
     // const lightBulb = document.getElementById('creativity-light-bulb');
     if (isReverse) {
         headTop.style.transform = "rotate(0deg)";
@@ -511,6 +530,7 @@ function creativityAnimation(isReverse) {
         headInner.style.opacity = 0;
         cardCirle.style.transform = "translate(0, 0)";
         cardBg.style.transform = "scaleX(1)";
+        cardFg.style.transform = "scale(1)";
         collapseSoftskillsCenter();
     } else {
         headTop.style.transform = "rotate(-90deg)";
@@ -518,11 +538,15 @@ function creativityAnimation(isReverse) {
         headInner.style.opacity = 1;
         cardCirle.style.transform = "translate(-50%, 50%)";
         cardBg.style.transform = "scaleX(1.1)";
+        cardFg.style.transform = "scale(1.2)";
         rotateSoftskillsCenter(3);
     }
 }
 
 function adaptabilityAnimation(isReverse) {
+    if (isDescPanelOpen) {
+        return;
+    }
     const circleBlock = document.getElementById('circle-block');
     const circleHole = document.getElementById('circle-hole');
     const triangleBlock = document.getElementById('triangle-block');
@@ -530,6 +554,7 @@ function adaptabilityAnimation(isReverse) {
     const adaptabilityBase = document.getElementById('adaptability-base-container');
     const cardBg = document.querySelector('#adaptability .softskills-card-bg');
     const cardCirle = document.querySelector('#adaptability .card-circle');
+    const cardFg = document.querySelector('#adaptability .softskills-card-fg');
     if (isReverse) {
         circleBlock.style.opacity = 0;
         triangleBlock.style.opacity = 1;
@@ -538,6 +563,7 @@ function adaptabilityAnimation(isReverse) {
         adaptabilityBase.style.transform = "translateX(0%)";
         cardCirle.style.transform = "translate(0, 0)";
         cardBg.style.transform = "scaleX(1)";
+        cardFg.style.transform = "scale(1)";
         collapseSoftskillsCenter();
     } else {
         circleBlock.style.opacity = 1;
@@ -547,6 +573,7 @@ function adaptabilityAnimation(isReverse) {
         adaptabilityBase.style.transform = "translateX(-100%)";
         cardCirle.style.transform = "translate(50%, 50%)";
         cardBg.style.transform = "scaleX(1.1)";
+        cardFg.style.transform = "scale(1.2)";
         rotateSoftskillsCenter(4);
     }
 }
@@ -900,13 +927,19 @@ terminalBackButton.addEventListener("click", function() { skillsCategoryClicked(
 // soft-skills section
 isDescPanelOpen = false;
 const teamworkFg = document.getElementById('teamwork-fg');
-teamworkFg.addEventListener("click", function() { updateAndShowDesc(1); }, false);
+teamworkFg.addEventListener("click", function() {
+    updateAndShowDesc(1);
+    teamworkAnimation(false);
+}, false);
 teamworkFg.addEventListener("mouseenter", function() { teamworkAnimation(false); }, false);
 teamworkFg.addEventListener("mouseleave", function() { teamworkAnimation(true); }, false);
 const timeManagementFg = document.getElementById('time-fg');
-timeManagementFg.addEventListener("click", function() { updateAndShowDesc(2); }, false);
-timeManagementFg.addEventListener("mouseenter", function() { rotateClockHand(false); }, false);
-timeManagementFg.addEventListener("mouseleave", function() { rotateClockHand(true); }, false);
+timeManagementFg.addEventListener("click", function() {
+    timeAnimation(false);
+    updateAndShowDesc(2);
+}, false);
+timeManagementFg.addEventListener("mouseenter", function() { timeAnimation(false); }, false);
+timeManagementFg.addEventListener("mouseleave", function() { timeAnimation(true); }, false);
 const creativityFg = document.getElementById('creativity-fg');
 creativityFg.addEventListener("click", function() { updateAndShowDesc(3); }, false);
 creativityFg.addEventListener("mouseenter", function() { creativityAnimation(false); }, false);

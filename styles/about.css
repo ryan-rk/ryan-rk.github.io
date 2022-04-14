@@ -68,8 +68,6 @@ nav #home-title span b {
 
 #fg-container #centering-container #left-container #rklogo {
   width: 10rem;
-  border: 0.1rem solid #656185;
-  border-radius: 50%;
   -webkit-backdrop-filter: blur(0.2rem);
           backdrop-filter: blur(0.2rem);
 }

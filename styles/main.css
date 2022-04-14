@@ -1563,11 +1563,6 @@ header {
   width: calc(min(70%, 12rem));
 }
 
-#soft-skills #soft-skills-container .softskills-card-fg:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-}
-
 #soft-skills #soft-skills-container .softskills-card-bg {
   position: absolute;
   height: 100%;

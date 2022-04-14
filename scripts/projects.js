@@ -298,14 +298,24 @@ function projectSelector(isIncrease) {
 function updateGalleryArrow() {
     const frameLeftArrow = document.getElementById('frame-left-arrow');
     const frameRightArrow = document.getElementById('frame-right-arrow');
-    if (selectedProjectIndex <= 0) {
-        frameLeftArrow.style.visibility = "hidden";
-    } else if (selectedProjectIndex >= (sectionNames.length - 1)) {
-        frameRightArrow.style.visibility = "hidden";
-    } else {
-        frameLeftArrow.style.visibility = "visible";
-        frameRightArrow.style.visibility = "visible";
-    }
+    frameLeftArrow.style.visibility = "hidden";
+    frameRightArrow.style.visibility = "hidden";
+    setTimeout(() => {
+        if (selectedProjectIndex > 0) {
+            frameLeftArrow.style.visibility = "visible";
+        }
+        if (selectedProjectIndex < sectionNames.length - 1) {
+            frameRightArrow.style.visibility = "visible";
+        }
+    }, 300);
+    // if (selectedProjectIndex <= 0) {
+    //     frameLeftArrow.style.visibility = "hidden";
+    // } else if (selectedProjectIndex >= (sectionNames.length - 1)) {
+    //     frameRightArrow.style.visibility = "hidden";
+    // } else {
+    //     frameLeftArrow.style.visibility = "visible";
+    //     frameRightArrow.style.visibility = "visible";
+    // }
 }
 
 function updateGalleryFrame(isForward) {
