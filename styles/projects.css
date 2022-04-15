@@ -15,7 +15,11 @@ nav {
           animation: nav-appear-animation 500ms ease-in-out forwards;
 }
 
-nav #home-title span b {
+nav #nav-left .nav-title #home-title {
+  color: #505050;
+}
+
+nav #nav-left .nav-title #home-title span b {
   color: #14b0a0;
 }
 
@@ -63,14 +67,13 @@ nav #home-title span b {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  width: calc(min(100%, 20rem));
-  height: 50%;
+  height: 100%;
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-light-container {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 60%;
   z-index: 5;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -122,10 +125,10 @@ nav #home-title span b {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 80%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: calc(clamp(13rem, 30vw, 18rem));
   height: 100%;
 }
 
@@ -491,8 +494,8 @@ nav #home-title span b {
 }
 
 #apps-projects .section-background {
-  background: -webkit-gradient(linear, left top, left bottom, from(#8787c6), to(#67cfdf));
-  background: linear-gradient(#8787c6 0%, #67cfdf 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#9898ce), to(#67cfdf));
+  background: linear-gradient(#9898ce 0%, #67cfdf 100%);
 }
 
 #dl-projects #dl-projects-title {
@@ -512,8 +515,8 @@ nav #home-title span b {
 }
 
 #dl-projects .section-background {
-  background: -webkit-gradient(linear, left top, left bottom, from(#698192), to(#bca8df));
-  background: linear-gradient(#698192 0%, #bca8df 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#85a7bf), to(#bca8df));
+  background: linear-gradient(#85a7bf 0%, #bca8df 100%);
 }
 
 #video-projects #video-projects-title {
@@ -559,8 +562,8 @@ nav #home-title span b {
 }
 
 #model3d-projects .section-background {
-  background: -webkit-gradient(linear, left top, left bottom, from(#d28181), to(#b1a595));
-  background: linear-gradient(#d28181 0%, #b1a595 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#d89c9c), to(#b1a595));
+  background: linear-gradient(#d89c9c 0%, #b1a595 100%);
 }
 
 #background {
@@ -647,9 +650,22 @@ nav #home-title span b {
   }
   #gallery-section #gallery-container #gallery-viewport {
     margin-top: 8rem;
+    height: 40vh;
+  }
+  #gallery-section #gallery-container #gallery-viewport #gallery-light-container {
+    height: 100%;
   }
   #gallery-section #gallery-container #gallery-text-container {
     width: 100%;
+    height: 40vh;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  #gallery-section #gallery-container #gallery-text-container #section-title {
+    padding: 0 1rem;
+  }
+  #gallery-section #gallery-container #gallery-text-container #section-desc {
+    padding: 0 1rem;
   }
 }
 

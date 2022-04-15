@@ -155,35 +155,7 @@ function navListHover(pageID) {
 // __________________________________
 function inspectButtonClickHandler() {
     if (isStartDeactivateGallery) { return; }
-    switch (selectedProjectIndex) {
-        case 0:
-            gameSection.setActivation(true);
-            break;
-
-        case 1:
-            appSection.setActivation(true);
-            break;
-
-        case 2:
-            dlSection.setActivation(true);
-            break;
-
-        case 3:
-            videoSection.setActivation(true);
-            break;
-
-        case 4:
-            artSection.setActivation(true);
-            break;
-
-        case 5:
-            model3dSection.setActivation(true);
-            break;
-
-        default:
-            console.log("Project index not implemented");
-            return;
-    }
+    activateProjectSection();
     isStartDeactivateGallery = true;
     updateGallerySection(false);
 }
@@ -263,14 +235,53 @@ function updateProjectIconFloatSrc() {
 }
 
 function animateProjectIconFloat() {
+    const galleryContainer = document.getElementById('gallery-container');
+    const flexDir = window.getComputedStyle(galleryContainer).getPropertyValue('flex-direction');
     const projectIconFloat = document.getElementById("float-project-icon");
     // const projectTitleBCR = document.getElementsByClassName("project-title")[selectedProjectIndex].getBoundingClientRect();
-    projectIconFloat.style.top = `${viewHeight()/2 - projectIconFloat.clientHeight / 2}px`;
     // projectIconFloat.style.top = `${(projectTitleBCR.top + projectTitleBCR.bottom)/2 - projectIconFloat.clientHeight/2}px`;
-    projectIconFloat.style.left = `${viewWidth()/2 - projectIconFloat.clientWidth / 2}px`;
-    projectIconFloat.style.transitionDuration = "800ms, 800ms, 500ms";
-    projectIconFloat.style.transitionDelay = "0ms, 0ms, 800ms"
+    if (flexDir == 'row') {
+        projectIconFloat.style.top = `${viewHeight()/2 - projectIconFloat.clientHeight / 2}px`;
+        projectIconFloat.style.left = `${viewWidth()/2 - projectIconFloat.clientWidth / 2}px`;
+        projectIconFloat.style.transitionDuration = "800ms, 800ms, 500ms";
+        projectIconFloat.style.transitionDelay = "0ms, 0ms, 800ms"
+    } else {
+        projectIconFloat.style.transitionDuration = "200ms, 200ms, 500ms";
+        projectIconFloat.style.transitionDelay = "0ms, 0ms, 200ms"
+    }
     projectIconFloat.style.opacity = 0;
+}
+
+function activateProjectSection() {
+    switch (selectedProjectIndex) {
+        case 0:
+            gameSection.setActivation(true);
+            break;
+
+        case 1:
+            appSection.setActivation(true);
+            break;
+
+        case 2:
+            dlSection.setActivation(true);
+            break;
+
+        case 3:
+            videoSection.setActivation(true);
+            break;
+
+        case 4:
+            artSection.setActivation(true);
+            break;
+
+        case 5:
+            model3dSection.setActivation(true);
+            break;
+
+        default:
+            console.log("Project index not implemented");
+            return;
+    }
 }
 
 function projectSelector(isIncrease) {
