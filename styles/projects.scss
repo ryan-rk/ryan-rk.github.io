@@ -94,9 +94,11 @@ nav {
                 position: relative;
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
                 width: 80%;
+                height: 100%;
                 .gallery-frame {
+                    margin-top: 1rem;
                     position: absolute;
                     display: flex;
                     justify-content: center;
@@ -474,7 +476,10 @@ nav {
             justify-content: flex-start;
             // background-color: aquamarine;
             #gallery-viewport {
-                margin-top: 10rem;
+                margin-top: 8rem;
+                // #gallery-frames-container {
+                //     justify-content: flex-start;
+                // }
             }
             #gallery-text-container {
                 width: 100%;

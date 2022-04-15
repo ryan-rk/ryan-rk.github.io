@@ -122,13 +122,15 @@ nav #home-title span b {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   width: 80%;
+  height: 100%;
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container .gallery-frame {
+  margin-top: 1rem;
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -644,7 +646,7 @@ nav #home-title span b {
             justify-content: flex-start;
   }
   #gallery-section #gallery-container #gallery-viewport {
-    margin-top: 10rem;
+    margin-top: 8rem;
   }
   #gallery-section #gallery-container #gallery-text-container {
     width: 100%;

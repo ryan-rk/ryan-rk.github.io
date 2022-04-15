@@ -133,10 +133,11 @@ function maskExplode(isReverse) {
             // maskChar.style.animation = `exploded-char-animation 500ms cubic-bezier(.73, .06, .82, .38) ${Math.random() * 1000}ms forwards`;
             maskChar.style.animation = `exploded-char-animation 500ms ease-in-out ${Math.random() * 500}ms forwards`;
         }
-        const biodataPanelContainer = document.getElementsByClassName('biodata-panel-container');
-        biodataPanelContainer[0].style.transform = "translateY(0) scale(1)";
+        const topPanelContainer = document.getElementById('top-panel-container');
+        topPanelContainer.style.transform = "translateY(0) scale(1)";
         const diamondLineContainer = document.getElementById('diamond-line-container');
         diamondLineContainer.style.transform = "scale(1)";
+        isArtProgrammingExpanded = true;
         // for (const maskChar of maskChars) {
         //     maskChar.style.opacity = 1;
         // }
@@ -264,35 +265,71 @@ function calculateMaskRotationAxis() {
     return randomAxes;
 }
 
-function generateBiodataPanelBg() {
-    const artPanelBg = document.getElementById('art-panel-bg');
-    // const artAxis1 = randomIntervalInt(-1, 1);
-    // const artAxis2 = randomIntervalInt(-1, 1);
-    // const artAxis3 = randomIntervalInt(-1, 1);
-    // const artRotate = randomIntervalInt(-40, 40);
-    // artPanelBg.style.transform = `rotate3d(${artAxis1}, ${artAxis2}, ${artAxis3}, ${artRotate}deg)`;
-
-    const programmingPanelBg = document.getElementById('programming-panel-bg');
-    // const programmingAxis1 = randomIntervalInt(-1, 1);
-    // const programmingAxis2 = randomIntervalInt(-1, 1);
-    // const programmingAxis3 = randomIntervalInt(-1, 1);
-    // const programmingRotate = randomIntervalInt(-40, -40);
-    // programmingPanelBg.style.transform = `rotate3d(${programmingAxis1}, ${programmingAxis2}, ${programmingAxis3}, ${programmingRotate}deg)`;
-    // artPanelBg.style.clipPath = randomQuadClipPath();
-    // programmingPanelBg.style.clipPath = randomQuadClipPath();
+function updateBioSelection(selectionIndex) {
+    if (selectionIndex == bioSelectionIndex) { return; }
+    const artBg = document.getElementById('selection-art-bg');
+    const artIcon = document.getElementById('selection-art-icon');
+    const artDesc = document.getElementById('selection-art-desc');
+    const programmingBg = document.getElementById('selection-programming-bg');
+    const programmingIcon = document.getElementById('selection-programming-icon');
+    const programmingDesc = document.getElementById('selection-programming-desc');
+    if (selectionIndex == 0) {
+        artBg.style.borderWidth = '0.6rem';
+        artIcon.style.opacity = 1;
+        artIcon.style.animation = 'bio-scale-animation 3s ease-in-out infinite';
+        artDesc.style.transition = 'transform 500ms ease-in-out 500ms';
+        artDesc.style.transform = 'translateX(50%) scaleX(1)';
+        programmingBg.style.borderWidth = '0.2rem';
+        programmingIcon.style.animation = 'none';
+        programmingIcon.style.transform = 'scale(1)';
+        programmingIcon.style.opacity = 0.3;
+        programmingDesc.style.transition = 'transform 500ms ease-in-out';
+        programmingDesc.style.transform = 'translateX(-50%) scaleX(0)';
+    } else {
+        artBg.style.borderWidth = '0.2rem';
+        artIcon.style.opacity = 0.3;
+        artIcon.style.animation = 'none';
+        artIcon.style.transform = 'scale(1)';
+        artDesc.style.transition = 'transform 500ms ease-in-out';
+        artDesc.style.transform = 'translateX(50%) scaleX(0)';
+        programmingBg.style.borderWidth = '0.6rem';
+        programmingIcon.style.animation = 'bio-scale-animation 3s ease-in-out infinite';
+        programmingIcon.style.opacity = 1;
+        programmingDesc.style.transition = 'transform 500ms ease-in-out 500ms';
+        programmingDesc.style.transform = 'translateX(-50%) scaleX(1)';
+    }
+    bioSelectionIndex = selectionIndex;
 }
 
-function randomQuadClipPath() {
-    const randomQuad1X = randomIntervalInt(0, 30);
-    const randomQuad1Y = randomIntervalInt(0, 30);
-    const randomQuad2X = randomIntervalInt(70, 100);
-    const randomQuad2Y = randomIntervalInt(0, 30);
-    const randomQuad3X = randomIntervalInt(70, 100);
-    const randomQuad3Y = randomIntervalInt(70, 100);
-    const randomQuad4X = randomIntervalInt(0, 30);
-    const randomQuad4Y = randomIntervalInt(70, 100);
-    return `polygon(${randomQuad1X}% ${randomQuad1Y}%, ${randomQuad2X}% ${randomQuad2Y}%, ${randomQuad3X}% ${randomQuad3Y}%, ${randomQuad4X}% ${randomQuad4Y}%)`;
-}
+// function generateBiodataPanelBg() {
+// const artPanelBg = document.getElementById('art-panel-bg');
+// const artAxis1 = randomIntervalInt(-1, 1);
+// const artAxis2 = randomIntervalInt(-1, 1);
+// const artAxis3 = randomIntervalInt(-1, 1);
+// const artRotate = randomIntervalInt(-40, 40);
+// artPanelBg.style.transform = `rotate3d(${artAxis1}, ${artAxis2}, ${artAxis3}, ${artRotate}deg)`;
+
+// const programmingPanelBg = document.getElementById('programming-panel-bg');
+// const programmingAxis1 = randomIntervalInt(-1, 1);
+// const programmingAxis2 = randomIntervalInt(-1, 1);
+// const programmingAxis3 = randomIntervalInt(-1, 1);
+// const programmingRotate = randomIntervalInt(-40, -40);
+// programmingPanelBg.style.transform = `rotate3d(${programmingAxis1}, ${programmingAxis2}, ${programmingAxis3}, ${programmingRotate}deg)`;
+// artPanelBg.style.clipPath = randomQuadClipPath();
+// programmingPanelBg.style.clipPath = randomQuadClipPath();
+// }
+
+// function randomQuadClipPath() {
+//     const randomQuad1X = randomIntervalInt(0, 30);
+//     const randomQuad1Y = randomIntervalInt(0, 30);
+//     const randomQuad2X = randomIntervalInt(70, 100);
+//     const randomQuad2Y = randomIntervalInt(0, 30);
+//     const randomQuad3X = randomIntervalInt(70, 100);
+//     const randomQuad3Y = randomIntervalInt(70, 100);
+//     const randomQuad4X = randomIntervalInt(0, 30);
+//     const randomQuad4Y = randomIntervalInt(70, 100);
+//     return `polygon(${randomQuad1X}% ${randomQuad1Y}%, ${randomQuad2X}% ${randomQuad2Y}%, ${randomQuad3X}% ${randomQuad3Y}%, ${randomQuad4X}% ${randomQuad4Y}%)`;
+// }
 
 
 
@@ -510,32 +547,40 @@ function hideSoftskillsDesc() {
     // }, 500);
 }
 
+function softskillsCardHover(elementId, isHover) {
+    const cardBg = document.querySelector(elementId + ' .softskills-card-bg');
+    const cardFg = document.querySelector(elementId + ' .softskills-card-fg');
+    if (isHover) {
+        cardBg.style.transform = "rotate(225deg) scale(1.2)";
+        cardFg.style.transform = "scale(1.2)";
+    } else {
+        cardBg.style.transform = "rotate(45deg) scale(0.8)";
+        cardFg.style.transform = "scale(1)";
+    }
+}
+
 function teamworkAnimation(isReverse) {
     if (isDescPanelOpen) {
         return;
     }
     const personOutline2 = document.getElementById('person-outline2');
     const personOutline3 = document.getElementById('person-outline3');
-    const teamworkCardBg = document.querySelector('#teamwork-leadership .softskills-card-bg');
-    const teamworkCircle = document.querySelector('#teamwork-leadership .card-circle');
-    const cardFg = document.querySelector('#teamwork-leadership .softskills-card-fg');
+    const cardCircle = document.querySelector('#teamwork-leadership .card-circle');
     if (isReverse) {
         personOutline2.style.opacity = "0";
         personOutline2.style.transform = "translate(50%, -50%)";
         personOutline3.style.opacity = "0";
         personOutline3.style.transform = "translate(-50%, -50%)";
-        teamworkCircle.style.transform = "translate(0, 0)";
-        teamworkCardBg.style.transform = "scaleX(1)";
-        cardFg.style.transform = "scale(1)";
+        cardCircle.style.transform = "translate(0%, 0%)";
+        softskillsCardHover('#teamwork-leadership', false);
         collapseSoftskillsCenter();
     } else {
         personOutline2.style.opacity = "1";
         personOutline2.style.transform = "translate(0, 0)";
         personOutline3.style.opacity = "1";
         personOutline3.style.transform = "translate(0, 0)";
-        teamworkCircle.style.transform = "translate(-50%, -50%)";
-        teamworkCardBg.style.transform = "scaleX(1.1)";
-        cardFg.style.transform = "scale(1.2)";
+        cardCircle.style.transform = "translate(-50%, -50%)";
+        softskillsCardHover('#teamwork-leadership', true);
         rotateSoftskillsCenter(1);
     }
 }
@@ -546,22 +591,18 @@ function timeAnimation(isReverse) {
     }
     const shortClockHand = document.getElementById('short-clock-hand');
     const longClockHand = document.getElementById('long-clock-hand');
-    const timeCardBg = document.querySelector('#time-management .softskills-card-bg');
-    const timeCircle = document.querySelector('#time-management .card-circle');
-    const cardFg = document.querySelector('#time-management .softskills-card-fg');
+    const cardCircle = document.querySelector('#time-management .card-circle');
     if (isReverse) {
         shortClockHand.style.transform = "translate(50%, 0) rotate(0deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(0deg)";
-        timeCircle.style.transform = "translate(0, 0)";
-        timeCardBg.style.transform = "scaleX(1)";
-        cardFg.style.transform = "scale(1)";
+        cardCircle.style.transform = "translate(0, 0)";
+        softskillsCardHover('#time-management', false);
         collapseSoftskillsCenter();
     } else {
         shortClockHand.style.transform = "translate(50%, 0) rotate(60deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(720deg)";
-        timeCircle.style.transform = "translate(50%, -50%)";
-        timeCardBg.style.transform = "scaleX(1.1)";
-        cardFg.style.transform = "scale(1.2)";
+        cardCircle.style.transform = "translate(50%, -50%)";
+        softskillsCardHover('#time-management', true);
         rotateSoftskillsCenter(2);
     }
 }
@@ -573,25 +614,21 @@ function creativityAnimation(isReverse) {
     // const headBottom = document.getElementById('head-bottom-icon');
     const headTop = document.getElementById('head-top-icon');
     const headInner = document.getElementById('head-inner');
-    const cardBg = document.querySelector('#creativity .softskills-card-bg');
     const cardCirle = document.querySelector('#creativity .card-circle');
-    const cardFg = document.querySelector('#creativity .softskills-card-fg');
     // const lightBulb = document.getElementById('creativity-light-bulb');
     if (isReverse) {
         headTop.style.transform = "rotate(0deg)";
         headInner.style.top = "0%";
         headInner.style.opacity = 0;
         cardCirle.style.transform = "translate(0, 0)";
-        cardBg.style.transform = "scaleX(1)";
-        cardFg.style.transform = "scale(1)";
+        softskillsCardHover('#creativity', false);
         collapseSoftskillsCenter();
     } else {
         headTop.style.transform = "rotate(-90deg)";
         headInner.style.top = "-20%";
         headInner.style.opacity = 1;
         cardCirle.style.transform = "translate(-50%, 50%)";
-        cardBg.style.transform = "scaleX(1.1)";
-        cardFg.style.transform = "scale(1.2)";
+        softskillsCardHover('#creativity', true);
         rotateSoftskillsCenter(3);
     }
 }
@@ -605,9 +642,7 @@ function adaptabilityAnimation(isReverse) {
     const triangleBlock = document.getElementById('triangle-block');
     const triangleHole = document.getElementById('triangle-hole');
     const adaptabilityBase = document.getElementById('adaptability-base-container');
-    const cardBg = document.querySelector('#adaptability .softskills-card-bg');
     const cardCirle = document.querySelector('#adaptability .card-circle');
-    const cardFg = document.querySelector('#adaptability .softskills-card-fg');
     if (isReverse) {
         circleBlock.style.opacity = 0;
         triangleBlock.style.opacity = 1;
@@ -615,8 +650,7 @@ function adaptabilityAnimation(isReverse) {
         triangleHole.style.opacity = 1;
         adaptabilityBase.style.transform = "translateX(0%)";
         cardCirle.style.transform = "translate(0, 0)";
-        cardBg.style.transform = "scaleX(1)";
-        cardFg.style.transform = "scale(1)";
+        softskillsCardHover('#adaptability', false);
         collapseSoftskillsCenter();
     } else {
         circleBlock.style.opacity = 1;
@@ -625,8 +659,7 @@ function adaptabilityAnimation(isReverse) {
         triangleHole.style.opacity = 0;
         adaptabilityBase.style.transform = "translateX(-100%)";
         cardCirle.style.transform = "translate(50%, 50%)";
-        cardBg.style.transform = "scaleX(1.1)";
-        cardFg.style.transform = "scale(1.2)";
+        softskillsCardHover('#adaptability', true);
         rotateSoftskillsCenter(4);
     }
 }
@@ -773,11 +806,14 @@ function lineDecorScroll() {
 }
 
 function scrollUpSignScroll() {
-    const scrollUpSign = document.getElementsByClassName('scrollup-sign');
-    if (scrollUpSign[0].getBoundingClientRect().top <= viewHeight * 3 / 10) {
-        scrollUpSign[0].style.opacity = 0;
+    const topSign = document.getElementsByClassName('top-scrollup-sign');
+    const bottomSign = document.getElementsByClassName('bottom-scrollup-sign');
+    if (topSign[0].getBoundingClientRect().top <= viewHeight * 4 / 10) {
+        topSign[0].style.opacity = 0;
+        bottomSign[0].style.opacity = 0;
         setTimeout(() => {
-            scrollUpSign[0].style.visibility = 'hidden',
+            topSign[0].style.visibility = 'hidden',
+                bottomSign[0].style.visibility = 'hidden',
                 window.removeEventListener("scroll", scrollUpSignScroll);
         }, 500);
     }
@@ -848,25 +884,32 @@ function biodataScroll() {
 }
 
 function artProgrammingScroll() {
-    const masktextBg = document.getElementById('mask-text-bg');
-    if (masktextBg.style.opacity == 0) {
-        return;
-    }
-    if (masktextBg.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
-        // const irrelevantChars = document.getElementsByClassName('irrelevant-span');
-        // for (const irrelevantChar of irrelevantChars) {
-        //     irrelevantChar.style.opacity = 0;
-        // }
-        const biodataPanelContainer = document.getElementsByClassName('biodata-panel-container');
-        // biodataPanelContainer[0].style.display = "flex";
-        const biodataPanels = document.getElementsByClassName('biodata-panel');
-        for (const biodataPanel of biodataPanels) {
-            setTimeout(() => {
-                biodataPanel.style.transform = "scale(1,1)";
-            }, 500);
-        }
+    const topPanelContainer = document.getElementById('top-panel-container');
+    if (!isArtProgrammingExpanded) { return; }
+    if (topPanelContainer.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
+        const bottomPanelContainer = document.getElementById('bottom-panel-container');
+        bottomPanelContainer.style.opacity = 1;
         window.removeEventListener("scroll", artProgrammingScroll);
     }
+    // const masktextBg = document.getElementById('mask-text-bg');
+    // if (masktextBg.style.opacity == 0) {
+    //     return;
+    // }
+    // if (masktextBg.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
+    //     // const irrelevantChars = document.getElementsByClassName('irrelevant-span');
+    //     // for (const irrelevantChar of irrelevantChars) {
+    //     //     irrelevantChar.style.opacity = 0;
+    //     // }
+    //     // const biodataPanelContainer = document.getElementById('top-panel-container');
+    //     // biodataPanelContainer[0].style.display = "flex";
+    //     const biodataPanels = document.getElementsByClassName('biodata-panel');
+    //     for (const biodataPanel of biodataPanels) {
+    //         setTimeout(() => {
+    //             biodataPanel.style.transform = "scale(1,1)";
+    //         }, 500);
+    //     }
+    //     window.removeEventListener("scroll", artProgrammingScroll);
+    // }
 }
 
 function skillDirecScroll() {
@@ -947,7 +990,7 @@ const skillsCategories = document.getElementsByClassName('skills-category');
 // transformDots(0);
 explodeAllH1Text();
 explodeMaskText();
-generateBiodataPanelBg();
+// generateBiodataPanelBg();
 // createSoftSkillsSwipe();
 navListHover('home');
 window.addEventListener("scroll", scrollUpSignScroll, false);
@@ -963,8 +1006,16 @@ window.addEventListener("scroll", skillDirecScroll, false);
 window.addEventListener("scroll", contactScroll, false);
 window.addEventListener("scroll", footerLineScroll, false);
 
+// Events for biodata section
+isArtProgrammingExpanded = false;
 const clickSign1 = document.getElementById('mask-text-container');
 clickSign1.addEventListener("click", populateMask);
+bioSelectionIndex = 1;
+updateBioSelection(0);
+const artIconDesc = document.getElementById('art-icon-desc');
+artIconDesc.addEventListener('click', () => { updateBioSelection(0) }, false);
+const programmingIconDesc = document.getElementById('programming-icon-desc');
+programmingIconDesc.addEventListener('click', () => { updateBioSelection(1) }, false);
 
 // Click events for skills directory
 for (const skillsCategory of skillsCategories) {
