@@ -72,6 +72,12 @@ h4 {
           align-items: center;
   opacity: 0.4;
   padding: 1rem 0;
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
 }
 
 .vertical-dotline .dot-decor {
@@ -79,28 +85,14 @@ h4 {
   height: 0.2rem;
   border: 0.2rem solid #444881;
   border-radius: 50%;
-  opacity: 0;
   -webkit-transition: opacity 500ms ease-in-out;
   transition: opacity 500ms ease-in-out;
-}
-
-.vertical-dotline .dot-decor:nth-of-type(3) {
-  -webkit-transition-delay: 500ms;
-          transition-delay: 500ms;
 }
 
 .vertical-dotline .line-decor {
   width: 0.1rem;
   height: 9rem;
   background-color: #444881;
-  -webkit-transform: scaleY(0);
-          transform: scaleY(0);
-  -webkit-transform-origin: top;
-          transform-origin: top;
-  -webkit-transition: -webkit-transform 1s cubic-bezier(0.17, 0.67, 0.12, 0.91);
-  transition: -webkit-transform 1s cubic-bezier(0.17, 0.67, 0.12, 0.91);
-  transition: transform 1s cubic-bezier(0.17, 0.67, 0.12, 0.91);
-  transition: transform 1s cubic-bezier(0.17, 0.67, 0.12, 0.91), -webkit-transform 1s cubic-bezier(0.17, 0.67, 0.12, 0.91);
 }
 
 .down-arrow {
@@ -259,14 +251,24 @@ h4 {
 #biodata,
 #skills,
 #soft-skills,
-#projects,
 #contact {
-  margin: 20vh 2rem 1rem 2rem;
+  margin: 8rem 2rem 1rem 2rem;
   padding: 5rem 2rem;
   background-color: rgba(212, 223, 223, 0.389);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
   border-radius: 3rem;
+  -webkit-transform: translateY(10vh);
+          transform: translateY(10vh);
+  opacity: 0;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+  -webkit-transition-duration: 500ms;
+          transition-duration: 500ms;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
 }
 
 nav {
@@ -329,7 +331,7 @@ nav #nav-title .nav-left #home-title {
 }
 
 nav #nav-title .nav-left #home-title span {
-  color: #6773C5;
+  color: #6770a7c2;
 }
 
 nav #nav-title .nav-center {
@@ -760,6 +762,15 @@ header #surround-diamond-container #start-diamond-container {
   position: absolute;
   bottom: 8vh;
   z-index: 1;
+  -webkit-transform: translateY(-40vh);
+          transform: translateY(-40vh);
+  opacity: 0;
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+  -webkit-animation: start-diamond-animation 1500ms ease-in-out 3500ms forwards;
+          animation: start-diamond-animation 1500ms ease-in-out 3500ms forwards;
 }
 
 header #surround-diamond-container #categories-diamond-container {
@@ -2208,7 +2219,10 @@ header #surround-diamond-container #soft-diamond {
 }
 
 #projects {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -2404,8 +2418,6 @@ header #surround-diamond-container #soft-diamond {
   transition: opacity 500ms ease-in-out, transform 1s ease-in-out, top 1s ease-in-out;
   transition: opacity 500ms ease-in-out, transform 1s ease-in-out, top 1s ease-in-out, -webkit-transform 1s ease-in-out;
   z-index: 2;
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
 }
 
 #contact #contact-text a {
@@ -2422,6 +2434,7 @@ header #surround-diamond-container #soft-diamond {
   width: 100%;
   position: relative;
   text-align: center;
+  margin-bottom: 4rem;
 }
 
 #contact .mail-icon {
@@ -2904,6 +2917,22 @@ footer .author-container h3 {
     opacity: 0;
   }
   to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes start-diamond-animation {
+  to {
+    -webkit-transform: translateY(0) rotateY(360deg);
+            transform: translateY(0) rotateY(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes start-diamond-animation {
+  to {
+    -webkit-transform: translateY(0) rotateY(360deg);
+            transform: translateY(0) rotateY(360deg);
     opacity: 1;
   }
 }
@@ -3591,6 +3620,28 @@ footer .author-container h3 {
   }
   to {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes scale-up-animation {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes scale-up-animation {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 

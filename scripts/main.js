@@ -10,6 +10,9 @@ class CategorySection {
         this.backButton = document.querySelectorAll(sectionQuery + " .back-button");
         this.backButton[0].addEventListener('click', () => { this.backButtonClickHandler() }, false);
         this.backButton[1].addEventListener('click', () => { this.backButtonClickHandler() }, false);
+        this.allH1 = document.querySelectorAll(sectionQuery + ' h1');
+        this.verticalLines = document.querySelectorAll(sectionQuery + ' .vertical-dotline');
+        this.initSectionH1();
     }
 
     backButtonClickHandler() {
@@ -21,16 +24,92 @@ class CategorySection {
             if (this.isActivated) { return; }
             this.isActivated = true;
             this.sectionElement.style.display = 'flex';
+            this.setH1Explosion(true);
+            setTimeout(() => {
+                for (const h1 of this.allH1) {
+                    h1.style.opacity = 1;
+                }
+                this.setH1Explosion(false),
+                    this.setLineDecor(true),
+                    this.sectionElement.style.opacity = 1,
+                    this.sectionElement.style.transform = 'translateY(0)',
+                    this.manageCategoryActivation(true);
+            }, 100);
         } else {
             if (!this.isActivated) { return; }
             this.isActivated = false;
-            this.sectionElement.style.display = 'none';
+            this.sectionElement.style.opacity = 0;
+            this.sectionElement.style.transform = 'translateY(10vh)';
+            this.setLineDecor(false),
+                setTimeout(() => {
+                    this.sectionElement.style.display = 'none';
+                }, 500);
             if (this.name == "main") {
                 expandCategoriesDiamonds();
-                startDiamondContainer.style.visibility = 'hidden';
+                startDiamondContainer.style.animation = 'none';
+                startDiamondContainer.style.transform = 'scale(0)';
             }
         }
     }
+
+    manageCategoryActivation(isActive) {
+        switch (this.name) {
+            case "main":
+                noticeContainerActivation(isActive);
+                break;
+
+            case "biodata":
+                break;
+
+            case "contact":
+                break;
+
+            case "skills":
+                break;
+
+            case "soft-skills":
+                break;
+
+            default:
+                console.log('category index not implemented');
+                break;
+        }
+    }
+
+    initSectionH1() {
+        this.explodedCharsArray = []
+        for (let i = 0; i < this.allH1.length; i++) {
+            this.allH1[i].innerHTML = this.allH1[i].textContent.replace(/./g, `<span class=\"exploded-chars${this.name}-${i}\">$&</span>`);
+
+            this.explodedCharsArray.push(document.getElementsByClassName(`exploded-chars${this.name}-${i}`));
+        }
+    }
+
+    setH1Explosion(isExplode) {
+        for (const explodedChars of this.explodedCharsArray) {
+            for (let i = 0; i < explodedChars.length; i++) {
+                explodedChars[i].style.position = "relative";
+                if (isExplode) {
+                    explodedChars[i].style.animation = 'none';
+                    let top = (Math.random() + 1) * 0.2 * innerHeight;
+                    if (Math.random() < 0.5) {
+                        explodedChars[i].style.top = "-" + top + "px";
+                    } else {
+                        explodedChars[i].style.top = top + "px";
+                    }
+                } else {
+                    explodedChars[i].style.animation = `defrag-fade-animation 1000ms cubic-bezier(.79,.01,.15,.99) ${Math.random() * 500}ms forwards`;
+                }
+            }
+        }
+    }
+
+    setLineDecor(isActive) {
+        for (const verticalLine of this.verticalLines) {
+            verticalLine.style.transform = isActive ? 'scaleY(1)' : 'scaleY(0)';
+        }
+    }
+
 }
 
 
@@ -842,17 +921,17 @@ function headingScroll() {
     // }
 }
 
-function lineDecorScroll() {
-    const verticalLines = document.getElementsByClassName("vertical-dotline");
-    for (verticalLine of verticalLines) {
-        const vlBCR = verticalLine.getBoundingClientRect();
-        if (vlBCR.top <= viewHeight / 2) {
-            verticalLine.children[0].style.opacity = 1;
-            verticalLine.children[1].style.transform = 'scaleY(1)';
-            verticalLine.children[2].style.opacity = 1;
-        }
-    }
-}
+// function lineDecorScroll() {
+//     const verticalLines = document.getElementsByClassName("vertical-dotline");
+//     for (verticalLine of verticalLines) {
+//         const vlBCR = verticalLine.getBoundingClientRect();
+//         if (vlBCR.top <= viewHeight / 2) {
+//             verticalLine.children[0].style.opacity = 1;
+//             verticalLine.children[1].style.transform = 'scaleY(1)';
+//             verticalLine.children[2].style.opacity = 1;
+//         }
+//     }
+// }
 
 // function scrollUpSignScroll() {
 //     const topSign = document.getElementsByClassName('top-scrollup-sign');
@@ -868,19 +947,16 @@ function lineDecorScroll() {
 //     }
 // }
 
-function noticeContainerScroll() {
+function noticeContainerActivation(isActive) {
     const noticeContainer = document.getElementsByClassName('notice-container');
     const noticeTexts = document.getElementsByClassName('notice-text');
     const noticeBorders = document.getElementsByClassName('notice-border');
-    if (noticeTexts[0].getBoundingClientRect().top <= viewHeight * 6 / 10) {
-        noticeContainer[0].style.opacity = 1;
-        for (noticeText of noticeTexts) {
-            noticeText.style.opacity = 1;
-        }
-        for (noticeBorder of noticeBorders) {
-            noticeBorder.style.opacity = 1;
-        }
-        window.removeEventListener('scroll', noticeContainerScroll);
+    noticeContainer[0].style.opacity = isActive ? 1 : 0;
+    for (noticeText of noticeTexts) {
+        noticeText.style.opacity = isActive ? 1 : 0;
+    }
+    for (noticeBorder of noticeBorders) {
+        noticeBorder.style.opacity = isActive ? 1 : 0;
     }
 }
 
@@ -1043,9 +1119,9 @@ explodeMaskText();
 // createSoftSkillsSwipe();
 navListHover('home');
 // window.addEventListener("scroll", scrollUpSignScroll, false);
-window.addEventListener("scroll", headingScroll, false);
-window.addEventListener("scroll", lineDecorScroll, false);
-window.addEventListener("scroll", noticeContainerScroll, false);
+// window.addEventListener("scroll", headingScroll, false);
+// window.addEventListener("scroll", lineDecorScroll, false);
+// window.addEventListener("scroll", noticeContainerScroll, false);
 window.addEventListener("scroll", biodataScroll, false);
 window.addEventListener("scroll", artProgrammingScroll, false);
 // window.addEventListener("scroll", uiuxScroll, false);

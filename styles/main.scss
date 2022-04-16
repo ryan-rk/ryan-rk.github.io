@@ -85,25 +85,21 @@ h4 {
     align-items: center;
     opacity: 0.4;
     padding: 1rem 0;
+    transform: scaleY(0);
+    transition: transform 1s ease-in-out;
     .dot-decor {
         width: 0.2rem;
         height: 0.2rem;
         border: 0.2rem solid rgb(68, 72, 129);
         border-radius: 50%;
-        opacity: 0;
         transition: opacity 500ms ease-in-out;
-    }
-    .dot-decor:nth-of-type(3) {
-        transition-delay: 500ms;
     }
     .line-decor {
         width: 0.1rem;
         height: 9rem;
         // background-color: rgb(86, 86, 86);
         background-color: rgb(68, 72, 129);
-        transform: scaleY(0);
-        transform-origin: top;
-        transition: transform 1s cubic-bezier(.17, .67, .12, .91);
+        // transition: transform 1s cubic-bezier(.17, .67, .12, .91);
     }
 }
 
@@ -224,13 +220,18 @@ h4 {
 #biodata,
 #skills,
 #soft-skills,
-#projects,
+// #projects,
 #contact {
-    margin: 20vh 2rem 1rem 2rem;
+    margin: 8rem 2rem 1rem 2rem;
     padding: 5rem 2rem;
     background-color: rgba(212, 223, 223, 0.389);
     backdrop-filter: blur(8px);
     border-radius: 3rem;
+    transform: translateY(10vh);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
 }
 
 nav {
@@ -265,7 +266,7 @@ nav {
                 opacity: 1;
                 color: #9fa0a3;
                 span {
-                    color: #6773C5;
+                    color: #6770a7c2;
                 }
                 font-family: inherit;
                 font-size: inherit;
@@ -583,6 +584,10 @@ header {
             position: absolute;
             bottom: 8vh;
             z-index: 1;
+            transform: translateY(-40vh);
+            opacity: 0;
+            transition: transform 500ms ease-in-out;
+            animation: start-diamond-animation 1500ms ease-in-out 3500ms forwards;
             // display: flex;
             // justify-content: stretch;
         }
@@ -1731,8 +1736,9 @@ header {
 
 #projects {
     // margin-top: 10rem;
-    // display: flex;
-    display: none;
+    display: flex;
+    margin-bottom: 1rem;
+    // display: none;
     flex-direction: column;
     align-items: center;
     h1 {
@@ -1864,7 +1870,7 @@ header {
         transform: scale(0);
         transition: opacity 500ms ease-in-out, transform 1s ease-in-out, top 1s ease-in-out;
         z-index: 2;
-        backdrop-filter: blur(3px);
+        // backdrop-filter: blur(3px);
         a {
             font-size: 2rem;
             color: $main-text-color;
@@ -1878,6 +1884,7 @@ header {
         width: 100%;
         position: relative;
         text-align: center;
+        margin-bottom: 4rem;
     }
     .mail-icon {
         display: inline-block;
@@ -2178,6 +2185,13 @@ footer {
         opacity: 0;
     }
     to {
+        opacity: 1;
+    }
+}
+
+@keyframes start-diamond-animation {
+    to {
+        transform: translateY(0) rotateY(360deg);
         opacity: 1;
     }
 }
@@ -2487,6 +2501,15 @@ footer {
     }
     to {
         opacity: 1;
+    }
+}
+
+@keyframes scale-up-animation {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
     }
 }
 
