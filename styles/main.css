@@ -42,6 +42,10 @@ h2,
   transition: opacity 1500ms ease-in-out;
 }
 
+h2 {
+  opacity: 1;
+}
+
 h3 {
   font-family: 'Exo', sans-serif;
   font-weight: 100;
@@ -182,14 +186,77 @@ h4 {
           transform: translateY(-25%) scale(0.5);
 }
 
-header,
+.back-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.back-button .back-button-fg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.back-button .back-button-fg .button-line {
+  margin: 2rem;
+  height: 0.1rem;
+  width: 30vw;
+  background-color: aliceblue;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+}
+
+.back-button .back-button-fg .button-line-left {
+  -webkit-transform-origin: right;
+          transform-origin: right;
+}
+
+.back-button .back-button-fg .button-line-right {
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+.back-button .back-button-bg {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border: 0.2rem solid rgba(240, 255, 255, 0.528);
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out, -webkit-transform 500ms ease-in-out;
+}
+
+.back-button:hover .back-button-fg .button-line {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
 #main,
 #biodata,
 #skills,
 #soft-skills,
 #projects,
 #contact {
-  padding: 0 1rem;
+  margin: 20vh 0;
+  padding: 0 2rem;
 }
 
 nav {
@@ -431,23 +498,25 @@ nav #expanded-menu #expand-menu-closecurly {
 }
 
 header {
-  margin-top: 8rem;
-}
-
-#header-transition {
-  opacity: 0;
+  padding: 0 1rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   top: 0;
-  left: 0;
-  background-color: #f1f1f1;
-  z-index: 100;
-  -webkit-animation: header-transition-animation 1s ease-in-out 4s forwards;
-          animation: header-transition-animation 1s ease-in-out 4s forwards;
 }
 
-.logo-animation {
+header .logo-animation {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -458,10 +527,11 @@ header {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  height: calc(min(60vw, 25rem));
+  height: calc(min(80vw, 50vh));
+  width: calc(min(80vw, 50vh));
 }
 
-.logo-animation .logo-text-container {
+header .logo-animation .logo-text-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -474,14 +544,15 @@ header {
   z-index: 1;
 }
 
-.logo-animation .logo-text-container .logo-text {
+header .logo-animation .logo-text-container .logo-text {
   text-align: center;
   position: absolute;
   opacity: 0;
 }
 
-.logo-animation .logo-text-container #text-r {
-  right: 50%;
+header .logo-animation .logo-text-container #text-r {
+  height: 26%;
+  right: 100vw;
   font-family: 'Source Code Pro', monospace;
   font-size: calc(min(20vw, 9rem));
   color: #726c91;
@@ -489,20 +560,21 @@ header {
           animation: intro-animation-r 3s ease-in-out 0s forwards;
 }
 
-.logo-animation .logo-text-container #text-t {
+header .logo-animation .logo-text-container #text-t {
   color: #9C9C9C;
   left: 50%;
   top: 0%;
   z-index: 1;
   -webkit-transform: translate(-60%, -70%);
           transform: translate(-60%, -70%);
-  height: 60%;
+  height: 70%;
   -webkit-animation: intro-animation-t 1500ms ease-in-out 2s forwards;
           animation: intro-animation-t 1500ms ease-in-out 2s forwards;
 }
 
-.logo-animation .logo-text-container #text-k {
-  left: 50%;
+header .logo-animation .logo-text-container #text-k {
+  height: 26%;
+  left: 100vw;
   -webkit-transform: scaleX(-1);
           transform: scaleX(-1);
   font-family: 'Source Code Pro', monospace;
@@ -512,20 +584,7 @@ header {
           animation: intro-animation-k 3s ease-in-out 0s forwards;
 }
 
-.logo-animation #logo-line {
-  position: absolute;
-  width: 95%;
-  height: 0.1rem;
-  top: 50%;
-  color: #383838;
-  background-color: #383838;
-  opacity: 0;
-  z-index: -1;
-  -webkit-animation: logoline-appear-animation 1s ease-in-out 5s forwards;
-          animation: logoline-appear-animation 1s ease-in-out 5s forwards;
-}
-
-.logo-animation .diamond-dots {
+header .logo-animation .diamond-dots {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -541,14 +600,14 @@ header {
   z-index: 0;
 }
 
-.logo-animation .diamond-dots .logo-diamond-container {
+header .logo-animation .diamond-dots .logo-diamond-container {
   position: relative;
-  width: calc(min(60vw, 25rem));
+  width: 100%;
   height: 100%;
   z-index: -1;
 }
 
-.logo-animation .diamond-dots .logo-diamond-container #inner-diamond {
+header .logo-animation .diamond-dots .logo-diamond-container #inner-diamond {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: absolute;
@@ -562,13 +621,13 @@ header {
   border: 0.15rem solid #e6e6e6c7;
   background-color: #dadada46;
   z-index: 1;
-  -webkit-clip-path: circle(40% at center);
-          clip-path: circle(40% at center);
+  -webkit-clip-path: circle(0% at center);
+          clip-path: circle(0% at center);
   -webkit-animation: inner-diamond-animation 1500ms ease-in-out 1s forwards;
           animation: inner-diamond-animation 1500ms ease-in-out 1s forwards;
 }
 
-.logo-animation .diamond-dots .logo-diamond-container #outer-diamond {
+header .logo-animation .diamond-dots .logo-diamond-container #outer-diamond {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: absolute;
@@ -585,7 +644,7 @@ header {
           animation: outer-diamond-animation 800ms cubic-bezier(0, 1.11, 0.39, 0.96) 3800ms forwards;
 }
 
-.logo-animation .diamond-dots .logo-diamond-container .dot-container {
+header .logo-animation .diamond-dots .logo-diamond-container .dot-container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -595,7 +654,7 @@ header {
   z-index: 2;
 }
 
-.logo-animation .diamond-dots .logo-diamond-container .logo-dot {
+header .logo-animation .diamond-dots .logo-diamond-container .logo-dot {
   position: absolute;
   height: 5%;
   width: 5%;
@@ -607,16 +666,144 @@ header {
   top: 50%;
 }
 
-.logo-animation .diamond-dots .logo-diamond-container #dot-right {
+header .logo-animation .diamond-dots .logo-diamond-container #dot-right {
   left: 90%;
   -webkit-animation: movedot-right 8s infinite ease-in-out 6s;
           animation: movedot-right 8s infinite ease-in-out 6s;
 }
 
-.logo-animation .diamond-dots .logo-diamond-container #dot-left {
+header .logo-animation .diamond-dots .logo-diamond-container #dot-left {
   left: 10%;
   -webkit-animation: movedot-left 8s infinite ease-in-out 6s;
           animation: movedot-left 8s infinite ease-in-out 6s;
+}
+
+header #surround-diamond-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header #surround-diamond-container .diamond-container {
+  position: relative;
+  width: 12vh;
+  height: 12vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header #surround-diamond-container .diamond-container .diamond-bg {
+  position: absolute;
+  z-index: -10;
+  width: 12vh;
+  height: 12vh;
+  background-color: rgba(237, 248, 255, 0.49);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border: 0.1rem solid white;
+}
+
+header #surround-diamond-container .diamond-container .diamond-bg-outline {
+  position: absolute;
+  z-index: -10;
+  width: 15vh;
+  height: 15vh;
+  -webkit-transform: rotate(45deg) scale(0.5);
+          transform: rotate(45deg) scale(0.5);
+  opacity: 0;
+  border: 0.1rem solid white;
+  -webkit-transition: opacity 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+  transition: transform 200ms ease-in-out, opacity 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+}
+
+header #surround-diamond-container .diamond-container .diamond-text {
+  color: #666666;
+  font-size: x-large;
+}
+
+header #surround-diamond-container .diamond-container:hover .diamond-bg-outline {
+  -webkit-transform: rotate(45deg) scale(1);
+          transform: rotate(45deg) scale(1);
+  opacity: 1;
+}
+
+header #surround-diamond-container #start-diamond-container {
+  position: absolute;
+  bottom: 8vh;
+  z-index: 1;
+}
+
+header #surround-diamond-container #categories-diamond-container {
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 1000ms cubic-bezier(0.07, 0.7, 0.07, 0.94);
+  transition: -webkit-transform 1000ms cubic-bezier(0.07, 0.7, 0.07, 0.94);
+  transition: transform 1000ms cubic-bezier(0.07, 0.7, 0.07, 0.94);
+  transition: transform 1000ms cubic-bezier(0.07, 0.7, 0.07, 0.94), -webkit-transform 1000ms cubic-bezier(0.07, 0.7, 0.07, 0.94);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+header #surround-diamond-container #bio-diamond {
+  -webkit-animation: float-animation 6s ease-in-out 0s infinite;
+          animation: float-animation 6s ease-in-out 0s infinite;
+}
+
+header #surround-diamond-container #contact-diamond {
+  -webkit-animation: float-animation 6s ease-in-out -1s infinite;
+          animation: float-animation 6s ease-in-out -1s infinite;
+}
+
+header #surround-diamond-container #tech-diamond {
+  -webkit-animation: float-animation 6s ease-in-out -2s infinite;
+          animation: float-animation 6s ease-in-out -2s infinite;
+}
+
+header #surround-diamond-container #soft-diamond {
+  -webkit-animation: float-animation 6s ease-in-out -3s infinite;
+          animation: float-animation 6s ease-in-out -3s infinite;
+}
+
+#header-transition {
+  opacity: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #f1f1f1;
+  z-index: 100;
+  -webkit-animation: header-transition-animation 1s ease-in-out 4s forwards;
+          animation: header-transition-animation 1s ease-in-out 4s forwards;
 }
 
 #main {
@@ -631,7 +818,6 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 1rem;
 }
 
 #main h2 span {
@@ -688,9 +874,7 @@ header {
 }
 
 #biodata {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -698,7 +882,6 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 8rem;
 }
 
 #biodata h1 {
@@ -1194,9 +1377,7 @@ header {
 }
 
 #skills {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1204,7 +1385,6 @@ header {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  margin-top: 4rem;
   text-align: center;
 }
 
@@ -1212,7 +1392,7 @@ header {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  color: #b39db8;
+  color: #a086a6;
 }
 
 #skills #skills-direc {
@@ -1441,21 +1621,18 @@ header {
 }
 
 #soft-skills {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 10rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 #soft-skills h1 {
-  color: #ce8eb9;
+  color: #76a8ad;
   text-align: center;
 }
 
@@ -2022,10 +2199,7 @@ header {
 }
 
 #projects {
-  margin-top: 10rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -2193,10 +2367,7 @@ header {
 }
 
 #contact {
-  margin-top: 10rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -2480,14 +2651,14 @@ footer .author-container h3 {
 
 @-webkit-keyframes intro-animation-r {
   0% {
-    right: 80%;
+    right: 100vw;
     opacity: 0;
   }
   10% {
     opacity: 1;
   }
   40% {
-    right: 30%;
+    right: 10%;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -2496,7 +2667,7 @@ footer .author-container h3 {
             transform: scale(1.2);
   }
   100% {
-    right: 50%;
+    right: 53%;
     -webkit-transform: scale(1);
             transform: scale(1);
     opacity: 1;
@@ -2505,14 +2676,14 @@ footer .author-container h3 {
 
 @keyframes intro-animation-r {
   0% {
-    right: 80%;
+    right: 100vw;
     opacity: 0;
   }
   10% {
     opacity: 1;
   }
   40% {
-    right: 30%;
+    right: 10%;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -2521,7 +2692,7 @@ footer .author-container h3 {
             transform: scale(1.2);
   }
   100% {
-    right: 50%;
+    right: 53%;
     -webkit-transform: scale(1);
             transform: scale(1);
     opacity: 1;
@@ -2530,7 +2701,7 @@ footer .author-container h3 {
 
 @-webkit-keyframes intro-animation-k {
   0% {
-    left: 80%;
+    left: 100vw;
     opacity: 0;
     -webkit-transform: scaleX(1);
             transform: scaleX(1);
@@ -2539,7 +2710,7 @@ footer .author-container h3 {
     opacity: 1;
   }
   40% {
-    left: 30%;
+    left: 10%;
     -webkit-transform: scale(1) scaleX(1);
             transform: scale(1) scaleX(1);
   }
@@ -2548,7 +2719,7 @@ footer .author-container h3 {
             transform: scale(0.8) scaleX(0);
   }
   100% {
-    left: 50%;
+    left: 53%;
     -webkit-transform: scale(1) scaleX(-1);
             transform: scale(1) scaleX(-1);
     opacity: 1;
@@ -2557,7 +2728,7 @@ footer .author-container h3 {
 
 @keyframes intro-animation-k {
   0% {
-    left: 80%;
+    left: 100vw;
     opacity: 0;
     -webkit-transform: scaleX(1);
             transform: scaleX(1);
@@ -2566,7 +2737,7 @@ footer .author-container h3 {
     opacity: 1;
   }
   40% {
-    left: 30%;
+    left: 10%;
     -webkit-transform: scale(1) scaleX(1);
             transform: scale(1) scaleX(1);
   }
@@ -2575,7 +2746,7 @@ footer .author-container h3 {
             transform: scale(0.8) scaleX(0);
   }
   100% {
-    left: 50%;
+    left: 53%;
     -webkit-transform: scale(1) scaleX(-1);
             transform: scale(1) scaleX(-1);
     opacity: 1;
@@ -2605,32 +2776,20 @@ footer .author-container h3 {
 }
 
 @-webkit-keyframes inner-diamond-animation {
-  0% {
-    -webkit-clip-path: circle(40% at center);
-            clip-path: circle(40% at center);
-  }
-  100% {
+  to {
     -webkit-clip-path: circle(80% at center);
             clip-path: circle(80% at center);
   }
 }
 
 @keyframes inner-diamond-animation {
-  0% {
-    -webkit-clip-path: circle(40% at center);
-            clip-path: circle(40% at center);
-  }
-  100% {
+  to {
     -webkit-clip-path: circle(80% at center);
             clip-path: circle(80% at center);
   }
 }
 
 @-webkit-keyframes outer-diamond-animation {
-  from {
-    -webkit-transform: rotate(45deg) scale(0);
-            transform: rotate(45deg) scale(0);
-  }
   to {
     -webkit-transform: rotate(45deg) scale(1);
             transform: rotate(45deg) scale(1);
@@ -2638,10 +2797,6 @@ footer .author-container h3 {
 }
 
 @keyframes outer-diamond-animation {
-  from {
-    -webkit-transform: rotate(45deg) scale(0);
-            transform: rotate(45deg) scale(0);
-  }
   to {
     -webkit-transform: rotate(45deg) scale(1);
             transform: rotate(45deg) scale(1);
@@ -3427,6 +3582,36 @@ footer .author-container h3 {
   }
   to {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes float-animation {
+  0% {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
+  }
+  50% {
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+  }
+  100% {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
+  }
+}
+
+@keyframes float-animation {
+  0% {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
+  }
+  50% {
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+  }
+  100% {
+    -webkit-transform: translateY(-10%);
+            transform: translateY(-10%);
   }
 }
 

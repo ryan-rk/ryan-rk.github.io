@@ -1,4 +1,31 @@
-/// Please bear with the codes, I know they are definitely screaming for refactoring
+/// Please bear with the codes, I know they are definitely screaming for refactoring and I am definitely doing it whenever I am free
+
+
+class CategorySection {
+    constructor(name) {
+        this.name = name;
+        this.isActivated = false;
+        this.sectionElement = document.getElementById(name);
+        const sectionQuery = "#" + name;
+        this.backButton = document.querySelector(sectionQuery + " .back-button");
+        this.backButton.addEventListener('click', () => { this.backButtonClickHandler() }, false);
+    }
+
+    backButtonClickHandler() {
+        this.setActivation(false);
+    }
+
+    setActivation(isActive) {
+        if (isActive) {
+            if (this.isActivated) { return; }
+            this.isActivated = true;
+        } else {
+            if (!this.isActivated) { return; }
+            this.isActivated = false;
+        }
+    }
+}
+
 
 // --- Functions for general purposes ---
 // convert rem value to pixel
@@ -101,6 +128,18 @@ function navListHover(pageID) {
         })
     }
 }
+
+
+// --- Functions for header ---
+function expandCategoriesDiamonds() {
+    const categoryContainer = document.getElementById('categories-diamond-container');
+    categoryContainer.style.transform = 'scale(1)';
+}
+
+
+
+
+
 
 // --- Functions dealing with mask animation in biodata section ---
 
@@ -782,15 +821,15 @@ function headingScroll() {
         // }
     }
 
-    const allh2 = document.querySelectorAll('h2');
-    for (h2 of allh2) {
-        if (h2.className != 'notice-text') {
-            const h2BCR = h2.getBoundingClientRect();
-            if (h2BCR.top <= viewHeight * 7 / 10) {
-                h2.style.opacity = 1;
-            }
-        }
-    }
+    // const allh2 = document.querySelectorAll('h2');
+    // for (h2 of allh2) {
+    //     if (h2.className != 'notice-text') {
+    //         const h2BCR = h2.getBoundingClientRect();
+    //         if (h2BCR.top <= viewHeight * 7 / 10) {
+    //             h2.style.opacity = 1;
+    //         }
+    //     }
+    // }
 }
 
 function lineDecorScroll() {
@@ -1005,6 +1044,11 @@ window.addEventListener("scroll", skillDirecScroll, false);
 // window.addEventListener("scroll", softSkillsScroll, false);
 window.addEventListener("scroll", contactScroll, false);
 window.addEventListener("scroll", footerLineScroll, false);
+
+
+// Events for header section
+const startDiamondContainer = document.getElementById('start-diamond-container');
+startDiamondContainer.addEventListener('click', expandCategoriesDiamonds, false);
 
 // Events for biodata section
 isArtProgrammingExpanded = false;
