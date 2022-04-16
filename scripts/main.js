@@ -40,10 +40,11 @@ class CategorySection {
             this.isActivated = false;
             this.sectionElement.style.opacity = 0;
             this.sectionElement.style.transform = 'translateY(10vh)';
-            this.setLineDecor(false),
-                setTimeout(() => {
-                    this.sectionElement.style.display = 'none';
-                }, 500);
+            this.setLineDecor(false);
+            this.manageCategoryActivation(false);
+            setTimeout(() => {
+                this.sectionElement.style.display = 'none';
+            }, 500);
             if (this.name == "main") {
                 expandCategoriesDiamonds();
                 startDiamondContainer.style.animation = 'none';
@@ -62,6 +63,11 @@ class CategorySection {
                 break;
 
             case "contact":
+                if (!isActive) {
+                    setTimeout(() => {
+                        resetContactScroll();
+                    }, 500);
+                }
                 break;
 
             case "skills":
@@ -106,7 +112,8 @@ class CategorySection {
 
     setLineDecor(isActive) {
         for (const verticalLine of this.verticalLines) {
-            verticalLine.style.transform = isActive ? 'scaleY(1)' : 'scaleY(0)';
+            // verticalLine.style.transform = isActive ? 'scaleY(1)' : 'scaleY(0)';
+            verticalLine.style.clipPath = isActive ? 'circle(100%)' : 'circle(0%)';
         }
     }
 
@@ -887,39 +894,39 @@ function dotScroll() {
 
 // _________________________________________________________________________________
 // --- Functions dealing with transition/animation of elements when scrolled into position ---
-function headingScroll() {
-    const allh1 = document.querySelectorAll('h1');
-    for (let i = 0; i < allh1.length; i++) {
-        // for (h1 of allh1) {
-        // if (h1.className != 'notice-text') {
-        const h1 = allh1[i];
-        const h1BCR = h1.getBoundingClientRect();
-        if (h1BCR.top <= viewHeight * 3 / 5 && h1.style.opacity == 0) {
-            // if (h1.id != 'home-title') {
-            // explodeH1Text(h1, i);
-            // h1.style.transform = 'scaleX(1)';
-            h1.style.opacity = 1;
-            const explodedChars = document.getElementsByClassName(`exploded-chars${i}`);
-            for (const explodedChar of explodedChars) {
-                // let randomDelay = Math.random() * 1000;
-                explodedChar.style.animation = `defrag-fade-animation 1000ms cubic-bezier(.79,.01,.15,.99) ${Math.random() * 500}ms forwards`;
-                // explodedChar.style.animation = `defrag-fade-animation 1000ms cubic-bezier(.79,.01,.15,.99) forwards`;
-            }
-            // }
-        }
-        // }
-    }
+// function headingScroll() {
+//     const allh1 = document.querySelectorAll('h1');
+//     for (let i = 0; i < allh1.length; i++) {
+//         // for (h1 of allh1) {
+//         // if (h1.className != 'notice-text') {
+//         const h1 = allh1[i];
+//         const h1BCR = h1.getBoundingClientRect();
+//         if (h1BCR.top <= viewHeight * 3 / 5 && h1.style.opacity == 0) {
+//             // if (h1.id != 'home-title') {
+//             // explodeH1Text(h1, i);
+//             // h1.style.transform = 'scaleX(1)';
+//             h1.style.opacity = 1;
+//             const explodedChars = document.getElementsByClassName(`exploded-chars${i}`);
+//             for (const explodedChar of explodedChars) {
+//                 // let randomDelay = Math.random() * 1000;
+//                 explodedChar.style.animation = `defrag-fade-animation 1000ms cubic-bezier(.79,.01,.15,.99) ${Math.random() * 500}ms forwards`;
+//                 // explodedChar.style.animation = `defrag-fade-animation 1000ms cubic-bezier(.79,.01,.15,.99) forwards`;
+//             }
+//             // }
+//         }
+//         // }
+//     }
 
-    // const allh2 = document.querySelectorAll('h2');
-    // for (h2 of allh2) {
-    //     if (h2.className != 'notice-text') {
-    //         const h2BCR = h2.getBoundingClientRect();
-    //         if (h2BCR.top <= viewHeight * 7 / 10) {
-    //             h2.style.opacity = 1;
-    //         }
-    //     }
-    // }
-}
+//     // const allh2 = document.querySelectorAll('h2');
+//     // for (h2 of allh2) {
+//     //     if (h2.className != 'notice-text') {
+//     //         const h2BCR = h2.getBoundingClientRect();
+//     //         if (h2BCR.top <= viewHeight * 7 / 10) {
+//     //             h2.style.opacity = 1;
+//     //         }
+//     //     }
+//     // }
+// }
 
 // function lineDecorScroll() {
 //     const verticalLines = document.getElementsByClassName("vertical-dotline");
@@ -970,6 +977,7 @@ function noticeContainerActivation(isActive) {
 // }
 
 function biodataScroll() {
+    if (!bioSection.isActivated) { return; }
     // const mask = document.getElementById('mask');
     // const maskText = document.getElementsByClassName('mask-text');
     const maskTextContainer = document.getElementById('mask-text-container');
@@ -1009,6 +1017,7 @@ function biodataScroll() {
 }
 
 function artProgrammingScroll() {
+    if (!bioSection.isActivated) { return; }
     const topPanelContainer = document.getElementById('top-panel-container');
     if (!isArtProgrammingExpanded) { return; }
     if (topPanelContainer.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
@@ -1038,6 +1047,7 @@ function artProgrammingScroll() {
 }
 
 function skillDirecScroll() {
+    if (!techSection.isActivated) { return; }
     const skillsDirec = document.getElementById('skills-direc');
     if (skillsDirec.getBoundingClientRect().top <= (viewHeight * 5 / 10)) {
         skillsDirec.style.transform = 'scale(1)';
@@ -1045,18 +1055,19 @@ function skillDirecScroll() {
     }
 }
 
-function softSkillsScroll() {
-    const softSkillsUl = document.getElementById('soft-skills-ul');
-    const softSkillsSwipe = document.getElementById('soft-skills-swipe');
-    if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
-        softSkillsUl.style.opacity = 1;
-        softSkillsSwipe.style.opacity = 1;
-        softSkillsSwipe.children[0].style.animation = 'softskills-arrow-animation 5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite';
-        window.removeEventListener("scroll", softSkillsScroll);
-    }
-}
+// function softSkillsScroll() {
+//     const softSkillsUl = document.getElementById('soft-skills-ul');
+//     const softSkillsSwipe = document.getElementById('soft-skills-swipe');
+//     if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
+//         softSkillsUl.style.opacity = 1;
+//         softSkillsSwipe.style.opacity = 1;
+//         softSkillsSwipe.children[0].style.animation = 'softskills-arrow-animation 5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite';
+//         window.removeEventListener("scroll", softSkillsScroll);
+//     }
+// }
 
 function projectIconScroll() {
+    if (!techSection.isActivated) { return; }
     const projectIconContainer = document.getElementsByClassName('project-icon-container');
     const projectIconBCR = projectIconContainer[0].getBoundingClientRect();
     const projectLines = document.getElementsByClassName('project-line');
@@ -1076,6 +1087,7 @@ function projectIconScroll() {
 }
 
 function contactScroll() {
+    if (!contactSection.isActivated) { return; }
     const contactText = document.getElementById('contact-text');
     const mailBack = document.getElementById('mail-back');
     const mailFront = document.getElementById('mail-front');
@@ -1088,10 +1100,27 @@ function contactScroll() {
         mailFront.style.animation = 'mail-front-animation 1s ease-in-out forwards';
         mailFront.style.animationDelay = '1s';
         setTimeout(() => {
-            mailBack.style.display = 'none';
+            // mailBack.style.display = 'none';
+            // mailBack.style.visibility = 'hidden';
+            mailBack.style.opacity = 0;
         }, 1500);
-        window.removeEventListener("scroll", contactScroll);
+        // window.removeEventListener("scroll", contactScroll);
     }
+}
+
+function resetContactScroll() {
+    const contactText = document.getElementById('contact-text');
+    const mailBack = document.getElementById('mail-back');
+    const mailFront = document.getElementById('mail-front');
+    contactText.style.opacity = 0;
+    contactText.style.transform = 'scale(0)';
+    contactText.style.top = '10rem';
+    mailBack.style.transform = 'scaleX(1)';
+    mailFront.style.transform = 'scaleX(-1)';
+    mailFront.style.animation = 'none';
+    mailBack.style.animation = 'none';
+    // mailBack.style.visibility = 'visible';
+    mailBack.style.opacity = 1;
 }
 
 // function footerLineScroll() {
