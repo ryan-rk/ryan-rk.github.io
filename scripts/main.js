@@ -7,8 +7,9 @@ class CategorySection {
         this.isActivated = false;
         this.sectionElement = document.getElementById(name);
         const sectionQuery = "#" + name;
-        this.backButton = document.querySelector(sectionQuery + " .back-button");
-        this.backButton.addEventListener('click', () => { this.backButtonClickHandler() }, false);
+        this.backButton = document.querySelectorAll(sectionQuery + " .back-button");
+        this.backButton[0].addEventListener('click', () => { this.backButtonClickHandler() }, false);
+        this.backButton[1].addEventListener('click', () => { this.backButtonClickHandler() }, false);
     }
 
     backButtonClickHandler() {
@@ -19,9 +20,15 @@ class CategorySection {
         if (isActive) {
             if (this.isActivated) { return; }
             this.isActivated = true;
+            this.sectionElement.style.display = 'flex';
         } else {
             if (!this.isActivated) { return; }
             this.isActivated = false;
+            this.sectionElement.style.display = 'none';
+            if (this.name == "main") {
+                expandCategoriesDiamonds();
+                startDiamondContainer.style.visibility = 'hidden';
+            }
         }
     }
 }
@@ -131,6 +138,9 @@ function navListHover(pageID) {
 
 
 // --- Functions for header ---
+
+function expandSection(sectionIndex) {}
+
 function expandCategoriesDiamonds() {
     const categoryContainer = document.getElementById('categories-diamond-container');
     categoryContainer.style.transform = 'scale(1)';
@@ -844,19 +854,19 @@ function lineDecorScroll() {
     }
 }
 
-function scrollUpSignScroll() {
-    const topSign = document.getElementsByClassName('top-scrollup-sign');
-    const bottomSign = document.getElementsByClassName('bottom-scrollup-sign');
-    if (topSign[0].getBoundingClientRect().top <= viewHeight * 4 / 10) {
-        topSign[0].style.opacity = 0;
-        bottomSign[0].style.opacity = 0;
-        setTimeout(() => {
-            topSign[0].style.visibility = 'hidden',
-                bottomSign[0].style.visibility = 'hidden',
-                window.removeEventListener("scroll", scrollUpSignScroll);
-        }, 500);
-    }
-}
+// function scrollUpSignScroll() {
+//     const topSign = document.getElementsByClassName('top-scrollup-sign');
+//     const bottomSign = document.getElementsByClassName('bottom-scrollup-sign');
+//     if (topSign[0].getBoundingClientRect().top <= viewHeight * 4 / 10) {
+//         topSign[0].style.opacity = 0;
+//         bottomSign[0].style.opacity = 0;
+//         setTimeout(() => {
+//             topSign[0].style.visibility = 'hidden',
+//                 bottomSign[0].style.visibility = 'hidden',
+//                 window.removeEventListener("scroll", scrollUpSignScroll);
+//         }, 500);
+//     }
+// }
 
 function noticeContainerScroll() {
     const noticeContainer = document.getElementsByClassName('notice-container');
@@ -1008,15 +1018,15 @@ function contactScroll() {
     }
 }
 
-function footerLineScroll() {
-    const footerLine = document.getElementsByClassName('footer-line');
-    const footer = document.querySelector('footer');
-    if (footer.getBoundingClientRect().top <= (0.95 * viewHeight)) {
-        footer.style.opacity = 1;
-        footerLine[0].style.transform = 'scaleX(1)';
-        window.removeEventListener("scroll", footerLineScroll);
-    }
-}
+// function footerLineScroll() {
+//     const footerLine = document.getElementsByClassName('footer-line');
+//     const footer = document.querySelector('footer');
+//     if (footer.getBoundingClientRect().top <= (0.95 * viewHeight)) {
+//         footer.style.opacity = 1;
+//         footerLine[0].style.transform = 'scaleX(1)';
+//         window.removeEventListener("scroll", footerLineScroll);
+//     }
+// }
 
 const viewHeight = document.documentElement.clientHeight;
 const viewWidth = document.documentElement.clientWidth;
@@ -1032,7 +1042,7 @@ explodeMaskText();
 // generateBiodataPanelBg();
 // createSoftSkillsSwipe();
 navListHover('home');
-window.addEventListener("scroll", scrollUpSignScroll, false);
+// window.addEventListener("scroll", scrollUpSignScroll, false);
 window.addEventListener("scroll", headingScroll, false);
 window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", noticeContainerScroll, false);
@@ -1043,12 +1053,25 @@ window.addEventListener("scroll", projectIconScroll, false);
 window.addEventListener("scroll", skillDirecScroll, false);
 // window.addEventListener("scroll", softSkillsScroll, false);
 window.addEventListener("scroll", contactScroll, false);
-window.addEventListener("scroll", footerLineScroll, false);
+// window.addEventListener("scroll", footerLineScroll, false);
 
 
 // Events for header section
 const startDiamondContainer = document.getElementById('start-diamond-container');
-startDiamondContainer.addEventListener('click', expandCategoriesDiamonds, false);
+const bioDiamond = document.getElementById('bio-diamond');
+const contactDiamond = document.getElementById('contact-diamond');
+const techDiamond = document.getElementById('tech-diamond');
+const softDiamond = document.getElementById('soft-diamond');
+const mainSection = new CategorySection('main');
+const bioSection = new CategorySection('biodata');
+const contactSection = new CategorySection('contact');
+const techSection = new CategorySection('skills');
+const softSection = new CategorySection('soft-skills');
+startDiamondContainer.addEventListener('click', () => { mainSection.setActivation(true) }, false);
+bioDiamond.addEventListener('click', () => { bioSection.setActivation(true) }, false);
+contactDiamond.addEventListener('click', () => { contactSection.setActivation(true) }, false);
+techDiamond.addEventListener('click', () => { techSection.setActivation(true) }, false);
+softDiamond.addEventListener('click', () => { softSection.setActivation(true) }, false);
 
 // Events for biodata section
 isArtProgrammingExpanded = false;

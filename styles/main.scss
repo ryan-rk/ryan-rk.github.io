@@ -45,6 +45,7 @@ h1 {
 
 h1:not(#home-title) {
     // position: absolute;
+    margin-top: 4rem;
     padding: 1rem;
     background-color: #ffffff2e;
     backdrop-filter: blur(8px);
@@ -87,18 +88,22 @@ h4 {
     .dot-decor {
         width: 0.2rem;
         height: 0.2rem;
-        border: 0.2rem solid #fff;
+        border: 0.2rem solid rgb(68, 72, 129);
         border-radius: 50%;
         opacity: 0;
         transition: opacity 500ms ease-in-out;
     }
+    .dot-decor:nth-of-type(3) {
+        transition-delay: 500ms;
+    }
     .line-decor {
         width: 0.1rem;
         height: 9rem;
-        background-color: #fff;
+        // background-color: rgb(86, 86, 86);
+        background-color: rgb(68, 72, 129);
         transform: scaleY(0);
         transform-origin: top;
-        transition: transform 1500ms cubic-bezier(.27, .92, .33, .9);
+        transition: transform 1s cubic-bezier(.17, .67, .12, .91);
     }
 }
 
@@ -221,8 +226,11 @@ h4 {
 #soft-skills,
 #projects,
 #contact {
-    margin: 20vh 0;
-    padding: 0 2rem;
+    margin: 20vh 2rem 1rem 2rem;
+    padding: 5rem 2rem;
+    background-color: rgba(212, 223, 223, 0.389);
+    backdrop-filter: blur(8px);
+    border-radius: 3rem;
 }
 
 nav {
@@ -529,6 +537,7 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1;
         .diamond-container {
             position: relative;
             // width: 100%;
@@ -629,8 +638,8 @@ header {
 }
 
 #main {
-    display: flex;
-    // display: none;
+    // display: flex;
+    display: none;
     gap: 3rem;
     flex-direction: column;
     align-items: center;
