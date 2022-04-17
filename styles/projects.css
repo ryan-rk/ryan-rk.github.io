@@ -567,6 +567,9 @@ nav #nav-left .nav-title #home-title span b {
 }
 
 #background {
+  opacity: 0;
+  -webkit-transition: opacity 1000ms ease-in-out;
+  transition: opacity 1000ms ease-in-out;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -581,9 +584,6 @@ nav #nav-left .nav-title #home-title span b {
   height: 100%;
   background: -webkit-gradient(linear, left top, left bottom, from(#aaaaaa), to(white));
   background: linear-gradient(#aaaaaa 0%, white 100%);
-  opacity: 0;
-  -webkit-transition: opacity 1000ms ease-in-out;
-  transition: opacity 1000ms ease-in-out;
 }
 
 @-webkit-keyframes nav-appear-animation {

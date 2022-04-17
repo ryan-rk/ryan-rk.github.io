@@ -80,11 +80,21 @@ function initializePage() {
     canvas.style.opacity = 1;
 }
 
+function leavingPage() {
+    const fgContainer = document.getElementById("fg-container");
+    fgContainer.style.opacity = 0;
+    const background = document.getElementById("background");
+    background.style.opacity = 0;
+    canvas.style.opacity = 0;
+    const navBar = document.querySelector('nav');
+    navBar.style.animation = 'nav-disappear-animation 500ms ease-in-out 0s forwards';
+}
+
 
 // --- Functions for Navbar ---
 // Functions dealing with click to expand/hide mobile menu
 function expandMenu() {
-    console.log('expand menu activated');
+    // console.log('expand menu activated');
     const expandedMenu = document.getElementById('expanded-menu');
     const triangleLeft = document.getElementById('nav-click-triangle');
     const navBar = document.querySelector('nav');
@@ -131,6 +141,20 @@ function navListHover(pageID) {
             currentPageTriangle.style.filter = 'contrast(0%)';
         })
     }
+}
+
+function homeOnClick() {
+    leavingPage();
+    setTimeout(() => {
+        window.location.href = './index.html';
+    }, 1500);
+}
+
+function projectsOnClick() {
+    leavingPage();
+    setTimeout(() => {
+        window.location.href = './projects.html';
+    }, 1500);
 }
 
 
@@ -201,6 +225,10 @@ const viewHeight = () => { return document.documentElement.clientHeight };
 const viewWidth = () => { return document.documentElement.clientWidth };
 
 navListHover('aboutme');
+const homeButton = document.getElementById('home-list');
+homeButton.addEventListener('click', homeOnClick, false);
+const projectsButton = document.getElementById('projects-list');
+projectsButton.addEventListener('click', projectsOnClick, false);
 
 window.addEventListener('mousemove', mousemove);
 

@@ -5,8 +5,9 @@ class ProjectSection {
         this.isActivated = false;
         this.sectionElement = document.getElementById(name);
         const sectionQuery = "#" + name;
-        this.backButton = document.querySelector(sectionQuery + " .back-button");
-        this.backButton.addEventListener('click', () => { this.backButtonClickHandler() }, false);
+        this.backButton = document.querySelectorAll(sectionQuery + " .back-button");
+        this.backButton[0].addEventListener('click', () => { this.backButtonClickHandler() }, false);
+        this.backButton[1].addEventListener('click', () => { this.backButtonClickHandler() }, false);
         this.sectionForeground = document.querySelector(sectionQuery + " .section-foreground");
         this.sectionCards = document.querySelectorAll(sectionQuery + " .project-card");
         this.sectionBackground = document.querySelector(sectionQuery + " .section-background");
@@ -92,15 +93,26 @@ class ProjectSection {
 function initializePage() {
     const gallerySection = document.getElementById("gallery-section");
     gallerySection.style.opacity = 1;
-    const background = document.getElementById("background-color");
-    background.style.opacity = 1;
+    const background = document.getElementById("background");
+    setTimeout(() => {
+        background.style.opacity = 1;
+    }, 500);
+}
+
+function leavingPage() {
+    const gallerySection = document.getElementById("gallery-section");
+    gallerySection.style.opacity = 0;
+    const background = document.getElementById("background");
+    background.style.opacity = 0;
+    const navBar = document.querySelector('nav');
+    navBar.style.animation = 'nav-disappear-animation 500ms ease-in-out 0s forwards';
 }
 
 
 // --- Functions for Navbar ---
 // Functions dealing with click to expand/hide mobile menu
 function expandMenu() {
-    console.log('expand menu activated');
+    // console.log('expand menu activated');
     const expandedMenu = document.getElementById('expanded-menu');
     const triangleLeft = document.getElementById('nav-click-triangle');
     const navBar = document.querySelector('nav');
@@ -147,6 +159,20 @@ function navListHover(pageID) {
             currentPageTriangle.style.filter = 'contrast(0%)';
         })
     }
+}
+
+function homeOnClick() {
+    leavingPage();
+    setTimeout(() => {
+        window.location.href = './index.html';
+    }, 1500);
+}
+
+function aboutOnClick() {
+    leavingPage();
+    setTimeout(() => {
+        window.location.href = './about.html';
+    }, 1500);
 }
 
 
@@ -279,7 +305,7 @@ function activateProjectSection() {
             break;
 
         default:
-            console.log("Project index not implemented");
+            // console.log("Project index not implemented");
             return;
     }
 }
@@ -413,6 +439,11 @@ var selectedProjectIndex = 0;
 var isStartDeactivateGallery = false;
 initializePage();
 navListHover('projects');
+const homeButton = document.getElementById('home-list');
+homeButton.addEventListener('click', homeOnClick, false);
+const aboutButton = document.getElementById('aboutme-list');
+aboutButton.addEventListener('click', aboutOnClick, false);
+
 updateTitleDesc();
 updateGalleryArrow();
 const frameLeftArrow = document.getElementById('frame-left-arrow');

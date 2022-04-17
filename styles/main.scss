@@ -85,14 +85,14 @@ h4 {
     align-items: center;
     opacity: 0.4;
     padding: 1rem 0;
-    transition: clip-path 1s ease-in-out;
+    transition: clip-path 1000ms cubic-bezier(.17, .67, .13, .92) 500ms;
     clip-path: circle(0%);
     .dot-decor {
         width: 0.2rem;
         height: 0.2rem;
         border: 0.2rem solid rgb(68, 72, 129);
         border-radius: 50%;
-        transition: opacity 500ms ease-in-out;
+        transition: opacity 200ms ease-in-out 1500ms;
     }
     .line-decor {
         width: 0.1rem;
@@ -366,6 +366,7 @@ nav {
                 position: relative;
                 margin: 0.1rem 0;
                 padding: 0.5rem;
+                cursor: pointer;
                 a {
                     // color: #9fa0a3;
                     text-decoration: none;
@@ -604,25 +605,25 @@ header {
             transform: scale(0);
         }
         #bio-diamond {
-            animation: float-animation 6s ease-in-out 0s infinite;
+            animation: float-animation 5s ease-in-out 0s infinite;
             // .diamond-bg {
             //     background-color: #abafc941;
             // }
         }
         #contact-diamond {
-            animation: float-animation 6s ease-in-out -1s infinite;
+            animation: float-animation 5s ease-in-out -1s infinite;
             // .diamond-bg {
             //     background-color: #d29ba941;
             // }
         }
         #tech-diamond {
-            animation: float-animation 6s ease-in-out -2s infinite;
+            animation: float-animation 5s ease-in-out -2s infinite;
             // .diamond-bg {
             //     background-color: #c1b3c441;
             // }
         }
         #soft-diamond {
-            animation: float-animation 6s ease-in-out -3s infinite;
+            animation: float-animation 5s ease-in-out -3s infinite;
             // .diamond-bg {
             //     background-color: #abc0c241;
             // }
@@ -664,25 +665,30 @@ header {
         // height: 20rem;
         align-content: center;
         background-color: #707fd5a0;
-        opacity: 0;
+        opacity: 1;
+        transform: scale(0);
         backdrop-filter: blur(8px);
-        transition: opacity 1s ease-in-out;
+        transition: transform 1s cubic-bezier(.17, .67, .13, .95);
         .notice-border {
             box-sizing: border-box;
-            opacity: 0;
+            opacity: 1;
             width: 100%;
             height: 100%;
             position: absolute;
             border: 0.2rem solid #d3cfff;
             animation: uiux-border-animation 5s linear infinite;
-            transition: opacity 1s ease-in-out;
+            // transition: opacity 1s ease-in-out 200ms;
         }
         #notice-border2 {
             animation-delay: -2500ms;
         }
         .notice-text {
             text-align: center;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out 1s;
+            a {
+                text-decoration: none;
+                color: #4c58ac;
+            }
         }
         // h1 {
         //     color: #688bb8;
@@ -785,7 +791,7 @@ header {
         width: 100%;
         // height: min(10rem);
         // height: 20rem;
-        margin-top: 5rem;
+        margin-top: 2rem;
         margin-bottom: 6rem;
         // transform: scaleY(0);
         // transition: all 0.4s ease-in-out;
@@ -937,7 +943,7 @@ header {
         transform-origin: 50% 0%;
         // transform: translateY(-100%) scale(0);
         transform: translateY(0%) scale(0);
-        transition: transform 1000ms cubic-bezier(.07, .7, .07, .94);
+        transition: transform 1000ms cubic-bezier(.07, .7, .07, .94) 2s;
     }
     #diamond-line-container {
         display: flex;
@@ -945,7 +951,7 @@ header {
         justify-content: center;
         width: 80%;
         transform: scaleX(0);
-        transition: transform 500ms ease-in-out 1500ms;
+        transition: transform 500ms ease-in-out 3500ms;
         // height: 1rem;
         .diamond-line {
             width: 40%;
@@ -1884,7 +1890,7 @@ header {
         width: 100%;
         position: relative;
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
     }
     .mail-icon {
         display: inline-block;
@@ -1916,9 +1922,34 @@ header {
             width: 99%;
         }
     }
+    .author-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem 1rem 2rem 1rem;
+        .footer-line {
+            width: 100%;
+            height: 0.1rem;
+            margin: 1rem 0;
+            background-color: rgba(165, 165, 165, 0.593);
+            // transform-origin: center;
+            // transform: scaleX(0);
+            // transition: transform 1s ease-in-out;
+        }
+        h3 {
+            width: 100%;
+            font-size: 0.8rem;
+            padding: 0.5rem;
+            text-align: center;
+            color: rgba(119, 119, 119, 0.982);
+        }
+    }
 }
 
 #backdrop {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -2168,6 +2199,15 @@ footer {
     }
     to {
         transform: scaleX(1);
+    }
+}
+
+@keyframes nav-disappear-animation {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
     }
 }
 

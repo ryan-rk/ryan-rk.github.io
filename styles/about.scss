@@ -8,6 +8,7 @@ h1:not(#home-title) {
     backdrop-filter: blur(0px);
     background-color: rgba(51, 71, 123, 0);
     padding: 0;
+    margin: 0;
 }
 
 nav {
@@ -149,7 +150,7 @@ canvas {
     transition: transform 1000ms cubic-bezier(.06, .65, .25, .97) 1500ms, opacity 800ms ease-in-out;
 }
 
-@media only screen and (max-width: 50rem) {
+@media only screen and (max-width: 60rem) {
     #fg-container {
         align-items: flex-start;
         padding-top: 10rem;

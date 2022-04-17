@@ -11,25 +11,25 @@ function builderOff() {
     builderOffTrigger.style.visibility = 'hidden';
     onOffToggle(false);
     setTimeout(() => { restartBuilder(robotMain, robotBody, robotArm, builderOffTrigger, speechBubble) }, 1500);
-    if (angryValue >= 6) {
+    if (angryValue >= 5) {
         showSmokeSparks();
     }
-    if (angryValue > 9) {
+    if (angryValue > 7) {
         builderExploding();
     }
 }
 
 function restartBuilder(robotMain, robotBody, robotArm, builderOffTrigger, speechBubble) {
     // console.log('restartBuilder clicked');
-    if (angryValue <= 2) {
+    if (angryValue <= 1) {
         robotMain.style.animation = "robot-normal-move 3s ease-in-out";
         robotArm.style.animation = "arm-normal-move 3s ease-in-out";
         setTimeout(() => { onOffToggle(true), speechBubble.style.visibility = 'hidden' }, 1400);
-    } else if (angryValue <= 4) {
+    } else if (angryValue <= 2) {
         robotMain.style.animation = "robot-angry-move 3s ease-in-out";
         robotArm.style.animation = "arm-angry-move 3s ease-in-out";
         setTimeout(() => { onOffToggle(true), speechBubble.style.visibility = 'hidden' }, 1400);
-    } else if (angryValue <= 5) {
+    } else if (angryValue <= 3) {
         robotBody.src = "assets/img/robot-angry.svg";
         robotMain.style.animation = "robot-angry-move 1.5s ease-in-out";
         robotArm.style.animation = "arm-angry-move 1.5s ease-in-out";
@@ -45,13 +45,14 @@ function restartBuilder(robotMain, robotBody, robotArm, builderOffTrigger, speec
 
 function cycleSpeechBubble(speechBubble) {
     console.log('cycleSpeechBubble clicked');
-    const speechBubbleMode = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-    if (speechBubbleMode === 1) {
+    // const speechBubbleMode = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+    // if (speechBubbleMode === 1) {
+    if (angryValue == 4) {
         speechBubble.style.visibility = 'visible';
-    } else if (speechBubbleMode === 2) {
+    } else if (angryValue == 5) {
         speechBubble.src = 'assets/img/speech-bubble1.svg';
         speechBubble.style.visibility = 'visible';
-    } else if (speechBubbleMode === 3) {
+    } else if (angryValue >= 6) {
         speechBubble.src = 'assets/img/speech-bubble2.svg';
         speechBubble.style.visibility = 'visible';
     }

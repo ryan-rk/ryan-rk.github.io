@@ -32,8 +32,8 @@ class CategorySection {
                 this.setH1Explosion(false),
                     this.setLineDecor(true),
                     this.sectionElement.style.opacity = 1,
-                    this.sectionElement.style.transform = 'translateY(0)',
-                    this.manageCategoryActivation(true);
+                    this.sectionElement.style.transform = 'translateY(0)';
+                // this.manageCategoryActivation(true);
             }, 100);
         } else {
             if (!this.isActivated) { return; }
@@ -41,7 +41,7 @@ class CategorySection {
             this.sectionElement.style.opacity = 0;
             this.sectionElement.style.transform = 'translateY(10vh)';
             this.setLineDecor(false);
-            this.manageCategoryActivation(false);
+            // this.manageCategoryActivation(false);
             setTimeout(() => {
                 this.sectionElement.style.display = 'none';
             }, 500);
@@ -50,35 +50,6 @@ class CategorySection {
                 startDiamondContainer.style.animation = 'none';
                 startDiamondContainer.style.transform = 'scale(0)';
             }
-        }
-    }
-
-    manageCategoryActivation(isActive) {
-        switch (this.name) {
-            case "main":
-                noticeContainerActivation(isActive);
-                break;
-
-            case "biodata":
-                break;
-
-            case "contact":
-                if (!isActive) {
-                    setTimeout(() => {
-                        resetContactScroll();
-                    }, 500);
-                }
-                break;
-
-            case "skills":
-                break;
-
-            case "soft-skills":
-                break;
-
-            default:
-                console.log('category index not implemented');
-                break;
         }
     }
 
@@ -114,8 +85,39 @@ class CategorySection {
         for (const verticalLine of this.verticalLines) {
             // verticalLine.style.transform = isActive ? 'scaleY(1)' : 'scaleY(0)';
             verticalLine.style.clipPath = isActive ? 'circle(100%)' : 'circle(0%)';
+            verticalLine.children[0].style.opacity = 1;
+            verticalLine.children[2].style.opacity = 1;
         }
     }
+
+    // manageCategoryActivation(isActive) {
+    //     switch (this.name) {
+    //         case "main":
+    //             noticeContainerActivation(isActive);
+    //             break;
+
+    //         case "biodata":
+    //             break;
+
+    //         case "contact":
+    //             // if (!isActive) {
+    //             //     setTimeout(() => {
+    //             //         resetContactScroll();
+    //             //     }, 500);
+    //             // }
+    //             break;
+
+    //         case "skills":
+    //             break;
+
+    //         case "soft-skills":
+    //             break;
+
+    //         default:
+    //             console.log('category index not implemented');
+    //             break;
+    //     }
+    // }
 
 }
 
@@ -132,48 +134,59 @@ function randomIntervalInt(min, max) {
 
 function initializePage() {
     const backdrop = document.getElementById("backdrop");
-    backdrop.style.opacity = 1;
+    setTimeout(() => {
+        backdrop.style.opacity = 1;
+    }, 100);
 }
+
+function leavingPage() {
+    const docBody = document.querySelector('body');
+    docBody.style.transition = 'opacity 500ms ease-in-out';
+    docBody.style.opacity = 0;
+    const navBar = document.querySelector('nav');
+    navBar.style.animation = 'nav-disappear-animation 500ms ease-in-out 0s forwards';
+}
+
 
 
 // --- Functions for headings and text animations
-function explodeAllH1Text() {
-    const allh1 = document.querySelectorAll('h1');
-    for (let i = 0; i < allh1.length; i++) {
-        const h1 = allh1[i];
-        if (h1.id != 'home-title') {
-            explodeH1Text(h1, i);
-        }
-    }
-}
+// function explodeAllH1Text() {
+//     const allh1 = document.querySelectorAll('h1');
+//     for (let i = 0; i < allh1.length; i++) {
+//         const h1 = allh1[i];
+//         if (h1.id != 'home-title') {
+//             explodeH1Text(h1, i);
+//         }
+//     }
+// }
 
-function explodeH1Text(h1element, elementIndex) {
-    h1element.innerHTML = h1element.textContent.replace(/./g, `<span class=\"exploded-chars${elementIndex}\">$&</span>`);
+// function explodeH1Text(h1element, elementIndex) {
+//     h1element.innerHTML = h1element.textContent.replace(/./g, `<span class=\"exploded-chars${elementIndex}\">$&</span>`);
 
-    let explodedChars = document.getElementsByClassName(`exploded-chars${elementIndex}`);
-    for (let i = 0; i < explodedChars.length; i++) {
-        explodedChars[i].style.position = "relative";
-        // let left = innerWidth * Math.random();
-        // let left = innerWidth;
-        // if (Math.random() < 0.5) {
-        //     explodedChars[i].style.left = "-" + left + "px";
-        // } else {
-        //     explodedChars[i].style.left = left + "px";
-        // }
-        let top = (Math.random() + 1) * 0.2 * innerHeight;
-        if (Math.random() < 0.5) {
-            explodedChars[i].style.top = "-" + top + "px";
-        } else {
-            explodedChars[i].style.top = top + "px";
-        }
-    }
-}
+//     let explodedChars = document.getElementsByClassName(`exploded-chars${elementIndex}`);
+//     for (let i = 0; i < explodedChars.length; i++) {
+//         explodedChars[i].style.position = "relative";
+//         // let left = innerWidth * Math.random();
+//         // let left = innerWidth;
+//         // if (Math.random() < 0.5) {
+//         //     explodedChars[i].style.left = "-" + left + "px";
+//         // } else {
+//         //     explodedChars[i].style.left = left + "px";
+//         // }
+//         let top = (Math.random() + 1) * 0.2 * innerHeight;
+//         if (Math.random() < 0.5) {
+//             explodedChars[i].style.top = "-" + top + "px";
+//         } else {
+//             explodedChars[i].style.top = top + "px";
+//         }
+//     }
+// }
 
 
 // --- Functions for Navbar ---
 // Functions dealing with click to expand/hide mobile menu
 function expandMenu() {
-    console.log('expand menu activated');
+    // console.log('expand menu activated');
     const expandedMenu = document.getElementById('expanded-menu');
     const triangleLeft = document.getElementById('nav-click-triangle');
     const navBar = document.querySelector('nav');
@@ -222,16 +235,32 @@ function navListHover(pageID) {
     }
 }
 
+function projectsOnClick() {
+    leavingPage();
+    setTimeout(() => {
+        window.location.href = './projects.html';
+    }, 1500);
+}
 
-// --- Functions for header ---
+function aboutOnClick() {
+    leavingPage();
+    setTimeout(() => {
+        window.location.href = './about.html';
+    }, 1500);
+}
 
-function expandSection(sectionIndex) {}
+
+
+// --- Functions for header and category section ---
 
 function expandCategoriesDiamonds() {
     const categoryContainer = document.getElementById('categories-diamond-container');
     categoryContainer.style.transform = 'scale(1)';
 }
 
+function isSectionExpanded() {
+    return (mainSection.isActivated || bioSection.isActivated || contactSection.isActivated || techSection.isActivated || softSection.isActivated);
+}
 
 
 
@@ -253,7 +282,7 @@ function populateMask() {
         maskFragment.style.animationDuration = '10ms';
     }
     setTimeout(() => { maskTextFg.style.display = "none", clickSign1.style.display = "none", maskExplode(false); }, 4000);
-    setTimeout(() => { maskExplode(true); }, 5800);
+    setTimeout(() => { maskExplode(true); }, 5200);
 }
 
 function maskExplode(isReverse) {
@@ -268,11 +297,6 @@ function maskExplode(isReverse) {
             // maskChar.style.animation = `exploded-char-animation 500ms cubic-bezier(.73, .06, .82, .38) ${Math.random() * 1000}ms forwards`;
             maskChar.style.animation = `exploded-char-animation 500ms ease-in-out ${Math.random() * 500}ms forwards`;
         }
-        const topPanelContainer = document.getElementById('top-panel-container');
-        topPanelContainer.style.transform = "translateY(0) scale(1)";
-        const diamondLineContainer = document.getElementById('diamond-line-container');
-        diamondLineContainer.style.transform = "scale(1)";
-        isArtProgrammingExpanded = true;
         // for (const maskChar of maskChars) {
         //     maskChar.style.opacity = 1;
         // }
@@ -299,6 +323,11 @@ function postMaskExplosion() {
     mask.style.zIndex = 10;
     const maskTextContainer = document.getElementById('mask-text-container');
     maskTextContainer.style.transform = "translateY(-20%)";
+    const topPanelContainer = document.getElementById('top-panel-container');
+    topPanelContainer.style.transform = "translateY(0) scale(1)";
+    const diamondLineContainer = document.getElementById('diamond-line-container');
+    diamondLineContainer.style.transform = "scale(1)";
+    isArtProgrammingExpanded = true;
 }
 
 function explodeMaskText() {
@@ -342,7 +371,7 @@ function shatterMask(isShatter) {
         // const randomAxis2 = Math.random() * 2 - 1;
         // const randomAxis3 = Math.random() * 2 - 1;
         // maskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate(${isShatter * randomDeg}deg)`;
-        maskFragments[i].style.transform = `translate(${xDistanceScale * fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${maskRotationAxes[i][0]}, ${maskRotationAxes[i][1]}, ${maskRotationAxes[i][2]}, ${isShatter ? 180 : 360}deg)`;
+        maskFragments[i].style.transform = `translate(${xDistanceScale * fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${maskRotationAxes[i][0]}, ${maskRotationAxes[i][1]}, ${maskRotationAxes[i][2]}, ${isShatter ? 220 : 360}deg)`;
         // maskFragments[i].style.transform = `rotate3d(${maskRotationAxes[i][0]}, ${maskRotationAxes[i][1]}, ${maskRotationAxes[i][2]}, ${isShatter ? 180 : 360}deg)`;
     }
 }
@@ -528,7 +557,7 @@ function skillsCategoryClicked(skillID, openClose) {
             break;
 
         default:
-            console.log('case not included');
+            // console.log('case not included');
             direcClicked = 'terminal';
             break;
     }
@@ -592,7 +621,7 @@ function rotateSoftskillsCenter(skillIndex) {
             break;
 
         default:
-            console.log("Soft skills index not implemented");
+            // console.log("Soft skills index not implemented");
             collapseSoftskillsCenter();
             break;
     }
@@ -636,7 +665,7 @@ function updateSoftskillsDesc(cardIndex) {
             descContainer.style.transformOrigin = "left 30%";
             descBg.style.backgroundColor = "rgba(80, 87, 123, 0.652)";
             descTitle.innerHTML = "Teamwork & Leadership";
-            descText.innerHTML = "Lead and organize different events in university societies, including exhibition, concert and prom night.<br><br>Positions held include: Presidents, Head of various departments (eg: Multech, Publicity, Program and Event planning). Also partaken the role of sports manager to lead college's sport team to sport events such as Rugby and Volleyball."
+            descText.innerHTML = "Lead and organize different events in university societies, including exhibition, concert and prom night.<br><br>Positions held include: Presidents, Head of various departments (eg: Multech, Publicity, Program and Event planning). Also partaken the role of sports manager to lead college's sport team to sport tournaments such as Rugby and Volleyball."
             break;
 
         case 2:
@@ -661,7 +690,7 @@ function updateSoftskillsDesc(cardIndex) {
             break;
 
         default:
-            console.log("Card index not implemented");
+            // console.log("Card index not implemented");
             break;
     }
 }
@@ -818,7 +847,7 @@ function createSoftSkillsSwipe() {
     svgGradient.id = 'SwipeGradient';
     svgDefs.appendChild(svgGradient);
     swipeLineSVG.appendChild(svgDefs);
-    const svgWidth = viewWidth - rem2Px(8);
+    const svgWidth = viewWidth() - rem2Px(8);
     const svgHeight = rem2Px(1);
     swipeLineSVG.setAttribute("width", `${svgWidth}px`);
     swipeLineSVG.setAttribute("height", `${svgHeight}px`);
@@ -954,16 +983,32 @@ function dotScroll() {
 //     }
 // }
 
-function noticeContainerActivation(isActive) {
+// function noticeContainerActivation(isActive) {
+//     const noticeContainer = document.getElementsByClassName('notice-container');
+//     const noticeTexts = document.getElementsByClassName('notice-text');
+//     const noticeBorders = document.getElementsByClassName('notice-border');
+//     noticeContainer[0].style.opacity = isActive ? 1 : 0;
+//     for (noticeText of noticeTexts) {
+//         noticeText.style.opacity = isActive ? 1 : 0;
+//     }
+//     for (noticeBorder of noticeBorders) {
+//         noticeBorder.style.opacity = isActive ? 1 : 0;
+//     }
+// }
+
+function noticeContainerScroll() {
     const noticeContainer = document.getElementsByClassName('notice-container');
-    const noticeTexts = document.getElementsByClassName('notice-text');
-    const noticeBorders = document.getElementsByClassName('notice-border');
-    noticeContainer[0].style.opacity = isActive ? 1 : 0;
-    for (noticeText of noticeTexts) {
-        noticeText.style.opacity = isActive ? 1 : 0;
-    }
-    for (noticeBorder of noticeBorders) {
-        noticeBorder.style.opacity = isActive ? 1 : 0;
+    if (noticeContainer[0].getBoundingClientRect().top <= viewHeight() * 6 / 10) {
+        const noticeTexts = document.getElementsByClassName('notice-text');
+        const noticeBorders = document.getElementsByClassName('notice-border');
+        noticeContainer[0].style.transform = 'scale(1)';
+        for (noticeText of noticeTexts) {
+            noticeText.style.opacity = 1;
+        }
+        // for (noticeBorder of noticeBorders) {
+        //     noticeBorder.style.opacity = 1;
+        // }
+        window.removeEventListener("scroll", noticeContainerScroll);
     }
 }
 
@@ -989,7 +1034,7 @@ function biodataScroll() {
     // if (biotextContainer[0].getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
     //     biotextContainer[0].style.transform = "scaleY(1)";
     // }
-    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight * 6 / 10)) {
+    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight() * 6 / 10)) {
         maskTextFg.style.opacity = 1;
         // maskText[0].style.opacity = 1;
         // biotextPanel[1].style.transform = "scaleY(1)";
@@ -1020,7 +1065,7 @@ function artProgrammingScroll() {
     if (!bioSection.isActivated) { return; }
     const topPanelContainer = document.getElementById('top-panel-container');
     if (!isArtProgrammingExpanded) { return; }
-    if (topPanelContainer.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
+    if (topPanelContainer.getBoundingClientRect().top <= (viewHeight() * 4 / 10)) {
         const bottomPanelContainer = document.getElementById('bottom-panel-container');
         bottomPanelContainer.style.opacity = 1;
         window.removeEventListener("scroll", artProgrammingScroll);
@@ -1049,7 +1094,7 @@ function artProgrammingScroll() {
 function skillDirecScroll() {
     if (!techSection.isActivated) { return; }
     const skillsDirec = document.getElementById('skills-direc');
-    if (skillsDirec.getBoundingClientRect().top <= (viewHeight * 5 / 10)) {
+    if (skillsDirec.getBoundingClientRect().top <= (viewHeight() * 5 / 10)) {
         skillsDirec.style.transform = 'scale(1)';
         window.removeEventListener("scroll", skillDirecScroll);
     }
@@ -1072,7 +1117,7 @@ function projectIconScroll() {
     const projectIconBCR = projectIconContainer[0].getBoundingClientRect();
     const projectLines = document.getElementsByClassName('project-line');
     const tickSquares = document.getElementsByClassName('tick-square');
-    if (projectIconBCR.top <= (viewHeight * 4 / 10)) {
+    if (projectIconBCR.top <= (viewHeight() * 4 / 10)) {
         projectIconContainer[0].style.opacity = 1;
         for (let index = 0; index < projectLines.length; index++) {
             projectLines[index].style.animation = 'scalex-animation 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards';
@@ -1091,7 +1136,7 @@ function contactScroll() {
     const contactText = document.getElementById('contact-text');
     const mailBack = document.getElementById('mail-back');
     const mailFront = document.getElementById('mail-front');
-    if (contactText.getBoundingClientRect().top <= viewHeight * 7 / 10) {
+    if (contactText.getBoundingClientRect().top <= viewHeight() * 7 / 10) {
         contactText.style.opacity = 1;
         contactText.style.transform = 'scale(1)';
         contactText.style.top = 0;
@@ -1133,24 +1178,31 @@ function resetContactScroll() {
 //     }
 // }
 
-const viewHeight = document.documentElement.clientHeight;
-const viewWidth = document.documentElement.clientWidth;
+// const viewHeight = document.documentElement.clientHeight;
+// const viewWidth = document.documentElement.clientWidth;
+const viewHeight = () => { return document.documentElement.clientHeight };
+const viewWidth = () => { return document.documentElement.clientWidth };
 const maskFragmentsOffset = calcMaskOffset();
 const maskRotationAxes = calculateMaskRotationAxis();
 const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
-// initializePage();
+initializePage();
 // const dotsContainerWidth = createDots();
 // transformDots(0);
-explodeAllH1Text();
+// explodeAllH1Text();
 explodeMaskText();
 // generateBiodataPanelBg();
 // createSoftSkillsSwipe();
 navListHover('home');
+const aboutButton = document.getElementById('aboutme-list');
+aboutButton.addEventListener('click', aboutOnClick, false);
+const projectsButton = document.getElementById('projects-list');
+projectsButton.addEventListener('click', projectsOnClick, false);
+
 // window.addEventListener("scroll", scrollUpSignScroll, false);
 // window.addEventListener("scroll", headingScroll, false);
 // window.addEventListener("scroll", lineDecorScroll, false);
-// window.addEventListener("scroll", noticeContainerScroll, false);
+window.addEventListener("scroll", noticeContainerScroll, false);
 window.addEventListener("scroll", biodataScroll, false);
 window.addEventListener("scroll", artProgrammingScroll, false);
 // window.addEventListener("scroll", uiuxScroll, false);
@@ -1172,11 +1224,26 @@ const bioSection = new CategorySection('biodata');
 const contactSection = new CategorySection('contact');
 const techSection = new CategorySection('skills');
 const softSection = new CategorySection('soft-skills');
-startDiamondContainer.addEventListener('click', () => { mainSection.setActivation(true) }, false);
-bioDiamond.addEventListener('click', () => { bioSection.setActivation(true) }, false);
-contactDiamond.addEventListener('click', () => { contactSection.setActivation(true) }, false);
-techDiamond.addEventListener('click', () => { techSection.setActivation(true) }, false);
-softDiamond.addEventListener('click', () => { softSection.setActivation(true) }, false);
+startDiamondContainer.addEventListener('click', () => {
+    if (isSectionExpanded()) { return; }
+    mainSection.setActivation(true);
+}, false);
+bioDiamond.addEventListener('click', () => {
+    if (isSectionExpanded()) { return; }
+    bioSection.setActivation(true);
+}, false);
+contactDiamond.addEventListener('click', () => {
+    if (isSectionExpanded()) { return; }
+    contactSection.setActivation(true);
+}, false);
+techDiamond.addEventListener('click', () => {
+    if (isSectionExpanded()) { return; }
+    techSection.setActivation(true);
+}, false);
+softDiamond.addEventListener('click', () => {
+    if (isSectionExpanded()) { return; }
+    softSection.setActivation(true);
+}, false);
 
 // Events for biodata section
 isArtProgrammingExpanded = false;
