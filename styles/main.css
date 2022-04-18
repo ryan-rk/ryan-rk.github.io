@@ -1,14 +1,23 @@
+:root {
+  --app-height: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
+html,
 body {
-  background-color: #f1f1f1;
+  margin: 0;
+  padding: 0;
   font-family: 'Exo', sans-serif;
   font-weight: thin;
   font-size: 1.1rem;
-  overflow-x: hidden;
+  height: 100vh;
+  height: var(--app-height);
 }
 
 h1 {
@@ -164,6 +173,14 @@ h4 {
           box-sizing: border-box;
 }
 
+.click-sign .click-hand-pointer {
+  z-index: 1;
+  width: 2rem;
+  -webkit-transform: translate(20%, 100%);
+          transform: translate(20%, 100%);
+  opacity: 0;
+}
+
 .click-sign .inner-circle {
   position: absolute;
   width: 2rem;
@@ -194,13 +211,16 @@ h4 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.5rem;
 }
 
 .back-button .back-button-fg {
+  width: 80vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1295,8 +1315,8 @@ header #surround-diamond-container #soft-diamond {
           align-items: stretch;
   margin: 1rem 0 5rem 0;
   opacity: 0;
-  -webkit-transition: opacity 800ms ease-in-out 1s;
-  transition: opacity 800ms ease-in-out 1s;
+  -webkit-transition: opacity 800ms ease-in-out 2500ms;
+  transition: opacity 800ms ease-in-out 2500ms;
 }
 
 #biodata #bottom-panel-container .panel-icon-desc {
@@ -1534,7 +1554,6 @@ header #surround-diamond-container #soft-diamond {
   position: absolute;
   top: 0;
   width: calc(100% - 3rem);
-  height: calc(100% - 3rem);
   display: none;
   opacity: 0;
   -webkit-transform: scale(0.2);
@@ -1581,8 +1600,20 @@ header #surround-diamond-container #soft-diamond {
 }
 
 #skills #skills-direc .file-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
-  vertical-align: top;
   text-align: center;
 }
 
@@ -1768,14 +1799,22 @@ header #surround-diamond-container #soft-diamond {
 
 #soft-skills #soft-skills-container {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-bottom: 5rem;
 }
 
 #soft-skills #soft-skills-container #softskills-center-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 #soft-skills #soft-skills-container #softskills-center-container #softskills-center-relative {
@@ -1793,16 +1832,14 @@ header #surround-diamond-container #soft-diamond {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  width: 25rem;
-  height: 25rem;
-  -webkit-perspective: 200px;
-          perspective: 200px;
+  width: 100%;
+  -webkit-perspective: 500px;
+          perspective: 500px;
 }
 
 #soft-skills #soft-skills-container #softskills-center-container #softskills-center-fg {
   position: relative;
-  width: 30%;
-  height: 30%;
+  height: calc(min(40vw, 10rem));
   -webkit-transition: -webkit-transform 500ms ease-in-out;
   transition: -webkit-transform 500ms ease-in-out;
   transition: transform 500ms ease-in-out;
@@ -1811,8 +1848,8 @@ header #surround-diamond-container #soft-diamond {
 
 #soft-skills #soft-skills-container #softskills-center-container #softskills-center-bg {
   position: absolute;
-  width: 50%;
-  height: 50%;
+  width: calc(min(70vw, 18rem));
+  height: calc(min(70vw, 18rem));
   background-color: #ffffff4d;
   -webkit-transition: -webkit-transform 500ms ease-in-out;
   transition: -webkit-transform 500ms ease-in-out;
@@ -1824,7 +1861,7 @@ header #surround-diamond-container #soft-diamond {
 
 #soft-skills #soft-skills-container #softskills-categories {
   position: relative;
-  width: 100vw;
+  width: 100%;
   display: -ms-grid;
   display: grid;
   row-gap: 5rem;
@@ -1832,10 +1869,16 @@ header #surround-diamond-container #soft-diamond {
       grid-template-columns: 1fr 1fr;
   -ms-grid-rows: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #soft-skills #soft-skills-container .softskills-card {
@@ -1869,6 +1912,7 @@ header #surround-diamond-container #soft-diamond {
 }
 
 #soft-skills #soft-skills-container .card-circle {
+  display: none;
   margin: 1rem 5vw;
   width: 1rem;
   height: 1rem;
@@ -1916,9 +1960,8 @@ header #surround-diamond-container #soft-diamond {
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-grid-column-align: start;
+      justify-self: start;
 }
 
 #soft-skills #soft-skills-container #teamwork-leadership .card-circle {
@@ -1965,9 +2008,8 @@ header #surround-diamond-container #soft-diamond {
 }
 
 #soft-skills #soft-skills-container #time-management {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-grid-column-align: end;
+      justify-self: end;
 }
 
 #soft-skills #soft-skills-container #time-management .card-circle {
@@ -2026,6 +2068,11 @@ header #surround-diamond-container #soft-diamond {
 
 #soft-skills #soft-skills-container #time-management .softskills-card-bg {
   border: 0.2rem solid #578e9c3d;
+}
+
+#soft-skills #soft-skills-container #creativity {
+  -ms-grid-column-align: start;
+      justify-self: start;
 }
 
 #soft-skills #soft-skills-container #creativity .card-circle {
@@ -2106,6 +2153,11 @@ header #surround-diamond-container #soft-diamond {
   border: 0.2rem solid #a54ca82b;
 }
 
+#soft-skills #soft-skills-container #adaptability {
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
 #soft-skills #soft-skills-container #adaptability .card-circle {
   background-color: rgba(159, 71, 71, 0.488);
 }
@@ -2127,6 +2179,7 @@ header #surround-diamond-container #soft-diamond {
           align-items: center;
   position: relative;
   width: 100%;
+  overflow-x: hidden;
 }
 
 #soft-skills #soft-skills-container #adaptability #adaptability-fg #adaptability-shape-container #adaptability-base-container {
@@ -2159,7 +2212,7 @@ header #surround-diamond-container #soft-diamond {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  top: -10%;
+  padding-bottom: 0.5rem;
   width: 60%;
 }
 
@@ -2181,10 +2234,8 @@ header #surround-diamond-container #soft-diamond {
 #soft-skills #soft-skills-container #softskills-desc-container {
   position: absolute;
   width: 70vw;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(0, 0);
-          transform: translate(-50%, -50%) scale(0, 0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2201,6 +2252,7 @@ header #surround-diamond-container #soft-diamond {
   transition: transform 500ms ease-in-out, backdrop-filter 1000ms ease-in-out;
   transition: transform 500ms ease-in-out, backdrop-filter 1000ms ease-in-out, -webkit-transform 500ms ease-in-out, -webkit-backdrop-filter 1000ms ease-in-out;
   z-index: 2;
+  overflow-x: visible;
 }
 
 #soft-skills #soft-skills-container #softskills-desc-container #softskills-desc-bg {
@@ -2241,6 +2293,14 @@ header #surround-diamond-container #soft-diamond {
 }
 
 #projects h1 {
+  color: #7890a6;
+}
+
+#projects h2 {
+  margin: 2rem 0;
+}
+
+#projects h2 span {
   color: #7890a6;
 }
 
@@ -2443,6 +2503,15 @@ header #surround-diamond-container #soft-diamond {
   position: relative;
   text-align: center;
   margin-bottom: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #contact .mail-icon {
@@ -2453,13 +2522,23 @@ header #surround-diamond-container #soft-diamond {
 #contact #mail-back {
   position: absolute;
   z-index: 1;
+  width: calc(min(25rem, 80%));
 }
 
 #contact #mail-front {
   position: relative;
   -webkit-transform: scaleX(-1);
           transform: scaleX(-1);
-  width: clamp(15rem, 60%, 25rem);
+  width: calc(min(25rem, 80%));
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #contact #mail-front h3 {
@@ -2469,11 +2548,11 @@ header #surround-diamond-container #soft-diamond {
 }
 
 #contact #mail-front a {
+  font-size: calc(min(5vw, 2rem));
+  z-index: 10;
+  cursor: pointer;
   position: absolute;
-  top: 60%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  margin-top: 20%;
   color: #3E3E3E;
   -webkit-animation: blinking-animation 3s ease-in-out infinite;
           animation: blinking-animation 3s ease-in-out infinite;
@@ -2495,7 +2574,7 @@ header #surround-diamond-container #soft-diamond {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 1rem 1rem 2rem 1rem;
+  margin: 2rem 1rem 0 1rem;
 }
 
 #contact .author-container .footer-line {
@@ -2518,8 +2597,9 @@ header #surround-diamond-container #soft-diamond {
   -webkit-transition: opacity 500ms ease-in-out;
   transition: opacity 500ms ease-in-out;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
   top: 0;
   left: 0;
   z-index: -1000;
@@ -2985,6 +3065,11 @@ footer .author-container h3 {
 }
 
 @-webkit-keyframes start-diamond-animation {
+  from {
+    -webkit-transform: translateY(-40vh) rotateY(0deg);
+            transform: translateY(-40vh) rotateY(0deg);
+    opacity: 0;
+  }
   to {
     -webkit-transform: translateY(0) rotateY(360deg);
             transform: translateY(0) rotateY(360deg);
@@ -2993,6 +3078,11 @@ footer .author-container h3 {
 }
 
 @keyframes start-diamond-animation {
+  from {
+    -webkit-transform: translateY(-40vh) rotateY(0deg);
+            transform: translateY(-40vh) rotateY(0deg);
+    opacity: 0;
+  }
   to {
     -webkit-transform: translateY(0) rotateY(360deg);
             transform: translateY(0) rotateY(360deg);
@@ -3828,9 +3918,6 @@ footer .author-container h3 {
   #art-panel-detail {
     text-align: center;
   }
-}
-
-@media only screen and (max-width: 60rem) {
   #biodata #top-panel-container #diamond-line-container {
     display: none;
   }
@@ -3838,10 +3925,14 @@ footer .author-container h3 {
 
 @media only screen and (max-width: 45rem) {
   #biodata #bottom-panel-container .panel-icon-desc {
-    width: 80%;
+    width: 40%;
   }
   #biodata #bottom-panel-container .panel-icon-desc .panel-icon-container .selection-icon-bg {
     display: block;
+  }
+  #biodata #bottom-panel-container .panel-icon-desc .panel-desc-container {
+    margin-top: 4rem;
+    width: 80vw;
   }
   #biodata #bottom-panel-container #art-icon-desc #art-icon-container #panel-art-icon {
     display: none;
@@ -3854,8 +3945,6 @@ footer .author-container h3 {
     display: none;
   }
   #biodata #bottom-panel-container #art-icon-desc #selection-art-desc {
-    -webkit-transform: translateX(50%) scale(0);
-            transform: translateX(50%) scale(0);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3870,11 +3959,15 @@ footer .author-container h3 {
     display: none;
   }
   #biodata #bottom-panel-container #programming-icon-desc #selection-programming-desc {
-    -webkit-transform: translateX(-50%) scale(0);
-            transform: translateX(-50%) scale(0);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  #soft-skills #soft-skills-container #softskills-categories {
+    row-gap: 10rem;
   }
 }
 /*# sourceMappingURL=main.css.map */

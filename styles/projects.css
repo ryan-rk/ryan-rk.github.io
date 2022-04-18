@@ -42,8 +42,8 @@ nav #nav-left .nav-title #home-title span b {
 
 #gallery-section #gallery-container {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,6 +67,7 @@ nav #nav-left .nav-title #home-title span b {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+  width: calc(clamp(13rem, 100%, 18rem));
   height: 100%;
 }
 
@@ -128,8 +129,8 @@ nav #nav-left .nav-title #home-title span b {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: calc(clamp(13rem, 30vw, 18rem));
-  height: 100%;
+  width: 100%;
+  height: 60%;
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container .gallery-frame {
@@ -144,7 +145,7 @@ nav #nav-left .nav-title #home-title span b {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  height: 100%;
   -webkit-transition: -webkit-transform 500ms ease-in-out;
   transition: -webkit-transform 500ms ease-in-out;
   transition: transform 500ms ease-in-out;
@@ -153,32 +154,39 @@ nav #nav-left .nav-title #home-title span b {
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container .gallery-frame .frame-inner {
   position: absolute;
-  width: 60%;
+  height: calc(min(30%, 6rem));
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container .gallery-frame .gallery-frame-img {
   width: 100%;
+  height: 100%;
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container .gallery-frame:not(#game-dev-frame) {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
+  -webkit-transform-origin: right;
+          transform-origin: right;
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container #apps-dev-frame .frame-inner {
-  width: 40%;
+  height: calc(min(6rem, 35%));
+}
+
+#gallery-section #gallery-container #gallery-viewport #gallery-frames-container #video-composing-frame .frame-inner {
+  height: calc(min(5rem, 25%));
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container #art-creation-frame .frame-inner {
-  width: 50%;
+  height: calc(min(8rem, 45%));
 }
 
 #gallery-section #gallery-container #gallery-viewport #gallery-frames-container #model3d-frame .frame-inner {
-  width: 50%;
+  height: calc(min(7rem, 35%));
 }
 
 #gallery-section #gallery-container #gallery-text-container {
-  width: 50vw;
+  width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -201,14 +209,18 @@ nav #nav-left .nav-title #home-title span b {
           backdrop-filter: blur(0px);
 }
 
+#gallery-section #gallery-container #gallery-text-container #section-title {
+  margin: 0.5rem;
+}
+
 #gallery-section #gallery-container #gallery-text-container #section-desc {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 #gallery-section #gallery-container #gallery-text-container #inspect-button {
   position: relative;
-  width: 15rem;
-  height: 4rem;
+  width: 13rem;
+  height: 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -571,8 +583,8 @@ nav #nav-left .nav-title #home-title span b {
   -webkit-transition: opacity 1000ms ease-in-out;
   transition: opacity 1000ms ease-in-out;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   z-index: -1000;
@@ -655,16 +667,24 @@ nav #nav-left .nav-title #home-title span b {
   #gallery-section #gallery-container #gallery-viewport #gallery-light-container {
     height: 100%;
   }
+  #gallery-section #gallery-container #gallery-viewport #gallery-frames-container {
+    height: 100%;
+  }
+  #gallery-section #gallery-container #gallery-viewport #gallery-frames-container .gallery-frame {
+    height: 100%;
+  }
   #gallery-section #gallery-container #gallery-text-container {
     width: 100%;
-    height: 40vh;
+    height: 40%;
     -ms-flex-pack: distribute;
         justify-content: space-around;
   }
   #gallery-section #gallery-container #gallery-text-container #section-title {
+    font-size: 2rem;
     padding: 0 1rem;
   }
   #gallery-section #gallery-container #gallery-text-container #section-desc {
+    font-size: 1rem;
     padding: 0 1rem;
   }
 }

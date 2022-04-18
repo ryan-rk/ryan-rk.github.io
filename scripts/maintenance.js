@@ -117,3 +117,8 @@ function builderExploding() {
     setTimeout(() => { docMain.style.animation = 'shake 750ms cubic-bezier(.36, .07, .19, .97) both' }, 3300);
     setTimeout(() => { fgTextH1.style.transform = 'rotateZ(8deg)', fgTextH1.style.position = 'absolute', fgTextP.style.transform = 'scaleY(0.5)', builderExploded.style.display = 'flex', webBuilder.style.display = 'none'; }, 4000);
 }
+
+const backText = document.getElementById('back-text');
+backText.addEventListener('click', () => {
+    history.back();
+}, false);

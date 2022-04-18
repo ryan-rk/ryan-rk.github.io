@@ -435,6 +435,13 @@ const sectionDescs = [
     "3D models constructed using some of the popular 3D modelling softwares."
 ]
 
+const appHeight = () => {
+    const doc = document.documentElement
+    doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+}
+window.addEventListener('resize', appHeight)
+appHeight()
+
 var selectedProjectIndex = 0;
 var isStartDeactivateGallery = false;
 initializePage();

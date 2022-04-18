@@ -20,10 +20,16 @@ main {
     // justify-content: center;
     // align-content: center;
     align-items: center;
-    padding: 1rem;
-    margin-top: 10vh;
+    padding: 3rem;
+    // margin-top: 10vh;
     // box-sizing: border-box;
     // height: 100vh;
+}
+
+#back-text {
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(94, 129, 172);
 }
 
 #explode-transition {
@@ -318,7 +324,7 @@ main {
 .foreground-text {
     display: flex;
     position: relative;
-    width: 100vw;
+    width: 100%;
     // display: none;
     flex-direction: column;
     align-items: center;
@@ -329,7 +335,8 @@ main {
     }
     h1 {
         // font-size: 2rem;
-        font-size: calc(min(5vw, 2rem));
+        margin-top: 4rem;
+        font-size: calc(min(4vw, 1.5rem));
         // font-weight: bolder;
         // transform-origin: left;
         // transform: rotateZ(8deg);

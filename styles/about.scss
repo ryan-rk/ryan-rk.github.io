@@ -29,20 +29,23 @@ nav {
     box-sizing: border-box;
     display: flex;
     // display: none;
-    align-items: center;
+    // align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    // padding: 0 2rem;
+    width: 100%;
+    // height: 100%;
+    padding: 8rem 0 0.5rem 0;
     #centering-container {
         display: flex;
         align-items: center;
+        // height: 100%;
+        // padding-top: 10rem;
         #left-container {
             align-self: stretch;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
+            justify-content: center;
+            // justify-content: space-around;
             // justify-content: stretch;
             margin: 1rem;
             #rklogo {
@@ -102,8 +105,10 @@ nav {
             display: flex;
             flex-direction: column;
             align-items: center;
+            // justify-content: center;
+            height: 100%;
             #text-title {
-                position: absolute;
+                // position: absolute;
                 z-index: 10;
                 font-size: 1.5rem;
                 color: rgb(240, 243, 255);
@@ -129,8 +134,8 @@ nav {
     opacity: 0;
     transition: opacity 1000ms ease-in-out;
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     z-index: -1000;
@@ -153,7 +158,7 @@ canvas {
 @media only screen and (max-width: 60rem) {
     #fg-container {
         align-items: flex-start;
-        padding-top: 10rem;
+        padding-top: 8rem;
         // margin-top: 10rem;
         #centering-container {
             flex-direction: column;

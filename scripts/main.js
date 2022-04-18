@@ -328,6 +328,8 @@ function postMaskExplosion() {
     const diamondLineContainer = document.getElementById('diamond-line-container');
     diamondLineContainer.style.transform = "scale(1)";
     isArtProgrammingExpanded = true;
+    const bottomPanelContainer = document.getElementById('bottom-panel-container');
+    bottomPanelContainer.style.opacity = 1;
 }
 
 function explodeMaskText() {
@@ -431,9 +433,14 @@ function calculateMaskRotationAxis() {
 
 function updateBioSelection(selectionIndex) {
     if (selectionIndex == bioSelectionIndex) { return; }
+    const bottomPanelBCR = document.getElementById('bottom-panel-container').getBoundingClientRect();
+    const artContainerBCR = document.getElementById('art-icon-desc').getBoundingClientRect();
+    const artContainerXOffset = (bottomPanelBCR.left + bottomPanelBCR.right) / 2 - (artContainerBCR.left + artContainerBCR.right) / 2;
     const artBg = document.getElementById('selection-art-bg');
     const artIcon = document.getElementById('selection-art-icon');
     const artDesc = document.getElementById('selection-art-desc');
+    const programmingContainerBCR = document.getElementById('programming-icon-desc').getBoundingClientRect();
+    const programmingContainerXOffset = (bottomPanelBCR.left + bottomPanelBCR.right) / 2 - (programmingContainerBCR.left + programmingContainerBCR.right) / 2;
     const programmingBg = document.getElementById('selection-programming-bg');
     const programmingIcon = document.getElementById('selection-programming-icon');
     const programmingDesc = document.getElementById('selection-programming-desc');
@@ -442,25 +449,29 @@ function updateBioSelection(selectionIndex) {
         artIcon.style.opacity = 1;
         artIcon.style.animation = 'bio-scale-animation 3s ease-in-out infinite';
         artDesc.style.transition = 'transform 500ms ease-in-out 500ms';
-        artDesc.style.transform = 'translateX(50%) scaleX(1)';
+        // artDesc.style.transform = 'translateX(50%) scaleX(1)';
+        artDesc.style.transform = `translateX(${artContainerXOffset}px) scaleX(1)`;
         programmingBg.style.borderWidth = '0.2rem';
         programmingIcon.style.animation = 'none';
         programmingIcon.style.transform = 'scale(1)';
         programmingIcon.style.opacity = 0.3;
         programmingDesc.style.transition = 'transform 500ms ease-in-out';
-        programmingDesc.style.transform = 'translateX(-50%) scaleX(0)';
+        // programmingDesc.style.transform = 'translateX(-50%) scaleX(0)';
+        programmingDesc.style.transform = `translateX(${programmingContainerXOffset}px) scaleX(0)`;
     } else {
         artBg.style.borderWidth = '0.2rem';
         artIcon.style.opacity = 0.3;
         artIcon.style.animation = 'none';
         artIcon.style.transform = 'scale(1)';
         artDesc.style.transition = 'transform 500ms ease-in-out';
-        artDesc.style.transform = 'translateX(50%) scaleX(0)';
+        // artDesc.style.transform = 'translateX(50%) scaleX(0)';
+        artDesc.style.transform = `translateX(${artContainerXOffset}px) scaleX(0)`;
         programmingBg.style.borderWidth = '0.6rem';
         programmingIcon.style.animation = 'bio-scale-animation 3s ease-in-out infinite';
         programmingIcon.style.opacity = 1;
         programmingDesc.style.transition = 'transform 500ms ease-in-out 500ms';
-        programmingDesc.style.transform = 'translateX(-50%) scaleX(1)';
+        // programmingDesc.style.transform = 'translateX(-50%) scaleX(1)';
+        programmingDesc.style.transform = `translateX(${programmingContainerXOffset}px) scaleX(1)`;
     }
     bioSelectionIndex = selectionIndex;
 }
@@ -562,8 +573,13 @@ function skillsCategoryClicked(skillID, openClose) {
             break;
     }
     const direcClickElem = document.getElementById(direcClicked);
-    const { direcIconOffsetX, direcIconOffsetY } = calcDirecTransOrigin(document.getElementById(skillIDSubstring));
-    direcClickElem.style.transformOrigin = `${direcIconOffsetX}% ${direcIconOffsetY}%`;
+    // const { direcIconOffsetX, direcIconOffsetY } = calcDirecTransOrigin(document.getElementById(skillIDSubstring));
+    // direcClickElem.style.transformOrigin = `${direcIconOffsetX}% ${direcIconOffsetY}%`;
+    const { direcIconX, direcIconY } = calcDirecTransOrigin(document.getElementById(skillIDSubstring));
+    const direcClickElemBCR = direcClickElem.getBoundingClientRect();
+    const direcOffsetX = direcIconX - direcClickElemBCR.left;
+    const direcOffsetY = direcIconY - direcClickElemBCR.top;
+    direcClickElem.style.transformOrigin = `${direcOffsetX}px ${direcOffsetY}px`;
     if (openClose) {
         generalDirecMinMax(true);
         direcClickElem.style.display = direcDisplayStyle;
@@ -583,41 +599,42 @@ function skillsCategoryClicked(skillID, openClose) {
 
 // Calculate the transform origin for each directory based on location on screen
 function calcDirecTransOrigin(skillsCategory) {
-    const generalDirecBCR = generalDirec.getBoundingClientRect();
+    // const generalDirecBCR = generalDirec.getBoundingClientRect();
     const skillsCategoryBCR = skillsCategory.getBoundingClientRect();
     const direcIconX = (skillsCategoryBCR.left + skillsCategoryBCR.right) / 2;
     const direcIconY = (skillsCategoryBCR.top + skillsCategoryBCR.bottom) / 2;
-    const direcIconOffsetX = 100 * (direcIconX - generalDirecBCR.left) / (generalDirecBCR.right - generalDirecBCR.left);
-    const direcIconOffsetY = 100 * (direcIconY - generalDirecBCR.top) / (generalDirecBCR.bottom - generalDirecBCR.top);
-    return { direcIconOffsetX, direcIconOffsetY };
+    return { direcIconX, direcIconY };
+    // const direcIconOffsetX = 100 * (direcIconX - generalDirecBCR.left) / (generalDirecBCR.right - generalDirecBCR.left);
+    // const direcIconOffsetY = 100 * (direcIconY - generalDirecBCR.top) / (generalDirecBCR.bottom - generalDirecBCR.top);
+    // return { direcIconOffsetX, direcIconOffsetY };
 }
 
 
 
 // --- Functions dealing with soft skills section
 function rotateSoftskillsCenter(skillIndex) {
-    const centerBg = document.getElementById('softskills-center-bg');
+    // const centerBg = document.getElementById('softskills-center-bg');
     const centerFg = document.getElementById('softskills-center-fg');
     // centerFg.style.transform = "translateZ(2rem)";
     switch (skillIndex) {
         case 1:
-            centerFg.style.transform = "rotateX(30deg) rotateY(-20deg) translateZ(2rem)";
-            centerBg.style.transform = "rotateX(30deg) rotateY(-20deg)";
+            centerFg.style.transform = "rotateX(30deg) rotateY(-20deg) translateZ(5vw)";
+            // centerBg.style.transform = "rotateX(30deg) rotateY(-20deg)";
             break;
 
         case 2:
-            centerFg.style.transform = "rotateX(30deg) rotateY(20deg) translateZ(2rem)";
-            centerBg.style.transform = "rotateX(30deg) rotateY(20deg)";
+            centerFg.style.transform = "rotateX(30deg) rotateY(20deg) translateZ(5vw)";
+            // centerBg.style.transform = "rotateX(30deg) rotateY(20deg)";
             break;
 
         case 3:
-            centerFg.style.transform = "rotateX(-30deg) rotateY(-20deg) translateZ(2rem)";
-            centerBg.style.transform = "rotateX(-30deg) rotateY(-20deg)";
+            centerFg.style.transform = "rotateX(-30deg) rotateY(-20deg) translateZ(5vw)";
+            // centerBg.style.transform = "rotateX(-30deg) rotateY(-20deg)";
             break;
 
         case 4:
-            centerFg.style.transform = "rotateX(-30deg) rotateY(20deg) translateZ(2rem)";
-            centerBg.style.transform = "rotateX(-30deg) rotateY(20deg)";
+            centerFg.style.transform = "rotateX(-30deg) rotateY(20deg) translateZ(5vw)";
+            // centerBg.style.transform = "rotateX(-30deg) rotateY(20deg)";
             break;
 
         default:
@@ -635,10 +652,10 @@ function rotateSoftskillsCenter(skillIndex) {
 }
 
 function collapseSoftskillsCenter() {
-    const centerBg = document.getElementById('softskills-center-bg');
+    // const centerBg = document.getElementById('softskills-center-bg');
     const centerFg = document.getElementById('softskills-center-fg');
     centerFg.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
-    centerBg.style.transform = "rotateX(0deg) rotateY(0deg)";
+    // centerBg.style.transform = "rotateX(0deg) rotateY(0deg)";
 }
 
 function updateAndShowDesc(cardIndex) {
@@ -650,7 +667,7 @@ function updateAndShowDesc(cardIndex) {
     // descContainer.style.display = "flex";
     descContainer.addEventListener("click", hideSoftskillsDesc, false);
     if (!isDescPanelOpen) {
-        descContainer.style.transform = "translate(-50%, -50%) scale(1, 1)";
+        descContainer.style.transform = "scale(1)";
         isDescPanelOpen = true;
     }
 }
@@ -698,7 +715,7 @@ function updateSoftskillsDesc(cardIndex) {
 function hideSoftskillsDesc() {
     window.removeEventListener("click", hideSoftskillsDesc);
     const descContainer = document.getElementById('softskills-desc-container');
-    descContainer.style.transform = "translate(-50%, -50%) scale(0, 0)";
+    descContainer.style.transform = "scale(0)";
     setTimeout(() => {
         isDescPanelOpen = false,
             teamworkAnimation(true),
@@ -1027,19 +1044,21 @@ function biodataScroll() {
     // const maskText = document.getElementsByClassName('mask-text');
     const maskTextContainer = document.getElementById('mask-text-container');
     const maskTextFg = document.getElementById('mask-text-fg');
-    const biotextContainer = document.getElementsByClassName('biotext-container');
+    // const biotextContainer = document.getElementsByClassName('biotext-container');
     // const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
     const clickSignInner = document.getElementById('click-inner1');
     const clickSignOuter = document.getElementById('click-outer1');
+    const handPointer = document.getElementById('hand-pointer1');
     // if (biotextContainer[0].getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
     //     biotextContainer[0].style.transform = "scaleY(1)";
     // }
-    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight() * 6 / 10)) {
+    if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight() * 7 / 10)) {
         maskTextFg.style.opacity = 1;
         // maskText[0].style.opacity = 1;
         // biotextPanel[1].style.transform = "scaleY(1)";
-        clickSignInner.style.animation = 'click-inner-animation 2s ease-in-out infinite';
-        clickSignOuter.style.animation = 'click-outer-animation 2s ease-in-out infinite';
+        clickSignInner.style.animation = 'click-inner-animation 3500ms ease-in-out 500ms infinite';
+        clickSignOuter.style.animation = 'click-outer-animation 3500ms ease-in-out 500ms infinite';
+        handPointer.style.animation = 'click-inner-animation 3500ms ease-in-out infinite';
         // setTimeout(() => {
         //     for (const maskFragment of maskFragmentsClass) {
         //         maskFragment.style.animationName = 'fade-in-animation';
@@ -1061,35 +1080,35 @@ function biodataScroll() {
     }
 }
 
-function artProgrammingScroll() {
-    if (!bioSection.isActivated) { return; }
-    const topPanelContainer = document.getElementById('top-panel-container');
-    if (!isArtProgrammingExpanded) { return; }
-    if (topPanelContainer.getBoundingClientRect().top <= (viewHeight() * 4 / 10)) {
-        const bottomPanelContainer = document.getElementById('bottom-panel-container');
-        bottomPanelContainer.style.opacity = 1;
-        window.removeEventListener("scroll", artProgrammingScroll);
-    }
-    // const masktextBg = document.getElementById('mask-text-bg');
-    // if (masktextBg.style.opacity == 0) {
-    //     return;
-    // }
-    // if (masktextBg.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
-    //     // const irrelevantChars = document.getElementsByClassName('irrelevant-span');
-    //     // for (const irrelevantChar of irrelevantChars) {
-    //     //     irrelevantChar.style.opacity = 0;
-    //     // }
-    //     // const biodataPanelContainer = document.getElementById('top-panel-container');
-    //     // biodataPanelContainer[0].style.display = "flex";
-    //     const biodataPanels = document.getElementsByClassName('biodata-panel');
-    //     for (const biodataPanel of biodataPanels) {
-    //         setTimeout(() => {
-    //             biodataPanel.style.transform = "scale(1,1)";
-    //         }, 500);
-    //     }
-    //     window.removeEventListener("scroll", artProgrammingScroll);
-    // }
-}
+// function artProgrammingScroll() {
+//     if (!bioSection.isActivated) { return; }
+//     const topPanelContainer = document.getElementById('top-panel-container');
+//     if (!isArtProgrammingExpanded) { return; }
+//     if (topPanelContainer.getBoundingClientRect().top <= (viewHeight() * 4 / 10)) {
+//         const bottomPanelContainer = document.getElementById('bottom-panel-container');
+//         bottomPanelContainer.style.opacity = 1;
+//         window.removeEventListener("scroll", artProgrammingScroll);
+//     }
+//     // const masktextBg = document.getElementById('mask-text-bg');
+//     // if (masktextBg.style.opacity == 0) {
+//     //     return;
+//     // }
+//     // if (masktextBg.getBoundingClientRect().top <= (viewHeight * 4 / 10)) {
+//     //     // const irrelevantChars = document.getElementsByClassName('irrelevant-span');
+//     //     // for (const irrelevantChar of irrelevantChars) {
+//     //     //     irrelevantChar.style.opacity = 0;
+//     //     // }
+//     //     // const biodataPanelContainer = document.getElementById('top-panel-container');
+//     //     // biodataPanelContainer[0].style.display = "flex";
+//     //     const biodataPanels = document.getElementsByClassName('biodata-panel');
+//     //     for (const biodataPanel of biodataPanels) {
+//     //         setTimeout(() => {
+//     //             biodataPanel.style.transform = "scale(1,1)";
+//     //         }, 500);
+//     //     }
+//     //     window.removeEventListener("scroll", artProgrammingScroll);
+//     // }
+// }
 
 function skillDirecScroll() {
     if (!techSection.isActivated) { return; }
@@ -1146,7 +1165,7 @@ function contactScroll() {
         mailFront.style.animationDelay = '1s';
         setTimeout(() => {
             // mailBack.style.display = 'none';
-            // mailBack.style.visibility = 'hidden';
+            mailBack.style.visibility = 'hidden';
             mailBack.style.opacity = 0;
         }, 1500);
         // window.removeEventListener("scroll", contactScroll);
@@ -1182,6 +1201,14 @@ function resetContactScroll() {
 // const viewWidth = document.documentElement.clientWidth;
 const viewHeight = () => { return document.documentElement.clientHeight };
 const viewWidth = () => { return document.documentElement.clientWidth };
+
+const appHeight = () => {
+    const doc = document.documentElement
+    doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+}
+window.addEventListener('resize', appHeight)
+appHeight()
+
 const maskFragmentsOffset = calcMaskOffset();
 const maskRotationAxes = calculateMaskRotationAxis();
 const generalDirec = document.getElementById('general-direc');
@@ -1204,7 +1231,7 @@ projectsButton.addEventListener('click', projectsOnClick, false);
 // window.addEventListener("scroll", lineDecorScroll, false);
 window.addEventListener("scroll", noticeContainerScroll, false);
 window.addEventListener("scroll", biodataScroll, false);
-window.addEventListener("scroll", artProgrammingScroll, false);
+// window.addEventListener("scroll", artProgrammingScroll, false);
 // window.addEventListener("scroll", uiuxScroll, false);
 window.addEventListener("scroll", projectIconScroll, false);
 window.addEventListener("scroll", skillDirecScroll, false);
@@ -1272,8 +1299,8 @@ terminalBackButton.addEventListener("click", function() { skillsCategoryClicked(
 isDescPanelOpen = false;
 const teamworkFg = document.getElementById('teamwork-fg');
 teamworkFg.addEventListener("click", function() {
-    updateAndShowDesc(1);
     teamworkAnimation(false);
+    updateAndShowDesc(1);
 }, false);
 teamworkFg.addEventListener("mouseenter", function() { teamworkAnimation(false); }, false);
 teamworkFg.addEventListener("mouseleave", function() { teamworkAnimation(true); }, false);
@@ -1285,11 +1312,17 @@ timeManagementFg.addEventListener("click", function() {
 timeManagementFg.addEventListener("mouseenter", function() { timeAnimation(false); }, false);
 timeManagementFg.addEventListener("mouseleave", function() { timeAnimation(true); }, false);
 const creativityFg = document.getElementById('creativity-fg');
-creativityFg.addEventListener("click", function() { updateAndShowDesc(3); }, false);
+creativityFg.addEventListener("click", function() {
+    creativityAnimation(false);
+    updateAndShowDesc(3);
+}, false);
 creativityFg.addEventListener("mouseenter", function() { creativityAnimation(false); }, false);
 creativityFg.addEventListener("mouseleave", function() { creativityAnimation(true); }, false);
 const adaptabilityFg = document.getElementById('adaptability-fg');
-adaptabilityFg.addEventListener("click", function() { updateAndShowDesc(4); }, false);
+adaptabilityFg.addEventListener("click", function() {
+    adaptabilityAnimation(false);
+    updateAndShowDesc(4);
+}, false);
 adaptabilityFg.addEventListener("mouseenter", function() { adaptabilityAnimation(false); }, false);
 adaptabilityFg.addEventListener("mouseleave", function() { adaptabilityAnimation(true); }, false);
 
