@@ -15,12 +15,8 @@ nav {
           animation: nav-appear-animation 500ms ease-in-out forwards;
 }
 
-nav #nav-left .nav-title #home-title {
-  color: #505050;
-}
-
-nav #nav-left .nav-title #home-title span b {
-  color: #14b0a0;
+nav #home-title span b {
+  color: #7ea6a6;
 }
 
 #gallery-section {

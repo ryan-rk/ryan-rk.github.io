@@ -1,6 +1,5 @@
 /// Please bear with the codes, I know they are definitely screaming for refactoring and I am definitely doing it whenever I am free
 
-
 class CategorySection {
     constructor(name) {
         this.name = name;
@@ -24,6 +23,7 @@ class CategorySection {
             if (this.isActivated) { return; }
             this.isActivated = true;
             this.sectionElement.style.display = 'flex';
+            // this.sectionElement.style.visibility = 'visible';
             this.setH1Explosion(true);
             setTimeout(() => {
                 for (const h1 of this.allH1) {
@@ -44,6 +44,7 @@ class CategorySection {
             // this.manageCategoryActivation(false);
             setTimeout(() => {
                 this.sectionElement.style.display = 'none';
+                // this.sectionElement.style.visibility = 'hidden';
             }, 500);
             if (this.name == "main") {
                 expandCategoriesDiamonds();
@@ -134,8 +135,10 @@ function randomIntervalInt(min, max) {
 
 function initializePage() {
     const backdrop = document.getElementById("backdrop");
+    const bgDiamonds = document.getElementById("bg-diamonds");
     setTimeout(() => {
         backdrop.style.opacity = 1;
+        bgDiamonds.style.opacity = 1;
     }, 100);
 }
 
@@ -262,6 +265,61 @@ function isSectionExpanded() {
     return (mainSection.isActivated || bioSection.isActivated || contactSection.isActivated || techSection.isActivated || softSection.isActivated);
 }
 
+function populateBgDiamonds() {
+    const numDiamonds = 36;
+    const numCol = 6;
+    const numRow = Math.ceil(numDiamonds / numCol);
+    const minOpacity = 0.1;
+    const maxOpacity = 0.4;
+    const minSize = 0.2;
+    const maxSize = 1.5;
+    const maxBlur = 4;
+    const diamondWidthSpan = 20;
+    const diamondPadding = 2;
+    const diamondMarginTop = 10;
+    const randomXRange = (100 - 2 * diamondPadding) / numCol;
+    const randomYRange = (100 - diamondMarginTop - diamondPadding) / (numDiamonds / numCol);
+    const sizeAnimDurationScale = 4500;
+    const maxAnimDelay = -6000;
+    // const minAnimDuration = 2000;
+    // const maxAnimDuration = 7000;
+    const bgDiamondContainer = document.getElementById('bg-diamonds');
+    // const bgDiamonds = [];
+    for (let i = 0; i < numDiamonds; i++) {
+        bgDiamondContainer.innerHTML += "<div class=\"bg-diamond-container\"><div class=\"bg-diamond\"></div></div>"
+    }
+    const allBgDiamonds = document.getElementsByClassName('bg-diamond');
+    const allBgDiamondContainers = document.getElementsByClassName('bg-diamond-container');
+    for (let i = 0; i < allBgDiamonds.length; i++) {
+        const currentBgDiamond = allBgDiamonds[i];
+        const currentBgDiamondContainer = allBgDiamondContainers[i];
+        // currentBgDiamond.style.top = `${8 * i}vh`;
+        // currentBgDiamond.style.left = `${8 * i}vw`;
+
+        currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity;
+        const diamondSize = Math.random() * (maxSize - minSize) + minSize;
+        if (Math.random() > 0.5) {
+            currentBgDiamond.style.backgroundColor = '#ffffff00';
+        }
+        currentBgDiamond.style.filter = `blur(${Math.random() * maxBlur}px)`;
+        // currentBgDiamond.style.animationDuration = `${Math.random() * (maxAnimDuration - minAnimDuration) + minAnimDuration}ms`;
+        currentBgDiamondContainer.style.width = `${diamondSize}rem`;
+        currentBgDiamondContainer.style.height = `${diamondSize}rem`;
+        currentBgDiamondContainer.style.animationDuration = `${diamondSize * sizeAnimDurationScale + 1000}ms`;
+        currentBgDiamondContainer.style.animationDelay = `${Math.random() * maxAnimDelay}ms`;
+        // const horizontalOffset = Math.random() * diamondWidthSpan;
+        const horizontalOffset = Math.random() * randomXRange + (diamondPadding + randomXRange * (Math.floor(i / numRow)));
+        const verticalOffset = Math.random() * randomYRange + (randomYRange * (i % (numDiamonds / numCol))) + diamondMarginTop;
+        // if (i < (numDiamonds / 2)) {
+        //     currentBgDiamondContainer.style.left = `${horizontalOffset + diamondPadding}vw`;
+        // } else {
+        //     currentBgDiamondContainer.style.left = `${100 - horizontalOffset - diamondPadding}vw`;
+        // }
+        currentBgDiamondContainer.style.left = `${horizontalOffset}vw`;
+        currentBgDiamondContainer.style.top = `${verticalOffset}vh`;
+    }
+}
+
 
 
 
@@ -302,7 +360,14 @@ function maskExplode(isReverse) {
         // }
     } else {
         shatterMask(0);
-        postMaskExplosion();
+        const mask = document.getElementById('mask');
+        mask.style.transform = 'translateY(20%) scale(0.8)';
+        mask.style.zIndex = 10;
+        const maskTextContainer = document.getElementById('mask-text-container');
+        maskTextContainer.style.transform = "translateY(-20%)";
+        setTimeout(() => {
+            postMaskExplosion();
+        }, 2000);
         // setTimeout(() => {
         //     mask.style.transform = 'translateY(50%)';
         // }, 2000);
@@ -318,11 +383,6 @@ function maskExplode(isReverse) {
 }
 
 function postMaskExplosion() {
-    const mask = document.getElementById('mask');
-    mask.style.transform = 'translateY(20%) scale(0.8)';
-    mask.style.zIndex = 10;
-    const maskTextContainer = document.getElementById('mask-text-container');
-    maskTextContainer.style.transform = "translateY(-20%)";
     const topPanelContainer = document.getElementById('top-panel-container');
     topPanelContainer.style.transform = "translateY(0) scale(1)";
     const diamondLineContainer = document.getElementById('diamond-line-container');
@@ -330,6 +390,14 @@ function postMaskExplosion() {
     isArtProgrammingExpanded = true;
     const bottomPanelContainer = document.getElementById('bottom-panel-container');
     bottomPanelContainer.style.opacity = 1;
+
+    const artIconDesc = document.getElementById('art-icon-desc');
+    artIconDesc.addEventListener('click', () => { updateBioSelection(0) }, false);
+    const programmingIconDesc = document.getElementById('programming-icon-desc');
+    programmingIconDesc.addEventListener('click', () => { updateBioSelection(1) }, false);
+    setTimeout(() => {
+        updateBioSelection(0);
+    }, 1000);
 }
 
 function explodeMaskText() {
@@ -689,7 +757,7 @@ function updateSoftskillsDesc(cardIndex) {
             descContainer.style.transformOrigin = "right 30%";
             descBg.style.backgroundColor = "rgba(80, 118, 123, 0.652)";
             descTitle.innerHTML = "Time Management";
-            descText.innerHTML = "Strict management on time, especially on completion of projects. PhD research projects often involved strict deadlines such as meeting the journal/proposal submission deadline, or tasks deadline during collaboration with other research teams.<br><br>Participated in various hackathon-like events which require the completion of projects within a specified short time frame, especially various Game Jams."
+            descText.innerHTML = "Strict management on time, especially on completion of projects. PhD research projects often involved strict deadlines such as meeting the journal/ proposal submission deadline, or tasks deadline during collaboration with other research teams.<br><br>Participated in various hackathon-like events which require the completion of projects within a specified short time frame, especially various Game Jams."
             break;
 
         case 3:
@@ -1013,21 +1081,21 @@ function dotScroll() {
 //     }
 // }
 
-function noticeContainerScroll() {
-    const noticeContainer = document.getElementsByClassName('notice-container');
-    if (noticeContainer[0].getBoundingClientRect().top <= viewHeight() * 6 / 10) {
-        const noticeTexts = document.getElementsByClassName('notice-text');
-        const noticeBorders = document.getElementsByClassName('notice-border');
-        noticeContainer[0].style.transform = 'scale(1)';
-        for (noticeText of noticeTexts) {
-            noticeText.style.opacity = 1;
-        }
-        // for (noticeBorder of noticeBorders) {
-        //     noticeBorder.style.opacity = 1;
-        // }
-        window.removeEventListener("scroll", noticeContainerScroll);
-    }
-}
+// function noticeContainerScroll() {
+//     const noticeContainer = document.getElementsByClassName('notice-container');
+//     if (noticeContainer[0].getBoundingClientRect().top <= viewHeight() * 6 / 10) {
+//         const noticeTexts = document.getElementsByClassName('notice-text');
+//         const noticeBorders = document.getElementsByClassName('notice-border');
+//         noticeContainer[0].style.transform = 'scale(1)';
+//         for (noticeText of noticeTexts) {
+//             noticeText.style.opacity = 1;
+//         }
+//         // for (noticeBorder of noticeBorders) {
+//         //     noticeBorder.style.opacity = 1;
+//         // }
+//         window.removeEventListener("scroll", noticeContainerScroll);
+//     }
+// }
 
 // function uiuxScroll() {
 //     const uiuxCont = document.getElementsByClassName('uiux-container');
@@ -1202,18 +1270,19 @@ function resetContactScroll() {
 const viewHeight = () => { return document.documentElement.clientHeight };
 const viewWidth = () => { return document.documentElement.clientWidth };
 
-const appHeight = () => {
-    const doc = document.documentElement
-    doc.style.setProperty('--app-height', `${window.innerHeight}px`)
-}
-window.addEventListener('resize', appHeight)
-appHeight()
+// const appHeight = () => {
+//     const doc = document.documentElement
+//     doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+// }
+// window.addEventListener('resize', appHeight)
+// appHeight()
 
 const maskFragmentsOffset = calcMaskOffset();
 const maskRotationAxes = calculateMaskRotationAxis();
 const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
 initializePage();
+populateBgDiamonds();
 // const dotsContainerWidth = createDots();
 // transformDots(0);
 // explodeAllH1Text();
@@ -1229,7 +1298,7 @@ projectsButton.addEventListener('click', projectsOnClick, false);
 // window.addEventListener("scroll", scrollUpSignScroll, false);
 // window.addEventListener("scroll", headingScroll, false);
 // window.addEventListener("scroll", lineDecorScroll, false);
-window.addEventListener("scroll", noticeContainerScroll, false);
+// window.addEventListener("scroll", noticeContainerScroll, false);
 window.addEventListener("scroll", biodataScroll, false);
 // window.addEventListener("scroll", artProgrammingScroll, false);
 // window.addEventListener("scroll", uiuxScroll, false);
@@ -1277,11 +1346,6 @@ isArtProgrammingExpanded = false;
 const clickSign1 = document.getElementById('mask-text-container');
 clickSign1.addEventListener("click", populateMask);
 bioSelectionIndex = 1;
-updateBioSelection(0);
-const artIconDesc = document.getElementById('art-icon-desc');
-artIconDesc.addEventListener('click', () => { updateBioSelection(0) }, false);
-const programmingIconDesc = document.getElementById('programming-icon-desc');
-programmingIconDesc.addEventListener('click', () => { updateBioSelection(1) }, false);
 
 // Click events for skills directory
 for (const skillsCategory of skillsCategories) {

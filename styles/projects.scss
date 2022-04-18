@@ -13,15 +13,10 @@ h1:not(#home-title) {
 nav {
     // background: rgba(227, 227, 227, 0.415);
     animation: nav-appear-animation 500ms ease-in-out forwards;
-    #nav-left {
-        .nav-title {
-            #home-title {
-                color: #505050;
-                span {
-                    b {
-                        color: rgb(20, 176, 160);
-                    }
-                }
+    #home-title {
+        span {
+            b {
+                color: rgb(126, 166, 166);
             }
         }
     }
