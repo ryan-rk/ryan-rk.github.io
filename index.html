@@ -439,9 +439,13 @@
                         <img src="assets/img/left-arrow-circle.svg" alt="back icon">
                         <p>- back -</p>
                     </div>
-                    <div class="file-container" id="uikit">
+                    <div class="file-container" id="swift">
                         <img src="assets/img/swift-file.svg" alt="swift icon">
-                        <p>iOS UIKit</p>
+                        <p>Swift</p>
+                    </div>
+                    <div class="file-container" id="uikit">
+                        <img src="assets/img/uikit-icon.png" alt="uikit icon">
+                        <p>IOS UIKit</p>
                     </div>
                     <div class="file-container" id="swiftui">
                         <img src="assets/img/swiftui-icon.png" alt="swiftui icon">
@@ -577,6 +581,10 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="c plus plus icon">
                         <p>C++</p>
                     </div>
+                    <div class="file-container" id="java">
+                        <img src="assets/img/java-icon.png" alt="java icon">
+                        <p>Java</p>
+                    </div>
                 </div>
                 <div class="terminal-container" id="terminal">
                     <div class="terminal-heading">
@@ -602,33 +610,37 @@
                 <div class="line-decor"></div>
                 <div class="dot-decor"></div>
             </div>
-            <div class="project-icon-container">
-                <div class="project-icon-top">
-                    <div class="project-lines-container">
-                        <img src="assets/img/tick-square.svg" alt="tick with border" class="tick-square">
-                        <div class="project-line"></div>
+            <div id="project-icon-text">
+                <div class="project-icon-container">
+                    <div class="project-icon-top">
+                        <div class="project-lines-container">
+                            <img src="assets/img/tick-square.svg" alt="tick with border" class="tick-square">
+                            <div class="project-line"></div>
+                        </div>
+                        <div class="project-lines-container">
+                            <img src="assets/img/tick-square.svg" alt="tick with border" class="tick-square">
+                            <div class="project-line"></div>
+                        </div>
+                        <div class="project-lines-container">
+                            <img src="assets/img/tick-square.svg" alt="tick with border" class="tick-square">
+                            <div class="project-line"></div>
+                        </div>
                     </div>
-                    <div class="project-lines-container">
-                        <img src="assets/img/tick-square.svg" alt="tick with border" class="tick-square">
-                        <div class="project-line"></div>
-                    </div>
-                    <div class="project-lines-container">
-                        <img src="assets/img/tick-square.svg" alt="tick with border" class="tick-square">
-                        <div class="project-line"></div>
+                    <div class="project-icon-bottom">
+                        <img src="assets/img/cog.svg" alt="cog icon" class="project-cog" id="large-cog">
+                        <img src="assets/img/cog.svg" alt="cog icon" class="project-cog" id="small-cog">
                     </div>
                 </div>
-                <div class="project-icon-bottom">
-                    <img src="assets/img/cog.svg" alt="cog icon" class="project-cog" id="large-cog">
-                    <img src="assets/img/cog.svg" alt="cog icon" class="project-cog" id="small-cog">
+                <div id="project-text-button">
+                    <h2 class="projects-element">Check out the Projects Gallery for my research outputs and hands-on projects made out of passion by navigating to the Projects page.</h2>
+                    <h2>Of course, if you don't wanna miss out on the rest of contents of the current page, feel free to visit it anytime later.</h2>
+                    <div class="project-button">
+                        <div id="project-button-text">
+                            <a href="./projects.html">Project Gallery</a>
+                        </div>
+                        <div class="projects-element" id="project-button-bg"></div>
+                    </div>
                 </div>
-            </div>
-            <h2 class="projects-element">Check out the Projects Gallery for my research outputs and hands-on projects made out of passion by navigating to the Projects page.</h2>
-            <h2>Of course, if you don't wanna miss out on the rest of contents of the current page, feel free to visit it anytime later.</h2>
-            <div class="project-button">
-                <div id="project-button-text">
-                    <a href="./projects.html">Project Gallery</a>
-                </div>
-                <div class="projects-element" id="project-button-bg"></div>
             </div>
         </section>
         <div class="back-button">
@@ -787,7 +799,8 @@
         </div>
     </section>
     <section id="backdrop">
-        <div id="backdrop-background"></div>
+        <!-- <div id="backdrop-background"></div> -->
+        <canvas id="c"></canvas>
     </section>
     <!-- <footer>
         <div class="author-container">
@@ -797,6 +810,7 @@
     </footer> -->
 
     <script src="scripts/main.js"></script>
+    <script src="scripts/canvas.js"></script>
 
 </body>
 

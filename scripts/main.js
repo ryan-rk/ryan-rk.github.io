@@ -134,10 +134,12 @@ function randomIntervalInt(min, max) {
 }
 
 function initializePage() {
-    const backdrop = document.getElementById("backdrop");
+    // const backdrop = document.getElementById("backdrop");
+    const canvas = document.querySelector('canvas');
     const bgDiamonds = document.getElementById("bg-diamonds");
     setTimeout(() => {
-        backdrop.style.opacity = 1;
+        // backdrop.style.opacity = 1;
+        canvas.style.opacity = 1;
         bgDiamonds.style.opacity = 1;
     }, 100);
 }
@@ -265,61 +267,134 @@ function isSectionExpanded() {
     return (mainSection.isActivated || bioSection.isActivated || contactSection.isActivated || techSection.isActivated || softSection.isActivated);
 }
 
-function populateBgDiamonds() {
-    const numDiamonds = 36;
-    const numCol = 6;
-    const numRow = Math.ceil(numDiamonds / numCol);
-    const minOpacity = 0.1;
-    const maxOpacity = 0.4;
-    const minSize = 0.2;
-    const maxSize = 1.5;
-    const maxBlur = 4;
-    const diamondWidthSpan = 20;
-    const diamondPadding = 2;
-    const diamondMarginTop = 10;
-    const randomXRange = (100 - 2 * diamondPadding) / numCol;
-    const randomYRange = (100 - diamondMarginTop - diamondPadding) / (numDiamonds / numCol);
-    const sizeAnimDurationScale = 4500;
-    const maxAnimDelay = -6000;
-    // const minAnimDuration = 2000;
-    // const maxAnimDuration = 7000;
-    const bgDiamondContainer = document.getElementById('bg-diamonds');
-    // const bgDiamonds = [];
-    for (let i = 0; i < numDiamonds; i++) {
-        bgDiamondContainer.innerHTML += "<div class=\"bg-diamond-container\"><div class=\"bg-diamond\"></div></div>"
-    }
-    const allBgDiamonds = document.getElementsByClassName('bg-diamond');
-    const allBgDiamondContainers = document.getElementsByClassName('bg-diamond-container');
-    for (let i = 0; i < allBgDiamonds.length; i++) {
-        const currentBgDiamond = allBgDiamonds[i];
-        const currentBgDiamondContainer = allBgDiamondContainers[i];
-        // currentBgDiamond.style.top = `${8 * i}vh`;
-        // currentBgDiamond.style.left = `${8 * i}vw`;
+// function populateBgDiamonds() {
+//     const numDiamonds = 15;
+//     const numCol = 5;
+//     const numRow = Math.ceil(numDiamonds / numCol);
+//     const minOpacity = 0.1;
+//     const maxOpacity = 0.15;
+//     const borderDiamondOpacityOffset = 0.3;
+//     const minSize = 3.5;
+//     const maxSize = 10;
+//     const maxBlur = 5;
+//     const minBlur = 1;
+//     const diamondWidthSpan = 20;
+//     const diamondPadding = 2;
+//     const diamondMarginTop = 10;
+//     const randomXRange = (100 - 2 * diamondPadding) / numCol;
+//     const randomYRange = (100 - diamondMarginTop - diamondPadding) / (numDiamonds / numCol);
+//     const sizeAnimDurationScale = 3000;
+//     const maxAnimDelay = -30000;
+//     // const minAnimDuration = 2000;
+//     // const maxAnimDuration = 7000;
+//     const bgDiamondContainer = document.getElementById('bg-diamonds');
+//     // const bgDiamonds = [];
+//     for (let i = 0; i < numDiamonds; i++) {
+//         bgDiamondContainer.innerHTML += "<div class=\"bg-diamond-container\"><div class=\"bg-diamond\"></div></div>"
+//     }
+//     const allBgDiamonds = document.getElementsByClassName('bg-diamond');
+//     const allBgDiamondContainers = document.getElementsByClassName('bg-diamond-container');
+//     for (let i = 0; i < allBgDiamonds.length; i++) {
+//         const currentBgDiamond = allBgDiamonds[i];
+//         const currentBgDiamondContainer = allBgDiamondContainers[i];
+//         // currentBgDiamond.style.top = `${8 * i}vh`;
+//         // currentBgDiamond.style.left = `${8 * i}vw`;
 
-        currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity;
-        const diamondSize = Math.random() * (maxSize - minSize) + minSize;
-        if (Math.random() > 0.5) {
-            currentBgDiamond.style.backgroundColor = '#ffffff00';
-        }
-        currentBgDiamond.style.filter = `blur(${Math.random() * maxBlur}px)`;
-        // currentBgDiamond.style.animationDuration = `${Math.random() * (maxAnimDuration - minAnimDuration) + minAnimDuration}ms`;
-        currentBgDiamondContainer.style.width = `${diamondSize}rem`;
-        currentBgDiamondContainer.style.height = `${diamondSize}rem`;
-        currentBgDiamondContainer.style.animationDuration = `${diamondSize * sizeAnimDurationScale + 1000}ms`;
-        currentBgDiamondContainer.style.animationDelay = `${Math.random() * maxAnimDelay}ms`;
-        // const horizontalOffset = Math.random() * diamondWidthSpan;
-        const horizontalOffset = Math.random() * randomXRange + (diamondPadding + randomXRange * (Math.floor(i / numRow)));
-        const verticalOffset = Math.random() * randomYRange + (randomYRange * (i % (numDiamonds / numCol))) + diamondMarginTop;
-        // if (i < (numDiamonds / 2)) {
-        //     currentBgDiamondContainer.style.left = `${horizontalOffset + diamondPadding}vw`;
-        // } else {
-        //     currentBgDiamondContainer.style.left = `${100 - horizontalOffset - diamondPadding}vw`;
-        // }
-        currentBgDiamondContainer.style.left = `${horizontalOffset}vw`;
-        currentBgDiamondContainer.style.top = `${verticalOffset}vh`;
-    }
-}
+//         const diamondSize = Math.random() * (maxSize - minSize) + minSize;
+//         if (Math.random() > 0.25) {
+//             currentBgDiamond.style.backgroundColor = '#ffffff00';
+//             currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity + borderDiamondOpacityOffset;
+//         } else {
+//             currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity;
+//         }
+//         currentBgDiamond.style.filter = `blur(${Math.random() * (maxBlur - minBlur) + minBlur}px)`;
+//         // currentBgDiamond.style.animationDuration = `${Math.random() * (maxAnimDuration - minAnimDuration) + minAnimDuration}ms`;
+//         currentBgDiamondContainer.style.width = `${diamondSize}rem`;
+//         currentBgDiamondContainer.style.height = `${diamondSize}rem`;
+//         currentBgDiamondContainer.style.animationDuration = `${diamondSize * sizeAnimDurationScale + 1000}ms`;
+//         currentBgDiamondContainer.style.animationDelay = `${Math.random() * maxAnimDelay}ms`;
+//         // const horizontalOffset = Math.random() * diamondWidthSpan;
+//         const horizontalOffset = Math.random() * randomXRange + (diamondPadding + randomXRange * (Math.floor(i / numRow)));
+//         const verticalOffset = Math.random() * randomYRange + (randomYRange * (i % (numDiamonds / numCol))) + diamondMarginTop;
+//         // if (i < (numDiamonds / 2)) {
+//         //     currentBgDiamondContainer.style.left = `${horizontalOffset + diamondPadding}vw`;
+//         // } else {
+//         //     currentBgDiamondContainer.style.left = `${100 - horizontalOffset - diamondPadding}vw`;
+//         // }
+//         currentBgDiamondContainer.style.left = `${horizontalOffset}vw`;
+//         currentBgDiamondContainer.style.top = `${verticalOffset}vh`;
+//     }
+// }
 
+// function populateBgDiamonds() {
+//     const gridSize = rem2Px(5);
+//     const minHorizontalPadding = rem2Px(1);
+//     const minVerticalPadding = rem2Px(2);
+//     const numCol = Math.floor((viewWidth() - 2 * minHorizontalPadding) / gridSize) * 2 - 1;
+//     const numRow = Math.floor((viewHeight() - 2 * minVerticalPadding) / gridSize);
+//     const minOpacity = 0.1;
+//     const maxOpacity = 0.15;
+//     const borderDiamondOpacityOffset = 0.25;
+//     const minSizeScale = 0.8;
+//     const maxSizeScale = 1.2;
+//     const maxBlur = 5;
+//     const minBlur = 1;
+//     const horizontalPadding = (viewWidth() - (numCol + 1) / 2 * gridSize) / 2;
+//     const verticalPadding = (viewHeight() - numRow * gridSize) / 2;
+//     // const diamondMarginTop = 10;
+//     // const sizeAnimDurationScale = 3000;
+//     // const maxAnimDelay = -30000;
+//     // const minAnimDuration = 2000;
+//     // const maxAnimDuration = 7000;
+//     const bgDiamondContainer = document.getElementById('bg-diamonds');
+//     // const bgDiamonds = [];
+//     for (let i = 0; i < numRow; i++) {
+//         for (let j = 0; j < numCol; j++) {
+//             const centerXOffset = viewWidth() / 2 - (horizontalPadding + (j + 1) * gridSize / 2);
+//             const centerYOffset = viewHeight() / 2 - (verticalPadding + (i + 1 / 2) * gridSize);
+//             const distToCenter = Math.pow(centerXOffset, 2) + Math.pow(centerYOffset, 2);
+//             if (distToCenter >= Math.pow(rem2Px(15), 2)) {
+//                 bgDiamondContainer.innerHTML += "<div class=\"bg-diamond-container\"><div class=\"bg-diamond\"></div></div>"
+//             }
+//         }
+//     }
+//     console.log(numRow * numCol);
+//     const allBgDiamonds = document.getElementsByClassName('bg-diamond');
+//     console.log(allBgDiamonds.length);
+//     const allBgDiamondContainers = document.getElementsByClassName('bg-diamond-container');
+//     var diamondIndex = 0;
+//     for (let i = 0; i < numRow; i++) {
+//         for (let j = 0; j < numCol; j++) {
+//             const centerXOffset = viewWidth() / 2 - (horizontalPadding + (j + 1) * gridSize / 2);
+//             const centerYOffset = viewHeight() / 2 - (verticalPadding + (i + 1 / 2) * gridSize);
+//             const distToCenter = Math.pow(centerXOffset, 2) + Math.pow(centerYOffset, 2);
+//             if (distToCenter >= Math.pow(rem2Px(15), 2)) {
+//                 const currentBgDiamond = allBgDiamonds[diamondIndex];
+//                 const currentBgDiamondContainer = allBgDiamondContainers[diamondIndex];
+//                 const diamondSizeScale = Math.random() * (maxSizeScale - minSizeScale) + minSizeScale;
+//                 if (Math.random() > 0.25) {
+//                     currentBgDiamond.style.backgroundColor = '#ffffff00';
+//                     currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity + borderDiamondOpacityOffset;
+//                 } else {
+//                     currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity;
+//                 }
+//                 currentBgDiamond.style.filter = `blur(${Math.random() * (maxBlur - minBlur) + minBlur}px)`;
+//                 currentBgDiamondContainer.style.width = `${diamondSizeScale * gridSize}px`;
+//                 currentBgDiamondContainer.style.height = `${diamondSizeScale * gridSize}px`;
+//                 const horizontalOffset = horizontalPadding + gridSize / 2 * j;
+//                 var verticalOffset = verticalPadding + gridSize * i;
+//                 if (j % 2 == 1) {
+//                     verticalOffset += gridSize / 2;
+//                 }
+//                 currentBgDiamondContainer.style.left = `${horizontalOffset}px`;
+//                 currentBgDiamondContainer.style.top = `${verticalOffset}px`;
+//                 diamondIndex += 1;
+//             }
+//         }
+//     }
+//     console.log(diamondIndex);
+//     // for (let i = 0; i < allBgDiamonds.length; i++) {}
+// }
 
 
 
@@ -727,17 +802,17 @@ function collapseSoftskillsCenter() {
 }
 
 function updateAndShowDesc(cardIndex) {
+    console.log("show desc");
     if (isDescPanelOpen) {
+        console.log("desc opening failed");
         return;
     }
     updateSoftskillsDesc(cardIndex);
     const descContainer = document.getElementById('softskills-desc-container');
     // descContainer.style.display = "flex";
     descContainer.addEventListener("click", hideSoftskillsDesc, false);
-    if (!isDescPanelOpen) {
-        descContainer.style.transform = "scale(1)";
-        isDescPanelOpen = true;
-    }
+    descContainer.style.transform = "scale(1)";
+    isDescPanelOpen = true;
 }
 
 function updateSoftskillsDesc(cardIndex) {
@@ -799,12 +874,15 @@ function hideSoftskillsDesc() {
 function softskillsCardHover(elementId, isHover) {
     const cardBg = document.querySelector(elementId + ' .softskills-card-bg');
     const cardFg = document.querySelector(elementId + ' .softskills-card-fg');
+    const cardCircle = document.querySelector(elementId + ' .card-circle');
     if (isHover) {
         cardBg.style.transform = "rotate(225deg) scale(1.2)";
         cardFg.style.transform = "scale(1.2)";
+        cardCircle.style.transform = "scale(0.8) rotate(-180deg)";
     } else {
         cardBg.style.transform = "rotate(45deg) scale(0.8)";
         cardFg.style.transform = "scale(1)";
+        cardCircle.style.transform = "scale(1) rotate(0deg)";
     }
 }
 
@@ -820,7 +898,6 @@ function teamworkAnimation(isReverse) {
         personOutline2.style.transform = "translate(50%, -50%)";
         personOutline3.style.opacity = "0";
         personOutline3.style.transform = "translate(-50%, -50%)";
-        cardCircle.style.transform = "translate(0%, 0%)";
         softskillsCardHover('#teamwork-leadership', false);
         collapseSoftskillsCenter();
     } else {
@@ -828,7 +905,6 @@ function teamworkAnimation(isReverse) {
         personOutline2.style.transform = "translate(0, 0)";
         personOutline3.style.opacity = "1";
         personOutline3.style.transform = "translate(0, 0)";
-        cardCircle.style.transform = "translate(-50%, -50%)";
         softskillsCardHover('#teamwork-leadership', true);
         rotateSoftskillsCenter(1);
     }
@@ -840,17 +916,14 @@ function timeAnimation(isReverse) {
     }
     const shortClockHand = document.getElementById('short-clock-hand');
     const longClockHand = document.getElementById('long-clock-hand');
-    const cardCircle = document.querySelector('#time-management .card-circle');
     if (isReverse) {
         shortClockHand.style.transform = "translate(50%, 0) rotate(0deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(0deg)";
-        cardCircle.style.transform = "translate(0, 0)";
         softskillsCardHover('#time-management', false);
         collapseSoftskillsCenter();
     } else {
         shortClockHand.style.transform = "translate(50%, 0) rotate(60deg)";
         longClockHand.style.transform = "translate(0, -50%) rotate(720deg)";
-        cardCircle.style.transform = "translate(50%, -50%)";
         softskillsCardHover('#time-management', true);
         rotateSoftskillsCenter(2);
     }
@@ -863,20 +936,17 @@ function creativityAnimation(isReverse) {
     // const headBottom = document.getElementById('head-bottom-icon');
     const headTop = document.getElementById('head-top-icon');
     const headInner = document.getElementById('head-inner');
-    const cardCirle = document.querySelector('#creativity .card-circle');
     // const lightBulb = document.getElementById('creativity-light-bulb');
     if (isReverse) {
         headTop.style.transform = "rotate(0deg)";
         headInner.style.top = "0%";
         headInner.style.opacity = 0;
-        cardCirle.style.transform = "translate(0, 0)";
         softskillsCardHover('#creativity', false);
         collapseSoftskillsCenter();
     } else {
         headTop.style.transform = "rotate(-90deg)";
         headInner.style.top = "-20%";
         headInner.style.opacity = 1;
-        cardCirle.style.transform = "translate(-50%, 50%)";
         softskillsCardHover('#creativity', true);
         rotateSoftskillsCenter(3);
     }
@@ -891,14 +961,12 @@ function adaptabilityAnimation(isReverse) {
     const triangleBlock = document.getElementById('triangle-block');
     const triangleHole = document.getElementById('triangle-hole');
     const adaptabilityBase = document.getElementById('adaptability-base-container');
-    const cardCirle = document.querySelector('#adaptability .card-circle');
     if (isReverse) {
         circleBlock.style.opacity = 0;
         triangleBlock.style.opacity = 1;
         circleHole.style.opacity = 0;
         triangleHole.style.opacity = 1;
         adaptabilityBase.style.transform = "translateX(0%)";
-        cardCirle.style.transform = "translate(0, 0)";
         softskillsCardHover('#adaptability', false);
         collapseSoftskillsCenter();
     } else {
@@ -907,7 +975,6 @@ function adaptabilityAnimation(isReverse) {
         circleHole.style.opacity = 1;
         triangleHole.style.opacity = 0;
         adaptabilityBase.style.transform = "translateX(-100%)";
-        cardCirle.style.transform = "translate(50%, 50%)";
         softskillsCardHover('#adaptability', true);
         rotateSoftskillsCenter(4);
     }
@@ -1282,7 +1349,7 @@ const maskRotationAxes = calculateMaskRotationAxis();
 const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
 initializePage();
-populateBgDiamonds();
+// populateBgDiamonds();
 // const dotsContainerWidth = createDots();
 // transformDots(0);
 // explodeAllH1Text();

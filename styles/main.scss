@@ -661,19 +661,22 @@ header {
         width: 100%;
         height: 100%;
         z-index: -10;
-        opacity: 0;
+        opacity: 1;
         transition: opacity 1s ease-in-out 5s;
         .bg-diamond-container {
             position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             // width: 0.5rem;
             // height: 0.5rem;
             // top: 15vh;
             // left: 10vw;
             // background-color: #ffffff00;
-            animation: bg-diamond-float 7s ease-in-out 0s infinite;
+            // animation: bg-diamond-float 7s ease-in-out 0s infinite;
             .bg-diamond {
-                width: 100%;
-                height: 100%;
+                width: 65%;
+                height: 65%;
                 background-color: #706bca;
                 border: 0.1rem solid #706bca;
                 transform: rotate(45deg);
@@ -1044,8 +1047,10 @@ header {
     .biodata-panel-bg {
         // width: 100%;
         // height: 100%;
-        width: 15rem;
-        height: 15rem;
+        // width: 15rem;
+        width: calc(min(15rem, 45vw));
+        // height: 15rem;
+        height: calc(min(15rem, 45vw));
         position: absolute;
         z-index: -1;
         clip-path: polygon(0% 50%, 50% 100%, 100% 50%, 50% 0%);
@@ -1502,6 +1507,7 @@ header {
         }
         .softskills-card {
             display: flex;
+            align-items: center;
         }
         .softskills-card-text {
             text-align: center;
@@ -1520,13 +1526,14 @@ header {
             // perspective: 100px;
         }
         .card-circle {
-            display: none;
-            margin: 1rem 5vw;
+            // display: none;
+            // margin: 1rem 5vw;
             // width: calc(max(1vw, 1rem));
             // height: calc(max(1vw, 1rem));
-            width: 1rem;
-            height: 1rem;
+            width: 2rem;
+            height: 2rem;
             clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            transform: rotate(0deg);
             // transform: translate(-50%, -50%);
             transition: transform 500ms ease-in-out;
         }
@@ -1887,6 +1894,19 @@ header {
             }
         }
     }
+    #project-icon-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #project-text-button {
+        margin-left: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+    }
     .project-icon-container {
         display: flex;
         flex-direction: column;
@@ -2054,8 +2074,7 @@ header {
 
 #backdrop {
     // display: none;
-    opacity: 0;
-    transition: opacity 500ms ease-in-out;
+    opacity: 1;
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -2064,6 +2083,10 @@ header {
     left: 0;
     right: 0;
     z-index: -1000;
+    canvas {
+        opacity: 0;
+        transition: opacity 500ms ease-in-out;
+    }
     #backdrop-background {
         position: absolute;
         width: 100%;
@@ -2689,11 +2712,13 @@ footer {
     }
 }
 
-@media only screen and (max-width: 20rem) {
-    #nav-title {
-        flex-direction: column;
-        .nav-center {
-            display: none;
+@media only screen and (max-width: 22rem) {
+    nav {
+        #nav-title {
+            // flex-direction: column;
+            .nav-center {
+                display: none;
+            }
         }
     }
 }
@@ -2758,6 +2783,22 @@ footer {
     #biodata {
         #top-panel-container {
             #diamond-line-container {
+                display: none;
+            }
+        }
+    }
+    #projects {
+        #project-icon-text {
+            flex-direction: column;
+        }
+        #project-text-button {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+    #soft-skills {
+        #soft-skills-container {
+            .card-circle {
                 display: none;
             }
         }

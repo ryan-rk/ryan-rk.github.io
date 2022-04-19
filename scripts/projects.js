@@ -92,11 +92,11 @@ class ProjectSection {
 
 function initializePage() {
     const gallerySection = document.getElementById("gallery-section");
-    gallerySection.style.opacity = 1;
     const background = document.getElementById("background");
     setTimeout(() => {
-        background.style.opacity = 1;
-    }, 500);
+        gallerySection.style.opacity = 1,
+            background.style.opacity = 1;
+    }, 200);
 }
 
 function leavingPage() {

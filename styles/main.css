@@ -840,20 +840,27 @@ header #bg-diamonds {
   width: 100%;
   height: 100%;
   z-index: -10;
-  opacity: 0;
+  opacity: 1;
   -webkit-transition: opacity 1s ease-in-out 5s;
   transition: opacity 1s ease-in-out 5s;
 }
 
 header #bg-diamonds .bg-diamond-container {
   position: absolute;
-  -webkit-animation: bg-diamond-float 7s ease-in-out 0s infinite;
-          animation: bg-diamond-float 7s ease-in-out 0s infinite;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header #bg-diamonds .bg-diamond-container .bg-diamond {
-  width: 100%;
-  height: 100%;
+  width: 65%;
+  height: 65%;
   background-color: #706bca;
   border: 0.1rem solid #706bca;
   -webkit-transform: rotate(45deg);
@@ -1290,8 +1297,8 @@ header #bg-diamonds .bg-diamond-container .bg-diamond {
 }
 
 #biodata .biodata-panel-bg {
-  width: 15rem;
-  height: 15rem;
+  width: calc(min(15rem, 45vw));
+  height: calc(min(15rem, 45vw));
   position: absolute;
   z-index: -1;
   -webkit-clip-path: polygon(0% 50%, 50% 100%, 100% 50%, 50% 0%);
@@ -1902,6 +1909,9 @@ header #bg-diamonds .bg-diamond-container .bg-diamond {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #soft-skills #soft-skills-container .softskills-card-text {
@@ -1929,12 +1939,12 @@ header #bg-diamonds .bg-diamond-container .bg-diamond {
 }
 
 #soft-skills #soft-skills-container .card-circle {
-  display: none;
-  margin: 1rem 5vw;
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 2rem;
   -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
           clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
   -webkit-transition: -webkit-transform 500ms ease-in-out;
   transition: -webkit-transform 500ms ease-in-out;
   transition: transform 500ms ease-in-out;
@@ -2382,6 +2392,36 @@ header #bg-diamonds .bg-diamond-container .bg-diamond {
   color: #3E3E3E;
 }
 
+#projects #project-icon-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#projects #project-text-button {
+  margin-left: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+}
+
 #projects .project-icon-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2611,9 +2651,7 @@ header #bg-diamonds .bg-diamond-container .bg-diamond {
 }
 
 #backdrop {
-  opacity: 0;
-  -webkit-transition: opacity 500ms ease-in-out;
-  transition: opacity 500ms ease-in-out;
+  opacity: 1;
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -2622,6 +2660,12 @@ header #bg-diamonds .bg-diamond-container .bg-diamond {
   left: 0;
   right: 0;
   z-index: -1000;
+}
+
+#backdrop canvas {
+  opacity: 0;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
 }
 
 #backdrop #backdrop-background {
@@ -3877,14 +3921,8 @@ footer .author-container h3 {
   }
 }
 
-@media only screen and (max-width: 20rem) {
-  #nav-title {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  #nav-title .nav-center {
+@media only screen and (max-width: 22rem) {
+  nav #nav-title .nav-center {
     display: none;
   }
 }
@@ -3968,6 +4006,19 @@ footer .author-container h3 {
     text-align: center;
   }
   #biodata #top-panel-container #diamond-line-container {
+    display: none;
+  }
+  #projects #project-icon-text {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #projects #project-text-button {
+    width: 100%;
+    margin-left: 0;
+  }
+  #soft-skills #soft-skills-container .card-circle {
     display: none;
   }
 }
