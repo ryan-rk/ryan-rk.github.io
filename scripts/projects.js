@@ -102,6 +102,10 @@ function initializePage() {
 function leavingPage() {
     const gallerySection = document.getElementById("gallery-section");
     gallerySection.style.opacity = 0;
+    const projectSections = document.getElementsByClassName("project-section");
+    for (const projectSection of projectSections) {
+        projectSection.style.opacity = 0;
+    }
     const background = document.getElementById("background");
     background.style.opacity = 0;
     const navBar = document.querySelector('nav');

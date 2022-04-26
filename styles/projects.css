@@ -305,6 +305,11 @@ nav #home-title span b {
           animation: bottom-diamond-animation 3s ease-in-out infinite;
 }
 
+.project-section {
+  -webkit-transition: opacity 1000ms ease-in-out 500ms;
+  transition: opacity 1000ms ease-in-out 500ms;
+}
+
 .project-section .section-foreground {
   position: relative;
   padding: 2rem;

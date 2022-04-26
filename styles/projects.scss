@@ -238,6 +238,7 @@ nav {
 }
 
 .project-section {
+    transition: opacity 1000ms ease-in-out 500ms;
     // margin-top: 6rem;
     .section-foreground {
         position: relative;
