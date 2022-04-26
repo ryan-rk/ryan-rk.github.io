@@ -1,4 +1,4 @@
-/// Please bear with the codes, I know they are definitely screaming for refactoring and I am definitely doing it whenever I am free
+/// As this portfolio site was built during the early days of my web development journey, the structure of the codes are definitely not in good shape. However as much as they are screaming for refactoring, I am also trying my best at that. So please bear with the codes for now and enjoy the stroll through the portfolio site. Cheers~
 
 class CategorySection {
     constructor(name) {
@@ -23,7 +23,6 @@ class CategorySection {
             if (this.isActivated) { return; }
             this.isActivated = true;
             this.sectionElement.style.display = 'flex';
-            // this.sectionElement.style.visibility = 'visible';
             this.setH1Explosion(true);
             setTimeout(() => {
                 for (const h1 of this.allH1) {
@@ -33,7 +32,6 @@ class CategorySection {
                     this.setLineDecor(true),
                     this.sectionElement.style.opacity = 1,
                     this.sectionElement.style.transform = 'translateY(0)';
-                // this.manageCategoryActivation(true);
             }, 100);
         } else {
             if (!this.isActivated) { return; }
@@ -41,10 +39,8 @@ class CategorySection {
             this.sectionElement.style.opacity = 0;
             this.sectionElement.style.transform = 'translateY(10vh)';
             this.setLineDecor(false);
-            // this.manageCategoryActivation(false);
             setTimeout(() => {
                 this.sectionElement.style.display = 'none';
-                // this.sectionElement.style.visibility = 'hidden';
             }, 500);
             if (this.name == "main") {
                 expandCategoriesDiamonds();
@@ -84,41 +80,11 @@ class CategorySection {
 
     setLineDecor(isActive) {
         for (const verticalLine of this.verticalLines) {
-            // verticalLine.style.transform = isActive ? 'scaleY(1)' : 'scaleY(0)';
             verticalLine.style.clipPath = isActive ? 'circle(100%)' : 'circle(0%)';
             verticalLine.children[0].style.opacity = 1;
             verticalLine.children[2].style.opacity = 1;
         }
     }
-
-    // manageCategoryActivation(isActive) {
-    //     switch (this.name) {
-    //         case "main":
-    //             noticeContainerActivation(isActive);
-    //             break;
-
-    //         case "biodata":
-    //             break;
-
-    //         case "contact":
-    //             // if (!isActive) {
-    //             //     setTimeout(() => {
-    //             //         resetContactScroll();
-    //             //     }, 500);
-    //             // }
-    //             break;
-
-    //         case "skills":
-    //             break;
-
-    //         case "soft-skills":
-    //             break;
-
-    //         default:
-    //             console.log('category index not implemented');
-    //             break;
-    //     }
-    // }
 
 }
 
@@ -134,11 +100,9 @@ function randomIntervalInt(min, max) {
 }
 
 function initializePage() {
-    // const backdrop = document.getElementById("backdrop");
     const canvas = document.querySelector('canvas');
     const bgDiamonds = document.getElementById("bg-diamonds");
     setTimeout(() => {
-        // backdrop.style.opacity = 1;
         canvas.style.opacity = 1;
         bgDiamonds.style.opacity = 1;
     }, 100);
@@ -152,40 +116,6 @@ function leavingPage() {
     navBar.style.animation = 'nav-disappear-animation 500ms ease-in-out 0s forwards';
 }
 
-
-
-// --- Functions for headings and text animations
-// function explodeAllH1Text() {
-//     const allh1 = document.querySelectorAll('h1');
-//     for (let i = 0; i < allh1.length; i++) {
-//         const h1 = allh1[i];
-//         if (h1.id != 'home-title') {
-//             explodeH1Text(h1, i);
-//         }
-//     }
-// }
-
-// function explodeH1Text(h1element, elementIndex) {
-//     h1element.innerHTML = h1element.textContent.replace(/./g, `<span class=\"exploded-chars${elementIndex}\">$&</span>`);
-
-//     let explodedChars = document.getElementsByClassName(`exploded-chars${elementIndex}`);
-//     for (let i = 0; i < explodedChars.length; i++) {
-//         explodedChars[i].style.position = "relative";
-//         // let left = innerWidth * Math.random();
-//         // let left = innerWidth;
-//         // if (Math.random() < 0.5) {
-//         //     explodedChars[i].style.left = "-" + left + "px";
-//         // } else {
-//         //     explodedChars[i].style.left = left + "px";
-//         // }
-//         let top = (Math.random() + 1) * 0.2 * innerHeight;
-//         if (Math.random() < 0.5) {
-//             explodedChars[i].style.top = "-" + top + "px";
-//         } else {
-//             explodedChars[i].style.top = top + "px";
-//         }
-//     }
-// }
 
 
 // --- Functions for Navbar ---
@@ -267,136 +197,6 @@ function isSectionExpanded() {
     return (mainSection.isActivated || bioSection.isActivated || contactSection.isActivated || techSection.isActivated || softSection.isActivated);
 }
 
-// function populateBgDiamonds() {
-//     const numDiamonds = 15;
-//     const numCol = 5;
-//     const numRow = Math.ceil(numDiamonds / numCol);
-//     const minOpacity = 0.1;
-//     const maxOpacity = 0.15;
-//     const borderDiamondOpacityOffset = 0.3;
-//     const minSize = 3.5;
-//     const maxSize = 10;
-//     const maxBlur = 5;
-//     const minBlur = 1;
-//     const diamondWidthSpan = 20;
-//     const diamondPadding = 2;
-//     const diamondMarginTop = 10;
-//     const randomXRange = (100 - 2 * diamondPadding) / numCol;
-//     const randomYRange = (100 - diamondMarginTop - diamondPadding) / (numDiamonds / numCol);
-//     const sizeAnimDurationScale = 3000;
-//     const maxAnimDelay = -30000;
-//     // const minAnimDuration = 2000;
-//     // const maxAnimDuration = 7000;
-//     const bgDiamondContainer = document.getElementById('bg-diamonds');
-//     // const bgDiamonds = [];
-//     for (let i = 0; i < numDiamonds; i++) {
-//         bgDiamondContainer.innerHTML += "<div class=\"bg-diamond-container\"><div class=\"bg-diamond\"></div></div>"
-//     }
-//     const allBgDiamonds = document.getElementsByClassName('bg-diamond');
-//     const allBgDiamondContainers = document.getElementsByClassName('bg-diamond-container');
-//     for (let i = 0; i < allBgDiamonds.length; i++) {
-//         const currentBgDiamond = allBgDiamonds[i];
-//         const currentBgDiamondContainer = allBgDiamondContainers[i];
-//         // currentBgDiamond.style.top = `${8 * i}vh`;
-//         // currentBgDiamond.style.left = `${8 * i}vw`;
-
-//         const diamondSize = Math.random() * (maxSize - minSize) + minSize;
-//         if (Math.random() > 0.25) {
-//             currentBgDiamond.style.backgroundColor = '#ffffff00';
-//             currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity + borderDiamondOpacityOffset;
-//         } else {
-//             currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity;
-//         }
-//         currentBgDiamond.style.filter = `blur(${Math.random() * (maxBlur - minBlur) + minBlur}px)`;
-//         // currentBgDiamond.style.animationDuration = `${Math.random() * (maxAnimDuration - minAnimDuration) + minAnimDuration}ms`;
-//         currentBgDiamondContainer.style.width = `${diamondSize}rem`;
-//         currentBgDiamondContainer.style.height = `${diamondSize}rem`;
-//         currentBgDiamondContainer.style.animationDuration = `${diamondSize * sizeAnimDurationScale + 1000}ms`;
-//         currentBgDiamondContainer.style.animationDelay = `${Math.random() * maxAnimDelay}ms`;
-//         // const horizontalOffset = Math.random() * diamondWidthSpan;
-//         const horizontalOffset = Math.random() * randomXRange + (diamondPadding + randomXRange * (Math.floor(i / numRow)));
-//         const verticalOffset = Math.random() * randomYRange + (randomYRange * (i % (numDiamonds / numCol))) + diamondMarginTop;
-//         // if (i < (numDiamonds / 2)) {
-//         //     currentBgDiamondContainer.style.left = `${horizontalOffset + diamondPadding}vw`;
-//         // } else {
-//         //     currentBgDiamondContainer.style.left = `${100 - horizontalOffset - diamondPadding}vw`;
-//         // }
-//         currentBgDiamondContainer.style.left = `${horizontalOffset}vw`;
-//         currentBgDiamondContainer.style.top = `${verticalOffset}vh`;
-//     }
-// }
-
-// function populateBgDiamonds() {
-//     const gridSize = rem2Px(5);
-//     const minHorizontalPadding = rem2Px(1);
-//     const minVerticalPadding = rem2Px(2);
-//     const numCol = Math.floor((viewWidth() - 2 * minHorizontalPadding) / gridSize) * 2 - 1;
-//     const numRow = Math.floor((viewHeight() - 2 * minVerticalPadding) / gridSize);
-//     const minOpacity = 0.1;
-//     const maxOpacity = 0.15;
-//     const borderDiamondOpacityOffset = 0.25;
-//     const minSizeScale = 0.8;
-//     const maxSizeScale = 1.2;
-//     const maxBlur = 5;
-//     const minBlur = 1;
-//     const horizontalPadding = (viewWidth() - (numCol + 1) / 2 * gridSize) / 2;
-//     const verticalPadding = (viewHeight() - numRow * gridSize) / 2;
-//     // const diamondMarginTop = 10;
-//     // const sizeAnimDurationScale = 3000;
-//     // const maxAnimDelay = -30000;
-//     // const minAnimDuration = 2000;
-//     // const maxAnimDuration = 7000;
-//     const bgDiamondContainer = document.getElementById('bg-diamonds');
-//     // const bgDiamonds = [];
-//     for (let i = 0; i < numRow; i++) {
-//         for (let j = 0; j < numCol; j++) {
-//             const centerXOffset = viewWidth() / 2 - (horizontalPadding + (j + 1) * gridSize / 2);
-//             const centerYOffset = viewHeight() / 2 - (verticalPadding + (i + 1 / 2) * gridSize);
-//             const distToCenter = Math.pow(centerXOffset, 2) + Math.pow(centerYOffset, 2);
-//             if (distToCenter >= Math.pow(rem2Px(15), 2)) {
-//                 bgDiamondContainer.innerHTML += "<div class=\"bg-diamond-container\"><div class=\"bg-diamond\"></div></div>"
-//             }
-//         }
-//     }
-//     console.log(numRow * numCol);
-//     const allBgDiamonds = document.getElementsByClassName('bg-diamond');
-//     console.log(allBgDiamonds.length);
-//     const allBgDiamondContainers = document.getElementsByClassName('bg-diamond-container');
-//     var diamondIndex = 0;
-//     for (let i = 0; i < numRow; i++) {
-//         for (let j = 0; j < numCol; j++) {
-//             const centerXOffset = viewWidth() / 2 - (horizontalPadding + (j + 1) * gridSize / 2);
-//             const centerYOffset = viewHeight() / 2 - (verticalPadding + (i + 1 / 2) * gridSize);
-//             const distToCenter = Math.pow(centerXOffset, 2) + Math.pow(centerYOffset, 2);
-//             if (distToCenter >= Math.pow(rem2Px(15), 2)) {
-//                 const currentBgDiamond = allBgDiamonds[diamondIndex];
-//                 const currentBgDiamondContainer = allBgDiamondContainers[diamondIndex];
-//                 const diamondSizeScale = Math.random() * (maxSizeScale - minSizeScale) + minSizeScale;
-//                 if (Math.random() > 0.25) {
-//                     currentBgDiamond.style.backgroundColor = '#ffffff00';
-//                     currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity + borderDiamondOpacityOffset;
-//                 } else {
-//                     currentBgDiamond.style.opacity = Math.random() * (maxOpacity - minOpacity) + minOpacity;
-//                 }
-//                 currentBgDiamond.style.filter = `blur(${Math.random() * (maxBlur - minBlur) + minBlur}px)`;
-//                 currentBgDiamondContainer.style.width = `${diamondSizeScale * gridSize}px`;
-//                 currentBgDiamondContainer.style.height = `${diamondSizeScale * gridSize}px`;
-//                 const horizontalOffset = horizontalPadding + gridSize / 2 * j;
-//                 var verticalOffset = verticalPadding + gridSize * i;
-//                 if (j % 2 == 1) {
-//                     verticalOffset += gridSize / 2;
-//                 }
-//                 currentBgDiamondContainer.style.left = `${horizontalOffset}px`;
-//                 currentBgDiamondContainer.style.top = `${verticalOffset}px`;
-//                 diamondIndex += 1;
-//             }
-//         }
-//     }
-//     console.log(diamondIndex);
-//     // for (let i = 0; i < allBgDiamonds.length; i++) {}
-// }
-
-
 
 
 // --- Functions dealing with mask animation in biodata section ---
@@ -427,12 +227,8 @@ function maskExplode(isReverse) {
         masktextBg.style.transform = 'scale(1)';
         const maskChars = document.getElementsByClassName('mask-chars');
         for (const maskChar of maskChars) {
-            // maskChar.style.animation = `exploded-char-animation 500ms cubic-bezier(.73, .06, .82, .38) ${Math.random() * 1000}ms forwards`;
             maskChar.style.animation = `exploded-char-animation 500ms ease-in-out ${Math.random() * 500}ms forwards`;
         }
-        // for (const maskChar of maskChars) {
-        //     maskChar.style.opacity = 1;
-        // }
     } else {
         shatterMask(0);
         const mask = document.getElementById('mask');
@@ -443,17 +239,6 @@ function maskExplode(isReverse) {
         setTimeout(() => {
             postMaskExplosion();
         }, 2000);
-        // setTimeout(() => {
-        //     mask.style.transform = 'translateY(50%)';
-        // }, 2000);
-        // mask.style.filter = 'blur(0.5rem)';
-        // mask.style.opacity = 0.6;
-        // setTimeout(() => {
-        //     masktextBg.style.backgroundColor = "#bdbdbd5e",
-        //         masktextBg.style.backdropFilter = "blur(8px)";
-        // }, 1000);
-        // const maskContainer = document.getElementsByClassName("mask-container");
-        // maskContainer[0].addEventListener("scroll", maskScroll, false);
     }
 }
 
@@ -481,21 +266,12 @@ function explodeMaskText() {
 
     const explodedChars = document.getElementsByClassName("mask-chars");
     for (let i = 0; i < explodedChars.length; i++) {
-        // const left = innerWidth * Math.random();
-        // let top = viewHeight * Math.random();
         explodedChars[i].style.opacity = 0;
         if (Math.random() > 0.5) {
             explodedChars[i].style.left = "-" + rem2Px(2) + "px";
-            // explodedChars[i].style.left = "-" + (10 * (i - explodedChars.length / 2)) + "px";
         } else {
             explodedChars[i].style.left = rem2Px(2) + "px";
-            // explodedChars[i].style.left = (10 * (explodedChars.length / 2 - i)) + "px";
         }
-        // if (Math.random() < 0.5) {
-        //     explodedChar[i].style.top = "-" + top + "px";
-        // } else {
-        //     explodedChar[i].style.top = top + "px";
-        // }
     }
 }
 
@@ -511,13 +287,7 @@ function shatterMask(isShatter) {
         } else {
             maskFragments[i].style.transition = 'transform 1400ms cubic-bezier(.38, .82, .06, .73)';
         }
-        // const randomDeg = Math.random() * (90 + 90) - 90;
-        // const randomAxis1 = Math.random() * 2 - 1;
-        // const randomAxis2 = Math.random() * 2 - 1;
-        // const randomAxis3 = Math.random() * 2 - 1;
-        // maskFragments[i].style.transform = `translate(${fragmentOffsetX}%, ${fragmentOffsetY}%) rotate(${isShatter * randomDeg}deg)`;
         maskFragments[i].style.transform = `translate(${xDistanceScale * fragmentOffsetX}%, ${fragmentOffsetY}%) rotate3d(${maskRotationAxes[i][0]}, ${maskRotationAxes[i][1]}, ${maskRotationAxes[i][2]}, ${isShatter ? 220 : 360}deg)`;
-        // maskFragments[i].style.transform = `rotate3d(${maskRotationAxes[i][0]}, ${maskRotationAxes[i][1]}, ${maskRotationAxes[i][2]}, ${isShatter ? 180 : 360}deg)`;
     }
 }
 
@@ -566,9 +336,6 @@ function calculateMaskRotationAxis() {
         const randomAxis1 = Math.random() * 2 - 1;
         const randomAxis2 = Math.random() * 2 - 1;
         const randomAxis3 = Math.random() * 2 - 1;
-        // const randomAxis1 = 0;
-        // const randomAxis2 = 1;
-        // const randomAxis3 = 0;
         randomAxes.push([randomAxis1, randomAxis2, randomAxis3]);
     }
     return randomAxes;
@@ -592,14 +359,12 @@ function updateBioSelection(selectionIndex) {
         artIcon.style.opacity = 1;
         artIcon.style.animation = 'bio-scale-animation 3s ease-in-out infinite';
         artDesc.style.transition = 'transform 500ms ease-in-out 500ms';
-        // artDesc.style.transform = 'translateX(50%) scaleX(1)';
         artDesc.style.transform = `translateX(${artContainerXOffset}px) scaleX(1)`;
         programmingBg.style.borderWidth = '0.2rem';
         programmingIcon.style.animation = 'none';
         programmingIcon.style.transform = 'scale(1)';
         programmingIcon.style.opacity = 0.3;
         programmingDesc.style.transition = 'transform 500ms ease-in-out';
-        // programmingDesc.style.transform = 'translateX(-50%) scaleX(0)';
         programmingDesc.style.transform = `translateX(${programmingContainerXOffset}px) scaleX(0)`;
     } else {
         artBg.style.borderWidth = '0.2rem';
@@ -607,48 +372,15 @@ function updateBioSelection(selectionIndex) {
         artIcon.style.animation = 'none';
         artIcon.style.transform = 'scale(1)';
         artDesc.style.transition = 'transform 500ms ease-in-out';
-        // artDesc.style.transform = 'translateX(50%) scaleX(0)';
         artDesc.style.transform = `translateX(${artContainerXOffset}px) scaleX(0)`;
         programmingBg.style.borderWidth = '0.6rem';
         programmingIcon.style.animation = 'bio-scale-animation 3s ease-in-out infinite';
         programmingIcon.style.opacity = 1;
         programmingDesc.style.transition = 'transform 500ms ease-in-out 500ms';
-        // programmingDesc.style.transform = 'translateX(-50%) scaleX(1)';
         programmingDesc.style.transform = `translateX(${programmingContainerXOffset}px) scaleX(1)`;
     }
     bioSelectionIndex = selectionIndex;
 }
-
-// function generateBiodataPanelBg() {
-// const artPanelBg = document.getElementById('art-panel-bg');
-// const artAxis1 = randomIntervalInt(-1, 1);
-// const artAxis2 = randomIntervalInt(-1, 1);
-// const artAxis3 = randomIntervalInt(-1, 1);
-// const artRotate = randomIntervalInt(-40, 40);
-// artPanelBg.style.transform = `rotate3d(${artAxis1}, ${artAxis2}, ${artAxis3}, ${artRotate}deg)`;
-
-// const programmingPanelBg = document.getElementById('programming-panel-bg');
-// const programmingAxis1 = randomIntervalInt(-1, 1);
-// const programmingAxis2 = randomIntervalInt(-1, 1);
-// const programmingAxis3 = randomIntervalInt(-1, 1);
-// const programmingRotate = randomIntervalInt(-40, -40);
-// programmingPanelBg.style.transform = `rotate3d(${programmingAxis1}, ${programmingAxis2}, ${programmingAxis3}, ${programmingRotate}deg)`;
-// artPanelBg.style.clipPath = randomQuadClipPath();
-// programmingPanelBg.style.clipPath = randomQuadClipPath();
-// }
-
-// function randomQuadClipPath() {
-//     const randomQuad1X = randomIntervalInt(0, 30);
-//     const randomQuad1Y = randomIntervalInt(0, 30);
-//     const randomQuad2X = randomIntervalInt(70, 100);
-//     const randomQuad2Y = randomIntervalInt(0, 30);
-//     const randomQuad3X = randomIntervalInt(70, 100);
-//     const randomQuad3Y = randomIntervalInt(70, 100);
-//     const randomQuad4X = randomIntervalInt(0, 30);
-//     const randomQuad4Y = randomIntervalInt(70, 100);
-//     return `polygon(${randomQuad1X}% ${randomQuad1Y}%, ${randomQuad2X}% ${randomQuad2Y}%, ${randomQuad3X}% ${randomQuad3Y}%, ${randomQuad4X}% ${randomQuad4Y}%)`;
-// }
-
 
 
 // --- Functions dealing with skills directory in skills section ---
@@ -716,8 +448,6 @@ function skillsCategoryClicked(skillID, openClose) {
             break;
     }
     const direcClickElem = document.getElementById(direcClicked);
-    // const { direcIconOffsetX, direcIconOffsetY } = calcDirecTransOrigin(document.getElementById(skillIDSubstring));
-    // direcClickElem.style.transformOrigin = `${direcIconOffsetX}% ${direcIconOffsetY}%`;
     const { direcIconX, direcIconY } = calcDirecTransOrigin(document.getElementById(skillIDSubstring));
     const direcClickElemBCR = direcClickElem.getBoundingClientRect();
     const direcOffsetX = direcIconX - direcClickElemBCR.left;
@@ -742,42 +472,32 @@ function skillsCategoryClicked(skillID, openClose) {
 
 // Calculate the transform origin for each directory based on location on screen
 function calcDirecTransOrigin(skillsCategory) {
-    // const generalDirecBCR = generalDirec.getBoundingClientRect();
     const skillsCategoryBCR = skillsCategory.getBoundingClientRect();
     const direcIconX = (skillsCategoryBCR.left + skillsCategoryBCR.right) / 2;
     const direcIconY = (skillsCategoryBCR.top + skillsCategoryBCR.bottom) / 2;
     return { direcIconX, direcIconY };
-    // const direcIconOffsetX = 100 * (direcIconX - generalDirecBCR.left) / (generalDirecBCR.right - generalDirecBCR.left);
-    // const direcIconOffsetY = 100 * (direcIconY - generalDirecBCR.top) / (generalDirecBCR.bottom - generalDirecBCR.top);
-    // return { direcIconOffsetX, direcIconOffsetY };
 }
 
 
 
 // --- Functions dealing with soft skills section
 function rotateSoftskillsCenter(skillIndex) {
-    // const centerBg = document.getElementById('softskills-center-bg');
     const centerFg = document.getElementById('softskills-center-fg');
-    // centerFg.style.transform = "translateZ(2rem)";
     switch (skillIndex) {
         case 1:
             centerFg.style.transform = "rotateX(30deg) rotateY(-20deg) translateZ(5vw)";
-            // centerBg.style.transform = "rotateX(30deg) rotateY(-20deg)";
             break;
 
         case 2:
             centerFg.style.transform = "rotateX(30deg) rotateY(20deg) translateZ(5vw)";
-            // centerBg.style.transform = "rotateX(30deg) rotateY(20deg)";
             break;
 
         case 3:
             centerFg.style.transform = "rotateX(-30deg) rotateY(-20deg) translateZ(5vw)";
-            // centerBg.style.transform = "rotateX(-30deg) rotateY(-20deg)";
             break;
 
         case 4:
             centerFg.style.transform = "rotateX(-30deg) rotateY(20deg) translateZ(5vw)";
-            // centerBg.style.transform = "rotateX(-30deg) rotateY(20deg)";
             break;
 
         default:
@@ -785,31 +505,19 @@ function rotateSoftskillsCenter(skillIndex) {
             collapseSoftskillsCenter();
             break;
     }
-    // const softskillsContainer = document.getElementById('soft-skills-container');
-    // const containerBCR = softskillsContainer.getBoundingClientRect();
-    // const containerCenterY = containerBCR.bottom - containerBCR.top;
-    // const mouseOffsetX = event.clientX - innerWidth / 2;
-    // const mouseOffsetY = event.clientY - containerCenterY;
-    // const angleOffset = Math.atan2(mouseOffsetY, mouseOffsetX) * 180 / Math.PI;
-    // centerContainer.style.transform = `rotate(${angleOffset}deg)`;
 }
 
 function collapseSoftskillsCenter() {
-    // const centerBg = document.getElementById('softskills-center-bg');
     const centerFg = document.getElementById('softskills-center-fg');
     centerFg.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
-    // centerBg.style.transform = "rotateX(0deg) rotateY(0deg)";
 }
 
 function updateAndShowDesc(cardIndex) {
-    console.log("show desc");
     if (isDescPanelOpen) {
-        console.log("desc opening failed");
         return;
     }
     updateSoftskillsDesc(cardIndex);
     const descContainer = document.getElementById('softskills-desc-container');
-    // descContainer.style.display = "flex";
     descContainer.addEventListener("click", hideSoftskillsDesc, false);
     descContainer.style.transform = "scale(1)";
     isDescPanelOpen = true;
@@ -866,9 +574,6 @@ function hideSoftskillsDesc() {
             creativityAnimation(true),
             adaptabilityAnimation(true);
     }, 500);
-    // setTimeout(() => {
-    //     descContainer.style.display = "none";
-    // }, 500);
 }
 
 function softskillsCardHover(elementId, isHover) {
@@ -892,7 +597,6 @@ function teamworkAnimation(isReverse) {
     }
     const personOutline2 = document.getElementById('person-outline2');
     const personOutline3 = document.getElementById('person-outline3');
-    const cardCircle = document.querySelector('#teamwork-leadership .card-circle');
     if (isReverse) {
         personOutline2.style.opacity = "0";
         personOutline2.style.transform = "translate(50%, -50%)";
@@ -933,10 +637,8 @@ function creativityAnimation(isReverse) {
     if (isDescPanelOpen) {
         return;
     }
-    // const headBottom = document.getElementById('head-bottom-icon');
     const headTop = document.getElementById('head-top-icon');
     const headInner = document.getElementById('head-inner');
-    // const lightBulb = document.getElementById('creativity-light-bulb');
     if (isReverse) {
         headTop.style.transform = "rotate(0deg)";
         headInner.style.top = "0%";
@@ -981,92 +683,92 @@ function adaptabilityAnimation(isReverse) {
 }
 
 
-// Create swipe arrow svg to indicate softskills horizontal scrolling
-function createSoftSkillsSwipe() {
-    const svgns = "http://www.w3.org/2000/svg";
-    const softSkillsSwipe = document.getElementById('soft-skills-swipe');
-    const swipeLineSVG = document.createElementNS(svgns, "svg");
-    const svgDefs = document.createElementNS(svgns, 'defs');
-    const svgGradient = document.createElementNS(svgns, 'linearGradient')
-    const svgStop1 = document.createElementNS(svgns, 'stop');
-    const svgStop2 = document.createElementNS(svgns, 'stop');
-    svgStop1.setAttribute('offset', '0%');
-    svgStop1.setAttribute('stop-color', 'rgba(140,140,140,1)');
-    svgGradient.appendChild(svgStop1);
-    svgStop2.setAttribute('offset', '100%');
-    svgStop2.setAttribute('stop-color', 'rgba(255,255,255,0)');
-    svgGradient.appendChild(svgStop2);
-    svgGradient.id = 'SwipeGradient';
-    svgDefs.appendChild(svgGradient);
-    swipeLineSVG.appendChild(svgDefs);
-    const svgWidth = viewWidth() - rem2Px(8);
-    const svgHeight = rem2Px(1);
-    swipeLineSVG.setAttribute("width", `${svgWidth}px`);
-    swipeLineSVG.setAttribute("height", `${svgHeight}px`);
-    const arrowOffset = rem2Px(1);
-    const swipeLineShort = document.createElementNS(svgns, "polygon");
-    swipeLineShort.setAttribute("fill", "#aaaaaa");
-    swipeLineShort.setAttribute("points", `${arrowOffset} 0 ${0.2*svgWidth} 0 ${0.2*svgWidth-arrowOffset} ${svgHeight/2} ${0.2*svgWidth} ${svgHeight} ${arrowOffset} ${svgHeight} 0 ${svgHeight/2}`);
-    swipeLineSVG.appendChild(swipeLineShort);
-    const swipeLineLong = document.createElementNS(svgns, "polygon");
-    swipeLineLong.setAttribute("fill", "url(#SwipeGradient)");
-    swipeLineLong.setAttribute("points", `${0.2*svgWidth+arrowOffset} 0 ${svgWidth} 0 ${svgWidth-arrowOffset} ${svgHeight/2} ${svgWidth} ${svgHeight} ${0.2*svgWidth+arrowOffset} ${svgHeight} ${0.2*svgWidth} ${svgHeight/2}`);
-    swipeLineSVG.appendChild(swipeLineLong);
-    softSkillsSwipe.appendChild(swipeLineSVG);
-}
+// // Create swipe arrow svg to indicate softskills horizontal scrolling
+// function createSoftSkillsSwipe() {
+//     const svgns = "http://www.w3.org/2000/svg";
+//     const softSkillsSwipe = document.getElementById('soft-skills-swipe');
+//     const swipeLineSVG = document.createElementNS(svgns, "svg");
+//     const svgDefs = document.createElementNS(svgns, 'defs');
+//     const svgGradient = document.createElementNS(svgns, 'linearGradient')
+//     const svgStop1 = document.createElementNS(svgns, 'stop');
+//     const svgStop2 = document.createElementNS(svgns, 'stop');
+//     svgStop1.setAttribute('offset', '0%');
+//     svgStop1.setAttribute('stop-color', 'rgba(140,140,140,1)');
+//     svgGradient.appendChild(svgStop1);
+//     svgStop2.setAttribute('offset', '100%');
+//     svgStop2.setAttribute('stop-color', 'rgba(255,255,255,0)');
+//     svgGradient.appendChild(svgStop2);
+//     svgGradient.id = 'SwipeGradient';
+//     svgDefs.appendChild(svgGradient);
+//     swipeLineSVG.appendChild(svgDefs);
+//     const svgWidth = viewWidth() - rem2Px(8);
+//     const svgHeight = rem2Px(1);
+//     swipeLineSVG.setAttribute("width", `${svgWidth}px`);
+//     swipeLineSVG.setAttribute("height", `${svgHeight}px`);
+//     const arrowOffset = rem2Px(1);
+//     const swipeLineShort = document.createElementNS(svgns, "polygon");
+//     swipeLineShort.setAttribute("fill", "#aaaaaa");
+//     swipeLineShort.setAttribute("points", `${arrowOffset} 0 ${0.2*svgWidth} 0 ${0.2*svgWidth-arrowOffset} ${svgHeight/2} ${0.2*svgWidth} ${svgHeight} ${arrowOffset} ${svgHeight} 0 ${svgHeight/2}`);
+//     swipeLineSVG.appendChild(swipeLineShort);
+//     const swipeLineLong = document.createElementNS(svgns, "polygon");
+//     swipeLineLong.setAttribute("fill", "url(#SwipeGradient)");
+//     swipeLineLong.setAttribute("points", `${0.2*svgWidth+arrowOffset} 0 ${svgWidth} 0 ${svgWidth-arrowOffset} ${svgHeight/2} ${svgWidth} ${svgHeight} ${0.2*svgWidth+arrowOffset} ${svgHeight} ${0.2*svgWidth} ${svgHeight/2}`);
+//     swipeLineSVG.appendChild(swipeLineLong);
+//     softSkillsSwipe.appendChild(swipeLineSVG);
+// }
 
-// Create dots bg
-function createDots() {
-    const dotsContainer = document.getElementById("dots-bg");
-    dotsContainer.innerHTML = "";
-    const dotsContainerBCR = dotsContainer.getBoundingClientRect();
-    const dotsContainerWidth = dotsContainerBCR.right - dotsContainerBCR.left;
-    const numRow = 10;
-    const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
-    const maxDist = Math.sqrt(Math.pow(numRow, 2) + Math.pow(numCol, 2));
-    dotsContainer.style.gridTemplateColumns = `repeat(${numCol}, 1fr)`;
-    dotsContainer.style.gridTemplateRows = `repeat(${numRow}, 1fr)`;
-    for (let i = 0; i < numRow; i++) {
-        for (let j = 0; j < numCol; j++) {
-            let gridElem = document.createElement("div");
-            gridElem.classList.add("small-dots");
-            // const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
-            // const redOffset = 190 - 120 / maxDist * dotDistTopLeft;
-            // const greenOffset = 190 - 120 / maxDist * dotDistTopLeft;
-            // const blueOffset = 200 + 10 / maxDist * dotDistTopLeft;
-            // gridElem.style.backgroundColor = `rgb(${redOffset}, ${greenOffset}, ${blueOffset})`;
-            dotsContainer.appendChild(gridElem);
-        }
-    }
-    return dotsContainerWidth;
-}
+// // Create dots bg
+// function createDots() {
+//     const dotsContainer = document.getElementById("dots-bg");
+//     dotsContainer.innerHTML = "";
+//     const dotsContainerBCR = dotsContainer.getBoundingClientRect();
+//     const dotsContainerWidth = dotsContainerBCR.right - dotsContainerBCR.left;
+//     const numRow = 10;
+//     const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
+//     const maxDist = Math.sqrt(Math.pow(numRow, 2) + Math.pow(numCol, 2));
+//     dotsContainer.style.gridTemplateColumns = `repeat(${numCol}, 1fr)`;
+//     dotsContainer.style.gridTemplateRows = `repeat(${numRow}, 1fr)`;
+//     for (let i = 0; i < numRow; i++) {
+//         for (let j = 0; j < numCol; j++) {
+//             let gridElem = document.createElement("div");
+//             gridElem.classList.add("small-dots");
+//             // const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+//             // const redOffset = 190 - 120 / maxDist * dotDistTopLeft;
+//             // const greenOffset = 190 - 120 / maxDist * dotDistTopLeft;
+//             // const blueOffset = 200 + 10 / maxDist * dotDistTopLeft;
+//             // gridElem.style.backgroundColor = `rgb(${redOffset}, ${greenOffset}, ${blueOffset})`;
+//             dotsContainer.appendChild(gridElem);
+//         }
+//     }
+//     return dotsContainerWidth;
+// }
 
-// Transform each dots with translation and colors with scrolling amount
-function transformDots(scrollRatio = 0.0) {
-    const numRow = 10;
-    const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
-    const waveCycle = dotsContainerWidth / rem2Px(18);
-    const dots = document.getElementsByClassName('small-dots');
-    const maxDist = Math.sqrt(Math.pow(numRow, 2) + Math.pow(numCol, 2));
-    for (let i = 0; i < numRow; i++) {
-        for (let j = 0; j < numCol; j++) {
-            const dot = dots[i * numCol + j];
-            const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
-            shiftMag = -1 * Math.sin(dotDistTopLeft * waveCycle * Math.PI / numCol + scrollRatio);
-            dot.style.transform = `translate(${shiftMag}rem, ${shiftMag}rem)`;
-            const redOffset = 190 - 120 / maxDist * dotDistTopLeft - 30 * scrollRatio;
-            const greenOffset = 190 - 120 / maxDist * dotDistTopLeft;
-            const blueOffset = 200 + 10 / maxDist * dotDistTopLeft;
-            dot.style.backgroundColor = `rgb(${redOffset}, ${greenOffset}, ${blueOffset})`;
-        }
-    }
-}
+// // Transform each dots with translation and colors with scrolling amount
+// function transformDots(scrollRatio = 0.0) {
+//     const numRow = 10;
+//     const numCol = Math.floor(dotsContainerWidth / rem2Px(3.6));
+//     const waveCycle = dotsContainerWidth / rem2Px(18);
+//     const dots = document.getElementsByClassName('small-dots');
+//     const maxDist = Math.sqrt(Math.pow(numRow, 2) + Math.pow(numCol, 2));
+//     for (let i = 0; i < numRow; i++) {
+//         for (let j = 0; j < numCol; j++) {
+//             const dot = dots[i * numCol + j];
+//             const dotDistTopLeft = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+//             shiftMag = -1 * Math.sin(dotDistTopLeft * waveCycle * Math.PI / numCol + scrollRatio);
+//             dot.style.transform = `translate(${shiftMag}rem, ${shiftMag}rem)`;
+//             const redOffset = 190 - 120 / maxDist * dotDistTopLeft - 30 * scrollRatio;
+//             const greenOffset = 190 - 120 / maxDist * dotDistTopLeft;
+//             const blueOffset = 200 + 10 / maxDist * dotDistTopLeft;
+//             dot.style.backgroundColor = `rgb(${redOffset}, ${greenOffset}, ${blueOffset})`;
+//         }
+//     }
+// }
 
-// Calling transform dots with horizontal scrolling
-function dotScroll() {
-    const scrollRatio = -2 * Math.PI * (this.scrollLeft / (this.scrollWidth - this.clientWidth));
-    transformDots(scrollRatio, dotsContainerWidth);
-}
+// // Calling transform dots with horizontal scrolling
+// function dotScroll() {
+//     const scrollRatio = -2 * Math.PI * (this.scrollLeft / (this.scrollWidth - this.clientWidth));
+//     transformDots(scrollRatio, dotsContainerWidth);
+// }
 
 
 
@@ -1175,42 +877,16 @@ function dotScroll() {
 
 function biodataScroll() {
     if (!bioSection.isActivated) { return; }
-    // const mask = document.getElementById('mask');
-    // const maskText = document.getElementsByClassName('mask-text');
     const maskTextContainer = document.getElementById('mask-text-container');
     const maskTextFg = document.getElementById('mask-text-fg');
-    // const biotextContainer = document.getElementsByClassName('biotext-container');
-    // const maskFragmentsClass = document.getElementsByClassName('mask-fragments');
     const clickSignInner = document.getElementById('click-inner1');
     const clickSignOuter = document.getElementById('click-outer1');
     const handPointer = document.getElementById('hand-pointer1');
-    // if (biotextContainer[0].getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
-    //     biotextContainer[0].style.transform = "scaleY(1)";
-    // }
     if ((maskTextContainer.getBoundingClientRect().top + maskTextContainer.getBoundingClientRect().bottom) / 2 <= (viewHeight() * 7 / 10)) {
         maskTextFg.style.opacity = 1;
-        // maskText[0].style.opacity = 1;
-        // biotextPanel[1].style.transform = "scaleY(1)";
         clickSignInner.style.animation = 'click-inner-animation 3500ms ease-in-out 500ms infinite';
         clickSignOuter.style.animation = 'click-outer-animation 3500ms ease-in-out 500ms infinite';
         handPointer.style.animation = 'click-inner-animation 3500ms ease-in-out infinite';
-        // setTimeout(() => {
-        //     for (const maskFragment of maskFragmentsClass) {
-        //         maskFragment.style.animationName = 'fade-in-animation';
-        //         maskFragment.style.animationDuration = '10ms';
-        //     }
-        // }, 1000);
-        // setTimeout(() => {
-        //     maskText[1].style.display = 'block';
-        //     shatterMask(1);
-        // }, 4000);
-        // setTimeout(() => {
-        //     shatterMask(0),
-        //         mask.style.transform = 'scale(0.8)',
-        //         mask.style.filter = 'blur(0.5rem)',
-        //         mask.style.opacity = 0.6,
-        //         mask.style.zIndex = 1;
-        // }, 5400);
         window.removeEventListener("scroll", biodataScroll);
     }
 }
@@ -1254,17 +930,6 @@ function skillDirecScroll() {
     }
 }
 
-// function softSkillsScroll() {
-//     const softSkillsUl = document.getElementById('soft-skills-ul');
-//     const softSkillsSwipe = document.getElementById('soft-skills-swipe');
-//     if (softSkillsUl.getBoundingClientRect().top <= (viewHeight * 6 / 10)) {
-//         softSkillsUl.style.opacity = 1;
-//         softSkillsSwipe.style.opacity = 1;
-//         softSkillsSwipe.children[0].style.animation = 'softskills-arrow-animation 5s cubic-bezier(0.075, 0.82, 0.165, 1) infinite';
-//         window.removeEventListener("scroll", softSkillsScroll);
-//     }
-// }
-
 function projectIconScroll() {
     if (!techSection.isActivated) { return; }
     const projectIconContainer = document.getElementsByClassName('project-icon-container');
@@ -1299,11 +964,9 @@ function contactScroll() {
         mailFront.style.animation = 'mail-front-animation 1s ease-in-out forwards';
         mailFront.style.animationDelay = '1s';
         setTimeout(() => {
-            // mailBack.style.display = 'none';
             mailBack.style.visibility = 'hidden';
             mailBack.style.opacity = 0;
         }, 1500);
-        // window.removeEventListener("scroll", contactScroll);
     }
 }
 
@@ -1318,7 +981,6 @@ function resetContactScroll() {
     mailFront.style.transform = 'scaleX(-1)';
     mailFront.style.animation = 'none';
     mailBack.style.animation = 'none';
-    // mailBack.style.visibility = 'visible';
     mailBack.style.opacity = 1;
 }
 
@@ -1349,31 +1011,17 @@ const maskRotationAxes = calculateMaskRotationAxis();
 const generalDirec = document.getElementById('general-direc');
 const skillsCategories = document.getElementsByClassName('skills-category');
 initializePage();
-// populateBgDiamonds();
-// const dotsContainerWidth = createDots();
-// transformDots(0);
-// explodeAllH1Text();
 explodeMaskText();
-// generateBiodataPanelBg();
-// createSoftSkillsSwipe();
 navListHover('home');
 const aboutButton = document.getElementById('aboutme-list');
 aboutButton.addEventListener('click', aboutOnClick, false);
 const projectsButton = document.getElementById('projects-list');
 projectsButton.addEventListener('click', projectsOnClick, false);
 
-// window.addEventListener("scroll", scrollUpSignScroll, false);
-// window.addEventListener("scroll", headingScroll, false);
-// window.addEventListener("scroll", lineDecorScroll, false);
-// window.addEventListener("scroll", noticeContainerScroll, false);
 window.addEventListener("scroll", biodataScroll, false);
-// window.addEventListener("scroll", artProgrammingScroll, false);
-// window.addEventListener("scroll", uiuxScroll, false);
 window.addEventListener("scroll", projectIconScroll, false);
 window.addEventListener("scroll", skillDirecScroll, false);
-// window.addEventListener("scroll", softSkillsScroll, false);
 window.addEventListener("scroll", contactScroll, false);
-// window.addEventListener("scroll", footerLineScroll, false);
 
 
 // Events for header section
@@ -1433,35 +1081,29 @@ teamworkFg.addEventListener("click", function() {
     teamworkAnimation(false);
     updateAndShowDesc(1);
 }, false);
-teamworkFg.addEventListener("mouseenter", function() { teamworkAnimation(false); }, false);
+teamworkFg.addEventListener("mouseover", function() { teamworkAnimation(false); }, false);
 teamworkFg.addEventListener("mouseleave", function() { teamworkAnimation(true); }, false);
 const timeManagementFg = document.getElementById('time-fg');
 timeManagementFg.addEventListener("click", function() {
     timeAnimation(false);
     updateAndShowDesc(2);
 }, false);
-timeManagementFg.addEventListener("mouseenter", function() { timeAnimation(false); }, false);
+timeManagementFg.addEventListener("mouseover", function() { timeAnimation(false); }, false);
 timeManagementFg.addEventListener("mouseleave", function() { timeAnimation(true); }, false);
 const creativityFg = document.getElementById('creativity-fg');
 creativityFg.addEventListener("click", function() {
     creativityAnimation(false);
     updateAndShowDesc(3);
 }, false);
-creativityFg.addEventListener("mouseenter", function() { creativityAnimation(false); }, false);
+creativityFg.addEventListener("mouseover", function() { creativityAnimation(false); }, false);
 creativityFg.addEventListener("mouseleave", function() { creativityAnimation(true); }, false);
 const adaptabilityFg = document.getElementById('adaptability-fg');
 adaptabilityFg.addEventListener("click", function() {
     adaptabilityAnimation(false);
     updateAndShowDesc(4);
 }, false);
-adaptabilityFg.addEventListener("mouseenter", function() { adaptabilityAnimation(false); }, false);
+adaptabilityFg.addEventListener("mouseover", function() { adaptabilityAnimation(false); }, false);
 adaptabilityFg.addEventListener("mouseleave", function() { adaptabilityAnimation(true); }, false);
-
-
-// Horizontal scrolling for dots bg in softskills section
-// const dotBG = document.querySelector(".scroll-wrapper");
-// dotBG.addEventListener("scroll", dotScroll, false);
-
 
 
 // fix issue of nav bar display changed to none after clicking collapse menu button in mobile mode

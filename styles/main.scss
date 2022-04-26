@@ -1443,6 +1443,7 @@ header {
         margin-bottom: 5rem;
         #softskills-center-container {
             // min-height: 20rem;
+            z-index: 0;
             position: absolute;
             width: 100%;
             // top: 50%;
@@ -1491,6 +1492,7 @@ header {
             }
         }
         #softskills-categories {
+            z-index: 1;
             position: relative;
             width: 100%;
             display: grid;
@@ -1801,7 +1803,7 @@ header {
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            transition: transform 500ms ease-in-out, backdrop-filter 1000ms ease-in-out;
+            transition: transform 500ms ease-in-out;
             // justify-content: center;
             z-index: 2;
             overflow-x: visible;
@@ -1812,6 +1814,7 @@ header {
                 position: absolute;
                 width: 100%;
                 height: 100%;
+                transition: backdrop-filter 1000ms ease-in-out;
             }
             #softskills-desc-title {
                 text-align: center;
